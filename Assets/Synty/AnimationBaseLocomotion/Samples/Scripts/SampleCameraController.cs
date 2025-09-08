@@ -130,6 +130,33 @@ namespace Synty.AnimationBaseLocomotion.Samples
             _lastPosition = _newPosition;
             _lastAngleX = _newAngleX;
             _lastAngleY = _newAngleY;
+
+            ///me Camera limitations
+            // Desired local position (default offset)
+            Vector3 desiredLocalPos = new Vector3(_cameraHorizontalOffset, _cameraHeightOffset, -_cameraDistance);
+
+            // World target position (where camera *wants* to be)
+            Vector3 desiredWorldPos = transform.TransformPoint(desiredLocalPos);
+
+            // Raycast from player target to desired camera position
+            RaycastHit hit;
+            Vector3 origin = _playerTarget.position + Vector3.up * 1.5f; // start ray roughly from head height
+            Vector3 direction = desiredWorldPos - origin;
+            float distance = direction.magnitude;
+
+            if (Physics.Raycast(origin, direction.normalized, out hit, distance))
+            {
+                // If hit, move camera closer (just before wall)
+                float adjustedDist = hit.distance - 0.2f; // keep slight gap
+                desiredWorldPos = origin + direction.normalized * adjustedDist;
+            }
+
+            // Convert back to local position relative to camera rig
+            _syntyCamera.localPosition = transform.InverseTransformPoint(desiredWorldPos);
+            _syntyCamera.localEulerAngles = new Vector3(_cameraTiltOffset, 0f, 0f);
+
+
+
         }
 
         /// <summary>
