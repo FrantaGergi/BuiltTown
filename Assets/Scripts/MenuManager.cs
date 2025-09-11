@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,17 +15,22 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+    }
+
+    public void Menu(InputAction.CallbackContext context)
+    {
+        if (context.performed)
         {
             isMenuActive = !isMenuActive;
-
-            if(isMenuActive)
-            Cursor.lockState = CursorLockMode.None;
+            if (isMenuActive)
+                Cursor.lockState = CursorLockMode.None;
             else
                 Cursor.lockState = CursorLockMode.Locked;
-
             Cursor.visible = isMenuActive;
             menu.SetActive(isMenuActive);
+
+            Debug.Log("Menu toggled via Input System" + isMenuActive);
         }
     }
 }
