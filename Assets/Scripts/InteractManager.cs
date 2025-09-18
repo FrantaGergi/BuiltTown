@@ -1,74 +1,57 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class InteractManager : MonoBehaviour
 {
     [SerializeField] private Camera camera;
     [SerializeField] private float rayDistance = 5f;
     [SerializeField] private LayerMask interactableLayer;
-
     [SerializeField] private TextMeshProUGUI DescriptionText;
     [SerializeField] private InventoryManager inventoryManager;
-    void Start()
-    {
-        DescriptionText.text = "";
-    }
-    void Update()
-    {
-        Interact();
-    }
 
-    private void Interact()
+
+
+    void Update() => ShowDescription();
+
+    private void ShowDescription()
     {
-       /* if (Input.GetKeyDown(KeyCode.E) && inventoryManager.storageParent.IsOpen)
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Ray ray = camera.ScreenPointToRay(mousePos);
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(ray, out hitInfo, rayDistance, interactableLayer.value))
         {
-            inventoryManager.CloseStorage(inventoryManager.storageParent.lastStorage);
-            return; // we dont wanna continue if we just wanted close storage -also i thought the inventory-
-        }*/
-
-        if (/*!inventoryManager.InventoryParent.IsOpen*/ true)
-        {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = camera.ScreenPointToRay(mousePos);
-            RaycastHit hitInfo;
-
-            if (Physics.Raycast(ray, out hitInfo, rayDistance, interactableLayer.value))
+            IInteractable interactable = hitInfo.collider.GetComponent<IInteractable>();
+            if (interactable != null)
             {
-
-                IInteractable interactable = hitInfo.collider.GetComponent<IInteractable>();
-                if (interactable != null)
-                {
-                    string text = interactable.GetInteractionDescription();
-                    if (text != null)
-                        DescriptionText.text = text + " (E)";
-                    if (text == null)
-                        DescriptionText.text = "nemá to text ale je interactable";
-
-
-
-                  /*  if (Input.GetKeyDown(KeyCode.E))  // Collect or Open Storage
-                    {
-
-
-                        ICommand command = interactable.GetInteractionCommand(inventoryManager); // only one bro
-                        if (command != null)
-                            command.Execute();
-                    }
-                  */
-                }
-            }
-            else
-            {
-                DescriptionText.text = "";
+                string text = interactable.GetInteractionDescription();
+                DescriptionText.text = text != null ? text + " (E)" : "Nemá popis";
             }
         }
         else
         {
             DescriptionText.text = "";
-
         }
+    }
+    // This method is called from the Input System when the interact action is performed
+    public void TryInteract(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return; //reaguj jen na performed
 
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Ray ray = camera.ScreenPointToRay(mousePos);
+        RaycastHit hitInfo;
 
+        if (Physics.Raycast(ray, out hitInfo, rayDistance, interactableLayer.value))
+        {
+            IInteractable interactable = hitInfo.collider.GetComponent<IInteractable>();
+            if (interactable != null)
+            {
+                ICommand command = interactable.GetInteractionCommand(inventoryManager);
+                command?.Execute();
+            }
+        }
     }
 }

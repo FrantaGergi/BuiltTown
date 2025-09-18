@@ -13,7 +13,7 @@ public class OpenStorageCommand : ICommand
     
     public void Execute()
     {
-        inventoryManager.OpenStorage(storage);
+        // VinventoryManager.OpenStorage(storage);
     }
 }
 

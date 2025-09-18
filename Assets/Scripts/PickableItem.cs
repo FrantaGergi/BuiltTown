@@ -6,12 +6,11 @@ public class PickableItem : MonoBehaviour, IInteractable
 
     public ICommand GetInteractionCommand(InventoryManager inventoryManager)
     {
-        return new CollectItemCommand(gameObject,inventoryManager);       
+        return new CollectItemCommand(itemScriptableObject, inventoryManager);
     }
 
     public string GetInteractionDescription()
     {
-        return " collect";
+        return "Sebrat";
     }
-
 }

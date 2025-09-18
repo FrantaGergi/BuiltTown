@@ -1,110 +1,57 @@
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using TMPro;
 using UnityEngine;
 
-public class HotbarParent : InventoryBase
+public class HotbarParent : MonoBehaviour
 {
-   
-    [Header("this let like it is")]
+    public HotbarSlot[] slots = new HotbarSlot[3];
+
+    public void SetSlot(int index, ItemSO item, int count)
+    {
+        if (index < 0 || index >= slots.Length) return;
+        slots[index].SetItem(item, count);
+    }
+
+    public void ClearSlot(int index)
+    {
+        if (index < 0 || index >= slots.Length) return;
+        slots[index].Clear();
+    }
+}
+
+[System.Serializable]
+public class HotbarSlot
+{
+    public ItemSO item;
+    public int count;
+
+    [Header("UI References")]
     [SerializeField]
-    public int selectedHotbarSlot = 0; // if not -1 is selected, if is -1, nothing is active
+    private UnityEngine.UI.Image itemImage;
     [SerializeField]
-    public int lastSelectedhotbarSlot = 0;
+    private TextMeshProUGUI countText;
 
-    protected override void Awake() // the first thing what we want,bcs in inv_Manager we are calling the method wich is op
+
+    public void SetItem(ItemSO newItem, int newCount)
     {
-       base.Awake();
-        ClearTextInSlots();
-    }
-    private void Start()
-    {
-    }
+        item = newItem;
+        count = newCount;
+        Update();
 
-    public bool IsHotbarChange()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            lastSelectedhotbarSlot = selectedHotbarSlot;
-
-            selectedHotbarSlot = 0;
-            if (lastSelectedhotbarSlot == selectedHotbarSlot)
-            {
-                selectedHotbarSlot = -1;
-            }
-
-
-            return true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            lastSelectedhotbarSlot = selectedHotbarSlot;
-
-            selectedHotbarSlot = 1;
-            if (lastSelectedhotbarSlot == selectedHotbarSlot)
-            {
-                selectedHotbarSlot = -1;
-            }
-
-            return true;
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            lastSelectedhotbarSlot = selectedHotbarSlot;
-
-            selectedHotbarSlot = 2;
-            if (lastSelectedhotbarSlot == selectedHotbarSlot)
-            {
-                selectedHotbarSlot = -1;
-            }
-
-            return true;
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            lastSelectedhotbarSlot = selectedHotbarSlot;
-
-            selectedHotbarSlot = 3;
-            if (lastSelectedhotbarSlot == selectedHotbarSlot)
-            {
-                selectedHotbarSlot = -1;
-            }
-
-            return true;
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            lastSelectedhotbarSlot = selectedHotbarSlot;
-
-            selectedHotbarSlot = 4;
-            if (lastSelectedhotbarSlot == selectedHotbarSlot)
-            {
-                selectedHotbarSlot = -1;
-            }
-
-            return true;
-
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            lastSelectedhotbarSlot = selectedHotbarSlot;
-
-            selectedHotbarSlot = 5;
-            if (lastSelectedhotbarSlot == selectedHotbarSlot)
-            {
-                selectedHotbarSlot = -1;
-            }
-
-            return true;
-
-        }
-        return false;
     }
 
-  
+    public void Clear()
+    {
+        item = null;
+        count = 0;
+        Update();
+    }
 
- 
+    private void Update()
+    {
+        if (countText != null)
+            countText.text = count > 1 ? count.ToString() : "";
 
-  
+        if (itemImage != null)
+            itemImage.sprite = item != null ? item.icon : null;
+    }
 }

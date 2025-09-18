@@ -32,7 +32,7 @@ public class Storage : MonoBehaviour, IInteractable
 
     public ICommand GetInteractionCommand(InventoryManager inventoryManager)
     {
-        isOpen = !inventoryManager.storageParent.IsOpen; // ! bcs isopen will be the 2. option
+      //  isOpen = !inventoryManager.storageParent.IsOpen; // ! bcs isopen will be the 2. option
         return new OpenStorageCommand(this, inventoryManager);
     }
 

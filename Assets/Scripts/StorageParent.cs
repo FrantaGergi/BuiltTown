@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class StorageParent : InventoryBase
+public class StorageParent : MonoBehaviour
 {
  
     public Storage lastStorage;
 
-    protected override void Awake()
+    private  void Awake()
     {
-        base.Awake();
-        gameObject.SetActive(IsOpen);
     }
-
+    /*
     public void Load(Storage storage, GameObject itemPrefab)
     {
         for (int i = 0; i < slots.Length; i++) // all nonactive slots
@@ -53,12 +51,13 @@ public class StorageParent : InventoryBase
 
 
         ClearTextInSlots();
+     
     }
 
 
     public void Save(Storage storage)
     {
-
+    
 
         storage.items.Clear();
 
@@ -99,6 +98,6 @@ public class StorageParent : InventoryBase
 
     }
 
-
+    */
 
 }

@@ -1,20 +1,19 @@
 using UnityEngine;
 
-public class CollectItemCommand :ICommand
+public class CollectItemCommand : ICommand
 {
-    private GameObject item;
+    private ItemSO itemSO;
     private InventoryManager inventoryManager;
 
-
-    public CollectItemCommand(GameObject item, InventoryManager inventoryManager)
+    public CollectItemCommand(ItemSO itemSO, InventoryManager inventoryManager)
     {
-        this.item = item;
+        this.itemSO = itemSO;
         this.inventoryManager = inventoryManager;
     }
 
     public void Execute()
     {
-        inventoryManager.ItemPicked(item);
-     
+        inventoryManager.AddResourceToHotbar(itemSO, 1);
+        // pøípadnì znièit objekt ve svìtì
     }
 }
