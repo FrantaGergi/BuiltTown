@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OpenStorageCommand : ICommand
+public class OpenStorageCommand
 {
     private Storage storage;
     private InventoryManager inventoryManager;

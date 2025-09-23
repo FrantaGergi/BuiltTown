@@ -5,52 +5,107 @@ using UnityEngine.UIElements;
 
 public class InteractManager : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
-    [SerializeField] private float rayDistance = 5f;
-    [SerializeField] private LayerMask interactableLayer;
-    [SerializeField] private TextMeshProUGUI DescriptionText;
-    [SerializeField] private InventoryManager inventoryManager;
+    public float interactDistance = 3f;
+    private Camera cam;
+    private IInteractable currentTarget;
 
+    public LayerMask interactMask;
 
+    private bool isHolding = false; // aby hráè nemohl cheatovat
 
-    void Update() => ShowDescription();
-
-    private void ShowDescription()
+    public enum InteractAction
     {
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = camera.ScreenPointToRay(mousePos);
-        RaycastHit hitInfo;
+        None,
+        E,       
+        R,     
+        HoldStart,
+        Hold,
+        HoldEnd
+    }
 
-        if (Physics.Raycast(ray, out hitInfo, rayDistance, interactableLayer.value))
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
+
+    private void Update()
+    {
+        // Každý frame kontroluje, na co hráè míøí
+        TryInteract(InteractAction.None);
+    }
+
+    public void OnHoldInteract(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) // zaèátek držení
         {
-            IInteractable interactable = hitInfo.collider.GetComponent<IInteractable>();
-            if (interactable != null)
+            TryInteract(InteractAction.HoldStart);
+        }
+        else if (ctx.performed) // bìhem držení (triggery u "Hold")
+        {
+            TryInteract(InteractAction.Hold);
+        }
+        else if (ctx.canceled) // puštìní tlaèítka
+        {
+            TryInteract(InteractAction.HoldEnd);
+        }
+    }
+
+
+    public void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        TryInteract(InteractAction.E);
+    }
+
+    public void OnSecondaryInteract(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        TryInteract(InteractAction.R);
+    }
+
+    private void TryInteract(InteractAction action)
+    {
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactMask))
+        {
+            var interactable = hit.collider.GetComponent<IInteractable>();
+
+            if (interactable != currentTarget)
             {
-                string text = interactable.GetInteractionDescription();
-                DescriptionText.text = text != null ? text + " (E)" : "Nemá popis";
+                // když odcházím z targetu a byl aktivní hold  stopni ho
+                if (currentTarget != null && isHolding)
+                {
+                    currentTarget.Interact(gameObject, InteractAction.HoldEnd);
+                    isHolding = false;
+                }
+
+                currentTarget?.OnHoverExit();
+                currentTarget = interactable;
+                currentTarget?.OnHoverEnter();
+            }
+
+            if (action != InteractAction.None && interactable != null)
+            {
+                // trackujeme, jestli držíme
+                if (action == InteractAction.HoldStart) isHolding = true;
+                if (action == InteractAction.HoldEnd) isHolding = false;
+
+                interactable.Interact(gameObject, action);
             }
         }
         else
         {
-            DescriptionText.text = "";
-        }
-    }
-    // This method is called from the Input System when the interact action is performed
-    public void TryInteract(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return; //reaguj jen na performed
-
-        Vector2 mousePos = Mouse.current.position.ReadValue();
-        Ray ray = camera.ScreenPointToRay(mousePos);
-        RaycastHit hitInfo;
-
-        if (Physics.Raycast(ray, out hitInfo, rayDistance, interactableLayer.value))
-        {
-            IInteractable interactable = hitInfo.collider.GetComponent<IInteractable>();
-            if (interactable != null)
+            if (currentTarget != null)
             {
-                ICommand command = interactable.GetInteractionCommand(inventoryManager);
-                command?.Execute();
+                // pokud ztratíme cíl uprostøed držení
+                if (isHolding)
+                {
+                    currentTarget.Interact(gameObject, InteractAction.HoldEnd);
+                    isHolding = false;
+                }
+
+                currentTarget.OnHoverExit();
+                currentTarget = null;
             }
         }
     }

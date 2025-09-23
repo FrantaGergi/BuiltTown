@@ -7091,9 +7091,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 791592795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cab127daa1ec1046944b470e07996ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e73056d0b21ec942a65a8df88196603, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
+  m_EditorClassIdentifier: Assembly-CSharp::Tree
 --- !u!4 &797565484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4518735152137134, guid: 5afed722cc07f0045bfb9c283f384e9c, type: 3}
@@ -14663,13 +14663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d87c7781ab8a4b844b23deeb8705e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractManager
-  camera: {fileID: 514813873}
-  rayDistance: 5
-  interactableLayer:
+  interactDistance: 3
+  interactMask:
     serializedVersion: 2
     m_Bits: 64
-  DescriptionText: {fileID: 1547771812}
-  inventoryManager: {fileID: 0}
 --- !u!114 &1610482347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14677,7 +14674,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610482343}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e607e5167acd6144b8abcfa778cc7329, type: 3}
   m_Name: 
@@ -14731,19 +14728,7 @@ MonoBehaviour:
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1610482346}
-        m_TargetAssemblyTypeName: InteractManager, Assembly-CSharp
-        m_MethodName: TryInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 852140f2-7766-474d-8707-702459ba45f3
     m_ActionName: 'Player/Interact[/Keyboard/e]'
   - m_PersistentCalls:
@@ -14836,9 +14821,9 @@ MonoBehaviour:
     m_ActionName: 'Player/Pause[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1610482347}
-        m_TargetAssemblyTypeName: MiniManager, Assembly-CSharp
-        m_MethodName: StartMining
+      - m_Target: {fileID: 1610482346}
+        m_TargetAssemblyTypeName: InteractManager, Assembly-CSharp
+        m_MethodName: OnHoldInteract
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14848,24 +14833,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: ca90649c-2f49-4666-9fda-b6b9bf46fe27
-    m_ActionName: 'Player/StartMine[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1610482347}
-        m_TargetAssemblyTypeName: MiniManager, Assembly-CSharp
-        m_MethodName: StopMining
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 11dfe882-3a2f-45bc-a7e4-a400eeaf7e5b
-    m_ActionName: 'Player/StopMine[/Mouse/leftButton]'
+    m_ActionId: 60437874-5081-450a-a90e-870184c55fe1
+    m_ActionName: 'Player/Mouse[/Mouse/forwardButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -18788,8 +18757,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4873045266110693020, guid: a9714cb44f330ec4d80ee2d8435dfbab, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2081375859}
   m_SourcePrefab: {fileID: 100100000, guid: a9714cb44f330ec4d80ee2d8435dfbab, type: 3}
+--- !u!1 &2081375858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4873045266110693020, guid: a9714cb44f330ec4d80ee2d8435dfbab, type: 3}
+  m_PrefabInstance: {fileID: 2076720210}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2081375859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081375858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef499af955389a4ab79ead9b11b8662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopItem
+  itemName: Axe
+  price: 499
 --- !u!1 &2084831958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7904907880180220592, guid: dbd36275ac7e4d042aa8a403fe7166ec, type: 3}

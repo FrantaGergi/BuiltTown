@@ -28,7 +28,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -97,21 +97,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "StartMine",
+                    "name": "Mouse",
                     "type": "Button",
-                    "id": "ca90649c-2f49-4666-9fda-b6b9bf46fe27",
+                    "id": "60437874-5081-450a-a90e-870184c55fe1",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "StopMine",
-                    "type": "Button",
-                    "id": "11dfe882-3a2f-45bc-a7e4-a400eeaf7e5b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -514,23 +505,12 @@
                 },
                 {
                     "name": "",
-                    "id": "b74179f9-21ab-4d59-833b-2747719e86fe",
+                    "id": "db737a68-cbd6-4c24-ac3d-7fd953dfa30c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "StartMine",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f7dc2441-8e21-444b-be02-929f112ab560",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "StopMine",
+                    "action": "Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,7 +4,7 @@ using System.Windows.Input;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class Storage : MonoBehaviour, IInteractable
+public class Storage : MonoBehaviour
 {
     public string name;
     public int size;
@@ -24,7 +24,7 @@ public class Storage : MonoBehaviour, IInteractable
     }
 
    
-
+/*
     public string GetInteractionDescription()
     {
         return   $"Otevøít {name}";
@@ -36,5 +36,5 @@ public class Storage : MonoBehaviour, IInteractable
         return new OpenStorageCommand(this, inventoryManager);
     }
 
-    
+    */
 }

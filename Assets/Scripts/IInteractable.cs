@@ -1,11 +1,14 @@
 
 
 using System.Windows.Input;
+using UnityEngine;
 
 public interface IInteractable
 {
+    void Interact(GameObject interactor, InteractManager.InteractAction action);
 
-    string GetInteractionDescription();
-    ICommand GetInteractionCommand(InventoryManager inventoryManager);
+    // jen vizuální efekty
+    void OnHoverEnter();
+    void OnHoverExit();
 
 }
