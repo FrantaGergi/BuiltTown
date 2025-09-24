@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class MiniManager : MonoBehaviour
 {
-    [Header("Tree Settings")]
+    [Header("TreeResource Settings")]
     public float maxHealth = 100f;
     private float currentHealth;
 

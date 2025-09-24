@@ -8,5 +8,6 @@ public class ItemSO : ScriptableObject
     public string ItemName;
     public Sprite icon;
     public GameObject prefab;
-    public int stackMax;
+    public string description;
+    public int price;
 }

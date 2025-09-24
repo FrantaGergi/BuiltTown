@@ -1,7 +1,7 @@
 using UnityEngine;
 using static InteractManager;
 
-public class Tree : MonoBehaviour, IInteractable
+public class TreeResource : MonoBehaviour, IInteractable
 {
     private bool isChopping;
 
