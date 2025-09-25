@@ -5,7 +5,7 @@ public class StoneResource : MonoBehaviour, IInteractable
 {
     private bool isMining;
 
-    public void Interact(GameObject interactor, InteractAction action)
+    public void Interact(InteractManager interactor, InteractAction action)
     {
         switch (action)
         {

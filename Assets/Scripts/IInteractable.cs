@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Interact(GameObject interactor, InteractManager.InteractAction action);
+    void Interact(InteractManager interactor, InteractManager.InteractAction action);
 
     // jen vizuální efekty
     void OnHoverEnter();

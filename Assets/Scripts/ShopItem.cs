@@ -6,7 +6,7 @@ public class ShopItem : MonoBehaviour, IInteractable
     public string itemName;
     public int price;
 
-    public void Interact(GameObject interactor, InteractManager.InteractAction action)
+    public void Interact(InteractManager interactor, InteractManager.InteractAction action)
     {
         switch (action)
         {

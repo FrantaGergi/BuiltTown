@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b1b0663dbe9c0409ca97e6dcffb999, type: 3}
   m_Name: Pickaxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  ItemName: 
+  ItemName: Wood pickaxe
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  stackMax: 0
+  itemType: 0
+  description: 
+  price: 0

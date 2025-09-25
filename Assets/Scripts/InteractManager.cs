@@ -13,6 +13,9 @@ public class InteractManager : MonoBehaviour
 
     private bool isHolding = false; // aby hráè nemohl cheatovat
 
+    [Header("Tool Animator"), SerializeField]
+    private Animator toolAnimator; // pro check animace pøi držení
+
     public enum InteractAction
     {
         None,
@@ -75,7 +78,7 @@ public class InteractManager : MonoBehaviour
                 // když odcházím z targetu a byl aktivní hold  stopni ho
                 if (currentTarget != null && isHolding)
                 {
-                    currentTarget.Interact(gameObject, InteractAction.HoldEnd);
+                    currentTarget.Interact(this, InteractAction.HoldEnd);
                     isHolding = false;
                 }
 
@@ -90,7 +93,7 @@ public class InteractManager : MonoBehaviour
                 if (action == InteractAction.HoldStart) isHolding = true;
                 if (action == InteractAction.HoldEnd) isHolding = false;
 
-                interactable.Interact(gameObject, action);
+                interactable.Interact(this, action);
             }
         }
         else
@@ -100,7 +103,7 @@ public class InteractManager : MonoBehaviour
                 // pokud ztratíme cíl uprostøed držení
                 if (isHolding)
                 {
-                    currentTarget.Interact(gameObject, InteractAction.HoldEnd);
+                    currentTarget.Interact(this, InteractAction.HoldEnd);
                     isHolding = false;
                 }
 
@@ -108,5 +111,10 @@ public class InteractManager : MonoBehaviour
                 currentTarget = null;
             }
         }
+    }
+
+    public Animator GetToolAnimator()
+    { 
+        return toolAnimator;
     }
 }
