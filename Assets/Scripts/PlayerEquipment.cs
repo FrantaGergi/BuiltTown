@@ -1,17 +1,29 @@
+using NUnit.Framework;
 using Synty.AnimationBaseLocomotion.Samples;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerEquipment : MonoBehaviour
 {
-    public ItemSO axe;
-    public ItemSO pickaxe;
+    [Header("References")]
+    [SerializeField]
+    private IKHandler ikHandler;
+
+    [Header("Tools")]
+    public ItemSO Primary;
+    public ItemSO Secundary;
     
-    public ItemSO currentTool;
-    // Další logika pro upgrady, výmìnu atd.
+    public ItemSO CurrentTool;
+
+    [Header("Hand Tools")]
+    public Transform ItemHandParent; // parent object holdings hand tools to see them in hands
+  
+    private List<ItemHand> tools = new List<ItemHand>();
 
     private void Start()
     {
+        // this enables middle button mouse click work correctly
         SampleCameraController cameractrl = GetComponentInChildren<SampleCameraController>();
         if (cameractrl != null)
         {
@@ -20,15 +32,18 @@ public class PlayerEquipment : MonoBehaviour
 
         }
 
+        tools.AddRange(ItemHandParent.GetComponentsInChildren<ItemHand>(true));
+
     }
 
     private void Equip(ItemSO item)
     {
-        if (currentTool == item) return; // already equipped
+        if (CurrentTool == item) return; // already equipped
 
         // animations, sound effects, etc.
-        currentTool = item;
-        Debug.Log($"Equipped {item.name}");
+        CurrentTool = item;
+        EquipInHand(CurrentTool);
+
     }
 
     public void OnScroll(InputAction.CallbackContext ctx) // switch tool
@@ -38,9 +53,9 @@ public class PlayerEquipment : MonoBehaviour
         Vector2 scrollValue = ctx.ReadValue<Vector2>();
 
         if (scrollValue.y > 0)
-            Equip(axe);
+            Equip(Primary);
         else if (scrollValue.y < 0)
-            Equip(pickaxe);
+            Equip(Secundary);
     }
     public void OnMouseMiddleClick(InputAction.CallbackContext ctx) // no one uses it
     {
@@ -49,5 +64,25 @@ public class PlayerEquipment : MonoBehaviour
         Equip(null);
 
         Debug.Log("Støední tlaèítko myši kliknuto");
+    }
+
+
+    private void EquipInHand(ItemSO item)
+    {
+
+        foreach (var tool in tools)
+        {
+            if (tool.itemScriptableObject == item)
+            {
+                tool.SetActive(true);
+                ikHandler.SetTargets(tool.ikLeftTarget, tool.ikRightTarget);
+            }
+            else
+                tool.SetActive(false);
+        }
+        if (item == null)
+        {
+            ikHandler.SetTargets(null,null);
+        }
     }
 }
