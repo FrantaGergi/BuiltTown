@@ -15,6 +15,6 @@ MonoBehaviour:
   ItemName: Axe
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  itemType: 0
+  itemType: 1
   description: 
   price: 0

@@ -7515,6 +7515,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7342340f0328c3241bc8a415d791d708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
+  hitPoints: 10
+  hitsPerDrop: 3
 --- !u!4 &797565484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4518735152137134, guid: 5afed722cc07f0045bfb9c283f384e9c, type: 3}
@@ -11848,6 +11850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182c9505be1f74d43a250eb52b40416b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneResource
+  hitPoints: 10
+  hitsPerDrop: 3
 --- !u!1001 &1217126610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13734,6 +13738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182c9505be1f74d43a250eb52b40416b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneResource
+  hitPoints: 10
+  hitsPerDrop: 3
 --- !u!1 &1411433759
 GameObject:
   m_ObjectHideFlags: 0
@@ -15288,7 +15294,6 @@ GameObject:
   - component: {fileID: 1610482345}
   - component: {fileID: 1610482344}
   - component: {fileID: 1610482346}
-  - component: {fileID: 1610482347}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -15343,24 +15348,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   toolAnimator: {fileID: 2131682144}
---- !u!114 &1610482347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610482343}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e607e5167acd6144b8abcfa778cc7329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiniManager
-  maxHealth: 461.3
-  woodPrefab: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  healthPerWood: 20
-  isBeingMined: 0
-  miningSpeed: 10
+  playerEquipment: {fileID: 1613510106}
 --- !u!1 &1613510103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6064801525321721345, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
