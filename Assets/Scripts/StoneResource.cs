@@ -1,35 +1,49 @@
 using UnityEngine;
 using static InteractManager;
 
-public class StoneResource : MonoBehaviour, IInteractable
+public class StoneResource : Resource, IInteractable
 {
-    private bool isMining;
 
-    public void Interact(InteractManager interactor, InteractAction action)
+    protected override void Start()
     {
+        base.Start();
+
+        miningAnimationName = AnimationType.Mining;
+    }
+
+
+    public override void Interact(InteractManager interactor, InteractAction action)
+    {
+        base.Interact(interactor, action);
+
+     
         switch (action)
         {
             case InteractAction.E:
-                Debug.Log("Krátký úder na kámen.");
                 break;
 
             case InteractAction.HoldStart:
                 isMining = true;
-                Debug.Log("Zaèínáš tìžit kámen (držení)...");
+                toolAnimator?.SetBool("Is" + miningAnimationName, true);
                 break;
 
             case InteractAction.Hold:
-                if (isMining)
-                    Debug.Log("Tìžíš kámen...");
                 break;
 
             case InteractAction.HoldEnd:
                 isMining = false;
-                Debug.Log("Pøestal jsi tìžit kámen.");
+                toolAnimator?.SetBool("Is" + miningAnimationName, false);
+
                 break;
         }
     }
 
-    public void OnHoverEnter() => Debug.Log("Míøíš na kámen.");
-    public void OnHoverExit() => Debug.Log("Už nemíøíš na kámen.");
+    public override void OnHoverEnter() { base.OnHoverEnter(); }
+    public override void OnHoverExit() { base.OnHoverExit(); }
+
+
+    protected override void Update()
+    {
+       base.Update();
+    }
 }

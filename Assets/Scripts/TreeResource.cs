@@ -1,83 +1,47 @@
 using UnityEngine;
 using static InteractManager;
 
-public class TreeResource : MonoBehaviour, IInteractable
+public class TreeResource : Resource, IInteractable
 {
-    private bool isChopping;
-
-    private float lastLoopCount = 0f;
-    private Animator toolAnimator;
-
-    public void Interact(InteractManager interactor, InteractAction action)
+    protected override void Start()
     {
-        if (toolAnimator == null && interactor != null)
-        {
-            toolAnimator = interactor.GetToolAnimator();
-        }
+        base.Start();
+
+        miningAnimationName = AnimationType.Chopping;
+    }
+
+    public override void Interact(InteractManager interactor, InteractAction action)
+    {
+        base.Interact(interactor, action);
+
 
         switch (action)
         {
             case InteractAction.E:
-                Debug.Log("Krátký úder na strom.");
                 break;
 
             case InteractAction.HoldStart:
-                isChopping = true;
-                toolAnimator?.SetBool("IsDoing", true);
-                Debug.Log("Zaèínáš sekat strom (držení)...");
+                isMining = true;
+                toolAnimator?.SetBool("Is" + miningAnimationName, true);
                 break;
 
             case InteractAction.Hold:
-                if (isChopping)
-                    Debug.Log("Sekáš strom...");
                 break;
 
             case InteractAction.HoldEnd:
-                isChopping = false;
-                toolAnimator?.SetBool("IsDoing", false);
-                Debug.Log("Pøestal jsi sekat strom.");
+                isMining = false;
+                toolAnimator?.SetBool("Is" + miningAnimationName, false);
+
                 break;
         }
     }
 
-    public void OnHoverEnter() => Debug.Log("Míøíš na strom.");
-    public void OnHoverExit() => Debug.Log("Už nemíøíš na strom.");
+    public override void OnHoverEnter() { base.OnHoverEnter(); }
+    public override void OnHoverExit() { base.OnHoverExit(); }
 
 
-    private void Update()
+    protected override void Update()
     {
-        if (isChopping)
-        {
-           
-            if (toolAnimator != null)
-            {
-                DoCheck(toolAnimator);
-            }
-        }
+        base.Update();
     }
-
-    private void DoCheck(Animator toolAnimator)
-    {
-        AnimatorStateInfo state = toolAnimator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Mining"))
-        {
-            // získáme èíslo aktuální smyèky (0, 1, 2...)
-            int loopCount = Mathf.FloorToInt(state.normalizedTime);
-
-            // když se èíslo smyèky zmìnilo od minula
-            if (loopCount > lastLoopCount)
-            {
-                Debug.Log("Jedna tìžební smyèka dokonèena!");
-                // tady spustíš tìžbu (pøidat kámen, zahrát zvuk...)
-            }
-
-            lastLoopCount = loopCount;
-        }
-        else
-        {
-            // reset, když nejsme v Mining animaci
-            lastLoopCount = 0;
-        }
-    }
-
 }
