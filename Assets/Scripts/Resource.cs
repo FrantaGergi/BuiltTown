@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static InteractManager;
 
@@ -8,6 +9,8 @@ public class Resource : MonoBehaviour, IInteractable
 
     protected float lastLoopCount = 0f;
     protected Animator toolAnimator;
+    protected PlayerEquipment playerEquipment;
+    protected InteractManager interactor;
 
 
     protected AnimationType miningAnimationName;
@@ -24,18 +27,27 @@ public class Resource : MonoBehaviour, IInteractable
         Mining
     }
 
+    private  readonly Dictionary<AnimationType, ItemType> requiredTools =
+    new Dictionary<AnimationType, ItemType>
+    {
+        { AnimationType.Chopping, ItemType.Chopp },
+        { AnimationType.Mining, ItemType.Mine }
+        // sem snadno doplníš další (Fishing, Digging...)
+    };
+
     protected virtual void Start()
     {
-    
+        enabled = false; // Update se nebude volat, dokud nezaène tìžba
     }
 
     public virtual void Interact(InteractManager interactor, InteractAction action)
     {
-        if (toolAnimator == null && interactor != null)
+        if(this.interactor == null)
         {
+            this.interactor = interactor;
+            playerEquipment = interactor.GetPlayerEquipment();
             toolAnimator = interactor.GetToolAnimator();
         }
-
     }
 
     public virtual void OnHoverEnter() { }
@@ -61,10 +73,10 @@ public class Resource : MonoBehaviour, IInteractable
         {
             // získáme èíslo aktuální smyèky (0, 1, 2...)
             int loopCount = Mathf.FloorToInt(state.normalizedTime);
-            // když se èíslo smyèky zmìnilo od minula
+            // když se èíslo smyèky zmìnílo od minula
             if (loopCount > lastLoopCount)
             {
-                Debug.Log($"Jedna {miningAnimationName} smyèka dokonèena!");
+               TakeHit(1);
                 // tady spustíš tìžbu (pøidat kámen, zahrát zvuk...)
             }
 
@@ -77,28 +89,68 @@ public class Resource : MonoBehaviour, IInteractable
         }
     }
 
-    public virtual int TakeHit(int damagePoint)
+    protected virtual int TakeHit(int damagePoint)
     {
         hitPoints -= damagePoint;
+       
+
+        hitsTaken += damagePoint;
+        if (hitsTaken >= hitsPerDrop)
+        {
+            int drops = hitsTaken / hitsPerDrop;
+            hitsTaken = hitsTaken % hitsPerDrop;
+            return drops; // vrátí 1, 2, 3... podle toho, kolikrát se vejde
+        }
+
         if (hitPoints <= 0)
         {
             DestroyResource();
         }
 
-        hitsTaken += damagePoint;
-        if(hitsTaken >= hitsPerDrop)
-        {
-            hitsTaken = 0;
-            return 1; // drop item
-        }
         return 0;
     }
 
     protected virtual void DestroyResource()
     {
+        StopMining();
+        interactor.ClearCurrentTarget(this);
         Destroy(gameObject);
     }
 
-   
+    protected virtual void StartMining()
+    {
+        if(!HasCorrectTool()) return;
+
+
+        Debug.Log("StartMining");
+        isMining = true;
+        enabled = true; // Aktivuje Update
+
+        toolAnimator?.SetBool("Is" + miningAnimationName, true);
+    }
+    protected virtual void StopMining()
+    {
+        isMining = false;
+        enabled = false; // Deaktivuje Update
+
+        toolAnimator?.SetBool("Is" + miningAnimationName, false);
+    }
+
+    protected bool HasCorrectTool()
+    {
+        if (playerEquipment == null || playerEquipment.CurrentTool == null)
+            return false;
+
+        if (playerEquipment.CurrentTool.itemType == ItemType.None)
+            return false;
+
+        if (requiredTools.TryGetValue(miningAnimationName, out ItemType requiredTool))
+        {
+            return playerEquipment.CurrentTool.itemType == requiredTool;
+        }
+
+        return false; // pokud animace nemá pøiøazený žádný tool
+    }
+
 
 }

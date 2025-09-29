@@ -14,23 +14,21 @@ public class TreeResource : Resource, IInteractable
     {
         base.Interact(interactor, action);
 
-
+        
         switch (action)
         {
             case InteractAction.E:
                 break;
 
             case InteractAction.HoldStart:
-                isMining = true;
-                toolAnimator?.SetBool("Is" + miningAnimationName, true);
+                StartMining();
                 break;
 
             case InteractAction.Hold:
                 break;
 
             case InteractAction.HoldEnd:
-                isMining = false;
-                toolAnimator?.SetBool("Is" + miningAnimationName, false);
+                StopMining();
 
                 break;
         }

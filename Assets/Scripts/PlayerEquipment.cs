@@ -85,4 +85,5 @@ public class PlayerEquipment : MonoBehaviour
             ikHandler.SetTargets(null,null);
         }
     }
+
 }

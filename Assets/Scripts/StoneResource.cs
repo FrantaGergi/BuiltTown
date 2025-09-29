@@ -23,17 +23,14 @@ public class StoneResource : Resource, IInteractable
                 break;
 
             case InteractAction.HoldStart:
-                isMining = true;
-                toolAnimator?.SetBool("Is" + miningAnimationName, true);
+                StartMining();
                 break;
 
             case InteractAction.Hold:
                 break;
 
             case InteractAction.HoldEnd:
-                isMining = false;
-                toolAnimator?.SetBool("Is" + miningAnimationName, false);
-
+                StopMining();
                 break;
         }
     }

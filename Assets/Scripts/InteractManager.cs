@@ -15,12 +15,15 @@ public class InteractManager : MonoBehaviour
 
     [Header("Tool Animator"), SerializeField]
     private Animator toolAnimator; // pro check animace pøi držení
+    [Header("Player Equipment"), SerializeField]
+    private PlayerEquipment playerEquipment;
+
 
     public enum InteractAction
     {
         None,
-        E,       
-        R,     
+        E,
+        R,
         HoldStart,
         Hold,
         HoldEnd
@@ -113,8 +116,30 @@ public class InteractManager : MonoBehaviour
         }
     }
 
+    public void ClearCurrentTarget(IInteractable target = null)
+    {
+        // Pokud je pøedán target, smaže jen pokud sedí s currentTarget
+        if (target == null || currentTarget == target)
+        {
+            if (currentTarget != null)
+            {
+                if (isHolding)
+                {
+                    currentTarget.Interact(this, InteractAction.HoldEnd);
+                    isHolding = false;
+                }
+                currentTarget.OnHoverExit();
+                currentTarget = null;
+            }
+        }
+    }
+
     public Animator GetToolAnimator()
-    { 
+    {
         return toolAnimator;
+    }
+    public PlayerEquipment GetPlayerEquipment()
+    {
+        return playerEquipment;
     }
 }
