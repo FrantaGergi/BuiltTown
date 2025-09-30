@@ -33,7 +33,7 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         tools.AddRange(ItemHandParent.GetComponentsInChildren<ItemHand>(true));
-
+        EquipInHand(null);
     }
 
     private void Equip(ItemSO item)

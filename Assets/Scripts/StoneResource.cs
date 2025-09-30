@@ -11,6 +11,16 @@ public class StoneResource : Resource, IInteractable
         miningAnimationName = AnimationType.Mining;
     }
 
+    protected override void LateStart()
+    {
+        base.LateStart();
+        ItemSO = resourceMapManager.GetStoneSO();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
 
     public override void Interact(InteractManager interactor, InteractAction action)
     {
@@ -38,9 +48,10 @@ public class StoneResource : Resource, IInteractable
     public override void OnHoverEnter() { base.OnHoverEnter(); }
     public override void OnHoverExit() { base.OnHoverExit(); }
 
-
-    protected override void Update()
+    protected override void GetDrop(int ammount)
     {
-       base.Update();
+        base.GetDrop(ammount);
+        inventoryManager.AddResourceToHotbar(ItemSO, ammount);
     }
+
 }

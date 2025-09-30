@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0.3137255, a: 0.5882353}
+  m_Color: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.5882353}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7515,7 +7515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7342340f0328c3241bc8a415d791d708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
-  hitPoints: 10
+  hitPoints: 120
   hitsPerDrop: 3
 --- !u!4 &797565484 stripped
 Transform:
@@ -8703,17 +8703,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0f3d981293a9f4a87208523ca70416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HotbarParent
+  woodColor: {r: 0.76862746, g: 0.4862745, b: 0.23921569, a: 0.78431374}
+  stoneColor: {r: 0.6862745, g: 0.7164536, b: 0.7490197, a: 0.78431374}
+  oreColor: {r: 0.32941177, g: 0.40331817, b: 0.74901944, a: 0.78431374}
+  emptyColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.627451}
   slots:
   - item: {fileID: 0}
     count: 0
+    backgroundImage: {fileID: 1624858452}
     itemImage: {fileID: 1593453376}
     countText: {fileID: 900770460}
   - item: {fileID: 0}
     count: 0
+    backgroundImage: {fileID: 1208341522}
     itemImage: {fileID: 1171221075}
     countText: {fileID: 1259603638}
   - item: {fileID: 0}
     count: 0
+    backgroundImage: {fileID: 1970345783}
     itemImage: {fileID: 1947150619}
     countText: {fileID: 705992745}
 --- !u!224 &921868975 stripped
@@ -11570,7 +11577,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c5990150ba0e0a41b47b39566019be3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7fad12f28d69104b89d4797fdef5cc1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11808,7 +11815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.90588236, b: 0.1273585, a: 0.78431374}
+  m_Color: {r: 0.65882355, g: 0.6901961, b: 0.72156864, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15260,7 +15267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c5990150ba0e0a41b47b39566019be3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11635abe187aa2f4498c6c9ba36e8f68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15294,6 +15301,8 @@ GameObject:
   - component: {fileID: 1610482345}
   - component: {fileID: 1610482344}
   - component: {fileID: 1610482346}
+  - component: {fileID: 1610482348}
+  - component: {fileID: 1610482347}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -15349,6 +15358,36 @@ MonoBehaviour:
     m_Bits: 64
   toolAnimator: {fileID: 2131682144}
   playerEquipment: {fileID: 1613510106}
+  resourceMapManager: {fileID: 1610482348}
+  inventoryManager: {fileID: 1610482347}
+--- !u!114 &1610482347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610482343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96588e4388f78054082b7e6eabed210a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  hotbarParent: {fileID: 911096880}
+--- !u!114 &1610482348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610482343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de0eea79173d7c43932f508c727e703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceMapManager
+  wood: {fileID: 11400000, guid: 081aae858a1559f499e2064a3c8cb5cb, type: 2}
+  stone: {fileID: 11400000, guid: a798a9c312d349947a5b5aee581d9f0d, type: 2}
+  ore: {fileID: 11400000, guid: b3fd183c48c054e48ab10ed3beb98581, type: 2}
 --- !u!1 &1613510103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6064801525321721345, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
@@ -15654,7 +15693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.90588236, b: 0.1273585, a: 0.78431374}
+  m_Color: {r: 0.76862746, g: 0.4862745, b: 0.23921569, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17882,7 +17921,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5c5990150ba0e0a41b47b39566019be3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 826172d30e560f842a9d3b12565c2411, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18226,7 +18265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.90588236, b: 0.1273585, a: 0.78431374}
+  m_Color: {r: 0.2901961, g: 0.35686275, b: 0.6627451, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

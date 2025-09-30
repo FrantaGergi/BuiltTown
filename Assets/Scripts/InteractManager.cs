@@ -17,6 +17,10 @@ public class InteractManager : MonoBehaviour
     private Animator toolAnimator; // pro check animace pøi držení
     [Header("Player Equipment"), SerializeField]
     private PlayerEquipment playerEquipment;
+    [Header("Map manager"), SerializeField]
+    private ResourceMapManager resourceMapManager;
+    [Header("Inventory manager"), SerializeField]
+    private InventoryManager inventoryManager;
 
 
     public enum InteractAction
@@ -141,5 +145,13 @@ public class InteractManager : MonoBehaviour
     public PlayerEquipment GetPlayerEquipment()
     {
         return playerEquipment;
+    }
+    public ResourceMapManager GetResourceMapManager()
+    {
+        return resourceMapManager;
+    }
+    public InventoryManager GetInventoryManager()
+    {
+        return inventoryManager;
     }
 }

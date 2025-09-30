@@ -11,6 +11,9 @@ public class Resource : MonoBehaviour, IInteractable
     protected Animator toolAnimator;
     protected PlayerEquipment playerEquipment;
     protected InteractManager interactor;
+    protected InventoryManager inventoryManager;
+    protected ResourceMapManager resourceMapManager;
+    protected ItemSO ItemSO;
 
 
     protected AnimationType miningAnimationName;
@@ -47,6 +50,10 @@ public class Resource : MonoBehaviour, IInteractable
             this.interactor = interactor;
             playerEquipment = interactor.GetPlayerEquipment();
             toolAnimator = interactor.GetToolAnimator();
+            inventoryManager = interactor.GetInventoryManager();
+            resourceMapManager = interactor.GetResourceMapManager();
+
+            LateStart(); // inicializace, která potøebuje interactor
         }
     }
 
@@ -65,6 +72,12 @@ public class Resource : MonoBehaviour, IInteractable
             }
         }
     }
+
+    // slouží když potøebuješ nìco inicializovat až po tom, co interactor zavolá Interact()
+    protected virtual void LateStart()
+    {
+    }
+
 
     protected void DoCheck(Animator toolAnimator)
     {
@@ -89,7 +102,7 @@ public class Resource : MonoBehaviour, IInteractable
         }
     }
 
-    protected virtual int TakeHit(int damagePoint)
+    protected virtual void TakeHit(int damagePoint)
     {
         hitPoints -= damagePoint;
        
@@ -99,15 +112,18 @@ public class Resource : MonoBehaviour, IInteractable
         {
             int drops = hitsTaken / hitsPerDrop;
             hitsTaken = hitsTaken % hitsPerDrop;
-            return drops; // vrátí 1, 2, 3... podle toho, kolikrát se vejde
+            GetDrop(drops); // vrátí 1, 2, 3... podle toho, kolikrát se vejde
         }
 
         if (hitPoints <= 0)
         {
             DestroyResource();
         }
+    }
 
-        return 0;
+    protected virtual void GetDrop(int ammount)
+    {
+        //  každá surovina bude mít svùj ItemSO
     }
 
     protected virtual void DestroyResource()
