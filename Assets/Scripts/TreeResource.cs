@@ -13,7 +13,7 @@ public class TreeResource : Resource, IInteractable
     protected override void LateStart()
     {
         base.LateStart();
-        ItemSO = resourceMapManager.GetWoodSO();
+        ItemSO = resourceMapManager.WoodSO;
     }
 
     protected override void Update()
@@ -45,8 +45,17 @@ public class TreeResource : Resource, IInteractable
         }
     }
 
-    public override void OnHoverEnter() { base.OnHoverEnter(); }
-    public override void OnHoverExit() { base.OnHoverExit(); }
+    public override void OnHoverEnter() 
+    { 
+        base.OnHoverEnter(); 
+        renderer.material = resourceMapManager.WoodSO.HighlightedMaterial;
+
+    }
+    public override void OnHoverExit() 
+    {
+        base.OnHoverExit(); 
+        renderer.material = originalMaterial;
+    }
 
     protected override void GetDrop(int ammount)
     {

@@ -14,7 +14,7 @@ public class StoneResource : Resource, IInteractable
     protected override void LateStart()
     {
         base.LateStart();
-        ItemSO = resourceMapManager.GetStoneSO();
+        ItemSO = resourceMapManager.StoneSO;
     }
 
     protected override void Update()
@@ -45,8 +45,16 @@ public class StoneResource : Resource, IInteractable
         }
     }
 
-    public override void OnHoverEnter() { base.OnHoverEnter(); }
-    public override void OnHoverExit() { base.OnHoverExit(); }
+    public override void OnHoverEnter() 
+    {
+        base.OnHoverEnter();
+        renderer.material = resourceMapManager.StoneSO.HighlightedMaterial;
+    }
+    public override void OnHoverExit() 
+    { 
+        base.OnHoverExit(); 
+        renderer.material = originalMaterial;
+    }
 
     protected override void GetDrop(int ammount)
     {

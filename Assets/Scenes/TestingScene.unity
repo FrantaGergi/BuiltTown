@@ -3708,7 +3708,7 @@ PrefabInstance:
     - target: {fileID: 23017560184091520, guid: e24de7eecd8cc6c4a995bf8d9a032990, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 7d5a10e15f2eda34bba2cfa69571b4c9, type: 2}
+      objectReference: {fileID: 2100000, guid: 28646867ddcf90a4989276acd313ea43, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7982,6 +7982,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23361147180090938, guid: 922a6f57306c9774b92ac4d6b9bb8eb6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c58d0a7a2c4af1a4482e0d0ab9c5c863, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10333,6 +10337,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23361147180090938, guid: 922a6f57306c9774b92ac4d6b9bb8eb6, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c58d0a7a2c4af1a4482e0d0ab9c5c863, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14758,6 +14766,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23819743558511158, guid: 4f1d7c24a365d0d49a6bb1ea5a847c32, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 28646867ddcf90a4989276acd313ea43, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15417,9 +15429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de0eea79173d7c43932f508c727e703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceMapManager
-  wood: {fileID: 11400000, guid: 081aae858a1559f499e2064a3c8cb5cb, type: 2}
-  stone: {fileID: 11400000, guid: a798a9c312d349947a5b5aee581d9f0d, type: 2}
-  ore: {fileID: 11400000, guid: b3fd183c48c054e48ab10ed3beb98581, type: 2}
+  <WoodSO>k__BackingField: {fileID: 11400000, guid: 081aae858a1559f499e2064a3c8cb5cb, type: 2}
+  <StoneSO>k__BackingField: {fileID: 11400000, guid: a798a9c312d349947a5b5aee581d9f0d, type: 2}
+  <OreSO>k__BackingField: {fileID: 11400000, guid: b3fd183c48c054e48ab10ed3beb98581, type: 2}
 --- !u!1 &1613510103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6064801525321721345, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}

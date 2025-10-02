@@ -14,6 +14,8 @@ public class Resource : MonoBehaviour, IInteractable
     protected InventoryManager inventoryManager;
     protected ResourceMapManager resourceMapManager;
     protected ItemSO ItemSO;
+    protected Material originalMaterial;
+    protected Renderer renderer;
 
 
     protected AnimationType miningAnimationName;
@@ -41,6 +43,12 @@ public class Resource : MonoBehaviour, IInteractable
     protected virtual void Start()
     {
         enabled = false; // Update se nebude volat, dokud nezaène tìžba
+
+        renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            originalMaterial = renderer.material;
+        }
     }
 
     public virtual void Interact(InteractManager interactor, InteractAction action)
@@ -57,9 +65,29 @@ public class Resource : MonoBehaviour, IInteractable
         }
     }
 
-    public virtual void OnHoverEnter() { }
-    public virtual void OnHoverExit() { }
+    public virtual void OnHoverEnter() 
+    {
+       // SetVariablesFromInteractor();
 
+    }
+    public virtual void OnHoverExit() 
+    {
+    
+    }
+
+    protected void SetVariablesFromInteractor(InteractManager interactor)
+    {
+        if (interactor == null) { 
+            this.interactor = interactor;
+            playerEquipment = interactor.GetPlayerEquipment();
+            toolAnimator = interactor.GetToolAnimator();
+            inventoryManager = interactor.GetInventoryManager();
+            resourceMapManager = interactor.GetResourceMapManager();
+
+            LateStart(); // inicializace, která potøebuje interactor
+         }
+
+    }
 
     protected virtual void Update()
     {

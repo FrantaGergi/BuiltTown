@@ -2,31 +2,22 @@ using UnityEngine;
 
 public class ResourceMapManager : MonoBehaviour
 {
-    [Header("Resource Map Settings"), SerializeField]
-    private ItemSO wood;
-    [SerializeField]
-    private ItemSO stone;
-    [SerializeField]
-    private ItemSO ore;
+    [Header("Resource SO Settings")]
+    [field: SerializeField]
+    public ItemSO WoodSO { get; private set; }
+    [field: SerializeField]
+    public ItemSO StoneSO { get;set; }
+    [field: SerializeField]
+    public ItemSO OreSO { get; set; }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (wood == null || stone == null || ore == null)
+        if (WoodSO == null || StoneSO == null || OreSO == null)
         {
-            Debug.LogError("One or more ItemSO references are not set in ResourceMapManager.");
+            Debug.LogError("One or more  references are not set in ResourceMapManager.");
         }
     }
 
-    public ItemSO GetWoodSO()
-    {
-       return wood;
-    }
-    public ItemSO GetStoneSO()
-    {
-       return stone;
-    }
-    public ItemSO GetOreSO()
-    {
-       return ore;
-    }
 }
