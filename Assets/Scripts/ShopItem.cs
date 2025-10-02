@@ -25,7 +25,7 @@ public class ShopItem : MonoBehaviour, IInteractable
         }
     }
 
-    public void OnHoverEnter()
+    public void OnHoverEnter(InteractManager interactor)
     {
           Debug.Log($"Hover over: {itemName}");
         //   UIManager.Instance.ShowTooltip($"{itemName} - {price} coinù");

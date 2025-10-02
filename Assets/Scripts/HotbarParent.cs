@@ -37,11 +37,11 @@ public class HotbarParent : MonoBehaviour
 
         switch (itemSO.ItemName.ToLower())
         {
-            case "WoodSO":
+            case "wood":
                  return woodColor;
-            case "StoneSO":
+            case "stone":
                  return stoneColor;
-            case "OreSO":
+            case "ore":
                  return oreColor;
             default:
                  return emptyColor;
@@ -86,6 +86,8 @@ public class HotbarSlot
 
     private void Update(Color bckColor)
     {
+
+
         if (countText != null)
             countText.text = count >= 1 ? count.ToString() : "";
 

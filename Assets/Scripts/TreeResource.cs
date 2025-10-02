@@ -45,9 +45,11 @@ public class TreeResource : Resource, IInteractable
         }
     }
 
-    public override void OnHoverEnter() 
+    public override void OnHoverEnter(InteractManager interactor) 
     { 
-        base.OnHoverEnter(); 
+        base.OnHoverEnter(interactor);
+        if (!HasCorrectTool()) return;
+
         renderer.material = resourceMapManager.WoodSO.HighlightedMaterial;
 
     }

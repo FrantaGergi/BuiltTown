@@ -37,11 +37,26 @@ public class InteractManager : MonoBehaviour
     {
         cam = Camera.main;
     }
+    private void OnEnable()
+    {
+        playerEquipment.EventOnToolChanged += ToolChanged;
+    }
+    private void OnDisable()
+    {
+        ClearCurrentTarget();
+        playerEquipment.EventOnToolChanged -= ToolChanged;
+    }
 
     private void Update()
     {
         // Každý frame kontroluje, na co hráè míøí
         TryInteract(InteractAction.None);
+    }
+
+    private void ToolChanged()
+    {
+        ClearCurrentTarget(currentTarget);
+        TryInteract(InteractAction.HoldEnd);
     }
 
     public void OnHoldInteract(InputAction.CallbackContext ctx)
@@ -88,10 +103,9 @@ public class InteractManager : MonoBehaviour
                     currentTarget.Interact(this, InteractAction.HoldEnd);
                     isHolding = false;
                 }
-
                 currentTarget?.OnHoverExit();
                 currentTarget = interactable;
-                currentTarget?.OnHoverEnter();
+                currentTarget?.OnHoverEnter(this);
             }
 
             if (action != InteractAction.None && interactable != null)

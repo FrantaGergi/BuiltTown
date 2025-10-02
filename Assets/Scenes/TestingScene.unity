@@ -15347,6 +15347,7 @@ GameObject:
   - component: {fileID: 1610482346}
   - component: {fileID: 1610482348}
   - component: {fileID: 1610482347}
+  - component: {fileID: 1610482349}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -15432,6 +15433,23 @@ MonoBehaviour:
   <WoodSO>k__BackingField: {fileID: 11400000, guid: 081aae858a1559f499e2064a3c8cb5cb, type: 2}
   <StoneSO>k__BackingField: {fileID: 11400000, guid: a798a9c312d349947a5b5aee581d9f0d, type: 2}
   <OreSO>k__BackingField: {fileID: 11400000, guid: b3fd183c48c054e48ab10ed3beb98581, type: 2}
+--- !u!114 &1610482349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610482343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8c4c23496ffb04386bc4c2393de4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  sfxGroup: {fileID: 8730239473143383340, guid: 0307b4806bec88e4986399d24eeb9da9, type: 2}
+  musicGroup: {fileID: 3489432397246402283, guid: 0307b4806bec88e4986399d24eeb9da9, type: 2}
+  environmentGroup: {fileID: 1763298748324255846, guid: 0307b4806bec88e4986399d24eeb9da9, type: 2}
+  soundList: []
+  PlayerIsInWater: 0
 --- !u!1 &1613510103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6064801525321721345, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}

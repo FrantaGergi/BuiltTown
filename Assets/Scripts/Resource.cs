@@ -65,9 +65,10 @@ public class Resource : MonoBehaviour, IInteractable
         }
     }
 
-    public virtual void OnHoverEnter() 
+    public virtual void OnHoverEnter(InteractManager interactor) 
     {
-       // SetVariablesFromInteractor();
+
+        SetVariablesFromInteractor(interactor);
 
     }
     public virtual void OnHoverExit() 
@@ -77,7 +78,7 @@ public class Resource : MonoBehaviour, IInteractable
 
     protected void SetVariablesFromInteractor(InteractManager interactor)
     {
-        if (interactor == null) { 
+        if (this.interactor == null && interactor != null) { 
             this.interactor = interactor;
             playerEquipment = interactor.GetPlayerEquipment();
             toolAnimator = interactor.GetToolAnimator();

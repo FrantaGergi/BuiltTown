@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Synty.AnimationBaseLocomotion.Samples;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,8 @@ public class PlayerEquipment : MonoBehaviour
     public Transform ItemHandParent; // parent object holdings hand tools to see them in hands
   
     private List<ItemHand> tools = new List<ItemHand>();
+
+    public Action EventOnToolChanged;
 
     private void Start()
     {
@@ -43,12 +46,15 @@ public class PlayerEquipment : MonoBehaviour
         // animations, sound effects, etc.
         CurrentTool = item;
         EquipInHand(CurrentTool);
+        EventOnToolChanged.Invoke();
 
     }
 
     public void OnScroll(InputAction.CallbackContext ctx) // switch tool
     {
         if (!ctx.performed) return;
+
+    
 
         Vector2 scrollValue = ctx.ReadValue<Vector2>();
 
@@ -63,7 +69,6 @@ public class PlayerEquipment : MonoBehaviour
 
         Equip(null);
 
-        Debug.Log("Støední tlaèítko myši kliknuto");
     }
 
 

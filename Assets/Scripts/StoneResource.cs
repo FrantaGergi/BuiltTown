@@ -45,9 +45,12 @@ public class StoneResource : Resource, IInteractable
         }
     }
 
-    public override void OnHoverEnter() 
+    public override void OnHoverEnter(InteractManager interactor) 
     {
-        base.OnHoverEnter();
+        base.OnHoverEnter(interactor);
+
+        if (!HasCorrectTool()) return;
+
         renderer.material = resourceMapManager.StoneSO.HighlightedMaterial;
     }
     public override void OnHoverExit() 

@@ -8,7 +8,7 @@ public interface IInteractable
     void Interact(InteractManager interactor, InteractManager.InteractAction action);
 
     // jen vizuální efekty
-    void OnHoverEnter();
+    void OnHoverEnter(InteractManager interactor);
     void OnHoverExit();
 
 }
