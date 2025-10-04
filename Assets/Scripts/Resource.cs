@@ -17,6 +17,9 @@ public class Resource : MonoBehaviour, IInteractable
     protected Material originalMaterial;
     protected Renderer renderer;
 
+    protected HitShakeEffect hitEffect;
+
+
 
     protected AnimationType miningAnimationName;
     [Range(10, 1000),SerializeField]
@@ -48,6 +51,11 @@ public class Resource : MonoBehaviour, IInteractable
         if (renderer != null)
         {
             originalMaterial = renderer.material;
+        }
+        hitEffect = GetComponent<HitShakeEffect>();
+        if (hitEffect == null)
+        {
+            Debug.LogError("HitShakeEffect component not found on Resource.");
         }
     }
 
@@ -152,6 +160,7 @@ public class Resource : MonoBehaviour, IInteractable
 
     protected virtual void GetDrop(int ammount)
     {
+        hitEffect.Hit();
         //  každá surovina bude mít svùj ItemSO
     }
 

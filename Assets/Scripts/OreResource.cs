@@ -54,7 +54,7 @@ public class OreResource : Resource, IInteractable
     }
     public override void OnHoverExit()
     {
-        base.OnHoverExit();
+        base.OnHoverExit();  
         renderer.material = originalMaterial;
     }
 

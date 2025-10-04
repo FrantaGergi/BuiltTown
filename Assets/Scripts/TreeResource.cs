@@ -3,6 +3,7 @@ using static InteractManager;
 
 public class TreeResource : Resource, IInteractable
 {
+
     protected override void Start()
     {
         base.Start();
