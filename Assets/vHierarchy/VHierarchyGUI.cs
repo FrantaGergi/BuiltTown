@@ -985,7 +985,7 @@ namespace VHierarchy
 
 
 #if UNITY_2021_1_OR_NEWER
-            dragSelectionList = treeViewController?.GetFieldValue("m_DragSelection")?.GetFieldValue<List<int>>("m_List");
+            dragSelectionList = treeViewController?.GetFieldValue("m_DragSelection")?.GetIdList("m_List") ?? new();
 #else
             dragSelectionList = treeViewController?.GetFieldValue<List<int>>("m_DragSelection");
 #endif

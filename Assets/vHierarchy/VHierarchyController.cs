@@ -19,7 +19,10 @@ using static VHierarchy.VHierarchy;
 using static VHierarchy.VHierarchyData;
 using static VHierarchy.VHierarchyCache;
 
-#if UNITY_6000_2_OR_NEWER
+#if UNITY_6000_3_OR_NEWER
+using TreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<UnityEngine.EntityId>;
+using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<UnityEngine.EntityId>;
+#elif UNITY_6000_2_OR_NEWER
 using TreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
 using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 #endif
@@ -55,7 +58,7 @@ namespace VHierarchy
 
 
 
-            var itemIndex = treeViewControllerData.InvokeMethod<int>("GetRow", id);
+            var itemIndex = treeViewControllerData.InvokeMethod<int>("GetRow", id.ToIdType());
             var items = treeViewControllerData.GetMemberValue<List<TreeViewItem>>("m_Rows");
 
             var stuckCollapsing = itemIndex != -1 && items[itemIndex].id != id; // happens when collapsing long hierarchies due to a bug in TreeViewController
@@ -173,7 +176,7 @@ namespace VHierarchy
 
             currentScrollPos = treeViewControllerState?.scrollPos.y ?? 0;
 
-            expandedIds = treeViewControllerState?.expandedIDs ?? new List<int>();
+            expandedIds = treeViewControllerState?.expandedIDs.ToInts() ?? new();
 
 
 
@@ -198,7 +201,7 @@ namespace VHierarchy
 
         public int GetRowIndex(int instanceId)
         {
-            return treeViewControllerData.InvokeMethod<int>("GetRow", instanceId);
+            return treeViewControllerData.InvokeMethod<int>("GetRow", instanceId.ToIdType());
         }
 
 
@@ -391,15 +394,15 @@ namespace VHierarchy
 
         public void SetExpandedIds(List<int> targetExpandedIds)
         {
-            treeViewControllerData.InvokeMethod("SetExpandedIDs", targetExpandedIds.ToArray());
+            treeViewControllerData.InvokeMethod("SetExpandedIDs", targetExpandedIds.ToArray()); // won't work on 6.3 but it's unused anyway
         }
         public void SetExpanded_withAnimation(int instanceId, bool expanded)
         {
-            treeViewController.InvokeMethod("ChangeFoldingForSingleItem", instanceId, expanded);
+            treeViewController.InvokeMethod("ChangeFoldingForSingleItem", instanceId.ToIdType(), expanded);
         }
         public void SetExpanded_withoutAnimation(int instanceId, bool expanded)
         {
-            treeViewControllerData.InvokeMethod("SetExpanded", instanceId, expanded);
+            treeViewControllerData.InvokeMethod("SetExpanded", instanceId.ToIdType(), expanded);
         }
 
 
@@ -452,7 +455,7 @@ namespace VHierarchy
             var rowCount = treeViewControllerData.GetMemberValue<ICollection>("m_Rows").Count;
             var maxScrollPos = rowCount * 16 - window.position.height + 26.9f;
 
-            var rowIndex = treeViewControllerData.InvokeMethod<int>("GetRow", go.GetInstanceID());
+            var rowIndex = treeViewControllerData.InvokeMethod<int>("GetRow", go.GetInstanceID().ToIdType());
             var rowPos = rowIndex * 16f + 8;
 
             var scrollAreaHeight = window.GetMemberValue<Rect>("treeViewRect").height;

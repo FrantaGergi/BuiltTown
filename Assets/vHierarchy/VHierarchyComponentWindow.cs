@@ -275,7 +275,7 @@ namespace VHierarchy
             }
             void outline()
             {
-                if (Application.platform == RuntimePlatform.OSXEditor) return;
+                // if (Application.platform == RuntimePlatform.OSXEditor) return;
 
                 position.SetPos(0, 0).DrawOutline(Greyscale(.1f));
 
@@ -573,7 +573,8 @@ namespace VHierarchy
         {
             floatingInstance = ScriptableObject.CreateInstance<VHierarchyComponentWindow>();
 
-            floatingInstance.ShowPopup();
+            // floatingInstance.ShowPopup();
+            typeof(EditorWindow).GetMethod("ShowWithMode", maxBindingFlags).Invoke(floatingInstance, new object[] { 3 }); // show in NoShadow mode
 
 
             floatingInstance.maxHeight = EditorGUIUtility.GetMainWindowPosition().height * .7f;

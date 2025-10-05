@@ -18,11 +18,13 @@ using static VHierarchy.Libs.VGUI;
 using static VHierarchy.VHierarchyData;
 using static VHierarchy.VHierarchyCache;
 
-#if UNITY_6000_2_OR_NEWER
+#if UNITY_6000_3_OR_NEWER
+using TreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<UnityEngine.EntityId>;
+using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<UnityEngine.EntityId>;
+#elif UNITY_6000_2_OR_NEWER
 using TreeViewItem = UnityEditor.IMGUI.Controls.TreeViewItem<int>;
 using TreeViewState = UnityEditor.IMGUI.Controls.TreeViewState<int>;
 #endif
-
 
 
 
@@ -1320,6 +1322,15 @@ namespace VHierarchy
 
             }
 
+            foreach (var bookmark in data.bookmarks.ToList().Where(r => r.globalId.guid == originalSceneGuid))
+            {
+                var duplicatedGlobalId = new GlobalID(bookmark.globalId.ToString().ToString().Replace(originalSceneGuid, duplicatedSceneGuid));
+                var duplicatedBookmark = new Bookmark(null) { globalId = duplicatedGlobalId };
+
+                data.bookmarks.Add(duplicatedBookmark);
+
+            }
+
             data.Dirty();
 
         }
@@ -1786,7 +1797,24 @@ namespace VHierarchy
 
 
 
-        public const string version = "2.1.4";
+
+#if UNITY_6000_3_OR_NEWER
+        public static EntityId ToIdType(this int id) => id;
+        public static List<int> ToInts(this List<EntityId> ids) => ids.Select(r => (int)r).ToList();
+        public static List<int> GetIdList(this object o, string listName) => o.GetMemberValue<List<EntityId>>(listName)?.ToInts();
+#else
+        public static int ToIdType(this int id) => id;
+        public static List<int> ToInts(this List<int> ids) => ids;
+        public static List<int> GetIdList(this object o, string listName) => o.GetMemberValue<List<int>>(listName);
+#endif
+
+
+
+
+
+
+
+        public const string version = "2.1.5";
 
     }
 
