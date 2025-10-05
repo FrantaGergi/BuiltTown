@@ -49,19 +49,57 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
         }
         return false;
     }
+  
 
     // Získání poètu suroviny v hotbaru
     public int GetResourceCount(ItemSO itemSO)
     {
         foreach (var slot in hotbarParent.slots)
         {
-            if (slot.item == itemSO)
+            if (slot != null && slot.item != null
+                && slot.item == itemSO)
                 return slot.count;
         }
         return 0;
     }
+    public int GetResourceCount(ItemType itemType)
+    {
+        foreach (var slot in hotbarParent.slots)
+        {
+            if (slot != null && slot.item  != null 
+                && slot.item.itemType == itemType)
+                return slot.count;
+        }
+        return 0;
+    }
+    //získání všem item Typù co se nachází v hotbaru
+    public ItemType[] GetAllItemTypesInHotbar()
+    {
+        System.Collections.Generic.List<ItemType> itemTypes = new System.Collections.Generic.List<ItemType>();
+        foreach (var slot in hotbarParent.slots)
+        {
+            if (slot != null && slot.item != null
+                && !itemTypes.Contains(slot.item.itemType))
+            {
+                itemTypes.Add(slot.item.itemType);
+            }
+        }
+        return itemTypes.ToArray();
+    }
+  
 
- 
+    public ItemSO GetItemSOByItemType(ItemType itemType)
+    {
+        foreach (var slot in hotbarParent.slots)
+        {
+            if (slot != null && slot.item != null
+                && slot.item != null && slot.item.itemType == itemType)
+                return slot.item;
+        }
+        return null;
+    }
+
+
 
     // Zde mùžete ponechat metody pro UI, drag&drop atd. podle potøeby
     public void OnPointerDown(PointerEventData eventData) { /* ... */ }

@@ -35,13 +35,13 @@ public class HotbarParent : MonoBehaviour
     {
         if (itemSO == null) return emptyColor;
 
-        switch (itemSO.ItemName.ToLower())
+        switch (itemSO.itemType)
         {
-            case "wood":
+            case ItemType.Wood:
                  return woodColor;
-            case "stone":
+            case ItemType.Stone:
                  return stoneColor;
-            case "ore":
+            case ItemType.Ore:
                  return oreColor;
             default:
                  return emptyColor;

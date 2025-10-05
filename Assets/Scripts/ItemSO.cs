@@ -17,5 +17,8 @@ public enum ItemType
 {
     None,
     Chopp,
-    Mine
+    Mine,
+    Wood,
+    Stone,
+    Ore,
 }

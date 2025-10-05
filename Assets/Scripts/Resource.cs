@@ -176,7 +176,6 @@ public class Resource : MonoBehaviour, IInteractable
         if(!HasCorrectTool()) return;
 
 
-        Debug.Log("StartMining");
         isMining = true;
         enabled = true; // Aktivuje Update
 

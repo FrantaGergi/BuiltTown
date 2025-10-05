@@ -22,6 +22,8 @@ public class InteractManager : MonoBehaviour
     [Header("Inventory manager"), SerializeField]
     private InventoryManager inventoryManager;
 
+    // forced target (napø. world-space UI), upøednostnìn pøed raycastem
+    private IInteractable forcedTarget;
 
     public enum InteractAction
     {
@@ -49,7 +51,7 @@ public class InteractManager : MonoBehaviour
 
     private void Update()
     {
-        // Každý frame kontroluje, na co hráè míøí
+        // Každý frame kontroluje, na co hráè míøí (nebo forced target)
         TryInteract(InteractAction.None);
     }
 
@@ -57,6 +59,43 @@ public class InteractManager : MonoBehaviour
     {
         ClearCurrentTarget(currentTarget);
         TryInteract(InteractAction.HoldEnd);
+    }
+
+    // veøejné API pro registraci forced targetu (napø. UIBuilding)
+    public void SetForcedTarget(IInteractable target)
+    {
+        if (forcedTarget == target) return;
+
+        // pokud už mám aktivní currentTarget jiný, zavøu hover
+        if (currentTarget != null && currentTarget != forcedTarget)
+        {
+            currentTarget.OnHoverExit();
+            currentTarget = null;
+        }
+
+        forcedTarget = target;
+
+        if (forcedTarget != null)
+        {
+            if (currentTarget != forcedTarget)
+            {
+                currentTarget = forcedTarget;
+                currentTarget?.OnHoverEnter(this);
+            }
+        }
+    }
+
+    public void ClearForcedTarget(IInteractable target = null)
+    {
+        if (target == null || forcedTarget == target)
+        {
+            if (forcedTarget != null)
+            {
+                forcedTarget.OnHoverExit();
+                forcedTarget = null;
+                currentTarget = null;
+            }
+        }
     }
 
     public void OnHoldInteract(InputAction.CallbackContext ctx)
@@ -90,6 +129,31 @@ public class InteractManager : MonoBehaviour
 
     private void TryInteract(InteractAction action)
     {
+        // pokud je forcedTarget registrovaný, pošli interakci pøímo jemu
+        if (forcedTarget != null)
+        {
+            var interactable = forcedTarget;
+
+            // trackujeme, jestli držíme
+            if (action == InteractAction.HoldStart) isHolding = true;
+            if (action == InteractAction.HoldEnd) isHolding = false;
+
+            if (interactable != currentTarget)
+            {
+                currentTarget?.OnHoverExit();
+                currentTarget = interactable;
+                currentTarget?.OnHoverEnter(this);
+            }
+
+            if (action != InteractAction.None)
+            {
+                interactable.Interact(this, action);
+            }
+
+            return; // forced target zpracované, neprovádíme raycast
+        }
+
+        // standardní raycast postup
         Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactMask))
         {
