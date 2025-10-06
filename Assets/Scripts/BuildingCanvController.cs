@@ -29,6 +29,10 @@ public class BuildingCanvController : MonoBehaviour
 
     private Image bttnImg1, bttnImg2, bttnImg3;
 
+    [Header("use2Source")]
+    [SerializeField] private RectTransform PanelFor3Source;
+    [SerializeField] private RectTransform PanelFor2Source;
+    [SerializeField] private RectTransform HideThirdSourcePanel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -279,5 +283,17 @@ public class BuildingCanvController : MonoBehaviour
             return;
         }
         target.text = $"{current}/{max}";
+    }
+
+    public void HideThirdSource()
+    {
+        if (HideThirdSourcePanel == null) {
+            Debug.LogError("ThirdPanel not set");
+            return; 
+        }
+
+        Vector2 size = PanelFor3Source.sizeDelta;
+        size.y =  PanelFor2Source.sizeDelta.y;
+        PanelFor3Source.sizeDelta = size;
     }
 }

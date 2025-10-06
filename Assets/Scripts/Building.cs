@@ -33,6 +33,7 @@ public class Building : MonoBehaviour
         if(oreCost <= 0)
         {
            use3Resources = false;
+           buildingCanvController.HideThirdSource();
         }
         if(buildingCanvController == null)
         {
