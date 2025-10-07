@@ -1,0 +1,2087 @@
+-------------------
+Folder Name: Prefabs
+-------------------
+Prefab Name: SM_Icon_Add_01
+    Mesh Name: SM_Icon_Add_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Alarm_01
+    Mesh Name: SM_Icon_Alarm_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_AmericanFootball_01
+    Mesh Name: SM_Icon_AmericanFootball_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_AmericanFootball_02
+    Mesh Name: SM_Icon_AmericanFootball_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Ammo_01
+    Mesh Name: SM_Icon_Ammo_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Ammo_02
+    Mesh Name: SM_Icon_Ammo_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Apps_01
+    Mesh Name: SM_Icon_Apps_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Apps_02
+    Mesh Name: SM_Icon_Apps_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Armour_01
+    Mesh Name: SM_Icon_Armour_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Arrow_01
+    Mesh Name: SM_Icon_Arrow_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Arrow_02
+    Mesh Name: SM_Icon_Arrow_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Arrow_03
+    Mesh Name: SM_Icon_Arrow_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Arrow_04
+    Mesh Name: SM_Icon_Arrow_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Arrow_05
+    Mesh Name: SM_Icon_Arrow_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Arrow_Angled_01
+    Mesh Name: SM_Icon_Arrow_Angled_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Axe_01
+    Mesh Name: SM_Icon_Axe_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Axe_02
+    Mesh Name: SM_Icon_Axe_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_01
+    Mesh Name: SM_Icon_Backing_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_02
+    Mesh Name: SM_Icon_Backing_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_03
+    Mesh Name: SM_Icon_Backing_03
+        Slot: PolygonIcons_Mat_01_B (PolygonIcons_Texture_01_B)
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_04
+    Mesh Name: SM_Icon_Backing_04
+        Slot: PolygonIcons_Mat_01_B (PolygonIcons_Texture_01_B)
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_05
+    Mesh Name: SM_Icon_Backing_05
+        Slot: PolygonIcons_Mat_01_B (PolygonIcons_Texture_01_B)
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_06
+    Mesh Name: SM_Icon_Backing_06
+        Slot: PolygonIcons_Mat_01_B (PolygonIcons_Texture_01_B)
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_07
+    Mesh Name: SM_Icon_Backing_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_08
+    Mesh Name: SM_Icon_Backing_08
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Backing_09
+    Mesh Name: SM_Icon_Backing_09
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Baggie_01
+    Mesh Name: SM_Icon_Baggie_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Baggie_02
+    Mesh Name: SM_Icon_Baggie_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Banana_01
+    Mesh Name: SM_Icon_Banana_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Banned_01
+    Mesh Name: SM_Icon_Banned_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Banner_01
+    Mesh Name: SM_Icon_Banner_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Banner_02
+    Mesh Name: SM_Icon_Banner_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bar_Graph_01
+    Mesh Name: SM_Icon_Bar_Graph_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bar_Graph_02
+    Mesh Name: SM_Icon_Bar_Graph_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Baseball_01
+    Mesh Name: SM_Icon_Baseball_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Basketball_01
+    Mesh Name: SM_Icon_Basketball_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Basket_01
+    Mesh Name: SM_Icon_Basket_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Battery_01
+    Mesh Name: SM_Icon_Battery_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Battery_02
+    Mesh Name: SM_Icon_Battery_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Battery_03
+    Mesh Name: SM_Icon_Battery_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Battery_04
+    Mesh Name: SM_Icon_Battery_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Beard_01
+    Mesh Name: SM_Icon_Beard_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bed_01
+    Mesh Name: SM_Icon_Bed_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bell_01
+    Mesh Name: SM_Icon_Bell_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bell_02
+    Mesh Name: SM_Icon_Bell_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bell_03
+    Mesh Name: SM_Icon_Bell_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Biohazard_01
+    Mesh Name: SM_Icon_Biohazard_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bombs_01
+    Mesh Name: SM_Icon_Bombs_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bomb_01
+    Mesh Name: SM_Icon_Bomb_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bomb_02
+    Mesh Name: SM_Icon_Bomb_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Boots_01
+    Mesh Name: SM_Icon_Boots_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bowling_01
+    Mesh Name: SM_Icon_Bowling_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bowling_02
+    Mesh Name: SM_Icon_Bowling_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bowling_03
+    Mesh Name: SM_Icon_Bowling_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Bowls_01
+    Mesh Name: SM_Icon_Bowls_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Boxing_01
+    Mesh Name: SM_Icon_Boxing_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Briefcase_01
+    Mesh Name: SM_Icon_Briefcase_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Butterfly_01
+    Mesh Name: SM_Icon_Butterfly_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Calendar_01
+    Mesh Name: SM_Icon_Calendar_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Camera_01
+    Mesh Name: SM_Icon_Camera_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Camera_02
+    Mesh Name: SM_Icon_Camera_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Car_01
+    Mesh Name: SM_Icon_Car_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Car_02
+    Mesh Name: SM_Icon_Car_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_CD_01
+    Mesh Name: SM_Icon_CD_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_CD_02
+    Mesh Name: SM_Icon_CD_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_CD_03
+    Mesh Name: SM_Icon_CD_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Chain_01
+    Mesh Name: SM_Icon_Chain_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Character_At_01
+    Mesh Name: SM_Icon_Character_At_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Chat_01
+    Mesh Name: SM_Icon_Chat_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Chat_02
+    Mesh Name: SM_Icon_Chat_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Chest_01
+    Mesh Name: SM_Icon_Chest_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Chest_02
+    Mesh Name: SM_Icon_Chest_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Chevron_01
+    Mesh Name: SM_Icon_Chevron_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clapper_01
+    Mesh Name: SM_Icon_Clapper_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clock_01
+    Mesh Name: SM_Icon_Clock_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clock_02
+    Mesh Name: SM_Icon_Clock_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Bag_01
+    Mesh Name: SM_Icon_Clothes_Bag_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Dress_01
+    Mesh Name: SM_Icon_Clothes_Dress_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Glasses_01
+    Mesh Name: SM_Icon_Clothes_Glasses_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Hat_01
+    Mesh Name: SM_Icon_Clothes_Hat_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Necklace_01
+    Mesh Name: SM_Icon_Clothes_Necklace_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Pants_01
+    Mesh Name: SM_Icon_Clothes_Pants_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Shirt_01
+    Mesh Name: SM_Icon_Clothes_Shirt_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Shoe_01
+    Mesh Name: SM_Icon_Clothes_Shoe_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Shoe_02
+    Mesh Name: SM_Icon_Clothes_Shoe_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Singlet_01
+    Mesh Name: SM_Icon_Clothes_Singlet_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Clothes_Tie_01
+    Mesh Name: SM_Icon_Clothes_Tie_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cloud_Load_01
+    Mesh Name: SM_Icon_Cloud_Load_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cloud_Save_01
+    Mesh Name: SM_Icon_Cloud_Save_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Coins_01
+    Mesh Name: SM_Icon_Coins_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Coin_01
+    Mesh Name: SM_Icon_Coin_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Coin_02
+    Mesh Name: SM_Icon_Coin_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Coin_03
+    Mesh Name: SM_Icon_Coin_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Colour_Wheel_01
+    Mesh Name: SM_Icon_Colour_Wheel_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Commercial_01
+    Mesh Name: SM_Icon_Commercial_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Commercial_02
+    Mesh Name: SM_Icon_Commercial_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Computer_CPU_01
+    Mesh Name: SM_Icon_Computer_CPU_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Computer_Keyboard_01
+    Mesh Name: SM_Icon_Computer_Keyboard_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Computer_Mouse_01
+    Mesh Name: SM_Icon_Computer_Mouse_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Computer_Ram_01
+    Mesh Name: SM_Icon_Computer_Ram_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Controller_01
+    Mesh Name: SM_Icon_Controller_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Copyright_01
+    Mesh Name: SM_Icon_Copyright_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Bolt_01
+    Mesh Name: SM_Icon_Crafting_Bolt_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Book_01
+    Mesh Name: SM_Icon_Crafting_Book_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Cloth_01
+    Mesh Name: SM_Icon_Crafting_Cloth_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Cloth_02
+    Mesh Name: SM_Icon_Crafting_Cloth_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Feather_01
+    Mesh Name: SM_Icon_Crafting_Feather_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Flower_01
+    Mesh Name: SM_Icon_Crafting_Flower_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Grain_01
+    Mesh Name: SM_Icon_Crafting_Grain_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Ingot_Bronze_01
+    Mesh Name: SM_Icon_Crafting_Ingot_Bronze_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Ingot_Gold_01
+    Mesh Name: SM_Icon_Crafting_Ingot_Gold_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Ingot_Silver_01
+    Mesh Name: SM_Icon_Crafting_Ingot_Silver_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Leaf_01
+    Mesh Name: SM_Icon_Crafting_Leaf_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Log_01
+    Mesh Name: SM_Icon_Crafting_Log_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Mushroom_01
+    Mesh Name: SM_Icon_Crafting_Mushroom_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Nut_01
+    Mesh Name: SM_Icon_Crafting_Nut_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Nut_02
+    Mesh Name: SM_Icon_Crafting_Nut_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Paper_01
+    Mesh Name: SM_Icon_Crafting_Paper_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Pelt_01
+    Mesh Name: SM_Icon_Crafting_Pelt_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Plank_01
+    Mesh Name: SM_Icon_Crafting_Plank_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Powder_01
+    Mesh Name: SM_Icon_Crafting_Powder_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Powder_02
+    Mesh Name: SM_Icon_Crafting_Powder_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Rock_01
+    Mesh Name: SM_Icon_Crafting_Rock_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Root_01
+    Mesh Name: SM_Icon_Crafting_Root_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Scales_01
+    Mesh Name: SM_Icon_Crafting_Scales_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Sticks_01
+    Mesh Name: SM_Icon_Crafting_Sticks_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crafting_Thread_01
+    Mesh Name: SM_Icon_Crafting_Thread_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cricket_01
+    Mesh Name: SM_Icon_Cricket_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cricket_02
+    Mesh Name: SM_Icon_Cricket_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cricket_03
+    Mesh Name: SM_Icon_Cricket_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crop_01
+    Mesh Name: SM_Icon_Crop_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crosshair_01
+    Mesh Name: SM_Icon_Crosshair_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cross_01
+    Mesh Name: SM_Icon_Cross_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Crown_01
+    Mesh Name: SM_Icon_Crown_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Cup_01
+    Mesh Name: SM_Icon_Cup_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Dagger_01
+    Mesh Name: SM_Icon_Dagger_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Darts_01
+    Mesh Name: SM_Icon_Darts_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Divide_01
+    Mesh Name: SM_Icon_Divide_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_DNA_01
+    Mesh Name: SM_Icon_DNA_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Dollar_01
+    Mesh Name: SM_Icon_Dollar_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Dynamite_01
+    Mesh Name: SM_Icon_Dynamite_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Eject_01
+    Mesh Name: SM_Icon_Eject_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_ExclamationMark_01
+    Mesh Name: SM_Icon_ExclamationMark_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Exclamation_01
+    Mesh Name: SM_Icon_Exclamation_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Expand_01
+    Mesh Name: SM_Icon_Expand_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_01
+    Mesh Name: SM_Icon_Face_Female_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_02
+    Mesh Name: SM_Icon_Face_Female_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_03
+    Mesh Name: SM_Icon_Face_Female_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_04
+    Mesh Name: SM_Icon_Face_Female_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_05
+    Mesh Name: SM_Icon_Face_Female_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_06
+    Mesh Name: SM_Icon_Face_Female_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Female_07
+    Mesh Name: SM_Icon_Face_Female_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_01
+    Mesh Name: SM_Icon_Face_Male_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_02
+    Mesh Name: SM_Icon_Face_Male_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_03
+    Mesh Name: SM_Icon_Face_Male_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_04
+    Mesh Name: SM_Icon_Face_Male_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_05
+    Mesh Name: SM_Icon_Face_Male_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_06
+    Mesh Name: SM_Icon_Face_Male_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Male_07
+    Mesh Name: SM_Icon_Face_Male_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_01
+    Mesh Name: SM_Icon_Face_Round_Female_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_02
+    Mesh Name: SM_Icon_Face_Round_Female_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_03
+    Mesh Name: SM_Icon_Face_Round_Female_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_04
+    Mesh Name: SM_Icon_Face_Round_Female_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_05
+    Mesh Name: SM_Icon_Face_Round_Female_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_06
+    Mesh Name: SM_Icon_Face_Round_Female_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Female_07
+    Mesh Name: SM_Icon_Face_Round_Female_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_01
+    Mesh Name: SM_Icon_Face_Round_Male_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_02
+    Mesh Name: SM_Icon_Face_Round_Male_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_03
+    Mesh Name: SM_Icon_Face_Round_Male_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_04
+    Mesh Name: SM_Icon_Face_Round_Male_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_05
+    Mesh Name: SM_Icon_Face_Round_Male_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_06
+    Mesh Name: SM_Icon_Face_Round_Male_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Round_Male_07
+    Mesh Name: SM_Icon_Face_Round_Male_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_01
+    Mesh Name: SM_Icon_Face_Square_Female_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_02
+    Mesh Name: SM_Icon_Face_Square_Female_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_03
+    Mesh Name: SM_Icon_Face_Square_Female_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_04
+    Mesh Name: SM_Icon_Face_Square_Female_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_05
+    Mesh Name: SM_Icon_Face_Square_Female_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_06
+    Mesh Name: SM_Icon_Face_Square_Female_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Female_07
+    Mesh Name: SM_Icon_Face_Square_Female_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_01
+    Mesh Name: SM_Icon_Face_Square_Male_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_02
+    Mesh Name: SM_Icon_Face_Square_Male_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_03
+    Mesh Name: SM_Icon_Face_Square_Male_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_04
+    Mesh Name: SM_Icon_Face_Square_Male_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_05
+    Mesh Name: SM_Icon_Face_Square_Male_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_06
+    Mesh Name: SM_Icon_Face_Square_Male_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Face_Square_Male_07
+    Mesh Name: SM_Icon_Face_Square_Male_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Farm_01
+    Mesh Name: SM_Icon_Farm_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Fast_Forward_01
+    Mesh Name: SM_Icon_Fast_Forward_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Fingerprint_01
+    Mesh Name: SM_Icon_Fingerprint_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Fire_01
+    Mesh Name: SM_Icon_Fire_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Flag_01
+    Mesh Name: SM_Icon_Flag_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Folder_01
+    Mesh Name: SM_Icon_Folder_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Apple_01
+    Mesh Name: SM_Icon_Food_Apple_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Bagel_01
+    Mesh Name: SM_Icon_Food_Bagel_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Bread_Slice_01
+    Mesh Name: SM_Icon_Food_Bread_Slice_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Broccoli_01
+    Mesh Name: SM_Icon_Food_Broccoli_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Burger_01
+    Mesh Name: SM_Icon_Food_Burger_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Carrot_01
+    Mesh Name: SM_Icon_Food_Carrot_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Cheese_01
+    Mesh Name: SM_Icon_Food_Cheese_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Cheese_02
+    Mesh Name: SM_Icon_Food_Cheese_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Cherry_01
+    Mesh Name: SM_Icon_Food_Cherry_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Chicken_Drumstick_01
+    Mesh Name: SM_Icon_Food_Chicken_Drumstick_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Coffee_Cup_01
+    Mesh Name: SM_Icon_Food_Coffee_Cup_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Corn_01
+    Mesh Name: SM_Icon_Food_Corn_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Cupcake_01
+    Mesh Name: SM_Icon_Food_Cupcake_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Donut_01
+    Mesh Name: SM_Icon_Food_Donut_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Eggplant_01
+    Mesh Name: SM_Icon_Food_Eggplant_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Egg_01
+    Mesh Name: SM_Icon_Food_Egg_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Fish_Raw_01
+    Mesh Name: SM_Icon_Food_Fish_Raw_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Fries_01
+    Mesh Name: SM_Icon_Food_Fries_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Frozen_Drink_Cup_01
+    Mesh Name: SM_Icon_Food_Frozen_Drink_Cup_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Hot_Dog_01
+    Mesh Name: SM_Icon_Food_Hot_Dog_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Iceblock_01
+    Mesh Name: SM_Icon_Food_Iceblock_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_IceCream_01
+    Mesh Name: SM_Icon_Food_IceCream_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Lemon_01
+    Mesh Name: SM_Icon_Food_Lemon_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Meat_Raw_01
+    Mesh Name: SM_Icon_Food_Meat_Raw_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Milk_01
+    Mesh Name: SM_Icon_Food_Milk_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Muffin_01
+    Mesh Name: SM_Icon_Food_Muffin_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Orange_01
+    Mesh Name: SM_Icon_Food_Orange_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Pasta_01
+    Mesh Name: SM_Icon_Food_Pasta_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Peach_01
+    Mesh Name: SM_Icon_Food_Peach_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Pear_01
+    Mesh Name: SM_Icon_Food_Pear_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Pizza_01
+    Mesh Name: SM_Icon_Food_Pizza_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Popcorn_01
+    Mesh Name: SM_Icon_Food_Popcorn_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Prawn_01
+    Mesh Name: SM_Icon_Food_Prawn_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Rice_Bowl_01
+    Mesh Name: SM_Icon_Food_Rice_Bowl_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Sausage_01
+    Mesh Name: SM_Icon_Food_Sausage_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Soda_Cup_01
+    Mesh Name: SM_Icon_Food_Soda_Cup_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Steak_01
+    Mesh Name: SM_Icon_Food_Steak_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Strawberry_01
+    Mesh Name: SM_Icon_Food_Strawberry_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Tomato_01
+    Mesh Name: SM_Icon_Food_Tomato_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Food_Tuna_Can_01
+    Mesh Name: SM_Icon_Food_Tuna_Can_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Fullscreen_01
+    Mesh Name: SM_Icon_Fullscreen_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Futsal_01
+    Mesh Name: SM_Icon_Futsal_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_GasCannister_01
+    Mesh Name: SM_Icon_GasCannister_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_GasCan_01
+    Mesh Name: SM_Icon_GasCan_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_GasStation_01
+    Mesh Name: SM_Icon_GasStation_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gears_01
+    Mesh Name: SM_Icon_Gears_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gear_01
+    Mesh Name: SM_Icon_Gear_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gem_01
+    Mesh Name: SM_Icon_Gem_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gender_Female_01
+    Mesh Name: SM_Icon_Gender_Female_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gender_Male_01
+    Mesh Name: SM_Icon_Gender_Male_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gender_Transgender_01
+    Mesh Name: SM_Icon_Gender_Transgender_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Glass_01
+    Mesh Name: SM_Icon_Glass_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Golf_01
+    Mesh Name: SM_Icon_Golf_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Grenade_Frag_01
+    Mesh Name: SM_Icon_Grenade_Frag_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Grenade_Smoke_01
+    Mesh Name: SM_Icon_Grenade_Smoke_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Guage_01
+    Mesh Name: SM_Icon_Guage_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Gun_01
+    Mesh Name: SM_Icon_Gun_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Handball_01
+    Mesh Name: SM_Icon_Handball_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Headphones_01
+    Mesh Name: SM_Icon_Headphones_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Heart_01
+    Mesh Name: SM_Icon_Heart_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Highlight_Circle_01
+    Mesh Name: SM_Icon_Highlight_Circle_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Hockey_01
+    Mesh Name: SM_Icon_Hockey_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Hockey_02
+    Mesh Name: SM_Icon_Hockey_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Hockey_03
+    Mesh Name: SM_Icon_Hockey_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Hockey_04
+    Mesh Name: SM_Icon_Hockey_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Hockey_05
+    Mesh Name: SM_Icon_Hockey_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Home_01
+    Mesh Name: SM_Icon_Home_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Hourglass_01
+    Mesh Name: SM_Icon_Hourglass_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Industrial_01
+    Mesh Name: SM_Icon_Industrial_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Information_01
+    Mesh Name: SM_Icon_Information_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Information_02
+    Mesh Name: SM_Icon_Information_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Island_01
+    Mesh Name: SM_Icon_Island_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Key_01
+    Mesh Name: SM_Icon_Key_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Key_02
+    Mesh Name: SM_Icon_Key_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Key_03
+    Mesh Name: SM_Icon_Key_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Key_04
+    Mesh Name: SM_Icon_Key_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_KnightHelmet_01
+    Mesh Name: SM_Icon_KnightHelmet_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Laptop_01
+    Mesh Name: SM_Icon_Laptop_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Laptop_Ram_01
+    Mesh Name: SM_Icon_Laptop_Ram_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Letter_01
+    Mesh Name: SM_Icon_Letter_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Letter_02
+    Mesh Name: SM_Icon_Letter_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_LightBulb_01
+    Mesh Name: SM_Icon_LightBulb_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_LightBulb_02
+    Mesh Name: SM_Icon_LightBulb_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Lightning_01
+    Mesh Name: SM_Icon_Lightning_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Light_Area_01
+    Mesh Name: SM_Icon_Light_Area_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Light_Directional_01
+    Mesh Name: SM_Icon_Light_Directional_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Light_Point_01
+    Mesh Name: SM_Icon_Light_Point_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Light_Spot_01
+    Mesh Name: SM_Icon_Light_Spot_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_List_01
+    Mesh Name: SM_Icon_List_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_List_02
+    Mesh Name: SM_Icon_List_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Location_01
+    Mesh Name: SM_Icon_Location_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Magnet_01
+    Mesh Name: SM_Icon_Magnet_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_MagnifyingGlass_01
+    Mesh Name: SM_Icon_MagnifyingGlass_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Medal_01
+    Mesh Name: SM_Icon_Medal_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Medal_02
+    Mesh Name: SM_Icon_Medal_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Medical_01
+    Mesh Name: SM_Icon_Medical_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Medical_02
+    Mesh Name: SM_Icon_Medical_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Megaphone_01
+    Mesh Name: SM_Icon_Megaphone_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Memory_Card_01
+    Mesh Name: SM_Icon_Memory_Card_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Memory_Card_02
+    Mesh Name: SM_Icon_Memory_Card_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_MenWomen_01
+    Mesh Name: SM_Icon_MenWomen_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Men_01
+    Mesh Name: SM_Icon_Men_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Men_02
+    Mesh Name: SM_Icon_Men_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Microphone_01
+    Mesh Name: SM_Icon_Microphone_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Microphone_02
+    Mesh Name: SM_Icon_Microphone_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Micro_Chip_01
+    Mesh Name: SM_Icon_Micro_Chip_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Micro_Chip_02
+    Mesh Name: SM_Icon_Micro_Chip_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Minimize_01
+    Mesh Name: SM_Icon_Minimize_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Bitcoin_01
+    Mesh Name: SM_Icon_Money_Bitcoin_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Dollar_01
+    Mesh Name: SM_Icon_Money_Dollar_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Euro_01
+    Mesh Name: SM_Icon_Money_Euro_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Franc_01
+    Mesh Name: SM_Icon_Money_Franc_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Pound_01
+    Mesh Name: SM_Icon_Money_Pound_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Renminbi_01
+    Mesh Name: SM_Icon_Money_Renminbi_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Ruble_01
+    Mesh Name: SM_Icon_Money_Ruble_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Rupee_01
+    Mesh Name: SM_Icon_Money_Rupee_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_TurkishLira_01
+    Mesh Name: SM_Icon_Money_TurkishLira_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Won_01
+    Mesh Name: SM_Icon_Money_Won_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Yen_01
+    Mesh Name: SM_Icon_Money_Yen_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Money_Yuan_01
+    Mesh Name: SM_Icon_Money_Yuan_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Mountains_01
+    Mesh Name: SM_Icon_Mountains_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Moustache_01
+    Mesh Name: SM_Icon_Moustache_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Multiply_01
+    Mesh Name: SM_Icon_Multiply_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_MusicNote_01
+    Mesh Name: SM_Icon_MusicNote_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_MusicNote_02
+    Mesh Name: SM_Icon_MusicNote_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_01
+    Mesh Name: SM_Icon_Network_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_02
+    Mesh Name: SM_Icon_Network_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_03
+    Mesh Name: SM_Icon_Network_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_04
+    Mesh Name: SM_Icon_Network_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_05
+    Mesh Name: SM_Icon_Network_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Connection_01
+    Mesh Name: SM_Icon_Network_Connection_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Connection_02
+    Mesh Name: SM_Icon_Network_Connection_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Connection_03
+    Mesh Name: SM_Icon_Network_Connection_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Connection_04
+    Mesh Name: SM_Icon_Network_Connection_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Connection_05
+    Mesh Name: SM_Icon_Network_Connection_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Connection_06
+    Mesh Name: SM_Icon_Network_Connection_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Error_01
+    Mesh Name: SM_Icon_Network_Error_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Error_02
+    Mesh Name: SM_Icon_Network_Error_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Error_03
+    Mesh Name: SM_Icon_Network_Error_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Error_04
+    Mesh Name: SM_Icon_Network_Error_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Group_01
+    Mesh Name: SM_Icon_Network_Group_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Group_02
+    Mesh Name: SM_Icon_Network_Group_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Group_03
+    Mesh Name: SM_Icon_Network_Group_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Group_04
+    Mesh Name: SM_Icon_Network_Group_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Node_01
+    Mesh Name: SM_Icon_Network_Node_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Node_02
+    Mesh Name: SM_Icon_Network_Node_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Node_03
+    Mesh Name: SM_Icon_Network_Node_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Network_Node_04
+    Mesh Name: SM_Icon_Network_Node_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_NonBinary_01
+    Mesh Name: SM_Icon_NonBinary_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_NonBinary_02
+    Mesh Name: SM_Icon_NonBinary_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Nuclear_01
+    Mesh Name: SM_Icon_Nuclear_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Nuclear_02
+    Mesh Name: SM_Icon_Nuclear_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Padlock_01
+    Mesh Name: SM_Icon_Padlock_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Padlock_02
+    Mesh Name: SM_Icon_Padlock_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Paperclip_01
+    Mesh Name: SM_Icon_Paperclip_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Paper_01
+    Mesh Name: SM_Icon_Paper_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Paper_Plane_01
+    Mesh Name: SM_Icon_Paper_Plane_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pause_01
+    Mesh Name: SM_Icon_Pause_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pencil_01
+    Mesh Name: SM_Icon_Pencil_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Percent_01
+    Mesh Name: SM_Icon_Percent_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Phone_01
+    Mesh Name: SM_Icon_Phone_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Phone_02
+    Mesh Name: SM_Icon_Phone_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Phone_03
+    Mesh Name: SM_Icon_Phone_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Picture_01
+    Mesh Name: SM_Icon_Picture_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pills_01
+    Mesh Name: SM_Icon_Pills_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pills_02
+    Mesh Name: SM_Icon_Pills_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pills_03
+    Mesh Name: SM_Icon_Pills_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pin_01
+    Mesh Name: SM_Icon_Pin_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Planet_01
+    Mesh Name: SM_Icon_Planet_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Planet_02
+    Mesh Name: SM_Icon_Planet_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Plane_01
+    Mesh Name: SM_Icon_Plane_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Play_01
+    Mesh Name: SM_Icon_Play_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Play_02
+    Mesh Name: SM_Icon_Play_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pointer_02
+    Mesh Name: SM_Icon_Pointer_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pointer_04
+    Mesh Name: SM_Icon_Pointer_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pool_01
+    Mesh Name: SM_Icon_Pool_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Potion_01
+    Mesh Name: SM_Icon_Potion_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Potion_02
+    Mesh Name: SM_Icon_Potion_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Power_01
+    Mesh Name: SM_Icon_Power_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Power_Plug_01
+    Mesh Name: SM_Icon_Power_Plug_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Present_01
+    Mesh Name: SM_Icon_Present_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Printer_01
+    Mesh Name: SM_Icon_Printer_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Pulse_01
+    Mesh Name: SM_Icon_Pulse_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_QuestionMark_01
+    Mesh Name: SM_Icon_QuestionMark_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_QuestionMark_02
+    Mesh Name: SM_Icon_QuestionMark_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Racing_01
+    Mesh Name: SM_Icon_Racing_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Radio_01
+    Mesh Name: SM_Icon_Radio_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Refresh_01
+    Mesh Name: SM_Icon_Refresh_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Refresh_02
+    Mesh Name: SM_Icon_Refresh_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Replay_01
+    Mesh Name: SM_Icon_Replay_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Residential_01
+    Mesh Name: SM_Icon_Residential_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Residential_02
+    Mesh Name: SM_Icon_Residential_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Return_01
+    Mesh Name: SM_Icon_Return_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Road_01
+    Mesh Name: SM_Icon_Road_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Road_02
+    Mesh Name: SM_Icon_Road_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Rugby_01
+    Mesh Name: SM_Icon_Rugby_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_RunningMan_01
+    Mesh Name: SM_Icon_RunningMan_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Save_01
+    Mesh Name: SM_Icon_Save_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Scissors_01
+    Mesh Name: SM_Icon_Scissors_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Screwdriver_01
+    Mesh Name: SM_Icon_Screwdriver_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_01
+    Mesh Name: SM_Icon_Selection_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_02
+    Mesh Name: SM_Icon_Selection_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_03
+    Mesh Name: SM_Icon_Selection_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_04
+    Mesh Name: SM_Icon_Selection_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_05
+    Mesh Name: SM_Icon_Selection_05
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_06
+    Mesh Name: SM_Icon_Selection_06
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Selection_07
+    Mesh Name: SM_Icon_Selection_07
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Settings_01
+    Mesh Name: SM_Icon_Settings_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Share_01
+    Mesh Name: SM_Icon_Share_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Shield_01
+    Mesh Name: SM_Icon_Shield_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Shopping_Cart_01
+    Mesh Name: SM_Icon_Shopping_Cart_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Shuttlecock_01
+    Mesh Name: SM_Icon_Shuttlecock_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Skip_01
+    Mesh Name: SM_Icon_Skip_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Skull_01
+    Mesh Name: SM_Icon_Skull_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_SmartPhone_01
+    Mesh Name: SM_Icon_SmartPhone_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Smoke_01
+    Mesh Name: SM_Icon_Smoke_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Smoke_02
+    Mesh Name: SM_Icon_Smoke_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Smoke_03
+    Mesh Name: SM_Icon_Smoke_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Snooker_01
+    Mesh Name: SM_Icon_Snooker_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Soccer_01
+    Mesh Name: SM_Icon_Soccer_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Social_01
+    Mesh Name: SM_Icon_Social_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Social_02
+    Mesh Name: SM_Icon_Social_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Social_03
+    Mesh Name: SM_Icon_Social_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Speakers_01
+    Mesh Name: SM_Icon_Speakers_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_SpeechBubble_01
+    Mesh Name: SM_Icon_SpeechBubble_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_SpeechBubble_02
+    Mesh Name: SM_Icon_SpeechBubble_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Speech_01
+    Mesh Name: SM_Icon_Speech_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Spray_Can_01
+    Mesh Name: SM_Icon_Spray_Can_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Squash_01
+    Mesh Name: SM_Icon_Squash_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Starburst_01
+    Mesh Name: SM_Icon_Starburst_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Star_01
+    Mesh Name: SM_Icon_Star_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Star_02
+    Mesh Name: SM_Icon_Star_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Stopwatch_01
+    Mesh Name: SM_Icon_Stopwatch_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Stop_01
+    Mesh Name: SM_Icon_Stop_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Subtract_01
+    Mesh Name: SM_Icon_Subtract_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Suit_Clubs_01
+    Mesh Name: SM_Icon_Suit_Clubs_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Suit_Diamonds_01
+    Mesh Name: SM_Icon_Suit_Diamonds_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Suit_Hearts_01
+    Mesh Name: SM_Icon_Suit_Hearts_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Suit_Spades_01
+    Mesh Name: SM_Icon_Suit_Spades_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Sword_01
+    Mesh Name: SM_Icon_Sword_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Sword_02
+    Mesh Name: SM_Icon_Sword_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Syringe_01
+    Mesh Name: SM_Icon_Syringe_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Syringe_02
+    Mesh Name: SM_Icon_Syringe_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_TableTennis_01
+    Mesh Name: SM_Icon_TableTennis_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Tennis_01
+    Mesh Name: SM_Icon_Tennis_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_0
+    Mesh Name: SM_Icon_Text_0
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_1
+    Mesh Name: SM_Icon_Text_1
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_2
+    Mesh Name: SM_Icon_Text_2
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_3
+    Mesh Name: SM_Icon_Text_3
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_4
+    Mesh Name: SM_Icon_Text_4
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_5
+    Mesh Name: SM_Icon_Text_5
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_6
+    Mesh Name: SM_Icon_Text_6
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_7
+    Mesh Name: SM_Icon_Text_7
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_8
+    Mesh Name: SM_Icon_Text_8
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_9
+    Mesh Name: SM_Icon_Text_9
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_A
+    Mesh Name: SM_Icon_Text_A
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_B
+    Mesh Name: SM_Icon_Text_B
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_C
+    Mesh Name: SM_Icon_Text_C
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_Comma
+    Mesh Name: SM_Icon_Text_Comma
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_D
+    Mesh Name: SM_Icon_Text_D
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_E
+    Mesh Name: SM_Icon_Text_E
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_F
+    Mesh Name: SM_Icon_Text_F
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_G
+    Mesh Name: SM_Icon_Text_G
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_H
+    Mesh Name: SM_Icon_Text_H
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_I
+    Mesh Name: SM_Icon_Text_I
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_J
+    Mesh Name: SM_Icon_Text_J
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_K
+    Mesh Name: SM_Icon_Text_K
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_L
+    Mesh Name: SM_Icon_Text_L
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_M
+    Mesh Name: SM_Icon_Text_M
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_N
+    Mesh Name: SM_Icon_Text_N
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_O
+    Mesh Name: SM_Icon_Text_O
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_P
+    Mesh Name: SM_Icon_Text_P
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_Period
+    Mesh Name: SM_Icon_Text_Period
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_Q
+    Mesh Name: SM_Icon_Text_Q
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_R
+    Mesh Name: SM_Icon_Text_R
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_S
+    Mesh Name: SM_Icon_Text_S
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_T
+    Mesh Name: SM_Icon_Text_T
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_U
+    Mesh Name: SM_Icon_Text_U
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_V
+    Mesh Name: SM_Icon_Text_V
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_W
+    Mesh Name: SM_Icon_Text_W
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_X
+    Mesh Name: SM_Icon_Text_X
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_Y
+    Mesh Name: SM_Icon_Text_Y
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Text_Z
+    Mesh Name: SM_Icon_Text_Z
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Thermometer_01
+    Mesh Name: SM_Icon_Thermometer_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_ThumbsUp_01
+    Mesh Name: SM_Icon_ThumbsUp_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Tick_01
+    Mesh Name: SM_Icon_Tick_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Tomb_Stone_03
+    Mesh Name: SM_Icon_Tomb_Stone_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Tooth_01
+    Mesh Name: SM_Icon_Tooth_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Trash_01
+    Mesh Name: SM_Icon_Trash_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Trophy_01
+    Mesh Name: SM_Icon_Trophy_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Trophy_02
+    Mesh Name: SM_Icon_Trophy_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Trophy_03
+    Mesh Name: SM_Icon_Trophy_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Trophy_04
+    Mesh Name: SM_Icon_Trophy_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_TV_01
+    Mesh Name: SM_Icon_TV_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Utencil_01
+    Mesh Name: SM_Icon_Utencil_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Utencil_02
+    Mesh Name: SM_Icon_Utencil_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Utencil_03
+    Mesh Name: SM_Icon_Utencil_03
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Utencil_04
+    Mesh Name: SM_Icon_Utencil_04
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Volleyball_01
+    Mesh Name: SM_Icon_Volleyball_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Volleyball_02
+    Mesh Name: SM_Icon_Volleyball_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Volume_01
+    Mesh Name: SM_Icon_Volume_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Volume_02
+    Mesh Name: SM_Icon_Volume_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Cloud_01
+    Mesh Name: SM_Icon_Weather_Cloud_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Lightning_01
+    Mesh Name: SM_Icon_Weather_Lightning_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Lightning_02
+    Mesh Name: SM_Icon_Weather_Lightning_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Moon_01
+    Mesh Name: SM_Icon_Weather_Moon_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Rainbow_01
+    Mesh Name: SM_Icon_Weather_Rainbow_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Rain_01
+    Mesh Name: SM_Icon_Weather_Rain_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Rain_02
+    Mesh Name: SM_Icon_Weather_Rain_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Snow_01
+    Mesh Name: SM_Icon_Weather_Snow_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Snow_02
+    Mesh Name: SM_Icon_Weather_Snow_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Sun_01
+    Mesh Name: SM_Icon_Weather_Sun_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Vane_01
+    Mesh Name: SM_Icon_Weather_Vane_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Wind_01
+    Mesh Name: SM_Icon_Weather_Wind_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weather_Wind_Sock_01
+    Mesh Name: SM_Icon_Weather_Wind_Sock_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Weed_01
+    Mesh Name: SM_Icon_Weed_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Wheelchair_01
+    Mesh Name: SM_Icon_Wheelchair_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Wheel_01
+    Mesh Name: SM_Icon_Wheel_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Wheel_02
+    Mesh Name: SM_Icon_Wheel_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Wifi_01
+    Mesh Name: SM_Icon_Wifi_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Window_01
+    Mesh Name: SM_Icon_Window_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Women_01
+    Mesh Name: SM_Icon_Women_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Women_02
+    Mesh Name: SM_Icon_Women_02
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Wrench_01
+    Mesh Name: SM_Icon_Wrench_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_Wrench_Hammer_01
+    Mesh Name: SM_Icon_Wrench_Hammer_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_X_01
+    Mesh Name: SM_Icon_X_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
+Prefab Name: SM_Icon_YinYang_01
+    Mesh Name: SM_Icon_YinYang_01
+        Slot: PolygonIcons_Mat_01_A (PolygonIcons_Texture_01_A)
+
