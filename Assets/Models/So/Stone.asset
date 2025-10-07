@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: Stone
-  icon: {fileID: 21300000, guid: d7fad12f28d69104b89d4797fdef5cc1, type: 3}
+  icon: {fileID: 21300000, guid: 9cae38c61f0c2b846945af493f61736c, type: 3}
   HighlightedMaterial: {fileID: 2100000, guid: 810ecc307c9729e47a1c7b7ff3e1aa2f, type: 2}
   itemType: 4
   description: 

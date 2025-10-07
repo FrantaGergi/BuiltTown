@@ -77,6 +77,8 @@ public class Building : MonoBehaviour
         int stoneToAdd = Mathf.Min(HowManyStoneMissing(), stoneC);
         int oreToAdd = Mathf.Min(HowManyMetalMissing(), oreC);
 
+        bool addedSomething = false;
+
         if (woodToAdd > 0)
         {
             ItemSO itemSO = inventoryManager.GetItemSOByItemType(ItemType.Wood);
@@ -87,10 +89,11 @@ public class Building : MonoBehaviour
                     Debug.LogError("zbytek se nepøidal wood");
 
                 inventoryManager.RemoveResourceFromHotbar(itemSO,woodToAdd);
+                addedSomething = true;
             }
            
         }
-        if (stoneToAdd > 0)
+        if (stoneToAdd > 0 && !addedSomething)
         {
             ItemSO itemSO = inventoryManager.GetItemSOByItemType(ItemType.Stone);
             if (itemSO != null)
@@ -100,10 +103,11 @@ public class Building : MonoBehaviour
                     Debug.LogError("zbytek se nepøidal stone");
 
                 inventoryManager.RemoveResourceFromHotbar(itemSO,stoneToAdd);
+                addedSomething = true;
             }
            
         }
-        if (oreToAdd > 0)
+        if (oreToAdd > 0 && !addedSomething)
         {
             ItemSO itemSO = inventoryManager.GetItemSOByItemType(ItemType.Ore);
             if (itemSO != null)
@@ -113,6 +117,7 @@ public class Building : MonoBehaviour
                     Debug.LogError("zbytek se nepøidal ore");
 
                 inventoryManager.RemoveResourceFromHotbar(itemSO,oreToAdd);
+                addedSomething = true;
             }
            
         }

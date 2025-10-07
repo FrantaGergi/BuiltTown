@@ -14,6 +14,10 @@ public class UIBuilding : MonoBehaviour, IInteractable
     private Coroutine scaleCoroutine;
     private bool isVisible = false;
 
+    // uložíme pùvodní layer hráèe, abychom ho mohli vrátit
+    private int originalPlayerLayer = -1;
+    private bool playerLayerSaved = false;
+
     void Start()
     {
         if (threeDCanvas != null)
@@ -48,6 +52,10 @@ public class UIBuilding : MonoBehaviour, IInteractable
             threeDCanvas.enabled = true;
             // registrovat se jako forced target, aby E šel na tento UIBuilding i bez aimu
             interactManager?.SetForcedTarget(this);
+
+            // zmìnit layer hráèe na "UI" (uložíme pùvodní)
+            SaveAndSetPlayerLayerToUI();
+
             StartScaleAnimation(new Vector3(0.00499999989f, 0.00499999989f, 0.00499999942f));
         }
         else if (!shouldShow && isVisible)
@@ -55,6 +63,7 @@ public class UIBuilding : MonoBehaviour, IInteractable
             isVisible = false;
             StartScaleAnimation(Vector3.zero, disableOnEnd: true);
             // odregistrovat se (po skonèení animace ještì deaktivujeme -> ClearForcedTarget v konci korutiny)
+            // obnovení layeru je provedeno v korutinì po dokonèení animace (viz ScaleCanvas)
         }
 
         if (isVisible)
@@ -93,7 +102,56 @@ public class UIBuilding : MonoBehaviour, IInteractable
             threeDCanvas.enabled = false;
             // odregistrovat forced target, pokud jsem to já
             interactManager?.ClearForcedTarget(this);
+
+            // obnovíme pùvodní layer hráèe
+            RestorePlayerLayer();
         }
+    }
+
+    private void SaveAndSetPlayerLayerToUI()
+    {
+        if (player == null) return;
+        if (playerLayerSaved) return; // už nastaveno
+
+        int uiLayer = LayerMask.NameToLayer("UI");
+        if (uiLayer == -1)
+        {
+            Debug.LogWarning($"{name}: Layer 'UI' nenalezena. Nastavení layeru pøeskoèeno.");
+            return;
+        }
+
+        originalPlayerLayer = player.gameObject.layer;
+        playerLayerSaved = true;
+        SetLayerRecursively(player, uiLayer);
+    }
+
+    private void RestorePlayerLayer()
+    {
+        if (player == null) return;
+        if (!playerLayerSaved) return;
+
+        SetLayerRecursively(player, originalPlayerLayer);
+        playerLayerSaved = false;
+        originalPlayerLayer = -1;
+    }
+
+    private void SetLayerRecursively(Transform t, int layer)
+    {
+        if (t == null) return;
+        t.gameObject.layer = layer;
+        for (int i = 0; i < t.childCount; i++)
+            SetLayerRecursively(t.GetChild(i), layer);
+    }
+
+    private void OnDisable()
+    {
+        // zajistíme, že se layer hráèe obnoví pokud by se component deaktivovalo
+        RestorePlayerLayer();
+    }
+
+    private void OnDestroy()
+    {
+        RestorePlayerLayer();
     }
 
     // IInteractable impl
