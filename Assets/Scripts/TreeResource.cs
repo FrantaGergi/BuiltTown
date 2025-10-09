@@ -63,7 +63,8 @@ public class TreeResource : Resource, IInteractable
     protected override void GetDrop(int ammount)
     {
         base.GetDrop(ammount);
-        inventoryManager.AddResourceToHotbar(ItemSO, ammount);
+        hitEffect.SpawnIcons(ammount, ItemSO.prefab);
+        // inventoryManager.AddResourceToHotbar(ItemSO, ammount);
     }
    
 }

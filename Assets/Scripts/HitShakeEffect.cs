@@ -28,6 +28,7 @@ public class HitShakeEffect : MonoBehaviour
         if (!shaking) StartCoroutine(DoShake());
     }
 
+
     private IEnumerator DoShake()
     {
         shaking = true;
@@ -51,5 +52,21 @@ public class HitShakeEffect : MonoBehaviour
         transform.rotation = originalRot;
         transform.localScale = originalScale;
         shaking = false;
+    }
+    public void SpawnIcons(int count, GameObject prefab, float force = 3f)
+    {
+   
+        Vector3 origin = transform.position + Vector3.up * 1.5f; // místo kde to "vyletí"
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 randomDir = Random.onUnitSphere;
+            randomDir.y = Mathf.Abs(randomDir.y); // aby neletìly pod zem
+            Vector3 spawnPos = origin + Random.insideUnitSphere * 0.3f;
+
+            GameObject icon = Instantiate(prefab, spawnPos, Quaternion.identity);
+            IconToSpawn wood = icon.GetComponent<IconToSpawn>();
+            wood.Launch(randomDir * force, Random.Range(1.5f, 3f));
+        }
     }
 }

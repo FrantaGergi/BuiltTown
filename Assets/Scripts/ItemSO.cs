@@ -7,6 +7,7 @@ public class ItemSO : ScriptableObject
 {
     public string ItemName;
     public Sprite icon;
+    public GameObject prefab;
     public Material HighlightedMaterial;
     public ItemType itemType;
     public string description;

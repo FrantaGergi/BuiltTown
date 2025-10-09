@@ -24,8 +24,8 @@ public class Resource : MonoBehaviour, IInteractable
     protected AnimationType miningAnimationName;
     [Range(10, 1000),SerializeField]
     public int hitPoints = 10;
-    [Range(3, 100), SerializeField]
-    public int hitsPerDrop = 3;
+    [Range(1, 3), SerializeField]
+    public int hitsPerDrop = 1;
 
     protected int hitsTaken = 0;
 
