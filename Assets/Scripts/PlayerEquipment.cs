@@ -23,7 +23,7 @@ public class PlayerEquipment : MonoBehaviour
     private List<ItemHand> tools = new List<ItemHand>();
 
     public Action EventOnToolChanged;
-
+    public Transform Player { get; private set; }
     private void Start()
     {
         // this enables middle button mouse click work correctly
@@ -34,7 +34,7 @@ public class PlayerEquipment : MonoBehaviour
             cameractrl.enabled = true;
 
         }
-
+        Player = ikHandler.transform;
         tools.AddRange(ItemHandParent.GetComponentsInChildren<ItemHand>(true));
         EquipInHand(null);
     }

@@ -21,12 +21,19 @@ public class SpawnIconBehaviour : MonoBehaviour
     public Transform player;             // reference na hráèe (mùže se doplnit dynamicky)
 
     private bool pickedUp = false;
+    private InventoryManager playerInventory;
+    private int amount;
+    private ItemSO itemSO;
 
-    private void Start()
+
+    public void SetAndStart(Transform player, InventoryManager inventoryManager, int ammount, ItemSO itemSO)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        this.player = player;
+        this.playerInventory = inventoryManager;
+        this.amount = ammount;
+        this.itemSO = itemSO;
         StartCoroutine(HopAndIdle());
+
     }
 
     private IEnumerator HopAndIdle()
@@ -125,7 +132,7 @@ public class SpawnIconBehaviour : MonoBehaviour
 
         // tady mùžeš pøidat akci po doruèení (napø. pøidání resource)
         // playerInventory.Add("Wood", 1);
-
+        playerInventory.AddResourceToHotbar(itemSO, amount);
         Destroy(gameObject);
     }
 }

@@ -62,15 +62,4 @@ public class HitShakeEffect : MonoBehaviour
         transform.localScale = originalScale;
         shaking = false;
     }
-    public void SpawnIcons(int count, GameObject prefab)
-    {
-        Vector3 origin = transform.position + Vector3.up * 1.2f;
-
-        for (int i = 0; i < count; i++)
-        {
-            Instantiate(prefab, origin, Random.rotation);
-        }
-    }
-
-
 }

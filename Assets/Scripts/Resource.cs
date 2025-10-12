@@ -161,8 +161,20 @@ public class Resource : MonoBehaviour, IInteractable
     protected virtual void GetDrop(int ammount)
     {
         hitEffect.Hit();
-        //  každá surovina bude mít svùj ItemSO
+        SpawnIcon(ammount, ItemSO);
+        // inventoryManager.AddResourceToHotbar(ItemSO, ammount);
+
+
     }
+
+    public void SpawnIcon(int ammount, ItemSO itemSO)
+    {
+        Vector3 origin = transform.position + Vector3.up * 1.2f;
+
+        var a = Instantiate(itemSO.prefab, origin, UnityEngine.Random.rotation);
+        a.GetComponent<SpawnIconBehaviour>().SetAndStart(playerEquipment.Player, inventoryManager, ammount, itemSO);
+    }
+
 
     protected virtual void DestroyResource()
     {
