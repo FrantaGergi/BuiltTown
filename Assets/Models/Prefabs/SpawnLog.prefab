@@ -9,9 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1581154227471040836}
-  - component: {fileID: 7325492039598555975}
-  - component: {fileID: 4021150726714197531}
-  - component: {fileID: 8981738120086631522}
+  - component: {fileID: 5116261837918653672}
   m_Layer: 0
   m_Name: SpawnLog
   m_TagString: Untagged
@@ -37,34 +35,7 @@ Transform:
   - {fileID: 6688485466909845478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &7325492039598555975
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7007426334255344563}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &4021150726714197531
+--- !u!114 &5116261837918653672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,30 +44,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7007426334255344563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de02e2544a5acda469592ffbf1a106c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4054e19c1293e314e898e5f34fff0507, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IconToSpawn
---- !u!135 &8981738120086631522
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7007426334255344563}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnIconBehaviour
+  radius: 0.5
+  hopDistance: 1.5
+  hopHeight: 1
+  hopTime: 0.6
+  groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.11
-  m_Center: {x: 0, y: 0, z: 0}
+    m_Bits: 55
+  idleTime: 50
+  rotationSpeed: 50
+  pickupRange: 2
+  jumpToPlayerTime: 0.4
+  player: {fileID: 0}
 --- !u!1001 &2158655176593525254
 PrefabInstance:
   m_ObjectHideFlags: 0

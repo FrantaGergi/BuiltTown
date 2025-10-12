@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.AppUI.UI;
 using UnityEngine;
 
 public class HitShakeEffect : MonoBehaviour
@@ -16,6 +17,14 @@ public class HitShakeEffect : MonoBehaviour
     private Quaternion originalRot;
     private Vector3 originalScale;
     private bool shaking = false;
+
+    [Header("Icons")]
+    [SerializeField] private float radius = 0.4f;       // kolem kmene
+    [SerializeField] private float hopHeight = 1.5f;    // jak vysoko vyskoèí
+    [SerializeField] private float hopDistance = 1.5f;  // jak daleko od kmene
+    [SerializeField] private float hopTime = 0.6f;      // délka jednoho "hopu"
+    [SerializeField] private float idleTime = 30f;     // jak dlouho zùstane na zemi pøed zmizením
+    [SerializeField] private LayerMask groundMask;      // pro raycast na zem
 
     void Start()
     {
@@ -53,20 +62,15 @@ public class HitShakeEffect : MonoBehaviour
         transform.localScale = originalScale;
         shaking = false;
     }
-    public void SpawnIcons(int count, GameObject prefab, float force = 3f)
+    public void SpawnIcons(int count, GameObject prefab)
     {
-   
-        Vector3 origin = transform.position + Vector3.up * 1.5f; // místo kde to "vyletí"
+        Vector3 origin = transform.position + Vector3.up * 1.2f;
 
         for (int i = 0; i < count; i++)
         {
-            Vector3 randomDir = Random.onUnitSphere;
-            randomDir.y = Mathf.Abs(randomDir.y); // aby neletìly pod zem
-            Vector3 spawnPos = origin + Random.insideUnitSphere * 0.3f;
-
-            GameObject icon = Instantiate(prefab, spawnPos, Quaternion.identity);
-            IconToSpawn wood = icon.GetComponent<IconToSpawn>();
-            wood.Launch(randomDir * force, Random.Range(1.5f, 3f));
+            Instantiate(prefab, origin, Random.rotation);
         }
     }
+
+
 }

@@ -9763,6 +9763,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6605094637784354174, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6605123710368909102, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -15881,6 +15885,14 @@ MonoBehaviour:
   shakeDuration: 0.3
   scaleAmount: 0.05
   scaleSpeed: 12
+  radius: 0.4
+  hopHeight: 1.5
+  hopDistance: 1.5
+  hopTime: 0.6
+  idleTime: 30
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!136 &791592811
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23230,6 +23242,14 @@ MonoBehaviour:
   shakeDuration: 0.3
   scaleAmount: 0.05
   scaleSpeed: 12
+  radius: 0.4
+  hopHeight: 1.5
+  hopDistance: 1.5
+  hopTime: 0.6
+  idleTime: 30
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1217126610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27734,7 +27754,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   hitPoints: 120
-  hitsPerDrop: 5
+  hitsPerDrop: 1
 --- !u!114 &1421845075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27747,11 +27767,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8deb43cae1a23e4993849778aed43ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeHitEffect
-  shakeIntensity: 3
-  shakeSpeed: 12
-  shakeDuration: 0.3
+  shakeIntensity: 6
+  shakeSpeed: 1
+  shakeDuration: 0.8
   scaleAmount: 0.05
   scaleSpeed: 12
+  radius: 0.4
+  hopHeight: 1.5
+  hopDistance: 1.5
+  hopTime: 0.6
+  idleTime: 30
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1001 &1424985351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31602,6 +31630,14 @@ MonoBehaviour:
   shakeDuration: 0.3
   scaleAmount: 0.05
   scaleSpeed: 12
+  radius: 0.4
+  hopHeight: 1.5
+  hopDistance: 1.5
+  hopTime: 0.6
+  idleTime: 30
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1634296787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36531,6 +36567,14 @@ MonoBehaviour:
   shakeDuration: 0.3
   scaleAmount: 0.05
   scaleSpeed: 12
+  radius: 0.4
+  hopHeight: 1.5
+  hopDistance: 1.5
+  hopTime: 0.6
+  idleTime: 30
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1947150617
 GameObject:
   m_ObjectHideFlags: 0
@@ -41503,7 +41547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1581154227471040836, guid: 8ee563a5800de8949845b267d304ee1b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 1581154227471040836, guid: 8ee563a5800de8949845b267d304ee1b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41536,6 +41580,10 @@ PrefabInstance:
     - target: {fileID: 1581154227471040836, guid: 8ee563a5800de8949845b267d304ee1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5116261837918653672, guid: 8ee563a5800de8949845b267d304ee1b, type: 3}
+      propertyPath: pickupRange
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7007426334255344563, guid: 8ee563a5800de8949845b267d304ee1b, type: 3}
       propertyPath: m_Name
