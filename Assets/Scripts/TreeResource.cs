@@ -51,13 +51,10 @@ public class TreeResource : Resource, IInteractable
         base.OnHoverEnter(interactor);
         if (!HasCorrectTool()) return;
 
-        renderer.material = resourceMapManager.WoodSO.HighlightedMaterial;
-
     }
     public override void OnHoverExit() 
     {
         base.OnHoverExit(); 
-        renderer.material = originalMaterial;
     }
 
     protected override void GetDrop(int ammount)

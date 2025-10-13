@@ -15,12 +15,11 @@ public class Resource : MonoBehaviour, IInteractable
     protected InventoryManager inventoryManager;
     protected ResourceMapManager resourceMapManager;
     protected ItemSO ItemSO;
-    protected Material originalMaterial;
-    protected Renderer renderer;
 
     protected HitShakeEffect hitEffect;
 
-
+    [Header("Highlight Settings"), SerializeField]
+    protected GameObject highlightObject;
 
     protected AnimationType miningAnimationName;
     [Range(10, 1000),SerializeField]
@@ -51,12 +50,9 @@ public class Resource : MonoBehaviour, IInteractable
     protected virtual void Start()
     {
         enabled = false; // Update se nebude volat, dokud nezaène tìžba
+        if (highlightObject != null)
+            highlightObject.SetActive(false);
 
-        renderer = GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            originalMaterial = renderer.material;
-        }
         hitEffect = GetComponent<HitShakeEffect>();
         if (hitEffect == null)
         {
@@ -82,11 +78,14 @@ public class Resource : MonoBehaviour, IInteractable
     {
 
         SetVariablesFromInteractor(interactor);
+        if (!HasCorrectTool()) return;
+
+        highlightObject.SetActive(true);
 
     }
     public virtual void OnHoverExit() 
     {
-    
+        highlightObject.SetActive(false);
     }
 
     protected void SetVariablesFromInteractor(InteractManager interactor)

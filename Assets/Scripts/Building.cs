@@ -14,10 +14,9 @@ public class Building : MonoBehaviour
     private int curentStoneCost;
     private int curentOreCost;
 
-    [Header("SO")]
-    public BuildingSO buildingSO;
-    public BuildingCanvController buildingCanvController;
 
+    public BuildingCanvController buildingCanvController;
+    public BuildingProgress buildingProgress;
     private InventoryManager inventoryManager;
 
     private bool use3Resources = true;
@@ -43,8 +42,10 @@ public class Building : MonoBehaviour
         curentWoodCost = 0;
         curentStoneCost = 0;
         curentOreCost = 0;
+
+        SetBuildingProgressMaterials();
     }
-   
+
     public int HowManyWoodMissing()
     {
         return Mathf.Max(0, woodCost - curentWoodCost);
@@ -122,7 +123,22 @@ public class Building : MonoBehaviour
            
         }
 
+
+        SetBuildingProgressMaterials();
+
     }
+    private void SetBuildingProgressMaterials()
+    {
+        buildingProgress.wood.required = woodCost;
+        buildingProgress.stone.required = stoneCost;
+        buildingProgress.ore.required = oreCost;
+        buildingProgress.wood.current = curentWoodCost;
+        buildingProgress.stone.current = curentStoneCost;
+        buildingProgress.ore.current = curentOreCost;
+        buildingProgress.UpdateVisuals();
+
+    }
+
     public void OnHoverEnter(InteractManager interactor)
     {
         if (inventoryManager == null)

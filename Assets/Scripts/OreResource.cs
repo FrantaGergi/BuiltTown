@@ -50,12 +50,12 @@ public class OreResource : Resource, IInteractable
 
         if (!HasCorrectTool()) return;
 
-        renderer.material = resourceMapManager.OreSO.HighlightedMaterial;
+       
     }
     public override void OnHoverExit()
     {
         base.OnHoverExit();  
-        renderer.material = originalMaterial;
+      
     }
 
     protected override void GetDrop(int ammount)
