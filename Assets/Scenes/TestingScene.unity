@@ -15868,6 +15868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   hitPoints: 20
   hitsPerDrop: 1
+  hitTime: 0.5
 --- !u!114 &791592806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23225,6 +23226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoneResource
   hitPoints: 42
   hitsPerDrop: 1
+  hitTime: 0.6
 --- !u!114 &1211755782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27755,6 +27757,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   hitPoints: 120
   hitsPerDrop: 1
+  hitTime: 0.5
 --- !u!114 &1421845075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31613,6 +31616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OreResource
   hitPoints: 10
   hitsPerDrop: 1
+  hitTime: 0.5
 --- !u!114 &1628812643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36554,6 +36558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OreResource
   hitPoints: 160
   hitsPerDrop: 1
+  hitTime: 0.5
 --- !u!114 &1946323637
 MonoBehaviour:
   m_ObjectHideFlags: 0
