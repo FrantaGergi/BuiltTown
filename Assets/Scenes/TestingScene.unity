@@ -20684,7 +20684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4024608290818752, guid: 922a6f57306c9774b92ac4d6b9bb8eb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.537
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4024608290818752, guid: 922a6f57306c9774b92ac4d6b9bb8eb6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -23223,8 +23223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182c9505be1f74d43a250eb52b40416b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneResource
-  hitPoints: 10
-  hitsPerDrop: 3
+  hitPoints: 42
+  hitsPerDrop: 1
 --- !u!114 &1211755782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31612,7 +31612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OreResource
   hitPoints: 10
-  hitsPerDrop: 3
+  hitsPerDrop: 1
 --- !u!114 &1628812643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34132,23 +34132,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8437014721942667403, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8437014721942667403, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8437014721942667403, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8437014721942667403, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.6
+      value: -4.723
       objectReference: {fileID: 0}
     - target: {fileID: -8437014721942667403, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.04
+      value: 12.734
       objectReference: {fileID: 0}
     - target: {fileID: -8437014721942667403, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -34157,6 +34157,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
       propertyPath: m_Name
       value: Free_Pack_-_Rocks_Stylized (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0720361568d86284d8e663c2884e2bdc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36549,7 +36553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OreResource
   hitPoints: 160
-  hitsPerDrop: 3
+  hitsPerDrop: 1
 --- !u!114 &1946323637
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI.Extensions.Tweens;
 using static InteractManager;
 
 public class Resource : MonoBehaviour, IInteractable
@@ -28,6 +29,10 @@ public class Resource : MonoBehaviour, IInteractable
     public int hitsPerDrop = 1;
 
     protected int hitsTaken = 0;
+
+    [Header("Animation Hit Track Time")]
+    [Range(0f,1f),SerializeField] protected float hitTime= 0.5f; // èas v sekundách, kdy bìhem animace dojde k zásahu
+    protected bool hitTriggered = false;
 
     protected enum AnimationType
     {
@@ -121,21 +126,21 @@ public class Resource : MonoBehaviour, IInteractable
         AnimatorStateInfo state = toolAnimator.GetCurrentAnimatorStateInfo(0);
         if (state.IsName(miningAnimationName.ToString()))
         {
-            // získáme èíslo aktuální smyèky (0, 1, 2...)
-            int loopCount = Mathf.FloorToInt(state.normalizedTime);
-            // když se èíslo smyèky zmìnílo od minula
-            if (loopCount > lastLoopCount)
+            float progress = state.normalizedTime % 1f; // zbytek po 1 => hodnota mezi 0–1
+
+            if (progress >= (hitTime-0.1f) && progress <= hitTime && !hitTriggered) // tøeba kolem poloviny animace
             {
-               TakeHit(1);
-                // tady spustíš tìžbu (pøidat kámen, zahrát zvuk...)
+                TakeHit(5);
+                hitTriggered = true;
             }
 
-            lastLoopCount = loopCount;
+            // reset flagu, až animace zaène znovu
+            if (progress < 0.1f)
+                hitTriggered = false;
         }
         else
         {
-            // reset, když nejsme v Mining animaci
-            lastLoopCount = 0;
+            hitTriggered = false;
         }
     }
 

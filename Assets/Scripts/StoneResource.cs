@@ -62,7 +62,6 @@ public class StoneResource : Resource, IInteractable
     protected override void GetDrop(int ammount)
     {
         base.GetDrop(ammount);
-        inventoryManager.AddResourceToHotbar(ItemSO, ammount);
     }
 
 }
