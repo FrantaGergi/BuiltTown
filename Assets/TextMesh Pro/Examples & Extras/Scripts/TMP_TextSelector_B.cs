@@ -106,7 +106,7 @@ namespace TMPro.Examples
                     // Get a reference to the vertices array.
                     Vector3[] vertices = m_TextMeshPro.textInfo.meshInfo[materialIndex].vertices;
 
-                    // Determine the center point of the character.
+                    // Determine the centerIcon point of the character.
                     Vector2 charMidBasline = (vertices[vertexIndex + 0] + vertices[vertexIndex + 2]) / 2;
 
                     // Need to translate all 4 vertices of the character to aligned with middle of character / baseline.

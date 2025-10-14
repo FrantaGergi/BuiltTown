@@ -110,9 +110,9 @@ namespace TMPro.Examples
                     // Get the cached vertices of the mesh used by this text element (character or sprite).
                     Vector3[] sourceVertices = cachedMeshInfoVertexData[materialIndex].vertices;
 
-                    // Determine the center point of each character at the baseline.
+                    // Determine the centerIcon point of each character at the baseline.
                     //Vector2 charMidBasline = new Vector2((sourceVertices[vertexIndex + 0].x + sourceVertices[vertexIndex + 2].x) / 2, charInfo.baseLine);
-                    // Determine the center point of each character.
+                    // Determine the centerIcon point of each character.
                     Vector2 charMidBasline = (sourceVertices[vertexIndex + 0] + sourceVertices[vertexIndex + 2]) / 2;
 
                     // Need to translate all 4 vertices of each quad to aligned with middle of character / baseline.

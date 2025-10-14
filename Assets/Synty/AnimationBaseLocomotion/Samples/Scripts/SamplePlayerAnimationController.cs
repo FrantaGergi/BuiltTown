@@ -146,13 +146,13 @@ namespace Synty.AnimationBaseLocomotion.Samples
         [Tooltip("Standing height of the player capsule.")]
         [SerializeField]
         private float _capsuleStandingHeight = 1.8f;
-        [Tooltip("Standing center of the player capsule.")]
+        [Tooltip("Standing centerIcon of the player capsule.")]
         [SerializeField]
         private float _capsuleStandingCentre = 0.93f;
         [Tooltip("Crouching height of the player capsule.")]
         [SerializeField]
         private float _capsuleCrouchingHeight = 1.2f;
-        [Tooltip("Crouching center of the player capsule.")]
+        [Tooltip("Crouching centerIcon of the player capsule.")]
         [SerializeField]
         private float _capsuleCrouchingCentre = 0.6f;
 
