@@ -37115,7 +37115,7 @@ MonoBehaviour:
   - {fileID: 1870931382}
   - {fileID: 610016978}
   - {fileID: 2056614944}
-  Pointer: {fileID: 403921864}
+  pointer: {fileID: 403921864}
   centerIcon: {fileID: 307649276}
   rotationSpeed: 100
   hitAngleTolerance: 10
@@ -37123,6 +37123,7 @@ MonoBehaviour:
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   failColor: {r: 1, g: 0, b: 0, a: 1}
   highlightDuration: 0.2
+  logJumpDuration: 0.3
   poofEffect: {fileID: 0}
 --- !u!1001 &1634296787
 PrefabInstance:
