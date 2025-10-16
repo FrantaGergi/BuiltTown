@@ -1,7 +1,5 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class InteractManager : MonoBehaviour
 {
@@ -25,10 +23,14 @@ public class InteractManager : MonoBehaviour
     // forced target (napø. world-space UI), upøednostnìn pøed raycastem
     private IInteractable forcedTarget;
 
+    //TODO dodìlej isholding i pro E klavesu, jinak big problem Man
+
     public enum InteractAction
     {
         None,
-        E,
+        EStart,
+        EHold,
+        EEnd,
         R,
         HoldStart,
         Hold,
@@ -61,7 +63,7 @@ public class InteractManager : MonoBehaviour
         TryInteract(InteractAction.HoldEnd);
     }
 
-    // veøejné API pro registraci forced targetu (napø. UIBuilding)
+    // veøejné API pro registraci forced targetu (napø. UIBuildingStorage)
     public void SetForcedTarget(IInteractable target)
     {
         if (forcedTarget == target) return;
@@ -117,8 +119,18 @@ public class InteractManager : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
-        TryInteract(InteractAction.E);
+        if (ctx.started) // zaèátek držení
+        {
+            TryInteract(InteractAction.EStart);
+        }
+        else if (ctx.performed) // bìhem držení (triggery u "Hold")
+        {
+            TryInteract(InteractAction.EHold);
+        }
+        else if (ctx.canceled) // puštìní tlaèítka
+        {
+            TryInteract(InteractAction.EEnd);
+        }
     }
 
     public void OnSecondaryInteract(InputAction.CallbackContext ctx)

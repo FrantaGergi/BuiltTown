@@ -1,7 +1,5 @@
 
 
-using System.Windows.Input;
-using UnityEngine;
 
 public interface IInteractable
 {

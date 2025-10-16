@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class UIBuilding : MonoBehaviour, IInteractable
+public class UIBuildingStorage : MonoBehaviour, IInteractable
 {
     public Canvas threeDCanvas;
     public Transform player;
@@ -10,7 +10,7 @@ public class UIBuilding : MonoBehaviour, IInteractable
     [SerializeField, Range(0,20)] private int radius = 5;
     [SerializeField] private float scaleDuration = 0.5f;
     [SerializeField] private InteractManager interactManager; // nastav v inspektoru nebo najdi v Start()
-    [SerializeField] private Building building; // reference na budovu
+    [SerializeField] private BuildingStorage buildingStorage; // reference na budovu
     private Coroutine scaleCoroutine;
     private bool isVisible = false;
 
@@ -50,7 +50,7 @@ public class UIBuilding : MonoBehaviour, IInteractable
         {
             isVisible = true;
             threeDCanvas.enabled = true;
-            // registrovat se jako forced target, aby E šel na tento UIBuilding i bez aimu
+            // registrovat se jako forced target, aby E šel na tento UIBuildingStorage i bez aimu
             interactManager?.SetForcedTarget(this);
 
             // zmìnit layer hráèe na "UI" (uložíme pùvodní)
@@ -157,12 +157,21 @@ public class UIBuilding : MonoBehaviour, IInteractable
     // IInteractable impl
     public void Interact(InteractManager interactor, InteractManager.InteractAction action)
     {
-        if (action == InteractManager.InteractAction.E)
+        if (action == InteractManager.InteractAction.EStart)
         {
             // sem vlož otevøení menu stavby / potvrzení
-            Debug.Log($"{name}: E pressed on UIBuilding");
-            building?.OnInteract(interactor);
+            buildingStorage?.OnInteract(interactor, true);
             // napø. OpenBuildingMenu();
+        }
+        if (action == InteractManager.InteractAction.EEnd)
+        {
+            // sem vlož zavøení menu stavby / zrušení
+            buildingStorage?.OnInteract(interactor, false);
+            // napø. CloseBuildingMenu();
+        }
+        if (action == InteractManager.InteractAction.HoldStart) // try hit log/ore/stone..
+        {
+            buildingStorage?.TryHitInGame();
         }
         if (action == InteractManager.InteractAction.HoldEnd)
         {
@@ -173,7 +182,7 @@ public class UIBuilding : MonoBehaviour, IInteractable
     public void OnHoverEnter(InteractManager interactor)
     {
         // volitelnì vizuální zvýraznìní
-        building?.OnHoverEnter(interactor);
+        buildingStorage?.OnHoverEnter(interactor);
 
     }
 

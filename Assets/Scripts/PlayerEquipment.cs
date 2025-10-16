@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using Synty.AnimationBaseLocomotion.Samples;
 using System;
 using System.Collections.Generic;

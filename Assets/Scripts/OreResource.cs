@@ -1,4 +1,3 @@
-using UnityEngine;
 using static InteractManager;
 
 public class OreResource : Resource, IInteractable
@@ -28,7 +27,7 @@ public class OreResource : Resource, IInteractable
 
         switch (action)
         {
-            case InteractAction.E:
+            case InteractAction.EStart:
                 break;
 
             case InteractAction.HoldStart:

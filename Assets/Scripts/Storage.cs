@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Windows.Input;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class Storage : MonoBehaviour

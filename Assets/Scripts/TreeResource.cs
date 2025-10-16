@@ -1,4 +1,3 @@
-using UnityEngine;
 using static InteractManager;
 
 public class TreeResource : Resource, IInteractable
@@ -29,7 +28,7 @@ public class TreeResource : Resource, IInteractable
         
         switch (action)
         {
-            case InteractAction.E:
+            case InteractAction.EStart:
                 break;
 
             case InteractAction.HoldStart:

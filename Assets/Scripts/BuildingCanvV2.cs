@@ -10,19 +10,18 @@ public class BuildingCanvV2 : MonoBehaviour
     [SerializeField] private TextMeshProUGUI progressText;
 
     [SerializeField] private RectTransform parentPanel;
-    [SerializeField] private ItemType ItemType;
 
-    [SerializeField] private CircularClickGame CircularClickGame;
 
 
     private void Start()
     {
-        SetProgressBar(ItemType, 0f);
+        SetProgressBarSmooth(0f);
 
     }
 
+  
 
-    public void SetProgressBar(ItemType itemType, float value01)
+    public void SetProgressBar( float value01)
     {
         // Omez hodnotu na rozsah 0–1
         value01 = Mathf.Clamp01(value01);

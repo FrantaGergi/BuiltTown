@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI.Extensions.Tweens;
 using static InteractManager;
 
 public class Resource : MonoBehaviour, IInteractable

@@ -10,7 +10,7 @@ public class ShopItem : MonoBehaviour, IInteractable
     {
         switch (action)
         {
-            case InteractAction.E:
+            case InteractAction.EStart:
                 Debug.Log($"Do košíku: {itemName}");
                 break;
 

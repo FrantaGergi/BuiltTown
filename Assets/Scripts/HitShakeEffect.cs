@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.AppUI.UI;
 using UnityEngine;
 
 public class HitShakeEffect : MonoBehaviour

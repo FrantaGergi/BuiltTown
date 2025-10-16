@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CircularClickGame : MonoBehaviour
@@ -37,8 +36,12 @@ public class CircularClickGame : MonoBehaviour
     private Vector3 originalCenterPosA;
     private Vector3 originalCenterPosB;
 
-    // Pøepínaè mezi centry
     private bool usingCenterA = true;
+    private bool isRunning = false; // Nová promìnná – sleduje, zda hra bìží
+
+    private BuildingStorage buildingStorage; // Reference na BuildingStorage
+
+    private int currentMultiplier = 1; // aktuální multiplikátor
 
     private void Start()
     {
@@ -55,13 +58,49 @@ public class CircularClickGame : MonoBehaviour
         originalCenterPosA = centerIcon.localPosition;
         originalCenterPosB = centerIconB.localPosition;
 
-
-        RandomizeAndEnableLogs();
+        // Na startu zatím hru nespouštíme
+        DisableAllLogs();
     }
 
     private void Update()
     {
-        RotateCircle();
+        if (isRunning)
+            RotateCircle();
+    }
+
+    // Spuštìní hry
+    public void StartGame(BuildingStorage buildingStorage)
+    {
+        this.buildingStorage = buildingStorage;
+        isRunning = true;
+        pointerImage.color = normalColor;
+        currentRotation = startRotation;
+        pointer.localRotation = Quaternion.Euler(0, 0, currentRotation);
+
+        accumulatedScaleMultiplier = 1f;
+        GetActiveCenter().localScale = originalCenterScale;
+        RandomizeAndEnableLogs();
+    }
+
+    // Zastavení hry a reset
+    public void StopGame()
+    {
+        isRunning = false;
+
+        // Reset pointeru
+        pointer.localRotation = Quaternion.Euler(0, 0, startRotation);
+        pointerImage.color = normalColor;
+
+        // Deaktivace logù
+        DisableAllLogs();
+
+        // Zastavení efektù a korutin
+        if (pulseCoroutine != null)
+            StopCoroutine(pulseCoroutine);
+
+        // Reset scale aktivního centra
+        GetActiveCenter().localScale = originalCenterScale;
+
     }
 
     private void RotateCircle()
@@ -78,40 +117,31 @@ public class CircularClickGame : MonoBehaviour
 
     private void FullRotationCompleted()
     {
-        // Pøi každé otoèce pøepni centrum
+        if (!isRunning) return;
+
         SwitchCenterIcons();
 
-        // Reset scale a logù pro aktivní centrum
         accumulatedScaleMultiplier = 1f;
         GetActiveCenter().localScale = originalCenterScale;
         RandomizeAndEnableLogs();
+        buildingStorage?.AddSource(currentMultiplier); // Pøedání informace o úspìšném dokonèení rotace
+        currentMultiplier = 1; // Reset multiplikátoru po dokonèení rotace
     }
 
-    /// <summary>
-    /// Pøepne aktivní center mezi centerIcon a centerIconB
-    /// </summary>
     private void SwitchCenterIcons()
     {
-        // zjisti staré a nové centrum
         Transform oldCenter = GetActiveCenter();
-        usingCenterA = !usingCenterA; // pøepnutí hodnoty
+        usingCenterA = !usingCenterA;
         Transform newCenter = GetActiveCenter();
 
-        // zapni nové centrum, resetuj pozici a scale na 0
         newCenter.gameObject.SetActive(true);
         newCenter.localPosition = usingCenterA ? originalCenterPosA : originalCenterPosB;
         newCenter.localScale = Vector3.zero;
 
-        // spust animaci zvìtšení nového centra
         StartCoroutine(ScaleUpCenter(newCenter, originalCenterScale, 0.5f));
-
-        // spust animaci odletu starého
         StartCoroutine(FlyOutAndDisable(oldCenter));
     }
 
-    /// <summary>
-    /// Staré centrum odletí k cíli a zmizí, pak se vypne a resetuje pozici
-    /// </summary>
     private IEnumerator FlyOutAndDisable(Transform center)
     {
         Vector3 startPos = center.position;
@@ -129,15 +159,11 @@ public class CircularClickGame : MonoBehaviour
             yield return null;
         }
 
-        // dokonèíme pøesnì
-        center.position = startPos; // reset na pùvodní pozici
+        center.position = startPos;
         center.localScale = originalCenterScale;
         center.gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Vrací právì aktivní center transform
-    /// </summary>
     private Transform GetActiveCenter()
     {
         return usingCenterA ? centerIcon : centerIconB;
@@ -153,6 +179,12 @@ public class CircularClickGame : MonoBehaviour
         }
     }
 
+    private void DisableAllLogs()
+    {
+        foreach (var l in logs)
+            l.gameObject.SetActive(false);
+    }
+
     private IEnumerator ScaleUpCenter(Transform center, Vector3 targetScale, float duration)
     {
         float elapsed = 0f;
@@ -166,14 +198,13 @@ public class CircularClickGame : MonoBehaviour
         center.localScale = targetScale;
     }
 
-    public void OnHit(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed)
-            TryHit();
-    }
+  
+    
 
-    private void TryHit()
+    public void TryHit()
     {
+        if (!isRunning) return;
+
         bool hit = false;
 
         foreach (var log in logs)
@@ -182,13 +213,17 @@ public class CircularClickGame : MonoBehaviour
             if (Mathf.Abs(angleDiff) <= hitAngleTolerance)
             {
                 StartCoroutine(HitLog(log));
+                currentMultiplier++;
                 hit = true;
                 break;
             }
         }
 
-        if (!hit)
+        if (!hit) {
             StartCoroutine(FailEffect());
+            currentMultiplier = 0;
+            StopGame();
+        }
     }
 
     private IEnumerator HitLog(Transform log)

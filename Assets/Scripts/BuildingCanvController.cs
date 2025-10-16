@@ -95,7 +95,7 @@ public class BuildingCanvController : MonoBehaviour
     }
 
     /// <summary>
-    /// Nastaví sprite na tlaèítku podle ItemType a stavu (isGray/normal).
+    /// Nastaví sprite na tlaèítku podle itemType a stavu (isGray/normal).
     /// </summary>
     
     public void SetAllButtonsGray()
@@ -119,7 +119,7 @@ public class BuildingCanvController : MonoBehaviour
                 target = bttnImg3;
                 break;
             default:
-                Debug.LogWarning($"SetButtonToFinished: Neznámý ItemType {itemType}");
+                Debug.LogWarning($"SetButtonToFinished: Neznámý itemType {itemType}");
                 return;
         }
         if (target == null)
@@ -151,7 +151,7 @@ public class BuildingCanvController : MonoBehaviour
                 sprite = isGray ? GrayButton : GreenButton;
                 break;
             default:
-                Debug.LogWarning($"SetButtonSprite: Neznámý ItemType {itemType}");
+                Debug.LogWarning($"SetButtonSprite: Neznámý itemType {itemType}");
                 return;
         }
 
@@ -190,7 +190,7 @@ public class BuildingCanvController : MonoBehaviour
                 target = progressBar3;
                 break;
             default:
-                Debug.LogWarning($"SetProgressBar: Neznámý ItemType {itemType}");
+                Debug.LogWarning($"SetProgressBar: Neznámý itemType {itemType}");
                 return;
         }
 
@@ -227,7 +227,7 @@ public class BuildingCanvController : MonoBehaviour
                 target = progressBar3;
                 break;
             default:
-                Debug.LogWarning($"AnimateProgressBar: Neznámý ItemType {itemType}");
+                Debug.LogWarning($"AnimateProgressBar: Neznámý itemType {itemType}");
                 yield break;
         }
 
@@ -274,7 +274,7 @@ public class BuildingCanvController : MonoBehaviour
                 target = text3;
                 break;
             default:
-                Debug.LogWarning($"SetText: Neznámý ItemType {itemType}");
+                Debug.LogWarning($"SetText: Neznámý itemType {itemType}");
                 return;
         }
         if (target == null)
