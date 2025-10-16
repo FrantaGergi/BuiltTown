@@ -3990,6 +3990,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4518735152137134, guid: 5afed722cc07f0045bfb9c283f384e9c, type: 3}
   m_PrefabInstance: {fileID: 937391885}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &181558255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 181558256}
+  m_Layer: 0
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &181558256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181558255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.112, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398815174}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &181583135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6487,7 +6518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &296258812
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15687,28 +15718,7 @@ MonoBehaviour:
   woodCost: 20
   stoneCost: 4
   oreCost: 2
-  buildingCanvController: {fileID: 618831245}
   buildingProgress: {fileID: 618831246}
---- !u!114 &618831244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618831241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9dff10fd0c9e30478ad48485521456a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIBuilding
-  threeDCanvas: {fileID: 296258815}
-  player: {fileID: 316364088}
-  rotationSpeed: 10
-  centerPoint: {fileID: 1559101740}
-  radius: 5
-  scaleDuration: 0.5
-  interactManager: {fileID: 1610482346}
-  building: {fileID: 618831243}
 --- !u!114 &618831245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15716,7 +15726,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 618831241}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cac328edfefb22f41aacaa589ed2922d, type: 3}
   m_Name: 
@@ -34749,6 +34759,8 @@ GameObject:
   - component: {fileID: 1398815174}
   - component: {fileID: 1398815175}
   - component: {fileID: 1398815176}
+  - component: {fileID: 1398815178}
+  - component: {fileID: 1398815177}
   m_Layer: 0
   m_Name: WoodPack (1)
   m_TagString: Untagged
@@ -34774,6 +34786,7 @@ Transform:
   - {fileID: 642444074}
   - {fileID: 1095494233}
   - {fileID: 520772923}
+  - {fileID: 181558256}
   m_Father: {fileID: 618831242}
   m_LocalEulerAnglesHint: {x: 0, y: -8.57, z: 0}
 --- !u!114 &1398815175
@@ -34812,8 +34825,43 @@ MonoBehaviour:
   progreesParent: {fileID: 1025538770}
   progressText: {fileID: 588897776}
   parentPanel: {fileID: 470942649}
-  ItemType: 3
-  CircularClickGame: {fileID: 0}
+--- !u!114 &1398815177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398815173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cef3d65a06cbd646bcf21167847c815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingStorage
+  inventoryManager: {fileID: 1610482347}
+  itemType: 3
+  building: {fileID: 618831243}
+  CircularClickGame: {fileID: 1309165668}
+  buildingCanv: {fileID: 1398815176}
+--- !u!114 &1398815178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398815173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3cbd4da21417346b0ab79b6523ea11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIBuildingStorage
+  threeDCanvas: {fileID: 1794355854}
+  player: {fileID: 316364088}
+  rotationSpeed: 10
+  centerPoint: {fileID: 181558256}
+  radius: 5
+  scaleDuration: 0.5
+  interactManager: {fileID: 1610482346}
+  buildingStorage: {fileID: 1398815177}
 --- !u!1001 &1409160815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37952,7 +38000,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1543930147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37960,7 +38008,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -152, y: -0}
+  m_AnchoredPosition: {x: 223, y: 0}
   m_SizeDelta: {x: 100, y: 105.4966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543930149
@@ -39712,19 +39760,7 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1632686011}
-        m_TargetAssemblyTypeName: CircularClickGame, Assembly-CSharp
-        m_MethodName: OnHit
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
@@ -51808,9 +51844,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7452145505089074255, guid: c9bb28ada9f0c544186caaad4860b0cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 618831243}
-    - targetCorrespondingSourceObject: {fileID: 7452145505089074255, guid: c9bb28ada9f0c544186caaad4860b0cc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 618831244}
     - targetCorrespondingSourceObject: {fileID: 7452145505089074255, guid: c9bb28ada9f0c544186caaad4860b0cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 618831245}
