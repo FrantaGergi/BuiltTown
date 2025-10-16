@@ -8,7 +8,9 @@ public class CircularClickGame : MonoBehaviour
     [Header("Odkazy")]
     [SerializeField] private Transform[] logs; // Logy (3x)
     [SerializeField] private Transform pointer; // Bílé koleèko
-    [SerializeField] private Transform centerIcon; // Ikona uprostøed
+    [SerializeField] private Transform centerIcon; // Ikona uprostøed A
+    [SerializeField] private Transform centerIconB; // Ikona uprostøed B
+    [SerializeField] private Transform iconTarget; // Kam má odletìt staré centrum pøi pøepnutí
 
     [Header("Nastavení")]
     [SerializeField] private float rotationSpeed = 100f;
@@ -18,6 +20,8 @@ public class CircularClickGame : MonoBehaviour
     [SerializeField] private Color failColor = Color.red;
     [SerializeField] private float highlightDuration = 0.2f;
     [SerializeField] private float logJumpDuration = 0.3f;
+    [SerializeField] private float scaleIncrement = 0.25f; // o kolik se zvìtší støed po každém hitu
+    [SerializeField] private float flyOutDuration = 0.3f; // délka animace odletu starého centra
 
     [Header("Efekty")]
     [SerializeField] private ParticleSystem poofEffect;
@@ -26,15 +30,31 @@ public class CircularClickGame : MonoBehaviour
     private float endRotation = 224.732f;
     private float currentRotation;
     private Image pointerImage;
-    private Transform originalSizeCenterIcon;
-    private Transform currentSizeCenterIcon;
+    private Vector3 originalCenterScale;
+    private Coroutine pulseCoroutine;
+    private float accumulatedScaleMultiplier = 1f;
+
+    private Vector3 originalCenterPosA;
+    private Vector3 originalCenterPosB;
+
+    // Pøepínaè mezi centry
+    private bool usingCenterA = true;
 
     private void Start()
     {
         currentRotation = startRotation;
         pointerImage = pointer.GetComponent<Image>();
         pointerImage.color = normalColor;
-        originalSizeCenterIcon = centerIcon;
+
+        originalCenterScale = centerIcon.localScale;
+
+        // Na zaèátku zapni A a vypni B
+        centerIcon.gameObject.SetActive(true);
+        centerIconB.gameObject.SetActive(false);
+
+        originalCenterPosA = centerIcon.localPosition;
+        originalCenterPosB = centerIconB.localPosition;
+
 
         RandomizeAndEnableLogs();
     }
@@ -52,13 +72,75 @@ public class CircularClickGame : MonoBehaviour
             currentRotation = startRotation;
             FullRotationCompleted();
         }
+
         pointer.localRotation = Quaternion.Euler(0, 0, currentRotation);
     }
 
     private void FullRotationCompleted()
     {
-        // pokaždé, když se kruh otoèí celý -> obnov všechny logy
+        // Pøi každé otoèce pøepni centrum
+        SwitchCenterIcons();
+
+        // Reset scale a logù pro aktivní centrum
+        accumulatedScaleMultiplier = 1f;
+        GetActiveCenter().localScale = originalCenterScale;
         RandomizeAndEnableLogs();
+    }
+
+    /// <summary>
+    /// Pøepne aktivní center mezi centerIcon a centerIconB
+    /// </summary>
+    private void SwitchCenterIcons()
+    {
+        // zjisti staré a nové centrum
+        Transform oldCenter = GetActiveCenter();
+        usingCenterA = !usingCenterA; // pøepnutí hodnoty
+        Transform newCenter = GetActiveCenter();
+
+        // zapni nové centrum, resetuj pozici a scale na 0
+        newCenter.gameObject.SetActive(true);
+        newCenter.localPosition = usingCenterA ? originalCenterPosA : originalCenterPosB;
+        newCenter.localScale = Vector3.zero;
+
+        // spust animaci zvìtšení nového centra
+        StartCoroutine(ScaleUpCenter(newCenter, originalCenterScale, 0.5f));
+
+        // spust animaci odletu starého
+        StartCoroutine(FlyOutAndDisable(oldCenter));
+    }
+
+    /// <summary>
+    /// Staré centrum odletí k cíli a zmizí, pak se vypne a resetuje pozici
+    /// </summary>
+    private IEnumerator FlyOutAndDisable(Transform center)
+    {
+        Vector3 startPos = center.position;
+        Vector3 targetPos = iconTarget.position;
+        Vector3 startScale = center.localScale;
+        Vector3 endScale = Vector3.zero;
+
+        float elapsed = 0f;
+        while (elapsed < flyOutDuration)
+        {
+            float t = Mathf.SmoothStep(0, 1, elapsed / flyOutDuration);
+            center.position = Vector3.Lerp(startPos, targetPos, t);
+            center.localScale = Vector3.Lerp(startScale, endScale, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // dokonèíme pøesnì
+        center.position = startPos; // reset na pùvodní pozici
+        center.localScale = originalCenterScale;
+        center.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Vrací právì aktivní center transform
+    /// </summary>
+    private Transform GetActiveCenter()
+    {
+        return usingCenterA ? centerIcon : centerIconB;
     }
 
     private void RandomizeAndEnableLogs()
@@ -69,6 +151,19 @@ public class CircularClickGame : MonoBehaviour
             l.localScale = Vector3.one;
             l.localRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
         }
+    }
+
+    private IEnumerator ScaleUpCenter(Transform center, Vector3 targetScale, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+            center.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        center.localScale = targetScale;
     }
 
     public void OnHit(InputAction.CallbackContext ctx)
@@ -98,27 +193,26 @@ public class CircularClickGame : MonoBehaviour
 
     private IEnumerator HitLog(Transform log)
     {
-        // Poof efekt
         if (poofEffect != null)
         {
             poofEffect.transform.position = pointer.position;
             poofEffect.Play();
         }
 
-        // Log "skoèí" do støedu
         yield return StartCoroutine(LogJumpToCenter(log));
+        StartCoroutine(HighlightPointer(successColor));
 
-        // Pointer barva
-        yield return StartCoroutine(HighlightPointer(successColor));
-
-        // Puls ikony ve støedu
-        yield return StartCoroutine(PulseCenterIcon());
+        if (pulseCoroutine != null)
+            StopCoroutine(pulseCoroutine);
+        pulseCoroutine = StartCoroutine(PulseCenterIcon());
     }
 
     private IEnumerator LogJumpToCenter(Transform log)
     {
+        Transform activeCenter = GetActiveCenter();
+
         Vector3 startPos = log.position;
-        Vector3 targetPos = centerIcon.position;
+        Vector3 targetPos = activeCenter.position;
         float elapsed = 0f;
 
         Vector3 startScale = log.localScale;
@@ -145,35 +239,35 @@ public class CircularClickGame : MonoBehaviour
 
     private IEnumerator PulseCenterIcon()
     {
-        Vector3 originalScale = currentSizeCenterIcon.localScale;
-        Vector3 targetScale = currentSizeCenterIcon.localScale * 1.3f; // zvìtšení o 30 %
-        Vector3 smallerScale = Vector3.Lerp(targetScale, originalScale, 1f / 3f);
-        // tedy zmenšení o 1/3 zvìtšení, napø. 1.3x -> 1.1x
+        Transform activeCenter = GetActiveCenter();
 
-        float duration = 0.15f;
+        Vector3 currentScale = activeCenter.localScale;
+        accumulatedScaleMultiplier += scaleIncrement;
+
+        Vector3 targetScale = originalCenterScale * accumulatedScaleMultiplier * 1.5f;
+        Vector3 finalScale = originalCenterScale * accumulatedScaleMultiplier;
+
+        float duration = 0.2f;
         float elapsed = 0f;
 
-        // Zvìtšení
         while (elapsed < duration)
         {
-            float t = elapsed / duration;
-            centerIcon.localScale = Vector3.Lerp(originalScale, targetScale, t);
+            float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+            activeCenter.localScale = Vector3.Lerp(currentScale, targetScale, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Zmenšení zpìt (jen èásteènì)
         elapsed = 0f;
         while (elapsed < duration)
         {
-            float t = elapsed / duration;
-            centerIcon.localScale = Vector3.Lerp(targetScale, smallerScale, t);
+            float t = Mathf.SmoothStep(0, 1, elapsed / duration);
+            activeCenter.localScale = Vector3.Lerp(targetScale, finalScale, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        // Návrat na pùvodní velikost
-        centerIcon.localScale = smallerScale;
+        activeCenter.localScale = finalScale;
     }
 
     private IEnumerator FailEffect()
