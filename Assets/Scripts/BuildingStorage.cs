@@ -86,8 +86,7 @@ public class BuildingStorage : MonoBehaviour
 
         UpdateprogressBarAndText();
 
-
-        if (building.GetCurrentCost(itemType) >= building.GetCost(itemType))
+        if (building.GetCurrentCost(itemType) >= building.GetCost(itemType) || inventoryManager.GetResourceCount(itemType) == 0)
         {
             Debug.Log($"poèet {itemType} je již dokonèena.");
             StopClickGame();
