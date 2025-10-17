@@ -27,7 +27,9 @@ public class UIBuildingStorage : MonoBehaviour, IInteractable
         }
         if (interactManager == null)
             interactManager = FindFirstObjectByType<InteractManager>();
-        
+        if(player == null)
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
     }
 
     private void OnDrawGizmos()

@@ -4,10 +4,12 @@ public class BuildingStorage : MonoBehaviour
 {
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] ItemType itemType = ItemType.Wood;
-    [SerializeField] Building building;
 
     [SerializeField] private CircularClickGame CircularClickGame;
     [SerializeField] private BuildingCanvV2 buildingCanv;
+
+
+    [Header("References ->"),SerializeField] Building building;
 
 
     private void Start()
