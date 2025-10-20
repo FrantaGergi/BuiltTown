@@ -23,6 +23,10 @@ public class BuildingProgress : MonoBehaviour
     /// </summary>
     public void UpdateVisuals()
     {
+        if (prefabStage1 == null)
+        {
+            return;
+        }
         //Vypni všechny fáze, aby se zobrazila jen ta aktuální
         prefabStage1.SetActive(false);
         prefabStage2.SetActive(false);
@@ -41,6 +45,7 @@ public class BuildingProgress : MonoBehaviour
         {
             prefabStage4.SetActive(true);
             currentStage = 4;
+            DestroyPacks();
         }
         else if (hasStone && hasWood)
         {
@@ -107,5 +112,13 @@ public class BuildingProgress : MonoBehaviour
             stages[1].SetActive(true);
         else
             stages[0].SetActive(true);
+    }
+
+    public void DestroyPacks()
+    {
+        Destroy(stone.gameObject);
+        Destroy(wood.gameObject);
+        Destroy(ore.gameObject);
+
     }
 }

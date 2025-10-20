@@ -1,0 +1,270 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3680206567247145636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7208961822906647996}
+  m_Layer: 0
+  m_Name: Stairs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7208961822906647996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3680206567247145636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.716085, y: -0.008000001, z: -6.787}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2848762234242797295}
+  - {fileID: 6888827523457746714}
+  - {fileID: 7242482828352324916}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2853393086185037635
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7208961822906647996}
+    m_Modifications:
+    - target: {fileID: 1348947109254792, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_Name
+      value: SM_Bld_House_Concrete_Steps_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0709
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.60191536
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.017999992
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.46099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64437624144065260, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+--- !u!4 &2848762234242797295 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+  m_PrefabInstance: {fileID: 2853393086185037635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6884763503985972918
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7208961822906647996}
+    m_Modifications:
+    - target: {fileID: 1348947109254792, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_Name
+      value: SM_Bld_House_Concrete_Steps_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0708998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0089149475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2660003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.69361293
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.72034794
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 267.83398
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64437624144065260, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+--- !u!4 &6888827523457746714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+  m_PrefabInstance: {fileID: 6884763503985972918}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7247391375766115480
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7208961822906647996}
+    m_Modifications:
+    - target: {fileID: 1348947109254792, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_Name
+      value: SM_Bld_House_Concrete_Steps_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0709
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 64437624144065260, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+--- !u!4 &7242482828352324916 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4960774318084524, guid: 58046ab3e4897b94a8a0c44e25d45c08, type: 3}
+  m_PrefabInstance: {fileID: 7247391375766115480}
+  m_PrefabAsset: {fileID: 0}
