@@ -82,9 +82,10 @@ public class Resource : MonoBehaviour, IInteractable
         highlightObject.SetActive(true);
 
     }
-    public virtual void OnHoverExit() 
+    public virtual void OnHoverExit()
     {
-        highlightObject?.SetActive(false);
+        if(highlightObject != null)
+            highlightObject.SetActive(false);
     }
 
     protected void SetVariablesFromInteractor(InteractManager interactor)
