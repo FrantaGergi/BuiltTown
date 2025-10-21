@@ -17,6 +17,9 @@ public class BuildingProgress : MonoBehaviour
     public BuildingMaterial ore;    // pro finální stavbu
 
 
+    private HouseAssembler houseAssembler = new HouseAssembler();
+
+
     /// <summary>
     /// Zavolej po každé zmìnì materiálù.
     /// Pøepne správný prefab a aktualizuje stav všech vizuálních indikátorù.
