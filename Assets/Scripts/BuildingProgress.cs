@@ -17,8 +17,14 @@ public class BuildingProgress : MonoBehaviour
     public BuildingMaterial ore;    // pro finální stavbu
 
 
-    private HouseAssembler houseAssembler = new HouseAssembler();
+    private HouseAssembler houseAssembler;
 
+
+    private void Start()
+    {
+        houseAssembler = new HouseAssembler(this);
+        UpdateVisuals();
+    }
 
     /// <summary>
     /// Zavolej po každé zmìnì materiálù.
@@ -47,17 +53,20 @@ public class BuildingProgress : MonoBehaviour
         if (hasStone && hasWood && hasOre)
         {
             prefabStage4.SetActive(true);
+            houseAssembler.Assemble(prefabStage4);
             currentStage = 4;
             DestroyPacks();
         }
         else if (hasStone && hasWood)
         {
             prefabStage3.SetActive(true);
+            houseAssembler.Assemble(prefabStage3);
             currentStage = 3;
         }
         else if (hasStone)
         {
             prefabStage2.SetActive(true);
+            houseAssembler.Assemble(prefabStage2);
             currentStage = 2;
         }
         else

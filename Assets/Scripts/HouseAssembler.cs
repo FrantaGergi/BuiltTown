@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HouseAssembler : MonoBehaviour
+public class HouseAssembler
 {
     [System.Serializable]
     private class PartData
@@ -10,6 +10,7 @@ public class HouseAssembler : MonoBehaviour
         public Transform transform;
         public Vector3 originalPosition;
         public Quaternion originalRotation;
+        public Collider collider; // uložíme si collider (pokud existuje)
     }
 
     private List<PartData> parts = new List<PartData>();
@@ -17,11 +18,17 @@ public class HouseAssembler : MonoBehaviour
     [Header("Nastavení efektu")]
     [SerializeField] private float assembleSpeed = 3f; // rychlost návratu èástí
     [SerializeField] private float randomOffset = 5f;  // jak daleko budou èásti rozházené pøi zaèátku
+    private MonoBehaviour runner;
+
+    public HouseAssembler(MonoBehaviour runner)
+    {
+        this.runner = runner;
+    }
 
     /// <summary>
     /// Inicializuje dùm a rozhází jeho èásti náhodnì okolo.
     /// </summary>
-    public void Scatter(GameObject house)
+    private void Scatter(GameObject house)
     {
         parts.Clear();
 
@@ -31,8 +38,13 @@ public class HouseAssembler : MonoBehaviour
             data.transform = child;
             data.originalPosition = child.localPosition;
             data.originalRotation = child.localRotation;
+            data.collider = child.GetComponent<Collider>();
 
-            // rozhodíme ho náhodnì kolem
+            // vypneme collider, pokud existuje
+            if (data.collider != null)
+                data.collider.enabled = false;
+
+            // rozházíme èást
             Vector3 offset = Random.insideUnitSphere * randomOffset;
             child.localPosition += offset;
             child.localRotation = Random.rotation;
@@ -46,8 +58,8 @@ public class HouseAssembler : MonoBehaviour
     /// </summary>
     public void Assemble(GameObject house)
     {
-        StopAllCoroutines();
-        StartCoroutine(AssembleRoutine());
+        Scatter(house);
+        runner.StartCoroutine(AssembleRoutine());
     }
 
     private IEnumerator AssembleRoutine()
@@ -59,6 +71,9 @@ public class HouseAssembler : MonoBehaviour
 
             foreach (var part in parts)
             {
+                if (part.transform == null)
+                    continue;
+
                 part.transform.localPosition = Vector3.Lerp(
                     part.transform.localPosition,
                     part.originalPosition,
@@ -78,5 +93,18 @@ public class HouseAssembler : MonoBehaviour
 
             yield return null;
         }
+
+        foreach (var part in parts)
+        {
+            if (part.transform == null)
+                continue;
+
+            part.transform.localPosition = part.originalPosition;
+            part.transform.localRotation = part.originalRotation;
+
+            if (part.collider != null)
+                part.collider.enabled = true;
+        }
     }
+
 }
