@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class CircularClickGame : MonoBehaviour
     [SerializeField] private Transform centerIcon; // Ikona uprostøed A
     [SerializeField] private Transform centerIconB; // Ikona uprostøed B
     [SerializeField] private Transform iconTarget; // Kam má odletìt staré centrum pøi pøepnutí
+    [SerializeField] private TextMeshProUGUI multiplierText; // Text pro zobrazení multiplikátoru
 
     [Header("Nastavení")]
     [SerializeField] private float rotationSpeed = 100f;
@@ -101,6 +103,11 @@ public class CircularClickGame : MonoBehaviour
         // Reset scale aktivního centra
         GetActiveCenter().localScale = originalCenterScale;
 
+        // Reset multiplikátoru
+        currentMultiplier = 1;
+        multiplierText.text = currentMultiplier + "x";
+
+
     }
 
     private void RotateCircle()
@@ -125,7 +132,8 @@ public class CircularClickGame : MonoBehaviour
         GetActiveCenter().localScale = originalCenterScale;
         RandomizeAndEnableLogs();
         buildingStorage?.AddSource(currentMultiplier); // Pøedání informace o úspìšném dokonèení rotace
-        currentMultiplier = 1; // Reset multiplikátoru po dokonèení rotace
+        currentMultiplier += 1; // Reset multiplikátoru po dokonèení rotace
+        multiplierText.text = currentMultiplier + "x";
     }
 
     private void SwitchCenterIcons()
@@ -214,6 +222,7 @@ public class CircularClickGame : MonoBehaviour
             {
                 StartCoroutine(HitLog(log));
                 currentMultiplier++;
+
                 hit = true;
                 break;
             }
@@ -221,7 +230,6 @@ public class CircularClickGame : MonoBehaviour
 
         if (!hit) {
             StartCoroutine(FailEffect());
-            currentMultiplier = 0;
             StopGame();
         }
     }
@@ -274,6 +282,9 @@ public class CircularClickGame : MonoBehaviour
 
     private IEnumerator PulseCenterIcon()
     {
+        // Aktualizace multiplikátoru v textu
+        multiplierText.text = currentMultiplier + "x";
+
         Transform activeCenter = GetActiveCenter();
 
         Vector3 currentScale = activeCenter.localScale;

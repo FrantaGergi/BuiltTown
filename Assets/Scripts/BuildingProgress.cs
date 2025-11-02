@@ -23,7 +23,6 @@ public class BuildingProgress : MonoBehaviour
     private void Start()
     {
         houseAssembler = new HouseAssembler(this);
-        UpdateVisuals();
     }
 
     /// <summary>
@@ -36,6 +35,13 @@ public class BuildingProgress : MonoBehaviour
         {
             return;
         }
+
+        // zapamatuj, která fáze byla aktivní pøed pøepínáním
+        bool prevStage1Active = prefabStage1 != null && prefabStage1.activeSelf;
+        bool prevStage2Active = prefabStage2 != null && prefabStage2.activeSelf;
+        bool prevStage3Active = prefabStage3 != null && prefabStage3.activeSelf;
+        bool prevStage4Active = prefabStage4 != null && prefabStage4.activeSelf;
+
         //Vypni všechny fáze, aby se zobrazila jen ta aktuální
         prefabStage1.SetActive(false);
         prefabStage2.SetActive(false);
@@ -53,20 +59,24 @@ public class BuildingProgress : MonoBehaviour
         if (hasStone && hasWood && hasOre)
         {
             prefabStage4.SetActive(true);
-            houseAssembler.Assemble(prefabStage4);
+            // Zavolej Assemble pouze pokud jsme pøepínali NA tuto fázi (ne když už byla aktivní)
+            if (!prevStage4Active)
+                houseAssembler.Assemble(prefabStage4);
             currentStage = 4;
             DestroyPacks();
         }
         else if (hasStone && hasWood)
         {
             prefabStage3.SetActive(true);
-            houseAssembler.Assemble(prefabStage3);
+            if (!prevStage3Active)
+                houseAssembler.Assemble(prefabStage3);
             currentStage = 3;
         }
         else if (hasStone)
         {
             prefabStage2.SetActive(true);
-            houseAssembler.Assemble(prefabStage2);
+            if (!prevStage2Active)
+                houseAssembler.Assemble(prefabStage2);
             currentStage = 2;
         }
         else
@@ -128,6 +138,8 @@ public class BuildingProgress : MonoBehaviour
 
     public void DestroyPacks()
     {
+        Debug.Log("Destroying material packs...");
+
         Destroy(stone.gameObject);
         Destroy(wood.gameObject);
         Destroy(ore.gameObject);
