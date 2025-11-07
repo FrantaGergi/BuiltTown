@@ -9,6 +9,7 @@ public class PlayerEquipment : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private IKHandler ikHandler;
+    [SerializeField] private ToolIconTransition uiTransition;
 
     [Header("Tools")]
     public ItemSO Primary;
@@ -20,6 +21,7 @@ public class PlayerEquipment : MonoBehaviour
     public Transform ItemHandParent; // parent object holdings hand tools to see them in hands
   
     private List<ItemHand> tools = new List<ItemHand>();
+
 
     public Action EventOnToolChanged;
     public Transform Player { get; private set; }
@@ -45,6 +47,10 @@ public class PlayerEquipment : MonoBehaviour
         // animations, sound effects, etc.
         CurrentTool = item;
         EquipInHand(CurrentTool);
+
+        bool toPrimary = (item == Primary);
+
+        uiTransition.SwitchTool(toPrimary);
         EventOnToolChanged.Invoke();
 
     }
