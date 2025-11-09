@@ -36,4 +36,17 @@ public class ShopItem : MonoBehaviour, IInteractable
             Debug.Log($"Hover exit: {itemName}");
         //  UIManager.Instance.HideTooltip();
     }
+
+    public void Buy()
+    {
+        if (MoneyManager.Instance.TrySpend(price))
+        {
+            Debug.Log("Bought!");
+            // Give upgrade...
+        }
+        else
+        {
+            Debug.Log("Not enough money!");
+        }
+    }
 }
