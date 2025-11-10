@@ -16,6 +16,7 @@ public class Building : MonoBehaviour
 
 
     public BuildingProgress buildingProgress;
+    public BuildingReward buildingReward;
 
     private bool use3Resources = true;
 
@@ -40,6 +41,15 @@ public class Building : MonoBehaviour
         SetBuildingProgressMaterials();
 
         buildingProgress.OnConstructionCompleted += BuildingCompleted;
+
+        if(buildingReward == null)
+        {
+            buildingReward = GetComponent<BuildingReward>();
+            if(buildingReward == null)
+            {
+                Debug.LogWarning("BuildingReward component not found on Building.");
+            }
+        }
     }
 
     public void AddResource(int count, ItemType itemType)
@@ -136,7 +146,8 @@ public class Building : MonoBehaviour
 
     private void BuildingCompleted()
     {
-        MoneyManager.Instance.AddMoney(152500); // Example reward
+        buildingReward.Trigger();
+
     }
 
 
