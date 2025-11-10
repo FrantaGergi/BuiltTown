@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -16,9 +17,10 @@ public class BuildingProgress : MonoBehaviour
     public BuildingMaterial wood;   // pro kostru
     public BuildingMaterial ore;    // pro finální stavbu
 
+    // Event zavolaný pøi pøechodu do fáze 4 (hotová stavba)
+    public event Action OnConstructionCompleted;
 
     private HouseAssembler houseAssembler;
-
 
     private void Start()
     {
@@ -61,7 +63,11 @@ public class BuildingProgress : MonoBehaviour
             prefabStage4.SetActive(true);
             // Zavolej Assemble pouze pokud jsme pøepínali NA tuto fázi (ne když už byla aktivní)
             if (!prevStage4Active)
+            {
                 houseAssembler.Assemble(prefabStage4);
+                // Vyvoláme event, že jsme dokonèili stavbu (pøechod na stage4)
+                OnConstructionCompleted?.Invoke();
+            }
             currentStage = 4;
             DestroyPacks();
         }

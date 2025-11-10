@@ -122,6 +122,7 @@ public class InteractManager : MonoBehaviour
         if (ctx.started) // zaèátek držení
         {
             TryInteract(InteractAction.EStart);
+            Debug.Log("Added 1 money for testing purposes.");
         }
         else if (ctx.performed) // bìhem držení (triggery u "Hold")
         {

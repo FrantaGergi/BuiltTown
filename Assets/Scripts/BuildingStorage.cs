@@ -66,7 +66,6 @@ public class BuildingStorage : MonoBehaviour
 
         if (building.GetCurrentCost(itemType) >= building.GetCost(itemType) || inventoryCount == 0)
         {
-            Debug.Log($"poèet {itemType} je již dokonèena.");
             StopClickGame();
             return;
         }
@@ -90,7 +89,6 @@ public class BuildingStorage : MonoBehaviour
 
         if (building.GetCurrentCost(itemType) >= building.GetCost(itemType) || inventoryManager.GetResourceCount(itemType) == 0)
         {
-            Debug.Log($"poèet {itemType} je již dokonèena.");
             StopClickGame();
             return;
         }

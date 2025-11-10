@@ -38,6 +38,8 @@ public class Building : MonoBehaviour
         curentOreCost = 0;
 
         SetBuildingProgressMaterials();
+
+        buildingProgress.OnConstructionCompleted += BuildingCompleted;
     }
 
     public void AddResource(int count, ItemType itemType)
@@ -131,6 +133,11 @@ public class Building : MonoBehaviour
         }
     }
 
-   
+
+    private void BuildingCompleted()
+    {
+        MoneyManager.Instance.AddMoney(152500); // Example reward
+    }
+
 
 }
