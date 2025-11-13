@@ -1,56 +1,121 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ToolIconTransition : MonoBehaviour
 {
-    [SerializeField] private Image secondaryToolIcon;
-    [SerializeField] private Image primaryToolIcon;
+    [Header("Icons with Borders")]
+    [SerializeField] private Image primaryBorder;
+    [SerializeField] private Image middleBorder;
+    [SerializeField] private Image secondaryBorder;
 
-    [SerializeField] private float transitionSpeed = 4f;
-    [SerializeField] private float distance = 100f;
+    [Header("Transition Settings")]
+    [SerializeField] private float fadeSpeed = 6f;
 
-    private bool showingPrimary = true;
-    private bool isTransitioning = false;
+    private Image currentBorder;
+    private Image targetBorder;
+    private Coroutine fadeRoutine;
+
+    private Dictionary<Image, float> initialAlphas = new Dictionary<Image, float>();
+
+    private void Awake()
+    {
+        // Inicializace použijeme v Awake, aby byla pøipravená døív než Start jiných skriptù
+        CacheInitialAlpha(primaryBorder);
+        CacheInitialAlpha(middleBorder);
+        CacheInitialAlpha(secondaryBorder);
+
+        // Vypneme všechny bordery ihned
+        SetAlpha(primaryBorder, 0f);
+        SetAlpha(middleBorder, 0f);
+        SetAlpha(secondaryBorder, 0f);
+    }
+
+    private void Start()
+    {
+        // nic zvláštního už dìlat nemusíme, ale Start necháme pro kompatibilitu
+    }
+
+    private void CacheInitialAlpha(Image img)
+    {
+        if (img != null && !initialAlphas.ContainsKey(img))
+            initialAlphas.Add(img, img.color.a);
+    }
 
     public void SwitchTool(bool toPrimary)
     {
-        if (isTransitioning || toPrimary == showingPrimary) return;
-        StartCoroutine(AnimateTransition(toPrimary));
+        if (toPrimary)
+            SwitchTo(primaryBorder);
+        else
+            SwitchTo(secondaryBorder);
     }
 
-    private IEnumerator AnimateTransition(bool toPrimary)
+    // SwitchToNone nyní pøepne na middleBorder (pokud chceš støední border vidìt jako "none")
+    public void SwitchToNone()
     {
-        isTransitioning = true;
+        SwitchTo(middleBorder);
+    }
 
-        Image fromIcon = showingPrimary ? secondaryToolIcon : primaryToolIcon;
-        Image toIcon = showingPrimary ? primaryToolIcon : secondaryToolIcon;
+    private void SwitchTo(Image newBorder)
+    {
 
-        Vector3 fromStart = fromIcon.rectTransform.localPosition;
-        Vector3 fromEnd = fromStart + Vector3.up * distance;
+        if (currentBorder == newBorder) return;
 
-        Vector3 toStart = toIcon.rectTransform.localPosition - Vector3.up * distance;
-        Vector3 toEnd = toIcon.rectTransform.localPosition;
+        targetBorder = newBorder;
 
-        toIcon.gameObject.SetActive(true);
+        if (fadeRoutine != null)
+            StopCoroutine(fadeRoutine);
 
-        float t = 0f;
-        while (t < 1f)
+        fadeRoutine = StartCoroutine(FadeTransition());
+    }
+
+    private IEnumerator FadeTransition()
+    {
+        Image previous = currentBorder;
+        currentBorder = targetBorder;
+
+        float targetAlpha = (currentBorder != null && initialAlphas.ContainsKey(currentBorder))
+            ? initialAlphas[currentBorder]
+            : 1f;
+
+        while (true)
         {
-            t += Time.deltaTime * transitionSpeed;
-            float p = Mathf.SmoothStep(0, 1, t);
+            bool donePrev = true;
+            bool doneCurr = true;
 
-            fromIcon.rectTransform.localPosition = Vector3.Lerp(fromStart, fromEnd, p);
-            fromIcon.color = new Color(1, 1, 1, 1 - p);
+            if (previous)
+            {
+                float a = Mathf.Lerp(previous.color.a, 0f, Time.deltaTime * fadeSpeed);
+                SetAlpha(previous, a);
+                donePrev = Mathf.Abs(a - 0f) < 0.01f;
+            }
 
-            toIcon.rectTransform.localPosition = Vector3.Lerp(toStart, toEnd, p);
-            toIcon.color = new Color(1, 1, 1, p);
+            if (currentBorder)
+            {
+                float a = Mathf.Lerp(currentBorder.color.a, targetAlpha, Time.deltaTime * fadeSpeed);
+                SetAlpha(currentBorder, a);
+                doneCurr = Mathf.Abs(a - targetAlpha) < 0.01f;
+            }
+
+            if (donePrev && doneCurr)
+                break;
 
             yield return null;
         }
 
-        fromIcon.gameObject.SetActive(false);
-        showingPrimary = toPrimary;
-        isTransitioning = false;
+        if (previous) SetAlpha(previous, 0f);
+        if (currentBorder && initialAlphas.ContainsKey(currentBorder))
+            SetAlpha(currentBorder, initialAlphas[currentBorder]);
+
+        fadeRoutine = null;
+    }
+
+    private void SetAlpha(Image img, float alpha)
+    {
+        if (!img) return;
+        Color c = img.color;
+        c.a = alpha;
+        img.color = c;
     }
 }

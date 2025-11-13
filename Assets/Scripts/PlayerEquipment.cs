@@ -48,18 +48,18 @@ public class PlayerEquipment : MonoBehaviour
         CurrentTool = item;
         EquipInHand(CurrentTool);
 
-        bool toPrimary = (item == Primary);
+        // UI switch: pokud je item null, pøepneme na "none"- middleborder, jinak na primary/secondary podle pøiøazení
+        if (item == null)
+            uiTransition?.SwitchToNone();
+        else
+            uiTransition?.SwitchTool(item == Primary);
 
-        uiTransition.SwitchTool(toPrimary);
-        EventOnToolChanged.Invoke();
-
+        EventOnToolChanged?.Invoke();
     }
 
     public void OnScroll(InputAction.CallbackContext ctx) // switch tool
     {
         if (!ctx.performed) return;
-
-    
 
         Vector2 scrollValue = ctx.ReadValue<Vector2>();
 
@@ -79,7 +79,6 @@ public class PlayerEquipment : MonoBehaviour
 
     private void EquipInHand(ItemSO item)
     {
-
         foreach (var tool in tools)
         {
             if (tool.itemScriptableObject == item)
