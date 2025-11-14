@@ -37,7 +37,7 @@ public class PlayerEquipment : MonoBehaviour
         }
         Player = ikHandler.transform;
         tools.AddRange(ItemHandParent.GetComponentsInChildren<ItemHand>(true));
-        EquipInHand(null);
+        Equip(null);
     }
 
     private void Equip(ItemSO item)
