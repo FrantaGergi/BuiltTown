@@ -7,11 +7,12 @@ public class BuildingReward : MonoBehaviour
     public enum RewardMode
     {
         OneTime,
-        Recurring
+        Recurring,
+        UnSetted
     }
 
     [Header("Mode")]
-    public RewardMode mode = RewardMode.OneTime;
+    public RewardMode mode = RewardMode.UnSetted;
     [Tooltip("Spustí se automaticky pøi vytvoøení komponenty (Awake/Start).")]
     public bool startOnAwake = false;
 
@@ -27,6 +28,14 @@ public class BuildingReward : MonoBehaviour
     public event Action<int> OnRewardPaid;
 
     private Coroutine rentCoroutine;
+
+    // Timestamp další platby (Time.time value). 0 = žádná naplánovaná platba.
+    private float nextPaymentTimestamp = 0f;
+
+    // PUBLIC API required by UIBuildingMailboxController.SetInformation(...)
+    public int ammountToShow => mode == RewardMode.OneTime ? rewardAmount : rentAmount;
+    public float timeToEarn => mode == RewardMode.OneTime ? 0f : rentIntervalSeconds;
+    public float currentTimeToEarn => mode == RewardMode.OneTime ? 0f : Mathf.Max(0f, nextPaymentTimestamp - Time.time);
 
     private void Start()
     {
@@ -73,6 +82,10 @@ public class BuildingReward : MonoBehaviour
     public void StartRecurring()
     {
         if (rentCoroutine != null) return;
+
+        // Naplánuj první další platbu (po okamžité platbì bude další za rentIntervalSeconds)
+        nextPaymentTimestamp = Time.time + rentIntervalSeconds;
+
         rentCoroutine = StartCoroutine(RunRentCoroutine());
     }
 
@@ -86,6 +99,8 @@ public class BuildingReward : MonoBehaviour
             StopCoroutine(rentCoroutine);
             rentCoroutine = null;
         }
+
+        nextPaymentTimestamp = 0f;
     }
 
     private IEnumerator RunRentCoroutine()
@@ -98,11 +113,15 @@ public class BuildingReward : MonoBehaviour
             yield break;
         }
 
-        // První platba ihned, nebo poèkat interval? -- aktuálnì platba ihned a poté každých rentIntervalSeconds.
+        // První platba ihned, poté každých rentIntervalSeconds.
         while (true)
         {
             MoneyManager.Instance.AddMoney(rentAmount);
             OnRewardPaid?.Invoke(rentAmount);
+
+            // Naplánuj další platbu
+            nextPaymentTimestamp = Time.time + rentIntervalSeconds;
+
             yield return new WaitForSeconds(rentIntervalSeconds);
         }
     }

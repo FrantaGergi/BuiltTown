@@ -6,6 +6,11 @@ public class Mailbox : MonoBehaviour
     private UIMailbox uiMailbox;
     [SerializeField]
     private MailboxArrow mailboxArrow;
+    [SerializeField]
+    private BuildingReward buildingReward;
+
+    private UIBuildingMailboxController uIBuildingMailboxController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,5 +21,21 @@ public class Mailbox : MonoBehaviour
     void Update()
     {
         
+    }
+    public void OnOpenMailbox(UIBuildingMailboxController uIBuildingMailboxController)
+    {
+        if(uIBuildingMailboxController == null)
+            this.uIBuildingMailboxController = uIBuildingMailboxController;
+
+        if (buildingReward.mode == BuildingReward.RewardMode.UnSetted)
+            uIBuildingMailboxController.SetOption();
+        else
+            uIBuildingMailboxController.SetInformation(
+                buildingReward.ammountToShow, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
+    
+    }
+    public void OnCloseMailbox()
+    {
+        uIBuildingMailboxController?.OnCloseMailbox();
     }
 }

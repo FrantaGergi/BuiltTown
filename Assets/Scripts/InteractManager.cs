@@ -19,6 +19,8 @@ public class InteractManager : MonoBehaviour
     private ResourceMapManager resourceMapManager;
     [Header("Inventory manager"), SerializeField]
     private InventoryManager inventoryManager;
+    [Header("UI Building Mailbox Controller"), SerializeField]
+    private UIBuildingMailboxController uiBuildingMailboxController;
 
     // forced target (napø. world-space UI), upøednostnìn pøed raycastem
     private IInteractable forcedTarget;
@@ -245,5 +247,9 @@ public class InteractManager : MonoBehaviour
     public InventoryManager GetInventoryManager()
     {
         return inventoryManager;
+    }
+    public UIBuildingMailboxController GetUIBuildingMailboxController()
+    {
+        return uiBuildingMailboxController;
     }
 }

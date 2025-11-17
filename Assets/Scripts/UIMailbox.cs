@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class UIMailbox : MonoBehaviour, IInteractable
 {
-    public Canvas threeDCanvas;
     public Transform player;
+
+    [Header("References")]
+    public Canvas threeDCanvas;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Transform centerPoint;
     [SerializeField, Range(0, 20)] private int radius = 5;
     [SerializeField] private float scaleDuration = 0.5f;
-    [SerializeField] private InteractManager interactManager;
+    [SerializeField] public InteractManager interactManager;
+    [SerializeField] private Mailbox mailbox; // reference na mailbox
 
     private Coroutine scaleCoroutine;
     private bool isVisible = false;
@@ -204,6 +207,8 @@ public class UIMailbox : MonoBehaviour, IInteractable
         {
             // otevøít mailbox UI
             Debug.Log("Otevøení mail");
+            mailbox.OnOpenMailbox(interactManager.GetUIBuildingMailboxController());
+
         }
 
         if (action == InteractManager.InteractAction.EEnd)

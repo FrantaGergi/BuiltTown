@@ -34,7 +34,8 @@ public class ToolIconTransition : MonoBehaviour
 
     private void Start()
     {
-        // nic zvláštního už dìlat nemusíme, ale Start necháme pro kompatibilitu
+        Invoke(nameof(SwitchToNone), 0.1f);
+
     }
 
     private void CacheInitialAlpha(Image img)
