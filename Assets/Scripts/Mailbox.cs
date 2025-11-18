@@ -30,12 +30,20 @@ public class Mailbox : MonoBehaviour
         if (buildingReward.mode == BuildingReward.RewardMode.UnSetted)
             uIBuildingMailboxController.SetOption();
         else
+        {
             uIBuildingMailboxController.SetInformation(
-                buildingReward.ammountToShow, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
+    buildingReward.ammountToShow, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
+            mailboxArrow.HideArrow();
+        }
+
     
     }
     public void OnCloseMailbox()
     {
         uIBuildingMailboxController?.OnCloseMailbox();
+        if(buildingReward.mode != BuildingReward.RewardMode.UnSetted)
+        {
+            mailboxArrow.HideArrow();
+        }
     }
 }

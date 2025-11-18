@@ -291,261 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c395591f6f08fb41897eb437d91b587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Nova::Nova.UIBlock2D
-  sourceID:
-    val: 0
-  layout:
-    Size:
-      X:
-        Raw: 19
-        Type: 1
-      Y:
-        Raw: 12
-        Type: 1
-      Z:
-        Raw: 0
-        Type: 0
-    Position:
-      X:
-        Raw: -953
-        Type: 0
-      Y:
-        Raw: -426
-        Type: 0
-      Z:
-        Raw: 0
-        Type: 0
-    Padding:
-      Left:
-        Raw: 0
-        Type: 0
-      Right:
-        Raw: 0
-        Type: 0
-      Bottom:
-        Raw: 0
-        Type: 0
-      Top:
-        Raw: 0
-        Type: 0
-      Front:
-        Raw: 0
-        Type: 0
-      Back:
-        Raw: 0
-        Type: 0
-    Margin:
-      Left:
-        Raw: 0
-        Type: 0
-      Right:
-        Raw: 0
-        Type: 0
-      Bottom:
-        Raw: 0
-        Type: 0
-      Top:
-        Raw: 0
-        Type: 0
-      Front:
-        Raw: 0
-        Type: 0
-      Back:
-        Raw: 0
-        Type: 0
-    SizeMinMax:
-      X:
-        Min: 0
-        Max: Infinity
-      Y:
-        Min: 0
-        Max: Infinity
-      Z:
-        Min: 0
-        Max: Infinity
-    PositionMinMax:
-      X:
-        Min: -Infinity
-        Max: Infinity
-      Y:
-        Min: -Infinity
-        Max: Infinity
-      Z:
-        Min: -Infinity
-        Max: Infinity
-    PaddingMinMax:
-      Left:
-        Min: 0
-        Max: Infinity
-      Right:
-        Min: 0
-        Max: Infinity
-      Bottom:
-        Min: 0
-        Max: Infinity
-      Top:
-        Min: 0
-        Max: Infinity
-      Front:
-        Min: 0
-        Max: Infinity
-      Back:
-        Min: 0
-        Max: Infinity
-    MarginMinMax:
-      Left:
-        Min: -Infinity
-        Max: Infinity
-      Right:
-        Min: -Infinity
-        Max: Infinity
-      Bottom:
-        Min: -Infinity
-        Max: Infinity
-      Top:
-        Min: -Infinity
-        Max: Infinity
-      Front:
-        Min: -Infinity
-        Max: Infinity
-      Back:
-        Min: -Infinity
-        Max: Infinity
-    Alignment:
-      X: 0
-      Y: 0
-      Z: 0
-    AutoSize:
-      X: 0
-      Y: 0
-      Z: 0
-    RotateSize: 0
-    AspectRatio: {x: 0, y: 0, z: 0}
-    AspectRatioAxis: 0
-  autoLayout:
-    Axis: 0
-    Spacing:
-      Raw: 0
-      Type: 0
-    SpacingMinMax:
-      Min: 0
-      Max: Infinity
-    AutoSpace: 0
-    ReverseOrder: 0
-    alignment: -1
-    Offset: 0
-    Cross:
-      Axis: 0
-      Spacing:
-        Raw: 0
-        Type: 0
-      SpacingMinMax:
-        Min: 0
-        Max: Infinity
-      AutoSpace: 0
-      ReverseOrder: 0
-      alignment: -1
-      ExpandToGrid: 0
-  visibility:
-    ZIndex: 0
-    BlockType: 1
-    Visible: 1
-  surface:
-    specularColor:
-      r: 1
-      g: 1
-      b: 1
-      a: 1
-    param1: 0.5
-    param2: 0.5
-    LightingModel: 0
-    ShadowCastingMode: 2
-    ReceiveShadows: 1
-  PreviewSize: {x: 1, y: 1, z: 0}
-  visuals:
-    Color:
-      r: 1
-      g: 0
-      b: 0
-      a: 1
-    CornerRadius:
-      Raw: 0
-      Type: 0
-    RadialFill:
-      Center:
-        X:
-          Raw: 0
-          Type: 1
-        Y:
-          Raw: 0
-          Type: 1
-      Rotation: 0
-      FillAngle: 90
-      Enabled: 0
-    Gradient:
-      Color:
-        r: 1
-        g: 1
-        b: 1
-        a: 1
-      Center:
-        X:
-          Raw: 0
-          Type: 1
-        Y:
-          Raw: 0
-          Type: 1
-      Radius:
-        X:
-          Raw: 0.5
-          Type: 1
-        Y:
-          Raw: 0.5
-          Type: 1
-      Rotation: 0
-      Enabled: 0
-    Border:
-      Color:
-        r: 1
-        g: 1
-        b: 1
-        a: 1
-      Width:
-        Raw: 1
-        Type: 0
-      Enabled: 0
-      Direction: 2
-    Shadow:
-      Color:
-        r: 0
-        g: 0
-        b: 0
-        a: 0.5
-      Width:
-        Raw: 0
-        Type: 0
-      Blur:
-        Raw: 5
-        Type: 0
-      Offset:
-        X:
-          Raw: 0
-          Type: 0
-        Y:
-          Raw: -1
-          Type: 0
-      Enabled: 1
-      Direction: 1
-    Image:
-      Adjustment:
-        CenterUV: {x: 0, y: 0}
-        UVScale: {x: 1, y: 1}
-        PixelsPerUnitMultiplier: 1
-        scaleMode: 1
-      Mode: 1
-    SoftenEdges: 1
-    FillEnabled: 1
-  texture: {fileID: 0}
-  sprite: {fileID: 0}
 --- !u!114 &2950814
 MonoBehaviour:
   m_ObjectHideFlags: 10
@@ -7942,7 +7687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde918c94a989d04c955dae361148294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingReward
-  mode: 1
+  mode: 2
   startOnAwake: 0
   rewardAmount: 50
   rentAmount: 500
@@ -23589,11 +23334,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4311639132665270, guid: b6fa5a858af1ba24eb52ecc8187e1289, type: 3}
   m_PrefabInstance: {fileID: 553482725}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &553683421 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6687889443059571633, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
-  m_PrefabInstance: {fileID: 711639614519448370}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &554950997
 PrefabInstance:
@@ -55261,7 +55001,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 553683421}
+    m_TransformParent: {fileID: 1786450568}
     m_Modifications:
     - target: {fileID: 2570989394009418609, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_Name
@@ -55273,15 +55013,15 @@ PrefabInstance:
       objectReference: {fileID: 192755180}
     - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.324
+      value: -4.314
       objectReference: {fileID: 0}
     - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9722047
+      value: -3.6350002
       objectReference: {fileID: 0}
     - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.54
+      value: -2.6699998
       objectReference: {fileID: 0}
     - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55310,6 +55050,38 @@ PrefabInstance:
     - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.784111
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 150.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -73527,6 +73299,11 @@ PrefabInstance:
       addedObject: {fileID: 116287447}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78a522da2b8ec804c850878959fa1a23, type: 3}
+--- !u!4 &1786450568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7870354444270875990, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
+  m_PrefabInstance: {fileID: 711639614519448370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1788825923
 GameObject:
   m_ObjectHideFlags: 0
@@ -89497,8 +89274,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1838855261332704526, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6687889443059571633, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
-      insertIndex: 14
+    - targetCorrespondingSourceObject: {fileID: 7870354444270875990, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
+      insertIndex: 18
       addedObject: {fileID: 924998204}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1735185130469489785, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}

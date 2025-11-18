@@ -94,6 +94,17 @@ namespace Synty.AnimationBaseLocomotion.Samples
         /// <inheritdoc cref="Update" />
         private void Update()
         {
+            /// me Early out if cursor is not locked
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                // Disable camera rotation
+                _rotationX = 0;
+                _rotationY = 0;
+
+                return;
+            }
+
+
             float positionalFollowSpeed = 1 / (_positionalCameraLag / _LAG_DELTA_TIME_ADJUSTMENT);
             float rotationalFollowSpeed = 1 / (_rotationalCameraLag / _LAG_DELTA_TIME_ADJUSTMENT);
 

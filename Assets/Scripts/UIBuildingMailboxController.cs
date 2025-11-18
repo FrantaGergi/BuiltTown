@@ -83,6 +83,8 @@ public class UIBuildingMailboxController : MonoBehaviour
     {
         if (optionPanel != null) optionPanel.gameObject.SetActive(false);
         if (informationPanel != null) informationPanel.gameObject.SetActive(false);
+
+        MenuManager.Instance.CloseUIEnviroment(); // obnoví hru a ovládání hráèe pøi zavøení mailboxu
     }
 
     public void SetOption()
@@ -94,6 +96,8 @@ public class UIBuildingMailboxController : MonoBehaviour
     // ammountToShow je ponecháno ve volání (mùžeš upravit dle potøeby)
     public void SetInformation(int ammountToShow, float timeToEarn, float currentTimeToEarn)
     {
+        MenuManager.Instance.OpenUIEnviroment(); // zajišuje omezení hráèe a hry pøi otevøení mailboxu
+
         if (optionPanel != null) optionPanel.gameObject.SetActive(false);
         if (informationPanel != null) informationPanel.gameObject.SetActive(true);
 
@@ -104,6 +108,9 @@ public class UIBuildingMailboxController : MonoBehaviour
         // zachováno podle tvého požadavku
         if (titleText != null)
             titleText.text = timeToEarn == 0 ? "Building Sold" : "Building Rented";
+
+        if(maxSizeProgressBar != null)
+            maxSizeProgressBar.gameObject.SetActive(timeToEarn > 0f);
 
         if (descriptionText != null)
             descriptionText.text = timeToEarn == 0 ?

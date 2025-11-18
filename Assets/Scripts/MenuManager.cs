@@ -83,4 +83,24 @@ public class MenuManager : MonoBehaviour
         settingsPanel.SetActive(false);
         pausePanel.SetActive(true);
     }
+
+    public void OpenUIEnviroment() 
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        // uložíme pøedchozí mapu (obvykle "Player") a pøepneme na UI
+        previousActionMap = playerInput.currentActionMap.name;
+        playerInput.SwitchCurrentActionMap("UI");
+    }
+    public void CloseUIEnviroment()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        // pøepneme zpìt na gameplay mapu
+        if (!string.IsNullOrEmpty(previousActionMap))
+        {
+            playerInput.SwitchCurrentActionMap(previousActionMap);
+        }
+    }
 }
