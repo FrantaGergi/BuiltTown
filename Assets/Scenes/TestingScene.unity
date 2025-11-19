@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Nova::Nova.UIBlock2D
 --- !u!114 &2950814
 MonoBehaviour:
-  m_ObjectHideFlags: 10
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12736,18 +12736,18 @@ PrefabInstance:
     - target: {fileID: 8344873674986810540, guid: b8c4078ab4d459244bdbde1083a3309c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1610482344}
+      objectReference: {fileID: 45862228}
     - target: {fileID: 8344873674986810540, guid: b8c4078ab4d459244bdbde1083a3309c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8344873674986810540, guid: b8c4078ab4d459244bdbde1083a3309c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClosePanel
+      value: OnCloseMailbox
       objectReference: {fileID: 0}
     - target: {fileID: 8344873674986810540, guid: b8c4078ab4d459244bdbde1083a3309c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseManager, Assembly-CSharp
+      value: UIBuildingMailboxController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8344873674986810540, guid: b8c4078ab4d459244bdbde1083a3309c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -23776,6 +23776,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557616387}
   m_CullTransparentMesh: 1
+--- !u!4 &557865907 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6658364460986070137, guid: af1a50e30b450934cb65248e9f0558c7, type: 3}
+  m_PrefabInstance: {fileID: 9001375431941659040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &559351680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4255091128919644, guid: 491e0215cdbbb0e4c920aa242bb805d4, type: 3}
@@ -29079,6 +29084,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4006400011415720, guid: f70fe54fb88c4ce498930120dcf7529f, type: 3}
   m_PrefabInstance: {fileID: 1089114635}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &691865548 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+  m_PrefabInstance: {fileID: 734470582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &695622932 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4001108733500150, guid: 1990f65d5770d1b4d86a89e27031213c, type: 3}
@@ -29971,6 +29981,67 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8335698631609814283, guid: 665d8bbd7df08864c9c6271fadfc49ae, type: 3}
   m_PrefabInstance: {fileID: 1233192232}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &734470582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 557865907}
+    m_Modifications:
+    - target: {fileID: 2570989394009418609, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_Name
+      value: MailBox (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238537206246894406, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: buildingReward
+      value: 
+      objectReference: {fileID: 1262631394}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.2007027
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.424
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
 --- !u!1001 &734949726
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36522,6 +36593,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
   m_PrefabInstance: {fileID: 1353062665}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &924998207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3238537206246894406, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
+  m_PrefabInstance: {fileID: 1353062665}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2929e99c842f36547abb94459f1381bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Mailbox
 --- !u!1001 &925322851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51333,10 +51415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde918c94a989d04c955dae361148294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingReward
-  mode: 1
+  mode: 2
   startOnAwake: 0
-  rewardAmount: 50
-  rentAmount: 5
+  rewardAmount: 500
+  rentAmount: 500
   rentIntervalSeconds: 5
 --- !u!1001 &1263534113
 PrefabInstance:
@@ -55050,38 +55132,6 @@ PrefabInstance:
     - target: {fileID: 3936025676099026503, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -18.784111
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 150.99997
-      objectReference: {fileID: 0}
-    - target: {fileID: 9003133995268457260, guid: 2a282e7ede80fce4ea6877ca35062b58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -81095,7 +81145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -81104,18 +81154,18 @@ PrefabInstance:
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1610482344}
+      objectReference: {fileID: 45862228}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToMainMenu
+      value: RentIt
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseManager, Assembly-CSharp
+      value: UIBuildingMailboxController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -86921,7 +86971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -86930,18 +86980,18 @@ PrefabInstance:
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1610482344}
+      objectReference: {fileID: 45862228}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToMainMenu
+      value: SellIt
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseManager, Assembly-CSharp
+      value: UIBuildingMailboxController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1563568127790814402, guid: 86fb7408545b84c47869eba4104b40d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -89218,6 +89268,22 @@ PrefabInstance:
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 1610482347}
+    - target: {fileID: 4168345168602043182, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
+      propertyPath: mailbox
+      value: 
+      objectReference: {fileID: 924998207}
+    - target: {fileID: 4168345168602043182, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
+      propertyPath: woodCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168345168602043182, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
+      propertyPath: stoneCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168345168602043182, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
+      propertyPath: buildingReward
+      value: 
+      objectReference: {fileID: 192755180}
     - target: {fileID: 4811092079387994920, guid: 2b18c7d7d938b0a4f9f398725000524d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.37
@@ -89596,6 +89662,9 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2524309514859102978, guid: af1a50e30b450934cb65248e9f0558c7, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6658364460986070137, guid: af1a50e30b450934cb65248e9f0558c7, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 691865548}
     - targetCorrespondingSourceObject: {fileID: 450038509870013311, guid: af1a50e30b450934cb65248e9f0558c7, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1459261000}
