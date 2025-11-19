@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Mailbox : MonoBehaviour
@@ -12,10 +13,7 @@ public class Mailbox : MonoBehaviour
     private UIBuildingMailboxController uIBuildingMailboxController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-     mailboxArrow.ShowArrow();
-    }
+  
 
     // Update is called once per frame
     void Update()
@@ -24,14 +22,17 @@ public class Mailbox : MonoBehaviour
     }
     public void OnOpenMailbox(UIBuildingMailboxController uIBuildingMailboxController)
     {
-        if(uIBuildingMailboxController == null)
+        if(this.uIBuildingMailboxController == null)
             this.uIBuildingMailboxController = uIBuildingMailboxController;
 
+        // Check the mode of the building reward
+   
+
         if (buildingReward.mode == BuildingReward.RewardMode.UnSetted)
-            uIBuildingMailboxController.SetOption();
+            this.uIBuildingMailboxController.SetOption(this);
         else
         {
-            uIBuildingMailboxController.SetInformation(
+            this.uIBuildingMailboxController.SetInformation(
     buildingReward.ammountToShow, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
             mailboxArrow.HideArrow();
         }
@@ -46,4 +47,37 @@ public class Mailbox : MonoBehaviour
             mailboxArrow.HideArrow();
         }
     }
+
+    internal void RentBuilding()
+    {
+
+        if (uIBuildingMailboxController == null)
+        {
+            Debug.LogWarning("UIBuildingMailboxController is null");
+            return;
+        }
+
+        buildingReward.mode = BuildingReward.RewardMode.Recurring;
+        uIBuildingMailboxController.SetInformation(
+            buildingReward.ammountToShow, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
+
+        mailboxArrow.HideArrow();
+        buildingReward.Trigger();
+
+    }
+
+    internal void SellBuilding()
+    {
+
+        if (uIBuildingMailboxController == null) return;
+
+        buildingReward.mode = BuildingReward.RewardMode.OneTime;
+        uIBuildingMailboxController.SetInformation(
+            buildingReward.ammountToShow, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
+
+        mailboxArrow.HideArrow();
+        buildingReward.Trigger();
+    }
+
+   
 }

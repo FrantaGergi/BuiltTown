@@ -13,13 +13,13 @@ public class MailboxArrow : MonoBehaviour
     [SerializeField] private float rotationSmooth = 5f; // plynulost rotace
 
     private Coroutine animRoutine;
-    private Vector2 startPos;
+    private Vector3 startLocalPos;
     private Quaternion startRotation;
     private Transform player;
 
     private void Awake()
     {
-        startPos = arrow.anchoredPosition;
+        startLocalPos = arrow.localPosition;
         startRotation = arrow.localRotation;
         arrow.gameObject.SetActive(false);
 
@@ -28,9 +28,15 @@ public class MailboxArrow : MonoBehaviour
         if (go != null) player = go.transform;
     }
 
+    private void OnEnable()
+    {
+        ShowArrow();
+    }
+
     public void ShowArrow()
     {
         arrow.gameObject.SetActive(true);
+        Debug.Log("Showing Arrow");
 
         if (animRoutine != null)
             StopCoroutine(animRoutine);
@@ -43,7 +49,7 @@ public class MailboxArrow : MonoBehaviour
         if (animRoutine != null)
             StopCoroutine(animRoutine);
 
-        arrow.anchoredPosition = startPos;
+        arrow.localPosition = startLocalPos;
         arrow.localRotation = startRotation;
         arrow.gameObject.SetActive(false);
     }
@@ -51,14 +57,14 @@ public class MailboxArrow : MonoBehaviour
     private IEnumerator ArrowFloat()
     {
         float t = 0f;
-
+     
         while (true)
         {
             t += Time.deltaTime * speed;
 
             float offset = Mathf.Sin(t) * amplitude;
 
-            arrow.anchoredPosition = startPos + new Vector2(0, offset);
+            arrow.localPosition = startLocalPos + new Vector3(0f, offset, 0f);
 
             // pokud hráè není nalezen, zkusíme ho najít
             if (player == null)
@@ -70,15 +76,21 @@ public class MailboxArrow : MonoBehaviour
             // aktualizujeme rotaci po ose Y podle pozice hráèe v prostoru
             if (player != null)
             {
-                // vektor od mailboxu k hráèi (svìtové souøadnice)
+                // vektor od mailboxu k hráèi (svìtové souøadnice) a ignorujeme výšku
                 Vector3 dir = player.position - transform.position;
+                dir.y = 0f;
 
-                // získáme yaw úhel (rotace kolem Y)
-                float targetY = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                if (dir.sqrMagnitude > 0.0001f)
+                {
+                    // úhel mezi "forward" mailboxu a smìrem na hráèe (v°)
+                    float angle = Vector3.SignedAngle(transform.forward, dir.normalized, Vector3.up);
 
-                // plynulé pøiblížení k cílové rotaci
-                Quaternion targetRot = Quaternion.Euler(0f, targetY, 0f);
-                arrow.localRotation = Quaternion.Slerp(arrow.localRotation, targetRot, Time.deltaTime * rotationSmooth);
+                    // cílová lokální rotace: natoèíme šipku o tento úhel relativnì k její startovní lokální rotaci
+                    Quaternion targetLocalRot = Quaternion.Euler(0f, angle, 0f) * startRotation;
+
+                    // plynulé pøiblížení k cílové lokální rotaci
+                    arrow.localRotation = Quaternion.Slerp(arrow.localRotation, targetLocalRot, Time.deltaTime * rotationSmooth);
+                }
             }
 
             yield return null;

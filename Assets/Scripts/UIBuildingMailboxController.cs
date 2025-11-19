@@ -16,6 +16,7 @@ public class UIBuildingMailboxController : MonoBehaviour
     private float timeToEarnValue = 0f;
     private float currentTimeToEarnValue = 0f;
 
+    private Mailbox mailbox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -87,8 +88,12 @@ public class UIBuildingMailboxController : MonoBehaviour
         MenuManager.Instance.CloseUIEnviroment(); // obnoví hru a ovládání hráèe pøi zavøení mailboxu
     }
 
-    public void SetOption()
+    public void SetOption(Mailbox mailbox)
     {
+        MenuManager.Instance.OpenUIEnviroment(); // zajišuje omezení hráèe a hry pøi otevøení mailboxu
+
+        this.mailbox = mailbox;
+
         if (optionPanel != null) optionPanel.gameObject.SetActive(true);
         if (informationPanel != null) informationPanel.gameObject.SetActive(false);
     }
@@ -167,5 +172,14 @@ public class UIBuildingMailboxController : MonoBehaviour
         int minutes = total / 60;
         int secs = total % 60;
         return $"{minutes}:{secs:00}";
+    }
+
+    public void RentIt() 
+    {
+        mailbox.RentBuilding();
+    }
+    public void SellIt() 
+    {
+        mailbox.SellBuilding();
     }
 }

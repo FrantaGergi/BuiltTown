@@ -18,6 +18,8 @@ public class Building : MonoBehaviour
     public BuildingProgress buildingProgress;
     public BuildingReward buildingReward;
 
+    public Mailbox mailbox;
+
     private bool use3Resources = true;
 
 
@@ -146,8 +148,8 @@ public class Building : MonoBehaviour
 
     private void BuildingCompleted()
     {
-        buildingReward.Trigger();
-
+        //TODO REMOVE MAILBOX
+        //  mailbox.BuildingCompleted();
     }
 
 
