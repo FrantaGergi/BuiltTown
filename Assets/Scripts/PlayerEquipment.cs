@@ -11,8 +11,8 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField]
     private IKHandler ikHandler;
     [SerializeField] private ToolIconTransition uiTransition;
-    [SerializeField] private Image PrimaryImage;
-    [SerializeField] private Image SecondaryImage;
+    [SerializeField] private Image primaryImage;
+    [SerializeField] private Image secondaryImage;
     [Header("Tools")]
     [SerializeField] private ItemSO primary;
     public ItemSO Primary
@@ -21,17 +21,17 @@ public class PlayerEquipment : MonoBehaviour
         set
         {
             primary = value;
-            PrimaryImage.sprite = primary.icon;
+            primaryImage.sprite = primary.icon;
         }
     }
-    [SerializeField] private ItemSO Secundary;
+    [SerializeField] private ItemSO secondary;
     public ItemSO Secondary
     {
-        get => Secundary;
+        get => secondary;
         set
         {
-            Secundary = value;
-            SecondaryImage.sprite = Secundary.icon;
+            secondary = value;
+            secondaryImage.sprite = secondary.icon;
         }
     }
 
@@ -58,8 +58,8 @@ public class PlayerEquipment : MonoBehaviour
         Player = ikHandler.transform;
         tools.AddRange(ItemHandParent.GetComponentsInChildren<ItemHand>(true));
 
-        SecondaryImage.sprite = Secundary.icon;
-        PrimaryImage.sprite = primary.icon;
+        secondaryImage.sprite = secondary.icon;
+        primaryImage.sprite = primary.icon;
 
 
         Equip(null);
@@ -93,7 +93,7 @@ public class PlayerEquipment : MonoBehaviour
         if (scrollValue.y > 0)
             Equip(Primary);
         else if (scrollValue.y < 0)
-            Equip(Secundary);
+            Equip(Secondary);
     }
     public void OnMouseMiddleClick(InputAction.CallbackContext ctx) // no one uses it
     {
@@ -135,8 +135,8 @@ public class PlayerEquipment : MonoBehaviour
         }
         else if (newTool.itemType == ItemType.Mine)
         {
-            Secundary = newTool;
-            EquipInHand(Secundary);
+            Secondary = newTool;
+            EquipInHand(Secondary);
         }
         else
         {

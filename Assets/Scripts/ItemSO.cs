@@ -10,6 +10,7 @@ public class ItemSO : ScriptableObject
     public ItemType itemType;
     public string description;
     public int price;
+    public int gatherAmount;
 }
 
 public enum ItemType

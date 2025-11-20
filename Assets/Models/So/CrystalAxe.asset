@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: CrystalAxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: Crystal Axe
-  icon: {fileID: 21300000, guid: 7a0d2252c146e1d49a2b22925b3b654f, type: 3}
+  icon: {fileID: 21300000, guid: 7bbc152d6afbc5945b35fee97fe702b3, type: 3}
   prefab: {fileID: 2776502716590645091, guid: 2994984800f3b854c87475c02c10fabc, type: 3}
   HighlightedMaterial: {fileID: 0}
   itemType: 1
   description: 
-  price: 0
+  price: 5000
+  gatherAmount: 0

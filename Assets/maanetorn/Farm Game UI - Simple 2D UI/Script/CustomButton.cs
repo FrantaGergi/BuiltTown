@@ -7,7 +7,12 @@ using TMPro;
 
 namespace FGUIStarter
 {
-    public class CustomButton : Button, IPointerDownHandler, IPointerUpHandler
+    public class Custom
+        
+        
+        
+        
+        : Button, IPointerDownHandler, IPointerUpHandler
     {
         RectTransform textRect;
         Vector2 originalTextPos;

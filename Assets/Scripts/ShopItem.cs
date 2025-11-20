@@ -3,23 +3,24 @@ using static InteractManager;
 
 public class ShopItem : MonoBehaviour, IInteractable
 {
-    public string itemName;
-    public int price;
+    [Header("References")]
+    [SerializeField] private ItemSO itemSO;
 
+    private PlayerEquipment playerEquipment;
     public void Interact(InteractManager interactor, InteractManager.InteractAction action)
     {
         switch (action)
         {
             case InteractAction.EStart:
-                Debug.Log($"Do košíku: {itemName}");
+                Buy();
                 break;
 
             case InteractAction.R:
-                Debug.Log($"Odebráno z košíku: {itemName}");
+                Debug.Log($"Odebráno z košíku: {itemSO.ItemName}");
                 break;
 
             case InteractAction.Hold:
-                Debug.Log($"Nakupuješ víc kusù: {itemName}");
+                Debug.Log($"Nakupuješ víc kusù: {itemSO.ItemName}");
                 break;
 
         }
@@ -27,20 +28,24 @@ public class ShopItem : MonoBehaviour, IInteractable
 
     public void OnHoverEnter(InteractManager interactor)
     {
-          Debug.Log($"Hover over: {itemName}");
+          Debug.Log($"Hover over: {itemSO.ItemName}");
+            if(playerEquipment == null )
+                playerEquipment = interactor.GetPlayerEquipment();
+
         //   UIManager.Instance.ShowTooltip($"{itemName} - {price} coinù");
     }
 
     public void OnHoverExit()
     {
-            Debug.Log($"Hover exit: {itemName}");
+            Debug.Log($"Hover exit: {itemSO.ItemName}");
         //  UIManager.Instance.HideTooltip();
     }
 
     public void Buy()
     {
-        if (MoneyManager.Instance.TrySpend(price))
+        if (MoneyManager.Instance.TrySpend(itemSO.price) && playerEquipment != null)
         {
+            playerEquipment.UpgradeTool(itemSO);
             Debug.Log("Bought!");
             // Give upgrade...
         }
