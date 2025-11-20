@@ -20784,8 +20784,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7307585007880187538, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
+      propertyPath: _smoothTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307585007880187538, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
+      propertyPath: _cameraRadius
+      value: 0.165
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307585007880187538, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: _cameraDistance
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307585007880187538, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
+      propertyPath: _cameraCollisionRadius
+      value: 0.165
       objectReference: {fileID: 0}
     - target: {fileID: 7790563198288032598, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: m_RootOrder

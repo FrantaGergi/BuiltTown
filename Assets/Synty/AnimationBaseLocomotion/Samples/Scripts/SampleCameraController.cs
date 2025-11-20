@@ -7,6 +7,7 @@
 
 using Synty.AnimationBaseLocomotion.Samples.InputSystem;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Synty.AnimationBaseLocomotion.Samples
 {
@@ -17,6 +18,12 @@ namespace Synty.AnimationBaseLocomotion.Samples
         [Tooltip("The character game object")]
         [SerializeField]
         private GameObject _syntyCharacter;
+
+        [Tooltip("Camera Collider Settings")]
+        [SerializeField] private LayerMask _collisionLayers;
+        [SerializeField] private float _cameraRadius = 0.5f;
+        [SerializeField] private float _smoothTime = 0.05f;
+
         [Tooltip("Main camera used for player perspective")]
         [SerializeField]
         private Camera _mainCamera;
@@ -55,6 +62,8 @@ namespace Synty.AnimationBaseLocomotion.Samples
         private float _lastAngleY;
 
         private Vector3 _lastPosition;
+        private Vector3 _cameraVelocity = Vector3.zero;
+
 
         private float _newAngleX;
 
@@ -76,8 +85,8 @@ namespace Synty.AnimationBaseLocomotion.Samples
 
             if (_hideCursor)
             {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                UnityEngine.Cursor.visible = false;
+                UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             }
 
             _cameraInversion = _invertCamera ? 1 : -1;
@@ -91,11 +100,12 @@ namespace Synty.AnimationBaseLocomotion.Samples
             _syntyCamera.localEulerAngles = new Vector3(_cameraTiltOffset, 0f, 0f);
         }
 
-        /// <inheritdoc cref="Update" />
-        private void Update()
+        /// <inheritdoc cref="LateUpdate" />
+        private void LateUpdate()
         {
-            /// me Early out if cursor is not locked
-            if (Cursor.lockState == CursorLockMode.None)
+
+            // Early out if cursor is not locked
+            if (UnityEngine.Cursor.lockState == CursorLockMode.None)
             {
                 // Disable camera rotation
                 _rotationX = 0;
@@ -103,7 +113,6 @@ namespace Synty.AnimationBaseLocomotion.Samples
 
                 return;
             }
-
 
             float positionalFollowSpeed = 1 / (_positionalCameraLag / _LAG_DELTA_TIME_ADJUSTMENT);
             float rotationalFollowSpeed = 1 / (_rotationalCameraLag / _LAG_DELTA_TIME_ADJUSTMENT);
@@ -142,33 +151,42 @@ namespace Synty.AnimationBaseLocomotion.Samples
             _lastAngleX = _newAngleX;
             _lastAngleY = _newAngleY;
 
-            ///me Camera limitations
-            // Desired local position (default offset)
-            Vector3 desiredLocalPos = new Vector3(_cameraHorizontalOffset, _cameraHeightOffset, -_cameraDistance);
+            HandleCameraCollision();
+        }
 
-            // World target position (where camera *wants* to be)
+        private void HandleCameraCollision()
+        {
+            Vector3 desiredLocalPos = new Vector3(0f, 0f, -_cameraDistance);
             Vector3 desiredWorldPos = transform.TransformPoint(desiredLocalPos);
 
-            // Raycast from player target to desired camera position
-            RaycastHit hit;
-            Vector3 origin = _playerTarget.position + Vector3.up * 1.5f; // start ray roughly from head height
-            Vector3 direction = desiredWorldPos - origin;
-            float distance = direction.magnitude;
+            Vector3 direction = desiredWorldPos - transform.position;
+            float sqrDistance = direction.sqrMagnitude;
 
-            if (Physics.Raycast(origin, direction.normalized, out hit, distance))
+            float distance = Mathf.Sqrt(sqrDistance);
+            if (Physics.SphereCast(transform.position, _cameraRadius, direction.normalized, out RaycastHit hit, distance, _collisionLayers))
             {
-                // If hit, move camera closer (just before wall)
-                float adjustedDist = hit.distance - 0.2f; // keep slight gap
-                desiredWorldPos = origin + direction.normalized * adjustedDist;
+
+                desiredWorldPos = hit.point + hit.normal * _cameraRadius;
+                //Debug.DrawRay(hit.point, hit.normal * _cameraRadius, Color.red, 1f);
             }
 
-            // Convert back to local position relative to camera rig
-            _syntyCamera.localPosition = transform.InverseTransformPoint(desiredWorldPos);
-            _syntyCamera.localEulerAngles = new Vector3(_cameraTiltOffset, 0f, 0f);
-
-
-
+            MoveCameraToDesiredPos(desiredWorldPos);
         }
+
+        private void MoveCameraToDesiredPos(Vector3 desiredWorldPos)
+        {
+            Vector3 correctedLocalPos = transform.InverseTransformPoint(desiredWorldPos);
+
+            _syntyCamera.localPosition = Vector3.SmoothDamp(
+                _syntyCamera.localPosition,
+                correctedLocalPos,
+                ref _cameraVelocity,
+                _smoothTime
+            );
+        }
+
+
+
 
         /// <summary>
         ///     Locks the camera to aim at a specified target.
