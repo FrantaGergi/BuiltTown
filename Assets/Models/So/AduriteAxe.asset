@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AduriteAxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: Adurite Axe
-  icon: {fileID: 21300000, guid: 7a0d2252c146e1d49a2b22925b3b654f, type: 3}
+  icon: {fileID: 21300000, guid: ded2b91dc033f3e489cc5a231e44ca6c, type: 3}
   prefab: {fileID: 8822703353195711834, guid: d6df9d46881e2f249a1b7789262cadb6, type: 3}
   HighlightedMaterial: {fileID: 0}
   itemType: 1

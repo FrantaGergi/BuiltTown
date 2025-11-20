@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -10,12 +11,31 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField]
     private IKHandler ikHandler;
     [SerializeField] private ToolIconTransition uiTransition;
-
+    [SerializeField] private Image PrimaryImage;
+    [SerializeField] private Image SecondaryImage;
     [Header("Tools")]
-    public ItemSO Primary;
-    public ItemSO Secundary;
-    
-    public ItemSO CurrentTool;
+    [SerializeField] private ItemSO primary;
+    public ItemSO Primary
+    {
+        get => primary;
+        set
+        {
+            primary = value;
+            PrimaryImage.sprite = primary.icon;
+        }
+    }
+    [SerializeField] private ItemSO Secundary;
+    public ItemSO Secondary
+    {
+        get => Secundary;
+        set
+        {
+            Secundary = value;
+            SecondaryImage.sprite = Secundary.icon;
+        }
+    }
+
+    public ItemSO CurrentTool { private set; get; }
 
     [Header("Hand Tools")]
     public Transform ItemHandParent; // parent object holdings hand tools to see them in hands
@@ -37,6 +57,11 @@ public class PlayerEquipment : MonoBehaviour
         }
         Player = ikHandler.transform;
         tools.AddRange(ItemHandParent.GetComponentsInChildren<ItemHand>(true));
+
+        SecondaryImage.sprite = Secundary.icon;
+        PrimaryImage.sprite = primary.icon;
+
+
         Equip(null);
         EquipInHand(CurrentTool);
 
@@ -94,6 +119,28 @@ public class PlayerEquipment : MonoBehaviour
         if (item == null)
         {
             ikHandler.SetTargets(null,null);
+        }
+    }
+
+   
+
+    public  void UpgradeTool(ItemSO newTool)
+    {
+        if (newTool == null) return;
+
+        if(newTool.itemType == ItemType.Chopp)
+        {
+            Primary = newTool;
+            EquipInHand(Primary);
+        }
+        else if (newTool.itemType == ItemType.Mine)
+        {
+            Secundary = newTool;
+            EquipInHand(Secundary);
+        }
+        else
+        {
+            Debug.LogError("Trying to upgrade tool with non-tool item: " + newTool.ItemName);
         }
     }
 

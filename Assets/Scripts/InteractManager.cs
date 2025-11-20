@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class InteractManager : MonoBehaviour
     private InventoryManager inventoryManager;
     [Header("UI Building Mailbox Controller"), SerializeField]
     private UIBuildingMailboxController uiBuildingMailboxController;
+
+
 
     // forced target (napø. world-space UI), upøednostnìn pøed raycastem
     private IInteractable forcedTarget;
@@ -124,7 +127,6 @@ public class InteractManager : MonoBehaviour
         if (ctx.started) // zaèátek držení
         {
             TryInteract(InteractAction.EStart);
-           
         }
         else if (ctx.performed) // bìhem držení (triggery u "Hold")
         {

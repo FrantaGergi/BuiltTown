@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StoneAxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: Stone Axe
-  icon: {fileID: 21300000, guid: 7a0d2252c146e1d49a2b22925b3b654f, type: 3}
-  prefab: {fileID: 4873045266110693020, guid: a9714cb44f330ec4d80ee2d8435dfbab, type: 3}
+  icon: {fileID: 21300000, guid: 1d03116448cdd4c40a2feab6079e7031, type: 3}
+  prefab: {fileID: 166278337667936141, guid: 91e7d244a4e83ae40ac52e58b8fb8386, type: 3}
   HighlightedMaterial: {fileID: 0}
   itemType: 1
   description: 

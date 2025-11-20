@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class IKHandler : MonoBehaviour
 {
-    public Animator animator;
+  
     public Transform leftHandTarget;
     public Transform rightHandTarget;
+
+    [Header("References")]
+    public Animator animator;
 
     private bool useIK = false;
     private bool isTransitioningOff = false;

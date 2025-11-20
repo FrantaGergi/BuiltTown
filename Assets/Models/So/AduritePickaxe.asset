@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AduritePickaxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: Adurite pickaxe
-  icon: {fileID: 21300000, guid: 28e2c278fa306e241b32c93c753f11d8, type: 3}
+  icon: {fileID: 21300000, guid: 67c28e1134f1369478287aa470fce378, type: 3}
   prefab: {fileID: 7739361260988328923, guid: 9b560a03146b5a94e8977aeeade976ef, type: 3}
   HighlightedMaterial: {fileID: 0}
   itemType: 2
