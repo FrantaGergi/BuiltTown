@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73b1b0663dbe9c0409ca97e6dcffb999, type: 3}
-  m_Name: Pickaxe
+  m_Name: AduriteAxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  ItemName: Wood pickaxe
-  icon: {fileID: 21300000, guid: 28e2c278fa306e241b32c93c753f11d8, type: 3}
-  prefab: {fileID: 919132149155446097, guid: 8b87ac1113a1a0c4fbaea3aaa11fcc12, type: 3}
-  itemType: 2
+  ItemName: Adurite Axe
+  icon: {fileID: 21300000, guid: 7a0d2252c146e1d49a2b22925b3b654f, type: 3}
+  prefab: {fileID: 8822703353195711834, guid: d6df9d46881e2f249a1b7789262cadb6, type: 3}
+  HighlightedMaterial: {fileID: 0}
+  itemType: 1
   description: 
   price: 0

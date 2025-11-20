@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73b1b0663dbe9c0409ca97e6dcffb999, type: 3}
-  m_Name: Axe
+  m_Name: IronAxe
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  ItemName: Axe
+  ItemName: Iron Axe
   icon: {fileID: 21300000, guid: 7a0d2252c146e1d49a2b22925b3b654f, type: 3}
-  prefab: {fileID: 4873045266110693020, guid: a9714cb44f330ec4d80ee2d8435dfbab, type: 3}
+  prefab: {fileID: 6789575196673747005, guid: 106cff0b03fec0544abe760b2a1967f3, type: 3}
+  HighlightedMaterial: {fileID: 0}
   itemType: 1
   description: 
   price: 0
