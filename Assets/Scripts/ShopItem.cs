@@ -13,6 +13,7 @@ public class ShopItem : MonoBehaviour, IInteractable
         switch (action)
         {
             case InteractAction.EStart:
+                uIShopItem.OnPressE();
                 Buy();
                 break;
 
@@ -53,11 +54,14 @@ public class ShopItem : MonoBehaviour, IInteractable
         if (MoneyManager.Instance.TrySpend(itemSO.price) && playerEquipment != null)
         {
             playerEquipment.UpgradeTool(itemSO);
+            uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+
             Debug.Log("Bought!");
             // Give upgrade...
         }
         else
         {
+            uIShopItem.SetnotEnoughMoney();
             Debug.Log("Not enough money!");
         }
     }

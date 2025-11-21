@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using Unity.AppUI.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
 
@@ -16,16 +17,24 @@ public class UIShopItem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleTextMeshPro;
     [SerializeField] private TextMeshProUGUI descriptionTextMeshPro;
     [SerializeField] private TextMeshProUGUI multiplierTextMeshPro;
-    [SerializeField] private Button buyButton;
+    [SerializeField] private Image buyButton;
 
     [SerializeField] private UnityEngine.Canvas threeDCanvas;
     [SerializeField] private float scaleDuration = 0.5f;
     [SerializeField] private float rotationSpeed = 10f;
 
+    [Header("Shake on Not Enough Money")]
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private float shakeMagnitude = 0.001f;
+
     private Coroutine scaleCoroutine;
+    private Coroutine shakeCoroutine;
     // uložíme pùvodní layer hráèe, abychom ho mohli vrátit
     private int originalPlayerLayer = -1;
     private bool playerLayerSaved = false;
+    private Vector3 originalCanvasLocalPos;
+
+    private string lastdescriptionText = "";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +43,7 @@ public class UIShopItem : MonoBehaviour
         {
             threeDCanvas.enabled = false;
             threeDCanvas.transform.localScale = Vector3.zero;
+            originalCanvasLocalPos = threeDCanvas.transform.localPosition;
         }
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
@@ -47,8 +57,15 @@ public class UIShopItem : MonoBehaviour
             SetInformation(itemSO, icon);
         
     }
+    public void SetnotEnoughMoney()
+    {
+        lastdescriptionText = descriptionTextMeshPro.text;
+        descriptionTextMeshPro.text = "Not enough money!";
+        if (threeDCanvas != null)
+            StartShake();
+    }
 
-
+   
     private void SetInformation(ItemSO itemSO, Sprite icon)
     {
         titleTextMeshPro.text = itemSO.ItemName;
@@ -122,6 +139,39 @@ public class UIShopItem : MonoBehaviour
         }
     }
 
+    private void StartShake()
+    {
+        if (shakeCoroutine != null)
+            StopCoroutine(shakeCoroutine);
+        shakeCoroutine = StartCoroutine(ShakeCanvas());
+    }
+
+    private IEnumerator ShakeCanvas()
+    {
+        if (threeDCanvas == null)
+            yield break;
+
+        Vector3 startPos = originalCanvasLocalPos;
+        float elapsed = 0f;
+
+        while (elapsed < shakeDuration)
+        {
+            float progress = elapsed / shakeDuration;
+            float damper = 1f - progress; // postupnì menší amplituda
+            Vector3 offset = Random.insideUnitSphere * shakeMagnitude * damper;
+            // chceme pouze posun v lokálních X/Y pro 2D efekt
+            offset.z = 0f;
+            threeDCanvas.transform.localPosition = startPos + offset;
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        threeDCanvas.transform.localPosition = startPos;
+        shakeCoroutine = null;
+        descriptionTextMeshPro.text = lastdescriptionText;
+    }
+
     private void SaveAndSetPlayerLayerToUI()
     {
         if (player == null) return;
@@ -155,6 +205,17 @@ public class UIShopItem : MonoBehaviour
         t.gameObject.layer = layer;
         for (int i = 0; i < t.childCount; i++)
             SetLayerRecursively(t.GetChild(i), layer);
+    }
+  
+    public void OnPressE()
+    {
+        buyButton.color = new Color(100,100,100);
+        Invoke(nameof(ResebuttonCollor) , 0.48f);
+    }
+
+    private void ResebuttonCollor()
+    {
+        buyButton.color = Color.white;
     }
 
     private void OnDisable()
