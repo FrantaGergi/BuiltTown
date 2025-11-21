@@ -13,6 +13,8 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private ToolIconTransition uiTransition;
     [SerializeField] private Image primaryImage;
     [SerializeField] private Image secondaryImage;
+    [SerializeField] private Sprite woodIcon;
+    [SerializeField] private Sprite stoneIcon;
     [Header("Tools")]
     [SerializeField] private ItemSO primary;
     public ItemSO Primary
@@ -142,6 +144,16 @@ public class PlayerEquipment : MonoBehaviour
         {
             Debug.LogError("Trying to upgrade tool with non-tool item: " + newTool.ItemName);
         }
+    }
+
+    public Sprite GetIconSourceByType(ItemType itemType)
+    {
+        return itemType switch
+        {
+            ItemType.Chopp => woodIcon,
+            ItemType.Mine => stoneIcon,
+            _ => null,
+        };
     }
 
 }

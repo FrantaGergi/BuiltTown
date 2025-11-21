@@ -5,6 +5,7 @@ public class ShopItem : MonoBehaviour, IInteractable
 {
     [Header("References")]
     [SerializeField] private ItemSO itemSO;
+    [SerializeField] private UIShopItem uIShopItem;
 
     private PlayerEquipment playerEquipment;
     public void Interact(InteractManager interactor, InteractManager.InteractAction action)
@@ -29,8 +30,11 @@ public class ShopItem : MonoBehaviour, IInteractable
     public void OnHoverEnter(InteractManager interactor)
     {
           Debug.Log($"Hover over: {itemSO.ItemName}");
-            if(playerEquipment == null )
-                playerEquipment = interactor.GetPlayerEquipment();
+          if(playerEquipment == null )
+            playerEquipment = interactor.GetPlayerEquipment();
+         
+          uIShopItem.SetShowCanvas(true, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+
 
         //   UIManager.Instance.ShowTooltip($"{itemName} - {price} coinù");
     }
@@ -38,6 +42,9 @@ public class ShopItem : MonoBehaviour, IInteractable
     public void OnHoverExit()
     {
             Debug.Log($"Hover exit: {itemSO.ItemName}");
+
+        uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+
         //  UIManager.Instance.HideTooltip();
     }
 

@@ -40,20 +40,20 @@ public class UIShopItem : MonoBehaviour
 
     }
 
-    public void SetShowCanvas(bool show, ItemSO itemSO, Image iconImage)
+    public void SetShowCanvas(bool show, ItemSO itemSO, Sprite icon)
     {
         ShowCanvas = show;
         if (show)
-            SetInformation(itemSO, iconImage);
+            SetInformation(itemSO, icon);
         
     }
 
 
-    private void SetInformation(ItemSO itemSO, Image iconImage)
+    private void SetInformation(ItemSO itemSO, Sprite icon)
     {
         titleTextMeshPro.text = itemSO.ItemName;
         descriptionTextMeshPro.text = itemSO.description + "costs $" + itemSO.price;
-        this.iconImage.sprite = iconImage.sprite;
+        this.iconImage.sprite = icon;
         multiplierTextMeshPro.text = "x " + (itemSO.gatherAmount).ToString().ToUpper();
 
     }
@@ -72,7 +72,7 @@ public class UIShopItem : MonoBehaviour
             // zmìnit layer hráèe na "UI" (uložíme pùvodní)
             SaveAndSetPlayerLayerToUI();
 
-            StartScaleAnimation(new Vector3(0.00499999989f, 0.00499999989f, 0.00499999942f));
+            StartScaleAnimation(new Vector3(0.000277585f, 0.000277585f, 0.000277585f));
         }
         else if (!ShowCanvas && isVisible)
         {
