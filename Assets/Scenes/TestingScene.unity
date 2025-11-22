@@ -1989,6 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIBuildingMailboxController
   optionPanel: {fileID: 1708121425}
+  optionDescriptionText: {fileID: 845856550}
   informationPanel: {fileID: 315220130}
   progressbar: {fileID: 1426958394}
   maxSizeProgressBar: {fileID: 1530701622}

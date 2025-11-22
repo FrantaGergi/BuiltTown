@@ -25,6 +25,8 @@ public class SpawnIconBehaviour : MonoBehaviour
     private int amount;
     private ItemSO itemSO;
 
+    // collider used for NPC detection / trigger pickup
+    private Collider pickupCollider;
 
     public void SetAndStart(Transform player, InventoryManager inventoryManager, int ammount, ItemSO itemSO)
     {
@@ -32,6 +34,12 @@ public class SpawnIconBehaviour : MonoBehaviour
         this.playerInventory = inventoryManager;
         this.amount = ammount;
         this.itemSO = itemSO;
+
+        // ensure there's a collider to be used as trigger for NPC detection
+        pickupCollider = GetComponent<Collider>();
+        pickupCollider.isTrigger = false;
+        pickupCollider.enabled = false;
+
         StartCoroutine(HopAndIdle());
 
     }
@@ -60,6 +68,13 @@ public class SpawnIconBehaviour : MonoBehaviour
             Random.Range(0, 360f),
             0
         );
+
+        // ensure collider is trigger while on ground so NPCs can detect it
+        if (pickupCollider != null)
+        {
+            pickupCollider.isTrigger = true;
+            pickupCollider.enabled = true;
+        }
 
         while (t < totalTime)
         {
@@ -104,6 +119,10 @@ public class SpawnIconBehaviour : MonoBehaviour
     {
         pickedUp = true;
 
+        // disable collider so NPCs won't detect it while flying to player
+        if (pickupCollider != null)
+            pickupCollider.enabled = false;
+
         Vector3 start = transform.position;
         Vector3 startScale = transform.localScale;
 
@@ -134,5 +153,34 @@ public class SpawnIconBehaviour : MonoBehaviour
         // playerInventory.Add("Wood", 1);
         playerInventory.AddResourceToHotbar(itemSO, amount);
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (pickedUp) return;
+
+        // pokud do triggeru vstoupí NPC s CollectorRole, necháme ho item sebrat
+        var collector = other.GetComponentInParent<CollectorRole>();
+        if (collector != null)
+        {
+            // stop any running coroutines so we don't race with JumpToPlayer
+            StopAllCoroutines();
+
+            // try to find GroundItem component on this prefab
+            var groundItem = GetComponent<GroundItem>();
+            if (groundItem != null)
+            {
+                pickedUp = true;
+                groundItem.OnPickedByCollector(collector);
+            }
+            else
+            {
+                // fallback: if no GroundItem, try to add directly using InventoryManager on collector if available
+                // CollectorRole should implement OnPickUp(GroundItem) - without GroundItem we can't call it, so try to add to building inventory if collector exposes method
+                // As fallback, just destroy the object
+                pickedUp = true;
+                Destroy(gameObject);
+            }
+        }
     }
 }

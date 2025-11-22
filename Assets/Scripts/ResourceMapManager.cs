@@ -20,4 +20,16 @@ public class ResourceMapManager : MonoBehaviour
         }
     }
 
+
+    public ItemSO GetResourceSO(ItemType itemType)
+    {
+        return itemType switch
+        {
+            ItemType.Wood => WoodSO,
+            ItemType.Stone => StoneSO,
+            ItemType.Ore => OreSO,
+            _ => null,
+        };
+    }
+
 }
