@@ -369,6 +369,7 @@ MonoBehaviour:
   progressBar: {fileID: 6726390621996553203}
   progreesParent: {fileID: 626670583627609467}
   progressText: {fileID: 4512573149010488721}
+  descriptionText: {fileID: 6632649748936362054}
   parentPanel: {fileID: 8267415582127101306}
 --- !u!114 &8945717145989015518
 MonoBehaviour:

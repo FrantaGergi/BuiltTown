@@ -26,10 +26,12 @@ public class Mailbox : MonoBehaviour
             this.uIBuildingMailboxController = uIBuildingMailboxController;
 
         // Check the mode of the building reward
-   
 
         if (buildingReward.mode == BuildingReward.RewardMode.UnSetted)
-            this.uIBuildingMailboxController.SetOption(this);
+            this.uIBuildingMailboxController.SetOption(
+                this,
+                FormatNumber(buildingReward.RentAmount),
+                FormatNumber(buildingReward.RewardAmount));
         else
         {
             this.uIBuildingMailboxController.SetInformation(
@@ -79,5 +81,30 @@ public class Mailbox : MonoBehaviour
         buildingReward.Trigger();
     }
 
-   
+
+
+    private string FormatNumber(long value)
+    {
+        if (value < 1000)
+            return value.ToString();
+
+        if (value < 1_000_000)
+        {
+            double v = Math.Floor((value / 1000d) * 10) / 10; // floor na 0.1k
+            return v.ToString("0.#") + "k";
+        }
+
+        if (value < 1_000_000_000)
+        {
+            double v = Math.Floor((value / 1_000_000d) * 10) / 10; // floor na 0.1M
+            return v.ToString("0.#") + "M";
+        }
+
+        {
+            double v = Math.Floor((value / 1_000_000_000d) * 10) / 10; // floor na 0.1B
+            return v.ToString("0.#") + "B";
+        }
+    }
+
+
 }

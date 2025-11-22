@@ -24,6 +24,9 @@ public class BuildingReward : MonoBehaviour
     [SerializeField, Tooltip("Interval v sekundách (default 5 minut = 300s)")]
     private float rentIntervalSeconds = 300f;
 
+    public int RewardAmount => rewardAmount;
+    public int RentAmount => rentAmount;
+
     // Event volaný pokaždé, když je vyplacena èástka (amount)
     public event Action<int> OnRewardPaid;
 

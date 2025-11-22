@@ -5,6 +5,7 @@ public class UIBuildingMailboxController : MonoBehaviour
 {
     [Header("References ->")]
     [SerializeField] RectTransform optionPanel;
+    [SerializeField] TMPro.TextMeshProUGUI optionDescriptionText;
     [SerializeField] RectTransform informationPanel;
     [SerializeField] RectTransform progressbar;
     [SerializeField] RectTransform maxSizeProgressBar;
@@ -88,11 +89,16 @@ public class UIBuildingMailboxController : MonoBehaviour
         MenuManager.Instance.CloseUIEnviroment(); // obnovÌ hru a ovl·d·nÌ hr·Ëe p¯i zav¯enÌ mailboxu
     }
 
-    public void SetOption(Mailbox mailbox)
+    public void SetOption(Mailbox mailbox, string rentAmmont, string sellAmmount)
     {
         MenuManager.Instance.OpenUIEnviroment(); // zajiöùuje omezenÌ hr·Ëe a hry p¯i otev¯enÌ mailboxu
 
         this.mailbox = mailbox;
+
+        if (optionDescriptionText != null)
+        {
+            optionDescriptionText.text = $"Rent for ${rentAmmont}\nSell for ${sellAmmount}";
+        }
 
         if (optionPanel != null) optionPanel.gameObject.SetActive(true);
         if (informationPanel != null) informationPanel.gameObject.SetActive(false);

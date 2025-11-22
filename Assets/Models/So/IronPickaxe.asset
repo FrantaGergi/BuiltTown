@@ -19,4 +19,4 @@ MonoBehaviour:
   itemType: 2
   description: 
   price: 500
-  gatherAmount: 0
+  gatherAmount: 5

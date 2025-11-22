@@ -35,6 +35,7 @@ public class UIShopItem : MonoBehaviour
     private Vector3 originalCanvasLocalPos;
 
     private string lastdescriptionText = "";
+    private ItemType currentItemType = ItemType.None;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,7 +56,9 @@ public class UIShopItem : MonoBehaviour
         ShowCanvas = show;
         if (show)
             SetInformation(itemSO, icon);
-        
+
+        currentItemType = itemSO.itemType;
+
     }
     public void SetnotEnoughMoney()
     {
@@ -88,8 +91,10 @@ public class UIShopItem : MonoBehaviour
 
             // zmìnit layer hráèe na "UI" (uložíme pùvodní)
             SaveAndSetPlayerLayerToUI();
-
-            StartScaleAnimation(new Vector3(0.000277585f, 0.000277585f, 0.000277585f));
+            if(currentItemType == ItemType.Chopp)
+                StartScaleAnimation(new Vector3(0.000277585f, 0.000277585f, 0.000277585f));
+            else
+                StartScaleAnimation(new Vector3(0.000116279f, 0.000116279f, 0.000116279f));
         }
         else if (!ShowCanvas && isVisible)
         {

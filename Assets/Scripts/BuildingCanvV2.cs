@@ -8,7 +8,7 @@ public class BuildingCanvV2 : MonoBehaviour
     [SerializeField] private RectTransform progressBar;
     [SerializeField] private RectTransform progreesParent;
     [SerializeField] private TextMeshProUGUI progressText;
-
+    [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private RectTransform parentPanel;
 
 
@@ -63,6 +63,8 @@ public class BuildingCanvV2 : MonoBehaviour
     public void SetText(int current, int max)
     {  
         progressText.text = $"{current}/{max}";
+        if (current == max)
+            descriptionText.text = "Completed!";
     }
 
 }

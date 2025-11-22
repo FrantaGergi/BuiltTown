@@ -19,3 +19,4 @@ MonoBehaviour:
   itemType: 1
   description: 
   price: 0
+  gatherAmount: 1

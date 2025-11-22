@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -134,11 +135,16 @@ public class PlayerEquipment : MonoBehaviour
         {
             Primary = newTool;
             EquipInHand(Primary);
+            uiTransition?.SwitchTool(Primary);
+
         }
         else if (newTool.itemType == ItemType.Mine)
         {
             Secondary = newTool;
             EquipInHand(Secondary);
+            uiTransition?.SwitchTool(Secondary);
+
+
         }
         else
         {

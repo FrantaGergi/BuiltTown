@@ -129,7 +129,7 @@ public class Resource : MonoBehaviour, IInteractable
 
             if (progress >= (hitTime-0.1f) && progress <= hitTime && !hitTriggered) // tøeba kolem poloviny animace
             {
-                TakeHit(25);
+                TakeHit(playerEquipment.CurrentTool.gatherAmount);
                 hitTriggered = true;
             }
 
