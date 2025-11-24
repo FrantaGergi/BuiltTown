@@ -62,4 +62,10 @@ public class MinerRole : NPCRoleBase
             state = State.MovingToSource;
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, searchRadius);
+    }
 }

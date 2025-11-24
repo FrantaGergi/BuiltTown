@@ -125,7 +125,7 @@ public class BuildingStorage : MonoBehaviour
         if (inventoryManager == null)
             inventoryManager = interactor.GetInventoryManager();
 
-
+        UpdateprogressBarAndText();
 
 
     }

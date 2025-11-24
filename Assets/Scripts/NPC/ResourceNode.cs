@@ -29,7 +29,8 @@ public class ResourceNode : MonoBehaviour, IResourceSource
                 ItemSO iso = GameServices.I.resourceMapManager.GetResourceSO(type);
                 sib.SetAndStart(GameServices.I.Player,GameServices.I.playerInventory,1,iso);
                 // set quantity/type via inspector on prefab or here if needed
-            }
+            }else
+                Debug.LogError("GroundItem or SpawnIconBehaviour component missing on groundItemPrefab");
         }
     }
 }
