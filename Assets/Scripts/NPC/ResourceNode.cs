@@ -13,7 +13,7 @@ public class ResourceNode : MonoBehaviour, IResourceSource
         return stock > 0;
     }
 
-    public void MineOnce()
+    public void MineOnce(int quantity)
     {
         if (!CanMine()) return;
 
@@ -26,8 +26,9 @@ public class ResourceNode : MonoBehaviour, IResourceSource
             var sib = a.GetComponent<SpawnIconBehaviour>();
             if (gi != null && sib != null)
             {
+                gi.SetQuantity(quantity);
                 ItemSO iso = GameServices.I.resourceMapManager.GetResourceSO(type);
-                sib.SetAndStart(GameServices.I.Player,GameServices.I.playerInventory,1,iso);
+                sib.SetAndStart(GameServices.I.Player,GameServices.I.playerInventory,quantity,iso);
                 // set quantity/type via inspector on prefab or here if needed
             }else
                 Debug.LogError("GroundItem or SpawnIconBehaviour component missing on groundItemPrefab");

@@ -73,6 +73,7 @@ public class CollectorRole : NPCRoleBase
         if (gi == null) return;
         if (inventoryTotal() >= capacity) return;
 
+        gi.PickUp(transform);
         inventory.Add((gi.Type, gi.Quantity));
     }
 

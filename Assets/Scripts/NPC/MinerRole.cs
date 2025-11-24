@@ -5,6 +5,7 @@ public class MinerRole : NPCRoleBase
 {
     public float searchRadius = 20f;
     public float mineInterval = 2f;
+    public int mineAmountPerInterval = 1;
 
     private IResourceSource targetSource;
     private float mineTimer = 0f;
@@ -33,7 +34,7 @@ public class MinerRole : NPCRoleBase
                 mineTimer += Time.deltaTime;
                 if (mineTimer >= mineInterval)
                 {
-                    targetSource.MineOnce();
+                    targetSource.MineOnce(mineAmountPerInterval);
                     mineTimer = 0f;
                 }
                 break;

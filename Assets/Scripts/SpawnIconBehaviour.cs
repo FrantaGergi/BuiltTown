@@ -155,32 +155,48 @@ public class SpawnIconBehaviour : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator JumpToNPC(Transform npc_pos)
     {
-        if (pickedUp) return;
+        pickedUp = true;
 
-        // pokud do triggeru vstoupí NPC s CollectorRole, necháme ho item sebrat
-        var collector = other.GetComponentInParent<CollectorRole>();
-        if (collector != null)
+        // disable collider so NPCs won't detect it while flying to player
+        if (pickupCollider != null)
+            pickupCollider.enabled = false;
+
+        Vector3 start = transform.position;
+        Vector3 startScale = transform.localScale;
+
+        float t = 0f;
+        while (t < jumpToPlayerTime)
         {
-            // stop any running coroutines so we don't race with JumpToPlayer
-            StopAllCoroutines();
+            t += Time.deltaTime;
+            float normalized = Mathf.Clamp01(t / jumpToPlayerTime);
 
-            // try to find GroundItem component on this prefab
-            var groundItem = GetComponent<GroundItem>();
-            if (groundItem != null)
-            {
-                pickedUp = true;
-                groundItem.OnPickedByCollector(collector);
-            }
-            else
-            {
-                // fallback: if no GroundItem, try to add directly using InventoryManager on collector if available
-                // CollectorRole should implement OnPickUp(GroundItem) - without GroundItem we can't call it, so try to add to building inventory if collector exposes method
-                // As fallback, just destroy the object
-                pickedUp = true;
-                Destroy(gameObject);
-            }
+            // aktuální pozice hráèe (pohyblivý cíl)
+            Vector3 target = npc_pos.position + Vector3.up * 1.2f;
+            // target += (Vector3.up + player.forward) * 0.3f; // mírnì pøed hráèe
+            target.z += 0.6f; // mírný offset dopøedu
+
+            // obloukový pohyb
+            float yOffset = Mathf.Sin(normalized * Mathf.PI) * 0.5f;
+            Vector3 pos = Vector3.Lerp(start, target, normalized);
+            pos.y += yOffset;
+            transform.position = pos;
+
+            // zmenšování
+            transform.localScale = Vector3.Lerp(startScale, Vector3.zero, normalized);
+
+            yield return null;
         }
+
+        Destroy(gameObject);
+    }
+
+
+    public void PickUpByNPC(Transform npc_pos)
+    {
+        StopAllCoroutines();
+        StartCoroutine(JumpToNPC(npc_pos));
+
     }
 }
