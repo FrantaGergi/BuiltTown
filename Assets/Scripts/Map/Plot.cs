@@ -9,6 +9,9 @@ public class Plot
     public List<Vector2> vertices;
     public bool isUnlocked;
     public BuildingType allowedBuilding;
+
+    // New: runtime state to control visuals and gameplay
+    public PlotState state = PlotState.Locked;
 }
 
 public enum BuildingType
@@ -17,4 +20,12 @@ public enum BuildingType
     Commercial,
     Industrial,
     Park
+}
+
+public enum PlotState
+{
+    Locked,
+    AvailableToUnlock,
+    Unlocked,
+    Built
 }

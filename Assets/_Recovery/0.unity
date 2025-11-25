@@ -78226,11 +78226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlotManager
   mapRadius: 100
   mapCenter: {x: 0, y: 0, z: 0}
-  lockedPlotMaterial: {fileID: 2100000, guid: 16e0142f2629af041952253f742bef23, type: 2}
-  availableToUnlockMaterial: {fileID: 2100000, guid: 3b7764dea729b584a9c02c477a378136, type: 2}
-  unlockedPlotMaterial: {fileID: 2100000, guid: e7d6107be77184b45a1483d6e67018a2, type: 2}
-  buildedPlotMaterial: {fileID: 2100000, guid: a9be492a0627af148a77c99b483f4fad, type: 2}
-  initialUnlockedPlotId: 17
   showGizmos: 1
 --- !u!114 &713363814
 MonoBehaviour:

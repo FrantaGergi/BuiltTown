@@ -4,9 +4,18 @@ using System.Linq;
 
 public class PlotManager : MonoBehaviour
 {
-    [Header("Nastavení Mapy")]
+    [Header("References")]
     [SerializeField] private float mapRadius = 50f;
     [SerializeField] private Vector3 mapCenter = Vector3.zero;
+
+    [Header("Materials")]
+    [SerializeField] private Material lockedPlotMaterial;
+    [SerializeField] private Material availableToUnlockMaterial;
+    [SerializeField] private Material unlockedPlotMaterial;
+    [SerializeField] private Material buildedPlotMaterial;
+
+    [Header("Initial state")]
+    [SerializeField] private int initialUnlockedPlotId = 17;
 
     [Header("Debug")]
     [SerializeField] private bool showGizmos = true;
@@ -19,6 +28,10 @@ public class PlotManager : MonoBehaviour
     {
         PopulateBoundaryLinesFromChildren();
         RebuildPlotsFromBoundaryLines();
+
+        // Setup initial states and visuals
+        InitializePlotStates(initialUnlockedPlotId);
+        ApplyMaterialsToPlots();
     }
 
     // Update is called once per frame
@@ -120,11 +133,102 @@ public class PlotManager : MonoBehaviour
                 allowedBuilding = default
             };
 
+            // Map previous isUnlocked to state
+            plot.state = isUnlocked ? PlotState.Unlocked : PlotState.Locked;
+
             plots.Add(plot);
         }
 
         // Optional: sort plots by id so GetPlotAtPosition etc. are consistent with boundaryLines ordering
         plots = plots.OrderBy(p => p.id).ToList();
+    }
+
+    private void InitializePlotStates(int unlockedPlotId)
+    {
+        // Start with all locked
+        foreach (var p in plots)
+        {
+            if (p.state == PlotState.Unlocked) // preserve if already unlocked from visuals
+                continue;
+            p.state = PlotState.Locked;
+            p.isUnlocked = false;
+        }
+
+        // Unlock the specified plot if it exists
+        var startPlot = plots.Find(p => p.id == unlockedPlotId);
+        if (startPlot != null)
+        {
+            startPlot.state = PlotState.Unlocked;
+            startPlot.isUnlocked = true;
+
+            // Set neighbors to AvailableToUnlock
+            foreach (var p in plots)
+            {
+                if (p.state == PlotState.Locked && AreNeighbors(startPlot, p))
+                {
+                    p.state = PlotState.AvailableToUnlock;
+                }
+            }
+        }
+    }
+
+    private bool AreNeighbors(Plot a, Plot b, float epsilon = 0.01f)
+    {
+        if (a.vertices == null || b.vertices == null) return false;
+
+        // Build list of edges as unordered pairs
+        var edgesA = new List<(Vector2, Vector2)>();
+        for (int i = 0; i < a.vertices.Count; i++)
+        {
+            Vector2 v0 = a.vertices[i];
+            Vector2 v1 = a.vertices[(i + 1) % a.vertices.Count];
+            edgesA.Add((v0, v1));
+        }
+
+        var edgesB = new List<(Vector2, Vector2)>();
+        for (int i = 0; i < b.vertices.Count; i++)
+        {
+            Vector2 v0 = b.vertices[i];
+            Vector2 v1 = b.vertices[(i + 1) % b.vertices.Count];
+            edgesB.Add((v0, v1));
+        }
+
+        foreach (var ea in edgesA)
+        {
+            foreach (var eb in edgesB)
+            {
+                bool match01 = Vector2.Distance(ea.Item1, eb.Item1) < epsilon && Vector2.Distance(ea.Item2, eb.Item2) < epsilon;
+                bool match02 = Vector2.Distance(ea.Item1, eb.Item2) < epsilon && Vector2.Distance(ea.Item2, eb.Item1) < epsilon;
+                if (match01 || match02) return true;
+            }
+        }
+
+        return false;
+    }
+
+    private LineRenderer GetLineRendererForPlot(Plot plot)
+    {
+        // Try to find by name first
+        string expectedPrefix = $"Plot_{plot.id}_";
+        foreach (var lr in boundaryLines)
+        {
+            if (lr == null) continue;
+            if (lr.gameObject.name.StartsWith(expectedPrefix)) return lr;
+        }
+
+        // Fallback: if index aligns
+        if (plot.id >= 0 && plot.id < boundaryLines.Count)
+            return boundaryLines[plot.id];
+
+        return null;
+    }
+
+    private void ApplyMaterialsToPlots()
+    {
+        foreach (var plot in plots)
+        {
+            UpdatePlotVisuals(plot);
+        }
     }
 
     public Plot GetPlotAtPosition(Vector3 worldPosition)
@@ -169,20 +273,61 @@ public class PlotManager : MonoBehaviour
     public void UnlockPlot(int plotId)
     {
         Plot plot = plots.Find(p => p.id == plotId);
-        if (plot != null)
+        if (plot != null && plot.state != PlotState.Unlocked)
         {
             plot.isUnlocked = true;
+            plot.state = PlotState.Unlocked;
+
+            // Make neighbors available to unlock
+            foreach (var p in plots)
+            {
+                if (p.state == PlotState.Locked && AreNeighbors(plot, p))
+                {
+                    p.state = PlotState.AvailableToUnlock;
+                }
+            }
+
+            UpdatePlotVisuals(plot);
+        }
+    }
+
+    public void SetPlotBuilt(int plotId)
+    {
+        Plot plot = plots.Find(p => p.id == plotId);
+        if (plot != null)
+        {
+            plot.state = PlotState.Built;
             UpdatePlotVisuals(plot);
         }
     }
 
     private void UpdatePlotVisuals(Plot plot)
     {
-        if (plot.id < boundaryLines.Count)
+        LineRenderer lr = GetLineRendererForPlot(plot);
+        if (lr == null) return;
+
+        switch (plot.state)
         {
-            LineRenderer lr = boundaryLines[plot.id];
-            lr.startColor = plot.isUnlocked ? Color.green : Color.gray;
-            lr.endColor = plot.isUnlocked ? Color.green : Color.gray;
+            case PlotState.Locked:
+                if (lockedPlotMaterial != null) lr.material = lockedPlotMaterial;
+                lr.startColor = Color.gray;
+                lr.endColor = Color.gray;
+                break;
+            case PlotState.AvailableToUnlock:
+                if (availableToUnlockMaterial != null) lr.material = availableToUnlockMaterial;
+                lr.startColor = Color.yellow;
+                lr.endColor = Color.yellow;
+                break;
+            case PlotState.Unlocked:
+                if (unlockedPlotMaterial != null) lr.material = unlockedPlotMaterial;
+                lr.startColor = Color.green;
+                lr.endColor = Color.green;
+                break;
+            case PlotState.Built:
+                if (buildedPlotMaterial != null) lr.material = buildedPlotMaterial;
+                lr.startColor = Color.blue;
+                lr.endColor = Color.blue;
+                break;
         }
     }
 
