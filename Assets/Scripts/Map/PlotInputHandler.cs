@@ -48,7 +48,10 @@ public class PlotInputHandler : MonoBehaviour
 
             if (clickedPlot != null)
             {
-                OnPlotClicked(clickedPlot);
+                if(clickedPlot.state == PlotState.AvailableToUnlock)
+                {
+                    OnPlotClicked(clickedPlot);
+                }
             }
         }
     }

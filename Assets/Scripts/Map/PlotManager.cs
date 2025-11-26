@@ -17,24 +17,27 @@ public class PlotManager : MonoBehaviour
     [Header("Initial state")]
     [SerializeField] private int initialUnlockedPlotId = 17;
 
+    [Header("Neighbor detection - NEW SETTINGS")]
+    [SerializeField, Range(0.1f, 10f)] private float neighborDistanceThreshold = 2.0f;
+    [SerializeField] private int minSharedVertices = 2;
+    [SerializeField] private bool debugNeighbors = true;
+    [SerializeField] private bool debugAllPairs = false;
+
     [Header("Debug")]
     [SerializeField] private bool showGizmos = true;
 
     private List<Plot> plots = new List<Plot>();
     private List<LineRenderer> boundaryLines = new List<LineRenderer>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         PopulateBoundaryLinesFromChildren();
         RebuildPlotsFromBoundaryLines();
 
-        // Setup initial states and visuals
         InitializePlotStates(initialUnlockedPlotId);
         ApplyMaterialsToPlots();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -44,7 +47,6 @@ public class PlotManager : MonoBehaviour
     {
         boundaryLines.Clear();
 
-        // Try to parse ids from names like "Plot_{id}_Boundary" so we can keep consistent ordering
         var parsed = new Dictionary<int, LineRenderer>();
         var unparsed = new List<LineRenderer>();
 
@@ -53,7 +55,6 @@ public class PlotManager : MonoBehaviour
             LineRenderer lr = child.GetComponent<LineRenderer>();
             if (lr != null && child.name.StartsWith("Plot_"))
             {
-                // Expecting name like "Plot_3_Boundary" -> parts[1] == "3"
                 string[] parts = child.name.Split('_');
                 if (parts.Length >= 2 && int.TryParse(parts[1], out int parsedId))
                 {
@@ -66,7 +67,6 @@ public class PlotManager : MonoBehaviour
             }
         }
 
-        // Add parsed in order of id, then append any unparsed
         foreach (var kv in parsed.OrderBy(k => k.Key))
         {
             boundaryLines.Add(kv.Value);
@@ -97,13 +97,11 @@ public class PlotManager : MonoBehaviour
                 vertices.Add(local2D);
             }
 
-            // If last vertex duplicates the first (closed loop), remove the duplicate
             if (vertices.Count > 1 && Vector2.Distance(vertices[0], vertices[vertices.Count - 1]) < 0.01f)
             {
                 vertices.RemoveAt(vertices.Count - 1);
             }
 
-            // Compute center as average of vertices
             Vector2 center = Vector2.zero;
             if (vertices.Count > 0)
             {
@@ -111,7 +109,6 @@ public class PlotManager : MonoBehaviour
                 center /= vertices.Count;
             }
 
-            // Determine id from name if present
             int id = i;
             string name = lr.gameObject.name;
             if (name.StartsWith("Plot_"))
@@ -120,103 +117,125 @@ public class PlotManager : MonoBehaviour
                 if (parts.Length >= 2 && int.TryParse(parts[1], out int parsedId)) id = parsedId;
             }
 
-            // Determine unlocked state from color (approximate check)
-            Color startCol = lr.startColor;
-            bool isUnlocked = (startCol.g > 0.5f && startCol.r < 0.5f);
-
             Plot plot = new Plot
             {
                 id = id,
                 center = center,
                 vertices = vertices,
-                isUnlocked = isUnlocked,
+                isUnlocked = false,
                 allowedBuilding = default
             };
 
-            // Map previous isUnlocked to state
-            plot.state = isUnlocked ? PlotState.Unlocked : PlotState.Locked;
+            plot.state = PlotState.Locked;
 
             plots.Add(plot);
         }
 
-        // Optional: sort plots by id so GetPlotAtPosition etc. are consistent with boundaryLines ordering
         plots = plots.OrderBy(p => p.id).ToList();
     }
 
     private void InitializePlotStates(int unlockedPlotId)
     {
-        // Start with all locked
         foreach (var p in plots)
         {
-            if (p.state == PlotState.Unlocked) // preserve if already unlocked from visuals
-                continue;
             p.state = PlotState.Locked;
             p.isUnlocked = false;
         }
 
-        // Unlock the specified plot if it exists
         var startPlot = plots.Find(p => p.id == unlockedPlotId);
         if (startPlot != null)
         {
             startPlot.state = PlotState.Unlocked;
             startPlot.isUnlocked = true;
 
-            // Set neighbors to AvailableToUnlock
+            var available = new List<int>();
             foreach (var p in plots)
             {
                 if (p.state == PlotState.Locked && AreNeighbors(startPlot, p))
                 {
                     p.state = PlotState.AvailableToUnlock;
+                    available.Add(p.id);
                 }
             }
+
+            if (debugNeighbors)
+                Debug.Log("PlotManager: initial unlocked " + startPlot.id + ", found " + available.Count + " neighbors: " + string.Join(", ", available));
+        }
+        else
+        {
+            Debug.LogWarning("PlotManager: initialUnlockedPlotId " + unlockedPlotId + " not found among plots.");
         }
     }
 
-    private bool AreNeighbors(Plot a, Plot b, float epsilon = 0.01f)
+    // NEW NEIGHBOR CHECK METHOD - ASCII ONLY
+    private bool AreNeighbors(Plot a, Plot b)
     {
         if (a.vertices == null || b.vertices == null) return false;
+        if (a.vertices.Count < 3 || b.vertices.Count < 3) return false;
 
-        // Build list of edges as unordered pairs
-        var edgesA = new List<(Vector2, Vector2)>();
-        for (int i = 0; i < a.vertices.Count; i++)
-        {
-            Vector2 v0 = a.vertices[i];
-            Vector2 v1 = a.vertices[(i + 1) % a.vertices.Count];
-            edgesA.Add((v0, v1));
-        }
+        int sharedVertexCount = 0;
+        List<(Vector2, Vector2, float)> closeVertices = new List<(Vector2, Vector2, float)>();
 
-        var edgesB = new List<(Vector2, Vector2)>();
-        for (int i = 0; i < b.vertices.Count; i++)
+        foreach (Vector2 vertexA in a.vertices)
         {
-            Vector2 v0 = b.vertices[i];
-            Vector2 v1 = b.vertices[(i + 1) % b.vertices.Count];
-            edgesB.Add((v0, v1));
-        }
-
-        foreach (var ea in edgesA)
-        {
-            foreach (var eb in edgesB)
+            foreach (Vector2 vertexB in b.vertices)
             {
-                bool match01 = Vector2.Distance(ea.Item1, eb.Item1) < epsilon && Vector2.Distance(ea.Item2, eb.Item2) < epsilon;
-                bool match02 = Vector2.Distance(ea.Item1, eb.Item2) < epsilon && Vector2.Distance(ea.Item2, eb.Item1) < epsilon;
-                if (match01 || match02) return true;
+                float distance = Vector2.Distance(vertexA, vertexB);
+
+                if (distance < neighborDistanceThreshold)
+                {
+                    sharedVertexCount++;
+                    closeVertices.Add((vertexA, vertexB, distance));
+                    break;
+                }
             }
         }
 
-        return false;
+        bool areNeighborsByVertices = sharedVertexCount >= minSharedVertices;
+
+        float centerDistance = Vector2.Distance(a.center, b.center);
+
+        float centerDistanceThreshold = mapRadius * 0.75f; // TRY ADJUSTING THIS FACTOR IF NEEDED
+        bool areNeighborsByCenter = centerDistance < centerDistanceThreshold;
+
+        bool result = areNeighborsByVertices && areNeighborsByCenter;
+
+        if (debugNeighbors && result || debugAllPairs)
+        {
+            string resultStr = result ? "NEIGHBOR" : "NOT NEIGHBOR";
+
+            Debug.Log("[ " + resultStr + " ] Plot " + a.id + " <-> " + b.id +
+                      ": sharedVerts=" + sharedVertexCount + "/" + minSharedVertices +
+                      " (threshold=" + neighborDistanceThreshold.ToString("F2") + "), " +
+                      "centerDist=" + centerDistance.ToString("F2") + "/" + centerDistanceThreshold.ToString("F2") +
+                      ", vertsA=" + a.vertices.Count + ", vertsB=" + b.vertices.Count);
+
+            if (closeVertices.Count > 0)
+            {
+                string vertexDetails = "";
+                for (int i = 0; i < Mathf.Min(closeVertices.Count, 3); i++)
+                {
+                    var item = closeVertices[i];
+                    vertexDetails += "(" + item.Item1.x.ToString("F1") + "," + item.Item1.y.ToString("F1") + ")<->(" +
+                                     item.Item2.x.ToString("F1") + "," + item.Item2.y.ToString("F1") +
+                                     ") dist=" + item.Item3.ToString("F3") + "; ";
+                }
+                Debug.Log("    Close vertices: " + vertexDetails);
+            }
+        }
+
+        return result;
     }
 
     private LineRenderer GetLineRendererForPlot(Plot plot)
     {
-        // Try to find by name first
-        string expectedPrefix = $"Plot_{plot.id}_";
+        string expectedPrefix = "Plot_" + plot.id + "_";
         foreach (var lr in boundaryLines)
         {
             if (lr == null) continue;
             if (lr.gameObject.name.StartsWith(expectedPrefix)) return lr;
         }
 
-        // Fallback: if index aligns
         if (plot.id >= 0 && plot.id < boundaryLines.Count)
             return boundaryLines[plot.id];
 
@@ -257,7 +276,8 @@ public class PlotManager : MonoBehaviour
         for (int i = 0; i < polygon.Count; i++)
         {
             if (((polygon[i].y > point.y) != (polygon[j].y > point.y)) &&
-                (point.x < (polygon[j].x - polygon[i].x) * (point.y - polygon[i].y) /
+                (point.x < (polygon[j].x - polygon[i].x) *
+                (point.y - polygon[i].y) /
                 (polygon[j].y - polygon[i].y) + polygon[i].x))
             {
                 inside = !inside;
@@ -278,16 +298,21 @@ public class PlotManager : MonoBehaviour
             plot.isUnlocked = true;
             plot.state = PlotState.Unlocked;
 
-            // Make neighbors available to unlock
+            var available = new List<int>();
             foreach (var p in plots)
             {
                 if (p.state == PlotState.Locked && AreNeighbors(plot, p))
                 {
                     p.state = PlotState.AvailableToUnlock;
+                    available.Add(p.id);
                 }
             }
 
+            if (debugNeighbors)
+                Debug.Log("PlotManager: unlocked " + plot.id + ", found " + available.Count + " new available neighbors: " + string.Join(", ", available));
+
             UpdatePlotVisuals(plot);
+            ApplyMaterialsToPlots();
         }
     }
 
@@ -335,11 +360,9 @@ public class PlotManager : MonoBehaviour
     {
         if (!showGizmos) return;
 
-        // Nakresli kruh mapy
         Gizmos.color = Color.yellow;
         DrawCircleGizmo(mapCenter, mapRadius, 64);
 
-        // Nakresli støedy pozemkù
         foreach (Plot plot in plots)
         {
             Gizmos.color = plot.isUnlocked ? Color.green : Color.red;
@@ -371,4 +394,6 @@ public class PlotManager : MonoBehaviour
             prevPoint = newPoint;
         }
     }
+
+
 }
