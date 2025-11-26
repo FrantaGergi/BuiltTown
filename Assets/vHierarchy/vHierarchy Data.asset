@@ -40,7 +40,7 @@ MonoBehaviour:
         - colorIndex: 3
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 2
           iconNameOrGuid: 
           isIconRecursive: 0
@@ -52,6 +52,6 @@ MonoBehaviour:
         - colorIndex: 8
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
   bookmarks: []
   bookmarkedScenePaths: []

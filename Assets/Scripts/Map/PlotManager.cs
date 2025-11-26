@@ -203,25 +203,6 @@ public class PlotManager : MonoBehaviour
         if (debugNeighbors && result || debugAllPairs)
         {
             string resultStr = result ? "NEIGHBOR" : "NOT NEIGHBOR";
-
-            Debug.Log("[ " + resultStr + " ] Plot " + a.id + " <-> " + b.id +
-                      ": sharedVerts=" + sharedVertexCount + "/" + minSharedVertices +
-                      " (threshold=" + neighborDistanceThreshold.ToString("F2") + "), " +
-                      "centerDist=" + centerDistance.ToString("F2") + "/" + centerDistanceThreshold.ToString("F2") +
-                      ", vertsA=" + a.vertices.Count + ", vertsB=" + b.vertices.Count);
-
-            if (closeVertices.Count > 0)
-            {
-                string vertexDetails = "";
-                for (int i = 0; i < Mathf.Min(closeVertices.Count, 3); i++)
-                {
-                    var item = closeVertices[i];
-                    vertexDetails += "(" + item.Item1.x.ToString("F1") + "," + item.Item1.y.ToString("F1") + ")<->(" +
-                                     item.Item2.x.ToString("F1") + "," + item.Item2.y.ToString("F1") +
-                                     ") dist=" + item.Item3.ToString("F3") + "; ";
-                }
-                Debug.Log("    Close vertices: " + vertexDetails);
-            }
         }
 
         return result;
