@@ -15,6 +15,7 @@ MonoBehaviour:
   sceneDatas_byGuid:
     keys:
     - 58bc3d4c35d07524a9c81ba7d0d78f82
+    - 27b5fda6ff7172548843db9f0dd1e773
     values:
     - goDatas_byGlobalId:
         keys:
@@ -29,5 +30,28 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 1
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-27b5fda6ff7172548843db9f0dd1e773-1204077270-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27b5fda6ff7172548843db9f0dd1e773-6064801525321721345-859409399
+        - globalObjectIdString: GlobalObjectId_V1-2-27b5fda6ff7172548843db9f0dd1e773-1043200671-0
+        - globalObjectIdString: GlobalObjectId_V1-2-27b5fda6ff7172548843db9f0dd1e773-713363810-0
+        values:
+        - colorIndex: 3
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 5
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
   bookmarks: []
   bookmarkedScenePaths: []

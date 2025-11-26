@@ -30,7 +30,6 @@ public class ShopItem : MonoBehaviour, IInteractable
 
     public void OnHoverEnter(InteractManager interactor)
     {
-          Debug.Log($"Hover over: {itemSO.ItemName}");
           if(playerEquipment == null )
             playerEquipment = interactor.GetPlayerEquipment();
          
@@ -42,7 +41,6 @@ public class ShopItem : MonoBehaviour, IInteractable
 
     public void OnHoverExit()
     {
-            Debug.Log($"Hover exit: {itemSO.ItemName}");
 
         uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
 
@@ -56,13 +54,11 @@ public class ShopItem : MonoBehaviour, IInteractable
             playerEquipment.UpgradeTool(itemSO);
             uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
 
-            Debug.Log("Bought!");
             // Give upgrade...
         }
         else
         {
             uIShopItem.SetnotEnoughMoney();
-            Debug.Log("Not enough money!");
         }
     }
 }

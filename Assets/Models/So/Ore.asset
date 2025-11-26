@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   ItemName: Ore
   icon: {fileID: 21300000, guid: f94e83e169435b14bac046e4ff20a436, type: 3}
-  prefab: {fileID: 2360187659633827652, guid: 4c9f08158a923a94984655a271e0f101, type: 3}
+  prefab: {fileID: 2360187659633827652, guid: 5774ffcbb3f63c540840450f397363be, type: 3}
   HighlightedMaterial: {fileID: 2100000, guid: 78d63a5a8174ec44c918c14b7d600f59, type: 2}
   itemType: 5
   description: 
   price: 0
+  gatherAmount: 0
