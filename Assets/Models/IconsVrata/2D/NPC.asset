@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7922ddef896c9e4bb75c1dec89abcc8, type: 3}
+  m_Name: NPC
+  m_EditorClassIdentifier: Assembly-CSharp::BattleDrakeCreations.SimpleIconCreator.PreviewSettings
+  iconSavePath: Models\IconsVrata\2D\
+  settingsSavePath: Models\IconsVrata\2D\
+  objectPosition: {x: -0.0078125, y: -1.6757812, z: 0}
+  objectRotation: {x: 358.37286, y: 194.38171, z: 359.79608}
+  previewFOV: 4.666644
+  lightOneColor: {r: 1, g: 1, b: 1, a: 1}
+  lightOneIntensity: 0
+  lightTwoColor: {r: 1, g: 1, b: 1, a: 1}
+  lightTwoIntensity: 0
+  isTransparent: 1
+  backgroundColor: {r: 0.192, g: 0.192, b: 0.192, a: 1}
+  backgroundTexture: {fileID: 0}
+  foregroundTexture: {fileID: 0}
+  iconResolution: 256

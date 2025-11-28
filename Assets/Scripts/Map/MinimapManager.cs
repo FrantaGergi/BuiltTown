@@ -1,144 +1,77 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MinimapManager : MonoBehaviour
 {
-
-    public static MinimapManager Instance { get; private set; }
-    [Header("Icon Prefabs")]
-    public RectTransform minerIconPrefab;
-    public RectTransform builderIconPrefab;
-    public RectTransform collectorIconPrefab;
-    public RectTransform stoneIconPrefab;
-    public RectTransform oreIconPrefab;
-    public RectTransform woodIconPrefab;
-
+    private bool isMinimapOpen = false;
+    private string previousActionMap = "";
 
     [Header("References")]
-    public Camera minimapCamera;
-    public RectTransform minimapRect;
-    public Transform iconContainer; // parent v canvasu
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private GameObject mainMinimapContainer;
+    [SerializeField] private PlotManager plotManager;
 
-
-    private Dictionary<MinimapIconType, List<MinimapIcon>> iconGroups =
-        new Dictionary<MinimapIconType, List<MinimapIcon>>();
-
-    public enum MinimapIconType
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        Miner,
-        Builder,
-        Collector,
-        Stone,
-        Ore,
-        Wood,
-        District
+       mainMinimapContainer.SetActive(false);
     }
 
-    private float worldSizeHalf;
-
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        // Pokud chceš, aby pøetrvával mezi scénami:
-        // DontDestroyOnLoad(gameObject);
-
-        worldSizeHalf = minimapCamera.orthographicSize;
-
-        foreach (MinimapIconType type in System.Enum.GetValues(typeof(MinimapIconType)))
-        {
-            iconGroups[type] = new List<MinimapIcon>();
-        }
-    }
-
-
+    // Update is called once per frame
     void Update()
     {
-        UpdateIcons();
+        
     }
 
-    // === Registrace ikony ===
-    public void RegisterIcon(MinimapIcon icon)
+    public void OnClicked(InputAction.CallbackContext ctx)
     {
-        iconGroups[icon.iconType].Add(icon);
+        if (!ctx.performed)
+            return;
+
+        if(isMinimapOpen)
+            plotManager.HandlePlotClick();
     }
 
-    // === Odstranìní ikony ===
-    public void UnregisterIcon(MinimapIcon icon)
+
+    public void ToggleMinimap(InputAction.CallbackContext ctx)
     {
-        iconGroups[icon.iconType].Remove(icon);
+        if (!ctx.performed)
+            return;
+
+        isMinimapOpen = !isMinimapOpen;
+        SetMinimap();
+        
     }
 
-    // === Pøepoèet pozic ===
-    private void UpdateIcons()
+    public void CloseMinimap()
     {
-        float uiWidth = minimapRect.rect.width;
-        float uiHeight = minimapRect.rect.height;
+        isMinimapOpen = false;
+        SetMinimap();
+    }
 
-        foreach (var group in iconGroups)
+
+    public void SetMinimap()
+    {
+        if(isMinimapOpen)
         {
-            foreach (var icon in group.Value)
-            {
-                if (icon == null) continue;
+            previousActionMap = playerInput.currentActionMap.name;
+            playerInput.SwitchCurrentActionMap("UI");
 
-                Vector3 relative = icon.transform.position - minimapCamera.transform.position;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
-                float normX = relative.x / worldSizeHalf;
-                float normY = relative.z / worldSizeHalf;
+            mainMinimapContainer.SetActive(true);
+        }
+        else
+        {
+            playerInput.SwitchCurrentActionMap(previousActionMap);
 
-                float uiX = normX * (uiWidth / 2f);
-                float uiY = normY * (uiHeight / 2f);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
 
-                icon.uiIcon.anchoredPosition = new Vector2(uiX, uiY);
-            }
+            mainMinimapContainer.SetActive(false);
         }
     }
 
-    // === FILTRACE ===
-    public void SetGroupVisible(MinimapIconType type, bool visible)
-    {
-        foreach (var icon in iconGroups[type])
-        {
-            if (icon != null)
-                icon.uiIcon.gameObject.SetActive(visible);
-        }
-    }
-
-    public void ShowOnly(MinimapIconType type)
-    {
-        foreach (var group in iconGroups)
-        {
-            bool show = (group.Key == type);
-
-            foreach (var icon in group.Value)
-                icon.uiIcon.gameObject.SetActive(show);
-        }
-    }
-
-
-    public RectTransform SpawnIcon(MinimapIconType type)
-    {
-        RectTransform prefab = null;
-
-        switch (type)
-        {
-            case MinimapIconType.Miner: prefab = minerIconPrefab; break;
-            case MinimapIconType.Builder: prefab = builderIconPrefab; break;
-            case MinimapIconType.Collector: prefab = collectorIconPrefab; break;
-            case MinimapIconType.Stone: prefab = stoneIconPrefab; break;
-            case MinimapIconType.Ore: prefab = oreIconPrefab; break;
-            case MinimapIconType.Wood: prefab = woodIconPrefab; break;
-            case MinimapIconType.District: prefab = woodIconPrefab; break;
-        }
-
-        RectTransform icon = Instantiate(prefab, iconContainer);
-        return icon;
-    }
 
 }

@@ -9,7 +9,9 @@ public class Plot
     public List<Vector2> vertices;
     public bool isUnlocked;
     public BuildingType allowedBuilding;
-    // New: runtime state to control visuals and gameplay
+
+    public int costToUnlock;
+
     public PlotState state = PlotState.Locked;
 
 }

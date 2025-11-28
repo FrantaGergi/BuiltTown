@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MinimapIcon : MonoBehaviour
 {
-    public MinimapManager.MinimapIconType iconType;
+    public MinimapIconManager.MinimapIconType iconType;
 
     [HideInInspector]
     public RectTransform uiIcon;
@@ -10,17 +10,17 @@ public class MinimapIcon : MonoBehaviour
     void Start()
     {
         // spawn UI ikonky
-        uiIcon = MinimapManager.Instance.SpawnIcon(iconType);
+        uiIcon = MinimapIconManager.Instance.SpawnIcon(iconType);
 
         // registrace
-        MinimapManager.Instance.RegisterIcon(this);
+        MinimapIconManager.Instance.RegisterIcon(this);
     }
 
     void OnDestroy()
     {
-        if (MinimapManager.Instance != null)
+        if (MinimapIconManager.Instance != null)
         {
-            MinimapManager.Instance.UnregisterIcon(this);
+            MinimapIconManager.Instance.UnregisterIcon(this);
 
             if (uiIcon != null)
                 Destroy(uiIcon.gameObject);

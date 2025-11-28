@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlotInputHandler : MonoBehaviour
 {
     [Header("Reference")]
-    [SerializeField] private PlotManager plotManager;
+    [SerializeField] private PlotController plotManager;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Camera minimapCamera;
 
@@ -23,7 +23,7 @@ public class PlotInputHandler : MonoBehaviour
 
   
 
-    public void OnHandlePlotClicked(InputAction.CallbackContext txt)
+   /* public void OnHandlePlotClicked(InputAction.CallbackContext txt)
     {
         if (txt.performed)
         {
@@ -31,7 +31,7 @@ public class PlotInputHandler : MonoBehaviour
             Debug.Log("PlotInputHandler: OnHandlePlotClicked performed");
         }
     }
-
+   **/
     private void HandlePlotClick()
     {
         // Kontrola jestli neklikáme na UI
@@ -80,12 +80,12 @@ public class PlotInputHandler : MonoBehaviour
         if (!plot.isUnlocked)
         {
             // Zobraz UI pro odemèení
-            PlotUIManager.Instance?.ShowUnlockDialog(plot);
+            //PlotUIManager.Instance?.ShowUnlockDialog(plot);
         }
         else
         {
             // Zobraz UI pro stavbu
-            PlotUIManager.Instance?.ShowBuildingMenu(plot);
+            //PlotUIManager.Instance?.ShowBuildingMenu(plot);
         }
 
         plotManager.UnlockPlot(plot.id);
