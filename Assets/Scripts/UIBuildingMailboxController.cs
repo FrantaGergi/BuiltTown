@@ -118,7 +118,7 @@ public class UIBuildingMailboxController : MonoBehaviour
 
         // zachováno podle tvého požadavku
         if (titleText != null)
-            titleText.text = timeToEarn == 0 ? "Building Sold" : "Building Rented";
+            titleText.text = timeToEarn == 0 ? "District Sold" : "District Rented";
 
         if(maxSizeProgressBar != null)
             maxSizeProgressBar.gameObject.SetActive(timeToEarn > 0f);

@@ -16,7 +16,7 @@ public class PlotUIManager : MonoBehaviour
     [SerializeField] private Button unlockButton;
     [SerializeField] private Button cancelButton;
 
-    [Header("Building Panel")]
+    [Header("District Panel")]
     [SerializeField] private TextMeshProUGUI buildingTitleText;
     [SerializeField] private Transform buildingButtonContainer;
     [SerializeField] private GameObject buildingButtonPrefab;

@@ -11,7 +11,7 @@ public class BuildingSite : MonoBehaviour, IBuildingSite
         {
            buildingCore = GetComponent<Building>();
             if(buildingCore == null)
-                Debug.LogError("BuildingSite: No Building component found on the GameObject.");
+                Debug.LogError("BuildingSite: No District component found on the GameObject.");
         }   
     }
 

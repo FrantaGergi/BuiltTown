@@ -20,7 +20,7 @@ public class InteractManager : MonoBehaviour
     private ResourceMapManager resourceMapManager;
     [Header("Inventory manager"), SerializeField]
     private InventoryManager inventoryManager;
-    [Header("UI Building Mailbox Controller"), SerializeField]
+    [Header("UI District Mailbox Controller"), SerializeField]
     private UIBuildingMailboxController uiBuildingMailboxController;
 
 

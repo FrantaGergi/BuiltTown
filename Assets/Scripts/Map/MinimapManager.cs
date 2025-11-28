@@ -3,15 +3,25 @@ using UnityEngine;
 
 public class MinimapManager : MonoBehaviour
 {
+
+    public static MinimapManager Instance { get; private set; }
+    [Header("Icon Prefabs")]
+    public RectTransform minerIconPrefab;
+    public RectTransform builderIconPrefab;
+    public RectTransform collectorIconPrefab;
+    public RectTransform stoneIconPrefab;
+    public RectTransform oreIconPrefab;
+    public RectTransform woodIconPrefab;
+
+
     [Header("References")]
     public Camera minimapCamera;
     public RectTransform minimapRect;
+    public Transform iconContainer; // parent v canvasu
 
-    // Dictionary: typ -> list ikon
+
     private Dictionary<MinimapIconType, List<MinimapIcon>> iconGroups =
         new Dictionary<MinimapIconType, List<MinimapIcon>>();
-
-
 
     public enum MinimapIconType
     {
@@ -21,21 +31,32 @@ public class MinimapManager : MonoBehaviour
         Stone,
         Ore,
         Wood,
-        Building
+        District
     }
 
     private float worldSizeHalf;
 
-    void Start()
+
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        // Pokud chceš, aby pøetrvával mezi scénami:
+        // DontDestroyOnLoad(gameObject);
+
         worldSizeHalf = minimapCamera.orthographicSize;
 
-        // Inicializuj dictionary pro všechny typy
         foreach (MinimapIconType type in System.Enum.GetValues(typeof(MinimapIconType)))
         {
             iconGroups[type] = new List<MinimapIcon>();
         }
     }
+
 
     void Update()
     {
@@ -54,7 +75,7 @@ public class MinimapManager : MonoBehaviour
         iconGroups[icon.iconType].Remove(icon);
     }
 
-    // === Pøepoèet pozic všech ikon ===
+    // === Pøepoèet pozic ===
     private void UpdateIcons()
     {
         float uiWidth = minimapRect.rect.width;
@@ -79,7 +100,7 @@ public class MinimapManager : MonoBehaviour
         }
     }
 
-    // === FILTRACE / ZAPÍNÁNÍ / VYPÍNÁNÍ ===
+    // === FILTRACE ===
     public void SetGroupVisible(MinimapIconType type, bool visible)
     {
         foreach (var icon in iconGroups[type])
@@ -89,7 +110,6 @@ public class MinimapManager : MonoBehaviour
         }
     }
 
-    // Vypnout vše kromì...
     public void ShowOnly(MinimapIconType type)
     {
         foreach (var group in iconGroups)
@@ -100,4 +120,25 @@ public class MinimapManager : MonoBehaviour
                 icon.uiIcon.gameObject.SetActive(show);
         }
     }
+
+
+    public RectTransform SpawnIcon(MinimapIconType type)
+    {
+        RectTransform prefab = null;
+
+        switch (type)
+        {
+            case MinimapIconType.Miner: prefab = minerIconPrefab; break;
+            case MinimapIconType.Builder: prefab = builderIconPrefab; break;
+            case MinimapIconType.Collector: prefab = collectorIconPrefab; break;
+            case MinimapIconType.Stone: prefab = stoneIconPrefab; break;
+            case MinimapIconType.Ore: prefab = oreIconPrefab; break;
+            case MinimapIconType.Wood: prefab = woodIconPrefab; break;
+            case MinimapIconType.District: prefab = woodIconPrefab; break;
+        }
+
+        RectTransform icon = Instantiate(prefab, iconContainer);
+        return icon;
+    }
+
 }

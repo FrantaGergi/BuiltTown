@@ -49,7 +49,7 @@ public class Building : MonoBehaviour
             buildingReward = GetComponent<BuildingReward>();
             if(buildingReward == null)
             {
-                Debug.LogWarning("BuildingReward component not found on Building.");
+                Debug.LogWarning("BuildingReward component not found on District.");
             }
         }
     }
