@@ -91043,7 +91043,7 @@ MonoBehaviour:
   minimapCamera: {fileID: 1457953636}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   useMinimapInput: 1
 --- !u!114 &713363813
 MonoBehaviour:
