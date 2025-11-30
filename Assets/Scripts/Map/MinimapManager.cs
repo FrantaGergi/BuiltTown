@@ -30,6 +30,7 @@ public class MinimapManager : MonoBehaviour
 
         if(isMinimapOpen)
             plotManager.HandlePlotClick();
+
     }
 
 

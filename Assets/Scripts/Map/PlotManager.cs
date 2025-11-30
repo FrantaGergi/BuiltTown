@@ -21,6 +21,11 @@ public class PlotManager : MonoBehaviour
 
     public void HandlePlotClick()
     {
+        if(plotController.gameObject.activeSelf == false)
+        {
+            return;
+        }
+
         Vector2 mousePos = Mouse.current.position.ReadValue();
 
         // 1) Zkontroluj, zda klik je uvnitø UI minimapy

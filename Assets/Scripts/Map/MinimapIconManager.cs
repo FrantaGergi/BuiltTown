@@ -23,6 +23,9 @@ public class MinimapIconManager : MonoBehaviour
     private Dictionary<MinimapIconType, List<MinimapIcon>> iconGroups =
         new Dictionary<MinimapIconType, List<MinimapIcon>>();
 
+    // ty nejsou ve stejne funcionalite jako ostatni ikony
+    private GameObject districts;
+
     public enum MinimapIconType
     {
         Miner,
@@ -31,7 +34,8 @@ public class MinimapIconManager : MonoBehaviour
         Stone,
         Ore,
         Wood,
-        District
+        District,
+        None
     }
 
     private float worldSizeHalf;
@@ -57,6 +61,10 @@ public class MinimapIconManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SetAllGroups(true);
+    }
 
     void Update()
     {
@@ -66,7 +74,17 @@ public class MinimapIconManager : MonoBehaviour
     // === Registrace ikony ===
     public void RegisterIcon(MinimapIcon icon)
     {
-        iconGroups[icon.iconType].Add(icon);
+        if (icon.iconType == MinimapIconType.District)
+        {
+            districts = icon.gameObject;
+            return;
+        }
+        else if(icon.iconType == MinimapIconType.None)
+        {
+            Debug.LogError("Cannot register icon of type None.");
+        }
+
+            iconGroups[icon.iconType].Add(icon);
     }
 
     // === Odstranìní ikony ===
@@ -108,6 +126,9 @@ public class MinimapIconManager : MonoBehaviour
             if (icon != null)
                 icon.uiIcon.gameObject.SetActive(visible);
         }
+        districts.SetActive(type == MinimapIconType.District && visible);
+
+        Debug.Log($"SetGroupVisible: {type} to {visible}");
     }
 
     public void ShowOnly(MinimapIconType type)
@@ -119,6 +140,7 @@ public class MinimapIconManager : MonoBehaviour
             foreach (var icon in group.Value)
                 icon.uiIcon.gameObject.SetActive(show);
         }
+        districts.SetActive(type == MinimapIconType.District);
     }
 
 
@@ -139,6 +161,19 @@ public class MinimapIconManager : MonoBehaviour
 
         RectTransform icon = Instantiate(prefab, iconContainer);
         return icon;
+    }
+
+    public void SetAllGroups(bool show)
+    {
+        foreach (var group in iconGroups)
+        {
+            foreach (var icon in group.Value)
+            {
+                if (icon != null && icon.uiIcon != null)
+                    icon.uiIcon.gameObject.SetActive(show);
+            }
+        }
+        districts.SetActive(show);
     }
 
 }
