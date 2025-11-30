@@ -126,7 +126,8 @@ public class MinimapIconManager : MonoBehaviour
             if (icon != null)
                 icon.uiIcon.gameObject.SetActive(visible);
         }
-        districts.SetActive(type == MinimapIconType.District && visible);
+        if(type == MinimapIconType.District)
+            districts.SetActive(visible);
 
         Debug.Log($"SetGroupVisible: {type} to {visible}");
     }

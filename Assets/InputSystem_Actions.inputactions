@@ -122,6 +122,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Q_NPCManager",
+                    "type": "Button",
+                    "id": "24228031-2708-48bf-aaac-637c36c67f37",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -498,6 +507,17 @@
                     "action": "Tab_Minimap",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95f65779-dbda-4171-927a-6f6a94fbe2ac",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Q_NPCManager",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -599,6 +619,15 @@
                     "name": "Tab_Minimap",
                     "type": "Button",
                     "id": "d737d1e6-ded3-4ea4-a14e-c067ace13654",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Q_NPCManager",
+                    "type": "Button",
+                    "id": "9b149d57-a78f-43fc-9fb2-9237f5652949",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -869,6 +898,17 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e9f18cf9-9652-45e6-9d5e-8dccc02a09c4",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Q_NPCManager",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
