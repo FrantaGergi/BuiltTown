@@ -75,4 +75,16 @@ public class MinimapManager : MonoBehaviour
     }
 
 
+    public void ShowAndGetPosFromMap()
+    {
+
+     //   plotManager.MovePlayerToPlotFromMinimap(pos);
+    }
+    public BuildingSite GetBuildingSiteByClickedPos(Vector3 pos)
+    {
+        return null;
+      //  return plotManager.GetBuildingSiteByClickedPos(pos);
+    }
+
+
 }

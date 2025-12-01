@@ -146,7 +146,7 @@ public class PlotController : MonoBehaviour
                 center = center,
                 vertices = vertices,
                 isUnlocked = false,
-                allowedBuilding = default
+                Building = null
             };
 
             plot.state = PlotState.Locked;

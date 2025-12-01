@@ -77,6 +77,7 @@ public class MinimapIconManager : MonoBehaviour
         if (icon.iconType == MinimapIconType.District)
         {
             districts = icon.gameObject;
+            districts.SetActive(true);
             return;
         }
         else if(icon.iconType == MinimapIconType.None)
@@ -174,7 +175,7 @@ public class MinimapIconManager : MonoBehaviour
                     icon.uiIcon.gameObject.SetActive(show);
             }
         }
-        districts.SetActive(show);
+        districts?.SetActive(show);
     }
 
 }

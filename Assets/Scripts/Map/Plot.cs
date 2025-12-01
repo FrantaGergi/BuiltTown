@@ -8,7 +8,7 @@ public class Plot
     public Vector2 center;
     public List<Vector2> vertices;
     public bool isUnlocked;
-    public BuildingType allowedBuilding;
+    public BuildingSite Building;
 
     public int costToUnlock;
 
@@ -16,13 +16,7 @@ public class Plot
 
 }
 
-public enum BuildingType
-{
-    Residential,
-    Commercial,
-    Industrial,
-    Park
-}
+
 
 public enum PlotState
 {

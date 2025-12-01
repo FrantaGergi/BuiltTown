@@ -75,8 +75,20 @@ public class UIShopItem : MonoBehaviour
     {
         titleTextMeshPro.text = itemSO.ItemName;
         descriptionTextMeshPro.text = itemSO.description + "costs $" + itemSO.price;
-        this.iconImage.sprite = icon;
-        multiplierTextMeshPro.text = "x " + (itemSO.gatherAmount).ToString().ToUpper();
+        if(itemSO.gatherAmount == 0)
+        {
+            multiplierTextMeshPro.text = "";
+            this.iconImage.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.iconImage.gameObject.SetActive(true);
+            if(icon != null)
+                this.iconImage.sprite = icon;
+            multiplierTextMeshPro.text = "x " + (itemSO.gatherAmount).ToString().ToUpper();
+        }
+
+          
 
     }
 
@@ -93,10 +105,13 @@ public class UIShopItem : MonoBehaviour
 
             // zmìnit layer hráèe na "UI" (uložíme pùvodní)
             SaveAndSetPlayerLayerToUI();
-            if(currentItemType == ItemType.Chopp)
+            if(currentItemType == ItemType.Chopp) // Axe
                 StartScaleAnimation(new Vector3(0.000277585f, 0.000277585f, 0.000277585f));
-            else
+            else if( currentItemType == ItemType.Mine) // Pickaxe
                 StartScaleAnimation(new Vector3(0.000116279f, 0.000116279f, 0.000116279f));
+            else if(currentItemType == ItemType.None) // NPC 
+                StartScaleAnimation(new Vector3(0.003999999f, 0.004f, 0.003999999f));
+
         }
         else if (!ShowCanvas && isVisible)
         {

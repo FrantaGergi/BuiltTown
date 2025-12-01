@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UINPC;
 
 public class NPCManager : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class NPCManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameObject mainNPCManagerContainer;
+    [SerializeField] private UINPC UINPC;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mainNPCManagerContainer.SetActive(false);
+
+        
 
     }
 
@@ -59,6 +63,24 @@ public class NPCManager : MonoBehaviour
 
             mainNPCManagerContainer.SetActive(false);
         }
+    }
+
+    public void RegisterNPC(BaseNPC npc, UINPC.Role role, string displayName, string status = "")
+    {
+        UINPC.RegisterOrUpdateNPC(npc, role, displayName, status);
+    }
+    public void UpdateNPCStatus(BaseNPC npc, UINPC.Role role, string displayName, string status = "")
+    {
+        UINPC.RegisterOrUpdateNPC(npc, role, displayName, status);
+    }
+    public void UnregisterNPC(BaseNPC npc)
+    {
+        UINPC.UnregisterNPC(npc);
+    }
+
+    private void RemoveNPC()
+    {
+
     }
 
 }

@@ -33,7 +33,12 @@ public class ShopItem : MonoBehaviour, IInteractable
           if(playerEquipment == null )
             playerEquipment = interactor.GetPlayerEquipment();
          
-          uIShopItem.SetShowCanvas(true, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+            if( playerEquipment == null )
+            Debug.LogError("PlayerEquipment is null in ShopItem OnHoverEnter");
+
+        if(uIShopItem == null )
+            Debug.LogError("UIShopItem is null in ShopItem OnHoverEnter");
+        uIShopItem.SetShowCanvas(true, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
 
 
         //   UIManager.Instance.ShowTooltip($"{itemName} - {price} coinù");
@@ -41,8 +46,7 @@ public class ShopItem : MonoBehaviour, IInteractable
 
     public void OnHoverExit()
     {
-
-        uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+            uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
 
         //  UIManager.Instance.HideTooltip();
     }
@@ -51,8 +55,18 @@ public class ShopItem : MonoBehaviour, IInteractable
     {
         if (MoneyManager.Instance.TrySpend(itemSO.price) && playerEquipment != null)
         {
-            playerEquipment.UpgradeTool(itemSO);
-            uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+            if(itemSO.itemType == ItemType.None)
+            {
+                uIShopItem.SetShowCanvas(false, itemSO, itemSO.icon);
+                NPCBuyed();
+            }
+            else
+            {
+                playerEquipment.UpgradeTool(itemSO);
+                uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
+
+            }
+
 
             // Give upgrade...
         }
@@ -60,5 +74,32 @@ public class ShopItem : MonoBehaviour, IInteractable
         {
             uIShopItem.SetnotEnoughMoney();
         }
+    }
+
+    private void NPCBuyed()
+    {
+        var npcObj = Instantiate(itemSO.prefab, transform.position, Quaternion.identity);
+        var baseNPC = npcObj.GetComponent<BaseNPC>();
+
+        NPCManager npcManager = GameServices.I.NPCManager;
+
+        string displayDescript = "Valim si to na zachode, chapes";
+
+        if (npcObj.TryGetComponent<MinerRole>(out var minerRole))
+        {
+            npcManager.RegisterNPC(baseNPC, UINPC.Role.Miner, itemSO.ItemName, displayDescript);
+            return;
+        }
+        if (npcObj.TryGetComponent<CollectorRole>(out var collectorRole))
+        {
+            npcManager.RegisterNPC(baseNPC, UINPC.Role.Collector, itemSO.ItemName, displayDescript);
+            return;
+        }
+        if (npcObj.TryGetComponent<BuilderRole>(out var builderRole))
+        {
+            npcManager.RegisterNPC(baseNPC, UINPC.Role.Builder, itemSO.ItemName, displayDescript);
+            return;
+        }
+
     }
 }

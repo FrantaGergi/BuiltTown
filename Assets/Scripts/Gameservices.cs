@@ -8,6 +8,7 @@ public class GameServices : MonoBehaviour
     public Transform Player;
     public ResourceMapManager resourceMapManager;
     public InventoryManager playerInventory;
+    public NPCManager NPCManager;
     //public NPCManager npcManager;
 
     private void Awake()
