@@ -35,7 +35,7 @@ public class VoronoiGenerator : MonoBehaviour
         }
     }
 
-    public void GeneratePlots()
+    /*public void GeneratePlots()
     {
         ClearExistingPlots();
 
@@ -50,7 +50,7 @@ public class VoronoiGenerator : MonoBehaviour
 
         Debug.Log($"Vygenerováno {plots.Count} pozemkù");
     }
-
+    */
     private List<Vector2> GenerateSeedPoints(int count, float radius)
     {
         List<Vector2> points = new List<Vector2>();
@@ -98,7 +98,7 @@ public class VoronoiGenerator : MonoBehaviour
         return points;
     }
 
-    private List<Plot> CreateVoronoiCells(List<Vector2> seedPoints)
+  /*  private List<Plot> CreateVoronoiCells(List<Vector2> seedPoints)
     {
         List<Plot> newPlots = new List<Plot>();
 
@@ -117,7 +117,7 @@ public class VoronoiGenerator : MonoBehaviour
         }
 
         return newPlots;
-    }
+    }*/
 
     private List<Vector2> CalculateVoronoiCell(Vector2 center, List<Vector2> allPoints, float radius)
     {

@@ -140,21 +140,35 @@ public class PlotController : MonoBehaviour
                 if (parts.Length >= 2 && int.TryParse(parts[1], out int parsedId)) id = parsedId;
             }
 
-            Plot plot = new Plot
-            {
-                id = id,
-                center = center,
-                vertices = vertices,
-                isUnlocked = false,
-                Building = null
-            };
-
-            plot.state = PlotState.Locked;
+            Plot plot = new Plot(
+                id,center, vertices,0,PlotState.Locked,
+                GetBuildingSiteInPlot(lr.gameObject, "Mini"),
+                GetBuildingSiteInPlot(lr.gameObject, "Big")
+                );
 
             plots.Add(plot);
         }
 
         plots = plots.OrderBy(p => p.id).ToList();
+    }
+    /// <summary>
+    /// it ignores big or small building text, just returns building site in the plot
+    /// </summary>
+    /// <param name="nameOfBuilding"></param>
+    public BuildingSite GetBuildingSiteInPlot(GameObject ParentHolder,string nameOfBuilding)
+    {
+        var buildingSite = ParentHolder.gameObject.GetComponentInChildren<BuildingSite>(true);
+       
+        BuildingSite bigBuilding =
+            ParentHolder.gameObject
+            .GetComponentsInChildren<BuildingSite>(true)
+            .FirstOrDefault(b =>
+            b.gameObject.name.IndexOf("Big", System.StringComparison.OrdinalIgnoreCase) >= 0);
+    
+        if(bigBuilding != null)
+            return bigBuilding;
+        else
+            return null;
     }
 
     private void InitializePlotStates(int unlockedPlotId)

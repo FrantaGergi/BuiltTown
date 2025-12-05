@@ -2968,8 +2968,9 @@ GameObject:
   - component: {fileID: 7828946634569191351}
   - component: {fileID: 8423940714363868491}
   - component: {fileID: 3021968570189492460}
+  - component: {fileID: -4876234522939705650}
   m_Layer: 0
-  m_Name: House
+  m_Name: BigHouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3051,6 +3052,19 @@ MonoBehaviour:
   rewardAmount: 500
   rentAmount: 500
   rentIntervalSeconds: 5
+--- !u!114 &-4876234522939705650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478857340277726180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b27fb3a3324b44e91364384d94a8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingSite
+  buildingCore: {fileID: 7828946634569191351}
 --- !u!1 &4704977877769150607
 GameObject:
   m_ObjectHideFlags: 0

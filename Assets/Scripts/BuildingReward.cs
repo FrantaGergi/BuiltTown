@@ -17,15 +17,18 @@ public class BuildingReward : MonoBehaviour
     public bool startOnAwake = false;
 
     [Header("One-time reward")]
-    [SerializeField] private int rewardAmount = 50;
+    [SerializeField] private int buildingRewardAmount = 50;
 
     [Header("Recurring (rent)")]
-    [SerializeField] private int rentAmount = 5;
+    [SerializeField] private int buildingRentAmount = 5;
     [SerializeField, Tooltip("Interval v sekundách (default 5 minut = 300s)")]
     private float rentIntervalSeconds = 300f;
 
-    public int RewardAmount => rewardAmount;
-    public int RentAmount => rentAmount;
+    public int BuildingRewardAmount => buildingRewardAmount;
+    public int BuildingRentAmount => buildingRentAmount;
+
+    [Header("LET IT BE")]
+    public int FinalAmmountToGive;
 
     // Event volaný pokaždé, když je vyplacena èástka (amount)
     public event Action<int> OnRewardPaid;
@@ -36,7 +39,7 @@ public class BuildingReward : MonoBehaviour
     private float nextPaymentTimestamp = 0f;
 
     // PUBLIC API required by UIBuildingMailboxController.SetInformation(...)
-    public int ammountToShow => mode == RewardMode.OneTime ? rewardAmount : rentAmount;
+    public int ammountToShow => mode == RewardMode.OneTime ? buildingRewardAmount : buildingRentAmount;
     public float timeToEarn => mode == RewardMode.OneTime ? 0f : rentIntervalSeconds;
     public float currentTimeToEarn => mode == RewardMode.OneTime ? 0f : Mathf.Max(0f, nextPaymentTimestamp - Time.time);
 
@@ -74,8 +77,8 @@ public class BuildingReward : MonoBehaviour
         yield return WaitForMoneyManager();
         if (MoneyManager.Instance != null)
         {
-            MoneyManager.Instance.AddMoney(rewardAmount);
-            OnRewardPaid?.Invoke(rewardAmount);
+            MoneyManager.Instance.AddMoney(buildingRewardAmount);
+            OnRewardPaid?.Invoke(buildingRewardAmount);
         }
     }
 
@@ -119,8 +122,8 @@ public class BuildingReward : MonoBehaviour
         // První platba ihned, poté každých rentIntervalSeconds.
         while (true)
         {
-            MoneyManager.Instance.AddMoney(rentAmount);
-            OnRewardPaid?.Invoke(rentAmount);
+            MoneyManager.Instance.AddMoney(buildingRentAmount);
+            OnRewardPaid?.Invoke(buildingRentAmount);
 
             // Naplánuj další platbu
             nextPaymentTimestamp = Time.time + rentIntervalSeconds;
@@ -144,7 +147,7 @@ public class BuildingReward : MonoBehaviour
     }
 
     // Dodateèné utilitky pro runtime konfiguraci:
-    public void SetOneTimeAmount(int amount) => rewardAmount = amount;
-    public void SetRentAmount(int amount) => rentAmount = amount;
+    public void SetOneTimeAmount(int amount) => buildingRewardAmount = amount;
+    public void SetRentAmount(int amount) => buildingRentAmount = amount;
     public void SetRentIntervalSeconds(float seconds) => rentIntervalSeconds = Mathf.Max(1f, seconds);
 }

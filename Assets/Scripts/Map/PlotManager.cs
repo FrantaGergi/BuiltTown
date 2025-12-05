@@ -7,6 +7,7 @@ public class PlotManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlotController plotController;
+    [SerializeField] private ChooserOfBuildingManager chooserOfBuildingManager;
     [SerializeField] private Camera minimapCamera;
     [SerializeField] private PlayerInput playerInput;
 
@@ -83,10 +84,13 @@ public class PlotManager : MonoBehaviour
             //PlotUIManager.Instance?.ShowBuildingMenu(plot);
         }else if (plot.state == PlotState.AvailableToUnlock)
         {
-            if(MoneyManager.Instance.TrySpend(plot.costToUnlock))
+            if (MoneyManager.Instance.TrySpend(plot.costToUnlock))
+            {
                 plotController.UnlockPlot(plot.id);
+                Debug.Log($"Pozemek #{plot.id} odemèen.");
+                chooserOfBuildingManager.OpenBuildingChooser(plot);
+            }
 
-            Debug.Log($"Pozemek #{plot.id} odemèen.");
         }
 
      

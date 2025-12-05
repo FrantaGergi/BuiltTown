@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class ChooserOfBuildingManager : MonoBehaviour
 {
     private bool isChooserOfBuildingOpen = false;
-    private string previousActionMap = "";
 
     [Header("References")]
     [SerializeField] private PlayerInput playerInput;
@@ -18,27 +17,22 @@ public class ChooserOfBuildingManager : MonoBehaviour
 
     public void CloseUIChooser()
     {
-        playerInput.SwitchCurrentActionMap(previousActionMap);
+        uiChooserOfBuilding.Hide();
 
     }
 
-    public void SetBuildingChooser()
-        {
-        if(isChooserOfBuildingOpen)
-        {
-            previousActionMap = playerInput.currentActionMap.name;
-            playerInput.SwitchCurrentActionMap("UI");
-            uiChooserOfBuilding.Show();
-        }
-        else
-        {
-            playerInput.SwitchCurrentActionMap(previousActionMap);
-            uiChooserOfBuilding.Hide();
-        }
+    public void OpenBuildingChooser(Plot plot)
+    {
+        if (plot.BigBuilding != null)
+            uiChooserOfBuilding.ShowBigHouseCosts(plot, true);
 
+        if (plot.MiniBuilding != null)
+            uiChooserOfBuilding.ShowMiniHouseCosts(plot, true);
+
+        uiChooserOfBuilding.Show();
     }
-
-    
-
 
 }
+
+   
+

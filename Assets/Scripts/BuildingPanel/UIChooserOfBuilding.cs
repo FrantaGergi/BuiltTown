@@ -31,31 +31,51 @@ public class UIChooserOfBuilding : MonoBehaviour
     }
 
 
-    public void ShowMiniHouseCosts(int wood, int stone, int ore, int rent, int sell, bool show)
+    public void ShowMiniHouseCosts(Plot plot, bool show)
     {
-        mWoodCount.text = wood.ToString();
-        mStoneCount.text = stone.ToString();
-        mOreCount.text = ore.ToString();
-        mRentCount.text = rent.ToString();
-        mSellCount.text = sell.ToString();
+        if (plot.MiniBuilding == null)
+            return;
+
+        mWoodCount.text = plot.MiniBuilding.buildingCore.woodCost.ToString();
+        mStoneCount.text = plot.MiniBuilding.buildingCore.stoneCost.ToString();
+        mOreCount.text = plot.MiniBuilding.buildingCore.oreCost.ToString();
+        mRentCount.text = plot.MRentPrice.ToString();
+        mSellCount.text = plot.MSellPrice.ToString();
         miniHouse.gameObject.SetActive(show);
+
+       // plot.MiniBuilding.buildingCore.buildingReward.FinalAmmountToGive = p
     }
-    public void ShowBigHouseCosts(int wood, int stone, int ore, int rent, int sell, bool show)
+    public void ShowBigHouseCosts(Plot plot, bool show)
     {
-        bWoodCount.text = wood.ToString();
-        bStoneCount.text = stone.ToString();
-        bOreCount.text = ore.ToString();
-        bRentCount.text = rent.ToString();
-        bSellCount.text = sell.ToString();
+        if (plot.BigBuilding == null)
+            return;
+
+
+
+        bWoodCount.text = plot.BigBuilding.buildingCore.woodCost.ToString();
+        bStoneCount.text = plot.BigBuilding.buildingCore.stoneCost.ToString();
+        bOreCount.text = plot.BigBuilding.buildingCore.oreCost.ToString();
+        bRentCount.text = plot.BRentPrice.ToString();
+        bSellCount.text = plot.BSellPrice.ToString();
         bigHouse.gameObject.SetActive(show);
     }
 
-    public void Show()
-    {
-        content.gameObject.SetActive(true);
-    }
+   
     public void Hide()
     {
         content.gameObject.SetActive(false);
+    }
+    public void Show()
+        {
+        content.gameObject.SetActive(true);
+    }
+
+    public void OnSelectedBigHouse()
+    {
+        Debug.Log("Big house selected");
+    }
+    public void OnSelectedMiniHouse()
+    {
+        Debug.Log("Mini house selected");
     }
 }

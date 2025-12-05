@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BuildingSite : MonoBehaviour, IBuildingSite
 {
-    [SerializeField] private Building buildingCore;
+    [SerializeField] public Building buildingCore;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
