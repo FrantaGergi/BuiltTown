@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -10,19 +11,35 @@ public class PlotManager : MonoBehaviour
     [SerializeField] private ChooserOfBuildingManager chooserOfBuildingManager;
     [SerializeField] private Camera minimapCamera;
     [SerializeField] private PlayerInput playerInput;
-
+    [SerializeField] private YesOrNoController yesOrNoController;
     [SerializeField] private RawImage minimapImage;
 
 
     [Header("Settings")]
     [SerializeField] private LayerMask groundLayer;
 
+
+    private Action onYesButtonClicked;
+
     private Plot selectedPlot;
 
-
+    private void Start()
+    {
+        onYesButtonClicked += () =>
+        {
+            if (MoneyManager.Instance.TrySpend(selectedPlot.costToUnlock))
+            {
+                plotController.UnlockPlot(selectedPlot.id);
+                Debug.Log($"Pozemek #{selectedPlot.id} odemèen.");
+                chooserOfBuildingManager.OpenBuildingChooser(selectedPlot);
+            }
+        };  
+    }
     public void HandlePlotClick()
     {
-        if(plotController.gameObject.activeSelf == false || chooserOfBuildingManager.isChooserOfBuildingOpen)
+        if(plotController.gameObject.activeSelf == false ||
+            chooserOfBuildingManager.isChooserOfBuildingOpen ||
+            yesOrNoController.YesOrNoPanelEnabled)
         {
             return;
         }
@@ -87,19 +104,16 @@ public class PlotManager : MonoBehaviour
             //PlotUIManager.Instance?.ShowBuildingMenu(plot);
         }else if (plot.state == PlotState.AvailableToUnlock)
         {
-            if (MoneyManager.Instance.TrySpend(plot.costToUnlock))
-            {
-                plotController.UnlockPlot(plot.id);
-                Debug.Log($"Pozemek #{plot.id} odemèen.");
-                chooserOfBuildingManager.OpenBuildingChooser(plot);
-            }
+            string mess = $"Buy distinct #{plot.id} for ${plot.costToUnlock}?";
+            yesOrNoController.Show(mess, onYesButtonClicked);
+           
 
         }
         
      
     }
 
-
+  
     public Plot GetSelectedPlot() => selectedPlot;
 
 }
