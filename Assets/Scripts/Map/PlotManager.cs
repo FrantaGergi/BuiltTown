@@ -22,7 +22,7 @@ public class PlotManager : MonoBehaviour
 
     public void HandlePlotClick()
     {
-        if(plotController.gameObject.activeSelf == false)
+        if(plotController.gameObject.activeSelf == false || chooserOfBuildingManager.isChooserOfBuildingOpen)
         {
             return;
         }
@@ -73,12 +73,15 @@ public class PlotManager : MonoBehaviour
 
         Debug.Log($"Kliknuto na pozemek #{plot.id}");
 
-        if (!plot.isUnlocked)
+        if (plot.state == PlotState.Unlocked)
         {
             // Zobraz UI pro odemèení
             //PlotUIManager.Instance?.ShowUnlockDialog(plot);
+            chooserOfBuildingManager.OpenBuildingChooser(plot);
+            
+
         }
-        if( plot.state == PlotState.Built)
+        if ( plot.state == PlotState.Built)
         {
             // Zobraz UI pro stavbu
             //PlotUIManager.Instance?.ShowBuildingMenu(plot);
@@ -92,7 +95,7 @@ public class PlotManager : MonoBehaviour
             }
 
         }
-
+        
      
     }
 

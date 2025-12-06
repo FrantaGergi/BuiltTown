@@ -20,7 +20,7 @@ public class Plot
             var site = MiniBuilding;
             if (site?.buildingCore?.buildingReward == null)
                 return 0;
-            return (costToUnlock / 1000) + site.buildingCore.buildingReward.BuildingRewardAmount;
+            return (costToUnlock / 1000) + site.buildingCore.buildingReward.BuildingRentAmount;
         }
     }
 
@@ -31,7 +31,7 @@ public class Plot
             var site = MiniBuilding;
             if (site?.buildingCore?.buildingReward == null)
                 return 0;
-            return (costToUnlock / 1500) + site.buildingCore.buildingReward.BuildingRentAmount;
+            return (costToUnlock / 1500) + site.buildingCore.buildingReward.BuildingRewardAmount;
         }
     }
 

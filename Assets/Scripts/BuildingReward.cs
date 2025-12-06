@@ -28,7 +28,8 @@ public class BuildingReward : MonoBehaviour
     public int BuildingRentAmount => buildingRentAmount;
 
     [Header("LET IT BE")]
-    public int FinalAmmountToGive;
+    public int FinalRewardAmount;
+    public int FinalRentAmount;
 
     // Event volaný pokaždé, když je vyplacena èástka (amount)
     public event Action<int> OnRewardPaid;
@@ -77,8 +78,8 @@ public class BuildingReward : MonoBehaviour
         yield return WaitForMoneyManager();
         if (MoneyManager.Instance != null)
         {
-            MoneyManager.Instance.AddMoney(buildingRewardAmount);
-            OnRewardPaid?.Invoke(buildingRewardAmount);
+            MoneyManager.Instance.AddMoney(FinalRewardAmount);
+            OnRewardPaid?.Invoke(FinalRewardAmount);
         }
     }
 
@@ -122,8 +123,8 @@ public class BuildingReward : MonoBehaviour
         // První platba ihned, poté každých rentIntervalSeconds.
         while (true)
         {
-            MoneyManager.Instance.AddMoney(buildingRentAmount);
-            OnRewardPaid?.Invoke(buildingRentAmount);
+            MoneyManager.Instance.AddMoney(FinalRentAmount);
+            OnRewardPaid?.Invoke(FinalRentAmount);
 
             // Naplánuj další platbu
             nextPaymentTimestamp = Time.time + rentIntervalSeconds;

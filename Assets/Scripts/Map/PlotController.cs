@@ -35,6 +35,9 @@ public class PlotController : MonoBehaviour
 
     void Start()
     {
+        // Deaktivovat children plot-holderù hned pøi startu
+        DisableAllPlotChildren();
+
         PopulateBoundaryLinesFromChildren();
         RebuildPlotsFromBoundaryLines();
 
@@ -62,6 +65,30 @@ public class PlotController : MonoBehaviour
         for (int i = 2; i <= n; i++)
             result *= i;
         return result;
+    }
+
+    /// <summary>
+    /// Deaktivuje všechny child GameObjecty pro každý plot-holder (transform child).
+    /// Voláno pøi Start() aby byly children "vypnuté už od startu".
+    /// </summary>
+    private void DisableAllPlotChildren()
+    {
+        int disabledCount = 0;
+        foreach (Transform plotHolder in transform)
+        {
+            // Pro každý child plot-holderu deaktivujeme jeho children (ne samotný plotHolder)
+            foreach (Transform child in plotHolder)
+            {
+                if (child.gameObject.activeSelf)
+                {
+                    child.gameObject.SetActive(false);
+                    disabledCount++;
+                }
+            }
+        }
+
+        if (disabledCount > 0)
+            Debug.Log($"PlotController: Disabled {disabledCount} child GameObjects of plot holders at Start.");
     }
 
 
@@ -204,6 +231,7 @@ public class PlotController : MonoBehaviour
         }
     }
 
+   
     // NEW NEIGHBOR CHECK METHOD - ASCII ONLY
     private bool AreNeighbors(Plot a, Plot b)
     {
