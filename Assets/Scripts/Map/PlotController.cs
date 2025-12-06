@@ -172,7 +172,10 @@ public class PlotController : MonoBehaviour
                 GetBuildingSiteInPlot(lr.gameObject, "Mini"),
                 GetBuildingSiteInPlot(lr.gameObject, "Big")
                 );
-
+            if(plot.MiniBuilding == null)
+            {
+                Debug.LogError("PlotController: MiniBuilding is null for plot id " + plot.id);
+            }
             plots.Add(plot);
         }
 
@@ -190,7 +193,7 @@ public class PlotController : MonoBehaviour
             ParentHolder.gameObject
             .GetComponentsInChildren<BuildingSite>(true)
             .FirstOrDefault(b =>
-            b.gameObject.name.IndexOf("Big", System.StringComparison.OrdinalIgnoreCase) >= 0);
+            b.gameObject.name.IndexOf(nameOfBuilding, System.StringComparison.OrdinalIgnoreCase) >= 0);
     
         if(bigBuilding != null)
             return bigBuilding;

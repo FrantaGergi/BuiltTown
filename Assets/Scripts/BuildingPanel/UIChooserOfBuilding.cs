@@ -42,7 +42,7 @@ public class UIChooserOfBuilding : MonoBehaviour
     }
 
 
-    public void ShowMiniHouseCosts(Plot plot, bool show)
+    public void ShowMiniHouseCosts(Plot plot)
     {
         if (plot.MiniBuilding == null)
         {
@@ -55,11 +55,11 @@ public class UIChooserOfBuilding : MonoBehaviour
         mOreCount.text = plot.MiniBuilding.buildingCore.oreCost.ToString();
         mRentCount.text = plot.MRentPrice.ToString();
         mSellCount.text = plot.MSellPrice.ToString();
-        miniHouse.gameObject.SetActive(show);
+        miniHouse.gameObject.SetActive(true);
 
        // plot.MiniBuilding.buildingCore.buildingReward.FinalAmmountToGive = p
     }
-    public void ShowBigHouseCosts(Plot plot, bool show)
+    public void ShowBigHouseCosts(Plot plot)
     {
         if (plot.BigBuilding == null)
         {
@@ -72,7 +72,7 @@ public class UIChooserOfBuilding : MonoBehaviour
         bOreCount.text = plot.BigBuilding.buildingCore.oreCost.ToString();
         bRentCount.text = plot.BRentPrice.ToString();
         bSellCount.text = plot.BSellPrice.ToString();
-        bigHouse.gameObject.SetActive(show);
+        bigHouse.gameObject.SetActive(true);
     }
 
 

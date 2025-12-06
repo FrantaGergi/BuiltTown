@@ -29,9 +29,9 @@ public class ChooserOfBuildingManager : MonoBehaviour
 
     public void OpenBuildingChooser(Plot plot)
     {
-        uiChooserOfBuilding.ShowBigHouseCosts(plot, true);
+        uiChooserOfBuilding.ShowBigHouseCosts(plot);
 
-        uiChooserOfBuilding.ShowMiniHouseCosts(plot, true);
+        uiChooserOfBuilding.ShowMiniHouseCosts(plot);
 
         uiChooserOfBuilding.Show();
         currentPlot = plot;
