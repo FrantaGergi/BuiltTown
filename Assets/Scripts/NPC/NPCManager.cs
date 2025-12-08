@@ -187,19 +187,20 @@ public class NPCManager : MonoBehaviour
         if (minimapManager != null)
         {
             Debug.Log("NPCManager: otevírám minimapu pro výbìr building site (collector).");
-            // NEchceme aby se minimapa zavøela ihned po výbìru building site,
-            // proto autoClose = false — po výbìru budovy v callbacku otevøeme znovu selection pro source coordinates
+
             minimapManager.OpenMinimapToGetBuildingSite((BuildingSite site) =>
             {
-                if (site == null) { Debug.LogWarning("NPCManager: Minimap vybral null building site."); return; }
-
-                Debug.Log("NPCManager: otevírám minimapu pro výbìr source pozice (collector).");
-                // teï vyber pozici zdroje — tady necháme autoClose = true, takže po výbìru se minimapa zavøe
-                minimapManager.OpenMinimapToGetSourceCoordinates((Vector3 sourcePos) =>
+                if (site == null)
                 {
-                    collector.AssignCollectionTask(sourcePos, site);
-                }, autoClose: true);
+                    Debug.LogWarning("NPCManager: Minimap vybral null building site.");
+                    return;
+                }
+
+                // Zde èekáme na hráèùv výbìr, callback se spustí, až klikne
+                OpenSourcePositionSelection(collector, site);
+
             }, autoClose: false);
+
             return;
         }
 
@@ -211,6 +212,18 @@ public class NPCManager : MonoBehaviour
         else
             Debug.LogWarning($"NPCManager: nelze najít building site nebo source pozici pro {npc.name} (minimap chybí).");
     }
+
+    // oddìlená metoda pro výbìr source pozice
+    private void OpenSourcePositionSelection(CollectorRole collector, BuildingSite site)
+    {
+        Debug.Log("NPCManager: otevírám minimapu pro výbìr source pozice (collector).");
+
+        minimapManager.OpenMinimapToGetSourceCoordinates((Vector3 sourcePos) =>
+        {
+            collector.AssignCollectionTask(sourcePos, site);
+        }, autoClose: true);
+    }
+
 
     // Builder: jedno tlaèítko => vyber building site kam bude dìlat
     private void HandleBuilderAction(BaseNPC npc, int index)

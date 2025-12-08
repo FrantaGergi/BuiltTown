@@ -1,3 +1,4 @@
+
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,27 +17,27 @@ public class MinimapManager : MonoBehaviour
     private enum MinimapSelectionMode
     {
         None,
-        SelectBuildingSite,    // vrátí BuildingSite (vybere Big pokud existuje, jinak Mini)
-        SelectWorldPosition    // vrátí svìtovou pozici (napø. zdroj)
+        SelectBuildingSite,    // vr t  BuildingSite (vybere Big pokud existuje, jinak Mini)
+        SelectWorldPosition    // vr t  sv tovou pozici (nap . zdroj)
     }
 
     private MinimapSelectionMode selectionMode = MinimapSelectionMode.None;
     private Action<BuildingSite> onBuildingSiteSelected;
     private Action<Vector3> onWorldPositionSelected;
 
-    // novì: zda se minimapa má po výbìru automaticky zavøít
+    // nov : zda se minimapa m  po v b ru automaticky zav  t
     private bool _selectionAutoClose = true;
 
 
 
     void Start()
     {
-       mainMinimapContainer.SetActive(false);
+        mainMinimapContainer.SetActive(false);
     }
 
     void Update()
     {
-        
+
     }
 
     public void OnClicked(InputAction.CallbackContext ctx)
@@ -46,14 +47,14 @@ public class MinimapManager : MonoBehaviour
 
 
 
-        // Pokud jsme v bìžném režimu (minimapa otevøena, ale nikdo neèeká na výbìr), necháme existující logiku
+        // Pokud jsme v b n m re imu (minimapa otev ena, ale nikdo ne ek  na v b r), nech me existuj c  logiku
         if (isMinimapOpen && selectionMode == MinimapSelectionMode.None)
         {
             plotManager.HandlePlotClick();
             return;
         }
 
-        // Pokud èekáme na výbìr, zpracujeme kliknutí jako výbìr
+        // Pokud  ek me na v b r, zpracujeme kliknut  jako v b r
         if (isMinimapOpen && selectionMode != MinimapSelectionMode.None)
         {
             Vector2 mousePos = Mouse.current.position.ReadValue();
@@ -61,44 +62,44 @@ public class MinimapManager : MonoBehaviour
             {
                 if (selectionMode == MinimapSelectionMode.SelectWorldPosition)
                 {
-                    // zachytíme hodnotu auto-close pøed voláním callbacku (eliminuje race)
+                    // zachyt me hodnotu auto-close p ed vol n m callbacku (eliminuje race)
                     bool shouldAutoClose = _selectionAutoClose;
 
-                    // vrátíme pozici (napø. zdroj)
+                    // vr t me pozici (nap . zdroj)
                     onWorldPositionSelected?.Invoke(worldPos);
 
-                    // Pokud jsme pøed voláním mìli nastaveno autoClose, zavøi + vyèisti stav.
+                    // Pokud jsme p ed vol n m m li nastaveno autoClose, zav i + vy isti stav.
                     if (shouldAutoClose)
                     {
                         ClearSelectionState();
                         CloseMinimapInternal();
-                        Debug.Log($"MinimapManager: vybraná svìtová pozice {worldPos}.");
+                        Debug.Log($"MinimapManager: vybran  sv tov  pozice {worldPos}.");
                     }
-                    // pokud _selectionAutoClose == false, necháme stav (callback mùže hned otevøít nový režim)
+                    // pokud _selectionAutoClose == false, nech me stav (callback m  e hned otev  t nov  re im)
                 }
                 else if (selectionMode == MinimapSelectionMode.SelectBuildingSite)
                 {
-                    // Z plotu vybereme preferovaný BuildingSite: primárnì Big pokud existuje, pak Mini, pak CurrentBuilding
+                    // Z plotu vybereme preferovan  BuildingSite: prim rn  Big pokud existuje, pak Mini, pak CurrentBuilding
                     BuildingSite site = ChooseBuildingSiteFromPlot(plot);
                     if (site != null)
                     {
-                        // zachytíme hodnotu auto-close pøed voláním callbacku (eliminuje race)
+                        // zachyt me hodnotu auto-close p ed vol n m callbacku (eliminuje race)
                         bool shouldAutoClose = _selectionAutoClose;
 
                         onBuildingSiteSelected?.Invoke(site);
 
-                        // Pokud jsme pøed voláním mìli nastaveno autoClose, zavøi + vyèisti stav.
+                        // Pokud jsme p ed vol n m m li nastaveno autoClose, zav i + vy isti stav.
                         if (shouldAutoClose)
                         {
                             ClearSelectionState();
                             CloseMinimapInternal();
-                            Debug.Log($"MinimapManager: vybraný plot {plot.id} s BuildingSite.");
+                            Debug.Log($"MinimapManager: vybran  plot {plot.id} s BuildingSite.");
                         }
-                        // pokud _selectionAutoClose == false necháme stav a callback mùže zmìnit selectionMode / handlery
+                        // pokud _selectionAutoClose == false nech me stav a callback m  e zm nit selectionMode / handlery
                     }
                     else
                     {
-                        Debug.LogWarning($"MinimapManager: vybraný plot {plot.id} neobsahuje BuildingSite.");
+                        Debug.LogWarning($"MinimapManager: vybran  plot {plot.id} neobsahuje BuildingSite.");
                     }
                 }
             }
@@ -126,7 +127,7 @@ public class MinimapManager : MonoBehaviour
 
         isMinimapOpen = !isMinimapOpen;
         SetMinimap();
-        
+
     }
 
     public void CloseMinimap()
@@ -144,9 +145,9 @@ public class MinimapManager : MonoBehaviour
 
     public void SetMinimap()
     {
-        if(isMinimapOpen)
+        if (isMinimapOpen)
         {
-            if(previousActionMap == "")
+            if (previousActionMap == "")
                 previousActionMap = playerInput.currentActionMap.name;
             playerInput.SwitchCurrentActionMap("UI");
 
@@ -167,8 +168,8 @@ public class MinimapManager : MonoBehaviour
     }
 
     // PUBLIC API pro NPC / role:
-    // Otevøe minimapu a èeká na výbìr BuildingSite; po výbìru zavolá callback.
-    // param autoClose: pokud true (default), minimapa se po výbìru automaticky zavøe; pokud false, zùstane otevøená.
+    // Otev e minimapu a  ek  na v b r BuildingSite; po v b ru zavol  callback.
+    // param autoClose: pokud true (default), minimapa se po v b ru automaticky zav e; pokud false, z stane otev en .
     public void OpenMinimapToGetBuildingSite(Action<BuildingSite> onSelected, bool autoClose = true)
     {
         selectionMode = MinimapSelectionMode.SelectBuildingSite;
@@ -178,8 +179,8 @@ public class MinimapManager : MonoBehaviour
         OpenMinimapForSelection();
     }
 
-    // Otevøe minimapu a èeká na kliknutí na mapu; vrátí svìtovou pozici.
-    // param autoClose: pokud true (default), minimapa se po výbìru automaticky zavøe.
+    // Otev e minimapu a  ek  na kliknut  na mapu; vr t  sv tovou pozici.
+    // param autoClose: pokud true (default), minimapa se po v b ru automaticky zav e.
     public void OpenMinimapToGetSourceCoordinates(Action<Vector3> onSelected, bool autoClose = true)
     {
         selectionMode = MinimapSelectionMode.SelectWorldPosition;
@@ -193,7 +194,7 @@ public class MinimapManager : MonoBehaviour
     {
         isMinimapOpen = true;
         SetMinimap();
-        // Odstraò aktvní selection v EventSystem, aby se zabránilo okamžitému aktivování UI elementù
+        // Odstra  aktvn  selection v EventSystem, aby se zabr nilo okam it mu aktivov n  UI element 
         UnityEngine.EventSystems.EventSystem.current?.SetSelectedGameObject(null);
     }
 
@@ -205,7 +206,7 @@ public class MinimapManager : MonoBehaviour
         _selectionAutoClose = true;
     }
 
-    // Volitelné utility / synchronní získání BuildingSite dle svìtové pozice
+    // Voliteln  utility / synchronn  z sk n  BuildingSite dle sv tov  pozice
     public BuildingSite GetBuildingSiteByClickedPos(Vector3 pos)
     {
         Plot plot = plotManager?.plotController.GetPlotAtPosition(pos);

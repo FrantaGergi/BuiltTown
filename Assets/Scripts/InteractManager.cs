@@ -25,6 +25,7 @@ public class InteractManager : MonoBehaviour
 
 
 
+
     // forced target (napø. world-space UI), upøednostnìn pøed raycastem
     private IInteractable forcedTarget;
 
