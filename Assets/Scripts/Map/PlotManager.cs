@@ -13,6 +13,7 @@ public class PlotManager : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private YesOrNoController yesOrNoController;
     [SerializeField] private RawImage minimapImage;
+    [SerializeField] private InformationController informationController;
 
 
     [Header("Settings")]
@@ -32,6 +33,10 @@ public class PlotManager : MonoBehaviour
                 plotController.UnlockPlot(selectedPlot.id);
                 Debug.Log($"Pozemek #{selectedPlot.id} odemèen.");
                 chooserOfBuildingManager.OpenBuildingChooser(selectedPlot);
+            }
+            else
+            {
+                informationController.ShowText("Not enough money", "You do not have enough money to unlock this plot.", 2f);
             }
         };  
     }
