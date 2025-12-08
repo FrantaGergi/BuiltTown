@@ -24,6 +24,11 @@ public class MinimapManager : MonoBehaviour
     private Action<BuildingSite> onBuildingSiteSelected;
     private Action<Vector3> onWorldPositionSelected;
 
+    // novì: zda se minimapa má po výbìru automaticky zavøít
+    private bool _selectionAutoClose = true;
+
+
+
     void Start()
     {
        mainMinimapContainer.SetActive(false);
@@ -39,9 +44,14 @@ public class MinimapManager : MonoBehaviour
         if (!ctx.performed)
             return;
 
+
+
         // Pokud jsme v bìžném režimu (minimapa otevøena, ale nikdo neèeká na výbìr), necháme existující logiku
-        if(isMinimapOpen && selectionMode == MinimapSelectionMode.None)
+        if (isMinimapOpen && selectionMode == MinimapSelectionMode.None)
+        {
             plotManager.HandlePlotClick();
+            return;
+        }
 
         // Pokud èekáme na výbìr, zpracujeme kliknutí jako výbìr
         if (isMinimapOpen && selectionMode != MinimapSelectionMode.None)
@@ -51,10 +61,20 @@ public class MinimapManager : MonoBehaviour
             {
                 if (selectionMode == MinimapSelectionMode.SelectWorldPosition)
                 {
+                    // zachytíme hodnotu auto-close pøed voláním callbacku (eliminuje race)
+                    bool shouldAutoClose = _selectionAutoClose;
+
                     // vrátíme pozici (napø. zdroj)
                     onWorldPositionSelected?.Invoke(worldPos);
-                    ClearSelectionState();
-                    CloseMinimapInternal();
+
+                    // Pokud jsme pøed voláním mìli nastaveno autoClose, zavøi + vyèisti stav.
+                    if (shouldAutoClose)
+                    {
+                        ClearSelectionState();
+                        CloseMinimapInternal();
+                        Debug.Log($"MinimapManager: vybraná svìtová pozice {worldPos}.");
+                    }
+                    // pokud _selectionAutoClose == false, necháme stav (callback mùže hned otevøít nový režim)
                 }
                 else if (selectionMode == MinimapSelectionMode.SelectBuildingSite)
                 {
@@ -62,9 +82,19 @@ public class MinimapManager : MonoBehaviour
                     BuildingSite site = ChooseBuildingSiteFromPlot(plot);
                     if (site != null)
                     {
+                        // zachytíme hodnotu auto-close pøed voláním callbacku (eliminuje race)
+                        bool shouldAutoClose = _selectionAutoClose;
+
                         onBuildingSiteSelected?.Invoke(site);
-                        ClearSelectionState();
-                        CloseMinimapInternal();
+
+                        // Pokud jsme pøed voláním mìli nastaveno autoClose, zavøi + vyèisti stav.
+                        if (shouldAutoClose)
+                        {
+                            ClearSelectionState();
+                            CloseMinimapInternal();
+                            Debug.Log($"MinimapManager: vybraný plot {plot.id} s BuildingSite.");
+                        }
+                        // pokud _selectionAutoClose == false necháme stav a callback mùže zmìnit selectionMode / handlery
                     }
                     else
                     {
@@ -116,7 +146,8 @@ public class MinimapManager : MonoBehaviour
     {
         if(isMinimapOpen)
         {
-            previousActionMap = playerInput.currentActionMap.name;
+            if(previousActionMap == "")
+                previousActionMap = playerInput.currentActionMap.name;
             playerInput.SwitchCurrentActionMap("UI");
 
             Cursor.lockState = CursorLockMode.None;
@@ -137,20 +168,24 @@ public class MinimapManager : MonoBehaviour
 
     // PUBLIC API pro NPC / role:
     // Otevøe minimapu a èeká na výbìr BuildingSite; po výbìru zavolá callback.
-    public void OpenMinimapToGetBuildingSite(Action<BuildingSite> onSelected)
+    // param autoClose: pokud true (default), minimapa se po výbìru automaticky zavøe; pokud false, zùstane otevøená.
+    public void OpenMinimapToGetBuildingSite(Action<BuildingSite> onSelected, bool autoClose = true)
     {
         selectionMode = MinimapSelectionMode.SelectBuildingSite;
         onBuildingSiteSelected = onSelected;
         onWorldPositionSelected = null;
+        _selectionAutoClose = autoClose;
         OpenMinimapForSelection();
     }
 
     // Otevøe minimapu a èeká na kliknutí na mapu; vrátí svìtovou pozici.
-    public void OpenMinimapToGetSourceCoordinates(Action<Vector3> onSelected)
+    // param autoClose: pokud true (default), minimapa se po výbìru automaticky zavøe.
+    public void OpenMinimapToGetSourceCoordinates(Action<Vector3> onSelected, bool autoClose = true)
     {
         selectionMode = MinimapSelectionMode.SelectWorldPosition;
         onWorldPositionSelected = onSelected;
         onBuildingSiteSelected = null;
+        _selectionAutoClose = autoClose;
         OpenMinimapForSelection();
     }
 
@@ -167,6 +202,7 @@ public class MinimapManager : MonoBehaviour
         selectionMode = MinimapSelectionMode.None;
         onBuildingSiteSelected = null;
         onWorldPositionSelected = null;
+        _selectionAutoClose = true;
     }
 
     // Volitelné utility / synchronní získání BuildingSite dle svìtové pozice
