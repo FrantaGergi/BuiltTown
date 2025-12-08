@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlotManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlotController plotController;
+    [SerializeField] public PlotController plotController;
     [SerializeField] private ChooserOfBuildingManager chooserOfBuildingManager;
     [SerializeField] private Camera minimapCamera;
     [SerializeField] private PlayerInput playerInput;
@@ -24,6 +24,9 @@ public class PlotManager : MonoBehaviour
 
     private Plot selectedPlot;
 
+
+
+  
     private void Start()
     {
         onYesButtonClicked += () =>
@@ -91,6 +94,8 @@ public class PlotManager : MonoBehaviour
 
     private void OnPlotClicked(Plot plot)
     {
+
+
         selectedPlot = plot;
 
         Debug.Log($"Kliknuto na pozemek #{plot.id}");
@@ -118,7 +123,42 @@ public class PlotManager : MonoBehaviour
      
     }
 
-  
+    // Nová veøejná utilita: z obrazových souøadnic (screen) zkusíme získat plot a svìtovou pozici na ground layer
+    public bool TryGetPlotFromMinimapScreenPoint(Vector2 screenPoint, out Plot plot, out Vector3 worldPoint)
+    {
+        plot = null;
+        worldPoint = Vector3.zero;
+
+        if (minimapImage == null || minimapCamera == null || plotController == null)
+            return false;
+
+        // Kontrola, že klik je uvnitø minimapy
+        if (!RectTransformUtility.RectangleContainsScreenPoint(minimapImage.rectTransform, screenPoint))
+            return false;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            minimapImage.rectTransform,
+            screenPoint,
+            null,
+            out Vector2 localPoint
+        );
+
+        Rect rect = minimapImage.rectTransform.rect;
+        float u = (localPoint.x - rect.x) / rect.width;
+        float v = (localPoint.y - rect.y) / rect.height;
+
+        Ray ray = minimapCamera.ViewportPointToRay(new Vector3(u, v, 0));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
+        {
+            worldPoint = hit.point;
+            plot = plotController.GetPlotAtPosition(hit.point);
+            return true;
+        }
+
+        return false;
+    }
+
     public Plot GetSelectedPlot() => selectedPlot;
 
 }

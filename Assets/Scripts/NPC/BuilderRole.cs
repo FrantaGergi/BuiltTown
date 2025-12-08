@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class BuilderRole : NPCRoleBase
 {
+    [Header("Behaviour")]
+    [SerializeField] private bool autoSearch = false;
     public float searchRadius = 20f;
 
+    // Externì pøiøazený building site (èeká na povel)
+    private IBuildingSite assignedBuilding;
+
+    // Interní cíl (mùže být stejný jako assignedBuilding)
     private IBuildingSite targetBuilding;
 
     private enum State { Idle, MovingToBuilding, Building }
@@ -14,7 +20,15 @@ public class BuilderRole : NPCRoleBase
         switch (state)
         {
             case State.Idle:
-                FindBuilding();
+                if (assignedBuilding != null)
+                {
+                    // pokud máme pøiøazený úkol, zaèneme ho vykonávat
+                    StartAssignedBuildingWork();
+                }
+                else if (autoSearch)
+                {
+                    FindBuilding();
+                }
                 break;
             case State.MovingToBuilding:
                 if (targetBuilding == null) { state = State.Idle; break; }
@@ -22,10 +36,38 @@ public class BuilderRole : NPCRoleBase
                 break;
             case State.Building:
                 if (targetBuilding == null) { state = State.Idle; break; }
-                // builder expects materials to be available near building (handled by collectors)
-                // For now, simply wait or animate building
+                // Simulace stavby - tuhle èást uprav dle potøeby (time, progress, atd.)
+                // Po dokonèení lze vyèistit pøiøazení:
+                // FinishAssignedWork();
                 break;
         }
+    }
+
+    // Externí API: pøiøaï building site a okamžitì ho zaèni obsluhovat
+    public void AssignBuildingSite(IBuildingSite site)
+    {
+        if (site == null) return;
+        assignedBuilding = site;
+        targetBuilding = site;
+        npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
+        state = State.MovingToBuilding;
+    }
+
+    // Externí API: zruší pøiøazení a vrátí roli do idle stavu
+    public void ClearAssignment()
+    {
+        assignedBuilding = null;
+        targetBuilding = null;
+        state = State.Idle;
+        npc.Stop();
+    }
+
+    private void StartAssignedBuildingWork()
+    {
+        if (assignedBuilding == null) return;
+        targetBuilding = assignedBuilding;
+        npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
+        state = State.MovingToBuilding;
     }
 
     private void FindBuilding()
