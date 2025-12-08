@@ -50,14 +50,15 @@ public class InformationController : MonoBehaviour
             StopCoroutine(showCoroutine);
             showCoroutine = null;
         }
+        // Aktivuj panel pøed animací
+
+        informationPanel.gameObject.SetActive(true);
 
         showCoroutine = StartCoroutine(ShowSequence(Mathf.Max(0f, duration)));
     }
 
     private IEnumerator ShowSequence(float visibleDuration)
     {
-        // Aktivuj panel pøed animací
-        informationPanel.gameObject.SetActive(true);
 
         // Animuj plynule z aktuálního scale na 1
         yield return StartCoroutine(ScaleTo(Vector3.one, animationDuration));
