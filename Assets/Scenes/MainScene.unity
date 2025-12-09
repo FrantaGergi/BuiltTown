@@ -108556,6 +108556,7 @@ MonoBehaviour:
   playerInput: {fileID: 1692120089}
   mainMinimapContainer: {fileID: 1844381255}
   plotManager: {fileID: 1204077281}
+  ignoreClickWindow: 0.08
 --- !u!114 &1204077280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174288,18 +174289,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 603972127}
     m_Modifications:
-    - target: {fileID: 3300000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
-      propertyPath: m_textAlignment
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
-      objectReference: {fileID: 0}
     - target: {fileID: 5105211329925322151, guid: adaa4a040c11d414c948362349441105, type: 3}
       propertyPath: m_Name
       value: GreenBtn
@@ -174419,6 +174408,18 @@ PrefabInstance:
     - target: {fileID: 8942148911383861397, guid: adaa4a040c11d414c948362349441105, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: a6e39ced0ea046bcb636c3f0b2e2a745, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -189172,7 +189173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2145175070
 RectTransform:
   m_ObjectHideFlags: 0
@@ -196712,9 +196713,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2181652729931771963, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277969888204508091, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148039891911551347, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387523515801557095, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415685646523309126, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024648079417256734, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072321162293870397, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704380735242172710, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 8263756318825757314, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
       propertyPath: m_Name
       value: BigTree
+      objectReference: {fileID: 0}
+    - target: {fileID: 8568978077658576883, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163946308331897452, guid: 6d8e5ca8418adff45945e8673aed5332, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -217,11 +217,11 @@ public class NPCManager : MonoBehaviour
     private void OpenSourcePositionSelection(CollectorRole collector, BuildingSite site)
     {
         Debug.Log("NPCManager: otevírám minimapu pro výbìr source pozice (collector).");
-
+        // tady je problém že kdyý 
         minimapManager.OpenMinimapToGetSourceCoordinates((Vector3 sourcePos) =>
         {
             collector.AssignCollectionTask(sourcePos, site);
-        }, autoClose: true);
+        },true);
     }
 
 

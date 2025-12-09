@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7519034127038870849}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.3639326, y: 0.01, z: -5.5963106}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceNode
   type: 4
-  groundItemPrefab: {fileID: 2360187659633827652, guid: 5774ffcbb3f63c540840450f397363be, type: 3}
+  groundItemPrefab: {fileID: 8970372451532658702, guid: 335b90e8739229b48a5779c40912dfb5, type: 3}
   stock: 10
 --- !u!1001 &5893999675817219701
 PrefabInstance:

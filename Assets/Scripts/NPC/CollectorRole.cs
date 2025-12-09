@@ -1,5 +1,6 @@
-    using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CollectorRole : NPCRoleBase
 {
@@ -56,19 +57,34 @@ public class CollectorRole : NPCRoleBase
                 // pick up
                 OnPickUp((GroundItem)((MonoBehaviour)targetItem));
                 // Po pickupu rozhodneme, kam jít dál v závislosti na potøebì budovy
-                if (assignedDestination != null && assignedDestination.NeedsResource(((GroundItem)targetItem).Type))
+                // 1) Kapacita plná -> okamžitì doruè
+                if (inventoryTotal() >= capacity)
                 {
-                    // doruèi na budovu
-                    targetBuilding = assignedDestination;
-                    npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
-                    state = State.MovingToBuilding;
+                    if (assignedDestination != null)
+                        targetBuilding = assignedDestination;
+                    else
+                        targetBuilding = FindBuildingAndDeliverFallback();
+
+                    if (targetBuilding != null)
+                    {
+                        npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
+                        state = State.MovingToBuilding;
+                        return;
+                    }
                 }
-                else
+
+                // 2) Máme úkol -> budova stále potøebuje -> pokraèuj v hledání dalšího itemu
+                if (assignedDestination != null && BuildingNeedsAny(assignedDestination))
                 {
-                    // nechat hledat další (nebo autoSearch)
+                    // pokud budova stále potøebuje, hledej další item podle assignedSourcePos
                     targetItem = null;
-                    state = State.Idle;
+                    StartAssignedCollection(); // on najde další item správného typu (nebo pošle doruèení)
+                    return;
                 }
+
+                // 3) AutoSearch verze
+                targetItem = null;
+                state = State.Idle;
                 break;
             case State.MovingToBuilding:
                 if (targetBuilding == null) { state = State.Idle; break; }
@@ -136,40 +152,111 @@ public class CollectorRole : NPCRoleBase
     {
         if (!hasAssignedSourcePos || assignedDestination == null) return;
 
-        // Najdi typ, který budova potøebuje a který zatím nemáme v inventáøi (nebo mùžeme mít více)
-        ItemType? neededType = GetNextNeededTypeForBuilding(assignedDestination);
-        if (neededType == null)
-        {
-            // nic nepotøebuje
+        // Najdi typy, které budova potøebuje, v prioritním poøadí
+        var neededTypes = GetNeededTypesOrdered(assignedDestination);
+        if (neededTypes == null || neededTypes.Count == 0)
             return;
+
+        // Hledáme první typ, který budova potøebuje AND je dostupný v okolí assignedSourcePos
+        ItemType? chosenType = null;
+        IGroundItem nearest = null;
+        foreach (var t in neededTypes)
+        {
+            nearest = FindNearestGroundItemOfType(assignedSourcePos, t);
+            if (nearest != null)
+            {
+                chosenType = t;
+                break;
+            }
         }
 
-        // Najdi nejbližší GroundItem daného typu z assignedSourcePos
-        IGroundItem nearest = FindNearestGroundItemOfType(assignedSourcePos, neededType.Value);
-        if (nearest != null)
+        if (nearest != null && chosenType.HasValue)
         {
             targetItem = nearest;
             npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
             state = State.MovingToItem;
+            return;
         }
-        else
+
+        // Pokud tady nejsou žádné dostupné položky v assignedSourcePos:
+        // 1) pokud už máme v inventáøi nìco, zkuste to doruèit do budovy (pokud budova stále potøebuje)
+        if (inventory.Count > 0)
         {
-            // nic v dosahu na assignedSourcePos; mùžeme buï rozšíøit hledání, nebo èekat/ukonèit
-            Debug.Log($"CollectorRole: žádný GroundItem typu {neededType} nalezen v okolí assignedSourcePos {assignedSourcePos}.");
-            // Zkus najít globálnì kolem NPC jako fallback
-            IGroundItem fallback = FindNearestGroundItemOfType(((MonoBehaviour)npc).transform.position, neededType.Value);
-            if (fallback != null)
+            // najdeme první typ v inventáøi, který budova pøijme
+            var invAccepted = inventory.FirstOrDefault(it => assignedDestination.NeedsResource(it.type));
+            if (!invAccepted.Equals(default((ItemType, int))))
             {
-                targetItem = fallback;
+                targetBuilding = assignedDestination;
+                npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
+                state = State.MovingToBuilding;
+                return;
+            }
+
+            // pokud nic v inventáøi nevyhovuje potøebám, zahodíme inventáø a zkusíme najít jiný typ co budova ještì potøebuje a je k nalezení v okolí
+            inventory.Clear();
+
+            // zkus najít jakýkoli potøebný typ v okolí assignedSourcePos (bez ohledu na poøadí)
+            foreach (var t in neededTypes)
+            {
+                var f = FindNearestGroundItemOfType(assignedSourcePos, t);
+                if (f != null)
+                {
+                    targetItem = f;
+                    npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
+                    state = State.MovingToItem;
+                    return;
+                }
+            }
+        }
+
+        // 2) fallback: zkus najít jakýkoli potøebný typ v okolí NPC
+        foreach (var t in neededTypes)
+        {
+            var f = FindNearestGroundItemOfType(((MonoBehaviour)npc).transform.position, t);
+            if (f != null)
+            {
+                targetItem = f;
                 npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
                 state = State.MovingToItem;
-            }
-            else
-            {
-                // nelze najít -> poèkej nebo zruš úkol
-                // necháme být v idle a èekáme na další možnosti
+                return;
             }
         }
+
+        // 3) nic nenalezeno -> pokud budova stále nìco potøebuje, doruè to co máme (i když prázdné -> nic nedìlej)
+        if (inventory.Count > 0 && BuildingNeedsAny(assignedDestination))
+        {
+            targetBuilding = assignedDestination;
+            npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
+            state = State.MovingToBuilding;
+            return;
+        }
+
+        // 4) pokud nic k dispozici a nic v inventáøi, ukonèi assignment
+        Debug.Log($"CollectorRole: nelze najít žádné položky pro assignedSourcePos {assignedSourcePos} a budova {assignedDestination}. Ukonèuji úkol.");
+        ClearAssignment();
+    }
+
+    private IBuildingSite FindBuildingAndDeliverFallback()
+    {
+        // Najde nejbližší budovu, která potøebuje nìco z našeho inventáøe
+        Collider[] cols = Physics.OverlapSphere(((MonoBehaviour)npc).transform.position, searchRadius);
+        IBuildingSite best = null;
+        float bestDist = float.MaxValue;
+        foreach (var c in cols)
+        {
+            var bs = c.GetComponent<IBuildingSite>();
+            if (bs == null) continue;
+            foreach (var it in inventory)
+            {
+                if (bs.NeedsResource(it.type))
+                {
+                    float d = Vector3.Distance(((MonoBehaviour)npc).transform.position, ((MonoBehaviour)bs).transform.position);
+                    if (d < bestDist) { bestDist = d; best = bs; }
+                    break;
+                }
+            }
+        }
+        return best;
     }
 
     private IGroundItem FindNearestGroundItemOfType(Vector3 origin, ItemType type)
@@ -189,14 +276,18 @@ public class CollectorRole : NPCRoleBase
         return best;
     }
 
-    private ItemType? GetNextNeededTypeForBuilding(IBuildingSite b)
+    private List<ItemType> GetNeededTypesOrdered(IBuildingSite b)
     {
-        // Kontroluj základní typy (dle existence v projektu). Pokud máš víc typù, pøidej je sem.
-        if (b.NeedsResource(ItemType.Wood)) return ItemType.Wood;
-        if (b.NeedsResource(ItemType.Stone)) return ItemType.Stone;
-        if (b.NeedsResource(ItemType.Ore)) return ItemType.Ore;
-        return null;
+        var list = new List<ItemType>();
+        if (b == null) return list;
+        // Poøadí preference: wood, stone, ore (upravit podle potøeby)
+        if (b.NeedsResource(ItemType.Wood)) list.Add(ItemType.Wood);
+        if (b.NeedsResource(ItemType.Stone)) list.Add(ItemType.Stone);
+        if (b.NeedsResource(ItemType.Ore)) list.Add(ItemType.Ore);
+        return list;
     }
+
+
 
     private bool BuildingNeedsAny(IBuildingSite b)
     {
