@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,7 +13,7 @@ public class CollectorRole : NPCRoleBase
     private IGroundItem targetItem;
     private IBuildingSite targetBuilding;
 
-    // Externí pøiøazení úkolu: souøadnice odkud hledat + kam doruèit
+    // Externï¿½ pï¿½iï¿½azenï¿½ ï¿½kolu: souï¿½adnice odkud hledat + kam doruï¿½it
     private Vector3 assignedSourcePos;
     private bool hasAssignedSourcePos = false;
     private IBuildingSite assignedDestination;
@@ -23,16 +23,16 @@ public class CollectorRole : NPCRoleBase
 
     void Update()
     {
-        // Pokud je budova dokonèena, vyèistit assignment a jít do idle
+        // Pokud je budova dokonï¿½ena, vyï¿½istit assignment a jï¿½t do idle
         if (assignedDestination != null && !BuildingNeedsAny(assignedDestination))
         {
-            ClearAssignment(); // vèetnì vymazání pøidìlené sourcePos
+            ClearAssignment(); // vï¿½etnï¿½ vymazï¿½nï¿½ pï¿½idï¿½lenï¿½ sourcePos
         }
 
         switch (state)
         {
             case State.Idle:
-                // Pokud máme explicitní úkol, spus ho
+                // Pokud mï¿½me explicitnï¿½ ï¿½kol, spusï¿½ ho
                 if (hasAssignedSourcePos && assignedDestination != null)
                 {
                     StartAssignedCollection();
@@ -56,8 +56,8 @@ public class CollectorRole : NPCRoleBase
                 if (targetItem == null) { state = State.Idle; break; }
                 // pick up
                 OnPickUp((GroundItem)((MonoBehaviour)targetItem));
-                // Po pickupu rozhodneme, kam jít dál v závislosti na potøebì budovy
-                // 1) Kapacita plná -> okamžitì doruè
+                // Po pickupu rozhodneme, kam jï¿½t dï¿½l v zï¿½vislosti na potï¿½ebï¿½ budovy
+                // 1) Kapacita plnï¿½ -> okamï¿½itï¿½ doruï¿½
                 if (inventoryTotal() >= capacity)
                 {
                     if (assignedDestination != null)
@@ -73,12 +73,12 @@ public class CollectorRole : NPCRoleBase
                     }
                 }
 
-                // 2) Máme úkol -> budova stále potøebuje -> pokraèuj v hledání dalšího itemu
+                // 2) Mï¿½me ï¿½kol -> budova stï¿½le potï¿½ebuje -> pokraï¿½uj v hledï¿½nï¿½ dalï¿½ï¿½ho itemu
                 if (assignedDestination != null && BuildingNeedsAny(assignedDestination))
                 {
-                    // pokud budova stále potøebuje, hledej další item podle assignedSourcePos
+                    // pokud budova stï¿½le potï¿½ebuje, hledej dalï¿½ï¿½ item podle assignedSourcePos
                     targetItem = null;
-                    StartAssignedCollection(); // on najde další item správného typu (nebo pošle doruèení)
+                    StartAssignedCollection(); // on najde dalï¿½ï¿½ item sprï¿½vnï¿½ho typu (nebo poï¿½le doruï¿½enï¿½)
                     return;
                 }
 
@@ -93,15 +93,15 @@ public class CollectorRole : NPCRoleBase
             case State.Depositing:
                 if (targetBuilding == null) { state = State.Idle; break; }
                 DepositAll();
-                // pokud to byl explicitní úkol, po dodání znovu zkontrolujeme další potøeby
+                // pokud to byl explicitnï¿½ ï¿½kol, po dodï¿½nï¿½ znovu zkontrolujeme dalï¿½ï¿½ potï¿½eby
                 if (hasAssignedSourcePos && assignedDestination != null && BuildingNeedsAny(assignedDestination))
                 {
-                    // zaèneme znovu hledat další resource od assignedSourcePos
+                    // zaï¿½neme znovu hledat dalï¿½ï¿½ resource od assignedSourcePos
                     StartAssignedCollection();
                 }
                 else
                 {
-                    // pokud úkol dokonèen nebo žádná další potøeba, vyèistit assignment
+                    // pokud ï¿½kol dokonï¿½en nebo ï¿½ï¿½dnï¿½ dalï¿½ï¿½ potï¿½eba, vyï¿½istit assignment
                     if (hasAssignedSourcePos)
                         ClearAssignment();
                 }
@@ -110,7 +110,7 @@ public class CollectorRole : NPCRoleBase
         }
     }
 
-    // Nové API: pøiøadí úkol sbìru od zadané pozice (sourcePos) pro danou building site
+    // Novï¿½ API: pï¿½iï¿½adï¿½ ï¿½kol sbï¿½ru od zadanï¿½ pozice (sourcePos) pro danou building site
     public void AssignCollectionTask(Vector3 sourcePos, IBuildingSite deliverySite)
     {
         if (deliverySite == null) return;
@@ -119,22 +119,22 @@ public class CollectorRole : NPCRoleBase
         hasAssignedSourcePos = true;
         assignedDestination = deliverySite;
 
-        // Aktualizuj inventory: pokud budova už nepotøebuje nìkteré položky, odstraò je z inventáøe
+        // Aktualizuj inventory: pokud budova uï¿½ nepotï¿½ebuje nï¿½kterï¿½ poloï¿½ky, odstraï¿½ je z inventï¿½ï¿½e
         inventory.RemoveAll(it => !assignedDestination.NeedsResource(it.type));
 
-        // Pokud máme nìjaké potøeby a jsme schopni nést další, zaèneme zadání plnit
+        // Pokud mï¿½me nï¿½jakï¿½ potï¿½eby a jsme schopni nï¿½st dalï¿½ï¿½, zaï¿½neme zadï¿½nï¿½ plnit
         if (BuildingNeedsAny(assignedDestination))
         {
             StartAssignedCollection();
         }
         else
         {
-            // pokud nic nepotøebuje, vyèisti a zùstaò v idle
+            // pokud nic nepotï¿½ebuje, vyï¿½isti a zï¿½staï¿½ v idle
             ClearAssignment();
         }
     }
 
-    // Externí API: zruší pøiøazení úkolu
+    // Externï¿½ API: zruï¿½ï¿½ pï¿½iï¿½azenï¿½ ï¿½kolu
     public void ClearAssignment()
     {
         hasAssignedSourcePos = false;
@@ -144,7 +144,7 @@ public class CollectorRole : NPCRoleBase
         state = State.Idle;
         npc.Stop();
 
-        // Pokud hráè døíve pøinesl materiál a my máme v inventáøi nìco co už není potøeba, zahodíme to
+        // Pokud hrï¿½ï¿½ dï¿½ï¿½ve pï¿½inesl materiï¿½l a my mï¿½me v inventï¿½ï¿½i nï¿½co co uï¿½ nenï¿½ potï¿½eba, zahodï¿½me to
         inventory.Clear();
     }
 
@@ -152,12 +152,12 @@ public class CollectorRole : NPCRoleBase
     {
         if (!hasAssignedSourcePos || assignedDestination == null) return;
 
-        // Najdi typy, které budova potøebuje, v prioritním poøadí
+        // Najdi typy, kterï¿½ budova potï¿½ebuje, v prioritnï¿½m poï¿½adï¿½
         var neededTypes = GetNeededTypesOrdered(assignedDestination);
         if (neededTypes == null || neededTypes.Count == 0)
             return;
 
-        // Hledáme první typ, který budova potøebuje AND je dostupný v okolí assignedSourcePos
+        // Hledï¿½me prvnï¿½ typ, kterï¿½ budova potï¿½ebuje AND je dostupnï¿½ v okolï¿½ assignedSourcePos
         ItemType? chosenType = null;
         IGroundItem nearest = null;
         foreach (var t in neededTypes)
@@ -178,11 +178,11 @@ public class CollectorRole : NPCRoleBase
             return;
         }
 
-        // Pokud tady nejsou žádné dostupné položky v assignedSourcePos:
-        // 1) pokud už máme v inventáøi nìco, zkuste to doruèit do budovy (pokud budova stále potøebuje)
+        // Pokud tady nejsou ï¿½ï¿½dnï¿½ dostupnï¿½ poloï¿½ky v assignedSourcePos:
+        // 1) pokud uï¿½ mï¿½me v inventï¿½ï¿½i nï¿½co, zkuste to doruï¿½it do budovy (pokud budova stï¿½le potï¿½ebuje)
         if (inventory.Count > 0)
         {
-            // najdeme první typ v inventáøi, který budova pøijme
+            // najdeme prvnï¿½ typ v inventï¿½ï¿½i, kterï¿½ budova pï¿½ijme
             var invAccepted = inventory.FirstOrDefault(it => assignedDestination.NeedsResource(it.type));
             if (!invAccepted.Equals(default((ItemType, int))))
             {
@@ -192,10 +192,10 @@ public class CollectorRole : NPCRoleBase
                 return;
             }
 
-            // pokud nic v inventáøi nevyhovuje potøebám, zahodíme inventáø a zkusíme najít jiný typ co budova ještì potøebuje a je k nalezení v okolí
+            // pokud nic v inventï¿½ï¿½i nevyhovuje potï¿½ebï¿½m, zahodï¿½me inventï¿½ï¿½ a zkusï¿½me najï¿½t jinï¿½ typ co budova jeï¿½tï¿½ potï¿½ebuje a je k nalezenï¿½ v okolï¿½
             inventory.Clear();
 
-            // zkus najít jakýkoli potøebný typ v okolí assignedSourcePos (bez ohledu na poøadí)
+            // zkus najï¿½t jakï¿½koli potï¿½ebnï¿½ typ v okolï¿½ assignedSourcePos (bez ohledu na poï¿½adï¿½)
             foreach (var t in neededTypes)
             {
                 var f = FindNearestGroundItemOfType(assignedSourcePos, t);
@@ -209,7 +209,7 @@ public class CollectorRole : NPCRoleBase
             }
         }
 
-        // 2) fallback: zkus najít jakýkoli potøebný typ v okolí NPC
+        // 2) fallback: zkus najï¿½t jakï¿½koli potï¿½ebnï¿½ typ v okolï¿½ NPC
         foreach (var t in neededTypes)
         {
             var f = FindNearestGroundItemOfType(((MonoBehaviour)npc).transform.position, t);
@@ -222,7 +222,7 @@ public class CollectorRole : NPCRoleBase
             }
         }
 
-        // 3) nic nenalezeno -> pokud budova stále nìco potøebuje, doruè to co máme (i když prázdné -> nic nedìlej)
+        // 3) nic nenalezeno -> pokud budova stï¿½le nï¿½co potï¿½ebuje, doruï¿½ to co mï¿½me (i kdyï¿½ prï¿½zdnï¿½ -> nic nedï¿½lej)
         if (inventory.Count > 0 && BuildingNeedsAny(assignedDestination))
         {
             targetBuilding = assignedDestination;
@@ -231,14 +231,14 @@ public class CollectorRole : NPCRoleBase
             return;
         }
 
-        // 4) pokud nic k dispozici a nic v inventáøi, ukonèi assignment
-        Debug.Log($"CollectorRole: nelze najít žádné položky pro assignedSourcePos {assignedSourcePos} a budova {assignedDestination}. Ukonèuji úkol.");
+        // 4) pokud nic k dispozici a nic v inventï¿½ï¿½i, ukonï¿½i assignment
+        Debug.Log($"CollectorRole: nelze najï¿½t ï¿½ï¿½dnï¿½ poloï¿½ky pro assignedSourcePos {assignedSourcePos} a budova {assignedDestination}. Ukonï¿½uji ï¿½kol.");
         ClearAssignment();
     }
 
     private IBuildingSite FindBuildingAndDeliverFallback()
     {
-        // Najde nejbližší budovu, která potøebuje nìco z našeho inventáøe
+        // Najde nejbliï¿½ï¿½ï¿½ budovu, kterï¿½ potï¿½ebuje nï¿½co z naï¿½eho inventï¿½ï¿½e
         Collider[] cols = Physics.OverlapSphere(((MonoBehaviour)npc).transform.position, searchRadius);
         IBuildingSite best = null;
         float bestDist = float.MaxValue;
@@ -280,7 +280,7 @@ public class CollectorRole : NPCRoleBase
     {
         var list = new List<ItemType>();
         if (b == null) return list;
-        // Poøadí preference: wood, stone, ore (upravit podle potøeby)
+        // Poï¿½adï¿½ preference: wood, stone, ore (upravit podle potï¿½eby)
         if (b.NeedsResource(ItemType.Wood)) list.Add(ItemType.Wood);
         if (b.NeedsResource(ItemType.Stone)) list.Add(ItemType.Stone);
         if (b.NeedsResource(ItemType.Ore)) list.Add(ItemType.Ore);
@@ -360,7 +360,7 @@ public class CollectorRole : NPCRoleBase
     {
         if (targetBuilding == null) return;
 
-        // Dodáme všechny položky, které budova potøebuje — po dodání odstraníme z inventáøe
+        // Dodï¿½me vï¿½echny poloï¿½ky, kterï¿½ budova potï¿½ebuje ï¿½ po dodï¿½nï¿½ odstranï¿½me z inventï¿½ï¿½e
         var delivered = new List<(ItemType type, int amount)>();
         foreach (var it in inventory)
         {
@@ -371,7 +371,7 @@ public class CollectorRole : NPCRoleBase
             }
         }
 
-        // Odstraò doruèené položky z inventáøe
+        // Odstraï¿½ doruï¿½enï¿½ poloï¿½ky z inventï¿½ï¿½e
         foreach (var d in delivered)
         {
             inventory.RemoveAll(i => i.type == d.type && i.amount == d.amount);

@@ -111,8 +111,9 @@ public class MinimapManager : MonoBehaviour
                     }
                     else
                     {
-                        informationController.ShowText("No building", "The selected district has no building.", 4f, true);
-                        Invoke(nameof(InfoTryAgain), 5f);
+                        informationController.ShowText("No building", $"District #{plot?.id} has no building.\n " +
+                            "If you dont have, close this page \n" +
+                            "and open minimap to setup building", 8f, true);
                     }
                 }
             }
@@ -122,15 +123,6 @@ public class MinimapManager : MonoBehaviour
             }
         }
     }
-
-    private void InfoTryAgain()
-    {
-        informationController.ShowText("Try again!", "Select district with building \n" +
-            " or close this page and open minimap  \n" +
-            " to build building", 50f, true);
-
-    }
-
     private BuildingSite ChooseBuildingSiteFromPlot(Plot plot)
     {
         if (plot == null) return null;
@@ -155,7 +147,6 @@ public class MinimapManager : MonoBehaviour
         {
             npcManager.CloseNPCManager();
         }
-
 
         isMinimapOpen = !isMinimapOpen;
         SetMinimap();
@@ -193,6 +184,9 @@ public class MinimapManager : MonoBehaviour
         }
         else
         {
+            // pokud zavíráme minimapu, zajistíme, aby se jakýkoli aktivní selection ukonèil
+            ClearSelectionState();
+
             if(npcManager.ISNPCManagerOpen == false)
             {
                 playerInput.SwitchCurrentActionMap(previousActionMap);
@@ -200,7 +194,6 @@ public class MinimapManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-          
 
             mainMinimapContainer.SetActive(false);
             informationController.HideInstant();

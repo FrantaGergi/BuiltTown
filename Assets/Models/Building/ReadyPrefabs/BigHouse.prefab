@@ -3073,9 +3073,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingReward
   mode: 2
   startOnAwake: 0
-  buildingRewardAmount: 50
-  buildingRentAmount: 5
-  rentIntervalSeconds: 5
+  buildingRewardAmount: 10000
+  buildingRentAmount: 1000
+  rentIntervalSeconds: 30
   FinalRewardAmount: 0
   FinalRentAmount: 0
 --- !u!114 &-4876234522939705650

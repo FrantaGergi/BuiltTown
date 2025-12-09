@@ -12,15 +12,19 @@ public class Plot
     public BuildingSite BigBuilding;
     public BuildingSite CurrentBuilding;
 
+    private int rentDivisor = 10000;
+    private int sellDivisor = 5000;
     public int costToUnlock;
     public int MRentPrice
     {
         get
         {
+            float multiplier = costToUnlock / rentDivisor;
             var site = MiniBuilding;
             if (site?.buildingCore?.buildingReward == null)
                 return 0;
-            return (costToUnlock / 1000) + site.buildingCore.buildingReward.BuildingRentAmount;
+            return (int)((multiplier * site.buildingCore.buildingReward.BuildingRentAmount)
+                + site.buildingCore.buildingReward.BuildingRentAmount);
         }
     }
 
@@ -28,10 +32,12 @@ public class Plot
     {
         get
         {
+            float multiplier = costToUnlock / sellDivisor;
             var site = MiniBuilding;
             if (site?.buildingCore?.buildingReward == null)
                 return 0;
-            return (costToUnlock / 1500) + site.buildingCore.buildingReward.BuildingRewardAmount;
+            return (int)((multiplier * site.buildingCore.buildingReward.BuildingRewardAmount)
+                + site.buildingCore.buildingReward.BuildingRewardAmount);
         }
     }
 
@@ -39,10 +45,12 @@ public class Plot
     {
         get
         {
+            float multiplier = costToUnlock / rentDivisor;
             var site = BigBuilding;
             if (site?.buildingCore?.buildingReward == null)
                 return 0;
-            return (costToUnlock / 1000) + site.buildingCore.buildingReward.BuildingRewardAmount;
+            return (int)((multiplier * site.buildingCore.buildingReward.BuildingRentAmount)
+                + site.buildingCore.buildingReward.BuildingRentAmount);
         }
     }
 
@@ -50,10 +58,12 @@ public class Plot
     {
         get
         {
+            float multiplier = costToUnlock / sellDivisor;
             var site = BigBuilding;
             if (site?.buildingCore?.buildingReward == null)
                 return 0;
-            return (costToUnlock / 1500) + site.buildingCore.buildingReward.BuildingRentAmount;
+            return (int)((multiplier * site.buildingCore.buildingReward.BuildingRewardAmount)
+                + site.buildingCore.buildingReward.BuildingRewardAmount);
         }
     }
 

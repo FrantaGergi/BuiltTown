@@ -22104,7 +22104,7 @@ GameObject:
   - component: {fileID: 231135934}
   - component: {fileID: 231135933}
   m_Layer: 0
-  m_Name: Count
+  m_Name: BRentCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22127,7 +22127,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 200.75, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &231135933
 MonoBehaviour:
@@ -45055,7 +45055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &507576872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45141,8 +45141,8 @@ MonoBehaviour:
   bOreCount: {fileID: 565091706}
   mRentCount: {fileID: 1735427163}
   mSellCount: {fileID: 1802113876}
-  bRentCount: {fileID: 878275802}
-  bSellCount: {fileID: 231135935}
+  bRentCount: {fileID: 231135935}
+  bSellCount: {fileID: 878275802}
 --- !u!1001 &508425134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79718,7 +79718,7 @@ GameObject:
   - component: {fileID: 878275801}
   - component: {fileID: 878275800}
   m_Layer: 0
-  m_Name: Count
+  m_Name: BSellCount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79741,7 +79741,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 200.75, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &878275800
 MonoBehaviour:
@@ -108572,6 +108572,8 @@ MonoBehaviour:
   playerInput: {fileID: 1692120089}
   mainMinimapContainer: {fileID: 1844381255}
   plotManager: {fileID: 1204077281}
+  informationController: {fileID: 1639136488}
+  npcManager: {fileID: 1204077282}
   ignoreClickWindow: 0.08
 --- !u!114 &1204077280
 MonoBehaviour:
@@ -108647,6 +108649,31 @@ MonoBehaviour:
   isChooserOfBuildingOpen: 0
   playerInput: {fileID: 1692120089}
   uiChooserOfBuilding: {fileID: 507576875}
+  openAnimationDuration: 0.18
+  openEase:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1204310569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144810,7 +144837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1639136487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -144872,6 +144899,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  sideOffsetX: -400
 --- !u!114 &1639136489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152547,7 +152575,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 200.75, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1735427161
 MonoBehaviour:
@@ -159215,7 +159243,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 200.75, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1802113874
 MonoBehaviour:
