@@ -11,6 +11,8 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameObject mainMinimapContainer;
     [SerializeField] private PlotManager plotManager;
+    [SerializeField] private InformationController informationController;
+    [SerializeField] private NPCManager npcManager;
 
     // Selection state for "open minimap to choose something"
     private enum MinimapSelectionMode
@@ -31,6 +33,10 @@ public class MinimapManager : MonoBehaviour
     [Header("Anti?double-click")]
     [SerializeField, Tooltip("Poèet sekund, po které ignorujeme první klik po otevøení minimapy")] private float ignoreClickWindow = 0.08f;
     private float _ignoreClicksUntil = 0f;
+
+
+    public bool IsMinimapOpen => isMinimapOpen;
+    public bool IsChooserActive => plotManager.chooserOfBuildingManager.isChooserOfBuildingOpen;
 
     void Start()
     {
@@ -67,6 +73,7 @@ public class MinimapManager : MonoBehaviour
             Vector2 mousePos = Mouse.current.position.ReadValue();
             if (plotManager.TryGetPlotFromMinimapScreenPoint(mousePos, out Plot plot, out Vector3 worldPos))
             {
+                informationController.HideInstant();
                 if (selectionMode == MinimapSelectionMode.SelectWorldPosition)
                 {
                     // zachytíme hodnotu auto-close pøed voláním callbacku (eliminuje race)
@@ -98,13 +105,14 @@ public class MinimapManager : MonoBehaviour
                         {
                             ClearSelectionState();
                             CloseMinimapInternal();
-                            Debug.Log($"MinimapManager: vybraný plot {plot.id} s BuildingSite.");
+                            Debug.Log($"MinimapManager: vybraný plot {plot?.id} s BuildingSite.");
                         }
                         // pokud _selectionAutoClose == false necháme stav a callback mùže mìnit selectionMode / handlery
                     }
                     else
                     {
-                        Debug.LogWarning($"MinimapManager: vybraný plot {plot.id} neobsahuje BuildingSite.");
+                        informationController.ShowText("No building", "The selected district has no building.", 4f, true);
+                        Invoke(nameof(InfoTryAgain), 5f);
                     }
                 }
             }
@@ -115,13 +123,21 @@ public class MinimapManager : MonoBehaviour
         }
     }
 
+    private void InfoTryAgain()
+    {
+        informationController.ShowText("Try again!", "Select district with building \n" +
+            " or close this page and open minimap  \n" +
+            " to build building", 50f, true);
+
+    }
+
     private BuildingSite ChooseBuildingSiteFromPlot(Plot plot)
     {
         if (plot == null) return null;
         // Prefer big site if present, pak mini, pak current
-        if (plot.BigBuilding != null) return plot.BigBuilding;
-        if (plot.MiniBuilding != null) return plot.MiniBuilding;
-        if (plot.CurrentBuilding != null) return plot.CurrentBuilding;
+        if (plot.BigBuilding != null && plot.BigBuilding.gameObject.activeSelf) return plot.BigBuilding;
+        if (plot.MiniBuilding != null && plot.MiniBuilding.gameObject.activeSelf) return plot.MiniBuilding;
+        if (plot.CurrentBuilding != null && plot.CurrentBuilding.gameObject.activeSelf) return plot.CurrentBuilding;
         return null;
     }
 
@@ -129,6 +145,17 @@ public class MinimapManager : MonoBehaviour
     {
         if (!ctx.performed)
             return;
+
+        if(plotManager.chooserOfBuildingManager.isChooserOfBuildingOpen)
+        {
+            plotManager.chooserOfBuildingManager.CloseUIChooser();
+            return;
+        }
+         else if(npcManager.ISNPCManagerOpen && !isMinimapOpen)
+        {
+            npcManager.CloseNPCManager();
+        }
+
 
         isMinimapOpen = !isMinimapOpen;
         SetMinimap();
@@ -166,12 +193,18 @@ public class MinimapManager : MonoBehaviour
         }
         else
         {
-            playerInput.SwitchCurrentActionMap(previousActionMap);
+            if(npcManager.ISNPCManagerOpen == false)
+            {
+                playerInput.SwitchCurrentActionMap(previousActionMap);
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+          
 
             mainMinimapContainer.SetActive(false);
+            informationController.HideInstant();
+
         }
     }
 
@@ -185,6 +218,8 @@ public class MinimapManager : MonoBehaviour
         onWorldPositionSelected = null;
         _selectionAutoClose = autoClose;
         OpenMinimapForSelection();
+        informationController.ShowText("Choose district", "Click on the district \n" +
+            " you want to assign him", 50f, true);
     }
 
     // Otevøe minimapu a èeká na kliknutí na mapu; vrátí svìtovou pozici.
@@ -196,6 +231,8 @@ public class MinimapManager : MonoBehaviour
         onBuildingSiteSelected = null;
         _selectionAutoClose = autoClose;
         OpenMinimapForSelection();
+        informationController.ShowText("Choose location", "Click on the map \n" +
+            " to select the location", 50f, true);
     }
 
     private void OpenMinimapForSelection()

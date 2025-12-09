@@ -8,7 +8,7 @@ public class PlotManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public PlotController plotController;
-    [SerializeField] private ChooserOfBuildingManager chooserOfBuildingManager;
+    [SerializeField] public ChooserOfBuildingManager chooserOfBuildingManager;
     [SerializeField] private Camera minimapCamera;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private YesOrNoController yesOrNoController;

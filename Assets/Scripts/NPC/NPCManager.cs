@@ -24,6 +24,8 @@ public class NPCManager : MonoBehaviour
     // Default search radii pro fallback chování (když minimapa není pøiøazena)
     private const float fallbackSearchRadius = 40f;
 
+    public bool ISNPCManagerOpen => isNPCManagerOpen;
+
     void Start()
     {
         mainNPCManagerContainer.SetActive(false);
@@ -49,6 +51,22 @@ public class NPCManager : MonoBehaviour
     {
         if (!ctx.performed)
             return;
+
+
+        if(minimapManager.IsMinimapOpen && isNPCManagerOpen)
+        {
+            minimapManager.CloseMinimap();
+            return;
+
+        }
+        else if (minimapManager.IsMinimapOpen && minimapManager.IsChooserActive)
+        {
+            return;
+        }
+        else if (minimapManager.IsMinimapOpen && !isNPCManagerOpen)
+        {
+            minimapManager.CloseMinimap();
+        }
 
         isNPCManagerOpen = !isNPCManagerOpen;
         SetNPCManager();
