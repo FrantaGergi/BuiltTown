@@ -11,7 +11,7 @@ public class PlotManager : MonoBehaviour
     [SerializeField] public ChooserOfBuildingManager chooserOfBuildingManager;
     [SerializeField] private Camera minimapCamera;
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private YesOrNoController yesOrNoController;
+    [SerializeField] public YesOrNoController yesOrNoController;
     [SerializeField] private RawImage minimapImage;
     [SerializeField] private InformationController informationController;
 
@@ -24,9 +24,11 @@ public class PlotManager : MonoBehaviour
 
     private Plot selectedPlot;
 
+    public bool IsYereOrNoPanelEnabled => yesOrNoController.YesOrNoPanelEnabled;
 
 
-  
+
+
     private void Start()
     {
         onYesButtonClicked += () =>

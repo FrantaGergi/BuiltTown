@@ -38,6 +38,8 @@ public class MinimapManager : MonoBehaviour
     public bool IsMinimapOpen => isMinimapOpen;
     public bool IsChooserActive => plotManager.chooserOfBuildingManager.isChooserOfBuildingOpen;
 
+    public bool IsYesOrNoPanelActive => plotManager.IsYereOrNoPanelEnabled;
+
     void Start()
     {
         mainMinimapContainer.SetActive(false);
@@ -138,7 +140,13 @@ public class MinimapManager : MonoBehaviour
         if (!ctx.performed)
             return;
 
-        if(plotManager.chooserOfBuildingManager.isChooserOfBuildingOpen)
+        if (plotManager.IsYereOrNoPanelEnabled)
+        {
+            plotManager.yesOrNoController.Hide();
+            return;
+        }
+
+        else if(plotManager.chooserOfBuildingManager.isChooserOfBuildingOpen)
         {
             plotManager.chooserOfBuildingManager.CloseUIChooser();
             return;

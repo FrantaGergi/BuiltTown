@@ -4,20 +4,34 @@ public class ResourceNode : MonoBehaviour, IResourceSource
 {
     [SerializeField] private ItemType type = ItemType.Wood;
     [SerializeField] private GameObject groundItemPrefab;
-    [SerializeField] private int stock = 10;
+    [Header ("Dont assign, will be set automatically")]
+    [SerializeField] private Resource resource;
 
     public ItemType Type => type;
 
+
+    private void Start()
+    {
+        if (resource == null)
+        {
+            resource = GetComponent<Resource>();
+            if (resource == null)
+            {
+                Debug.LogError("Resource component missing on ResourceNode.");
+            }
+        }
+    }
+
     public bool CanMine()
     {
-        return stock > 0;
+        return resource.hitPoints > 0;
     }
 
     public void MineOnce(int quantity)
     {
         if (!CanMine()) return;
 
-        stock--;
+        resource.hitPoints--;
 
         if (groundItemPrefab != null)
         {

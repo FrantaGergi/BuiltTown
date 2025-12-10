@@ -52,8 +52,11 @@ public class NPCManager : MonoBehaviour
         if (!ctx.performed)
             return;
 
-
-        if(minimapManager.IsMinimapOpen && isNPCManagerOpen)
+        if (minimapManager.IsYesOrNoPanelActive)
+        {
+            return;
+        }
+        else if(minimapManager.IsMinimapOpen && isNPCManagerOpen)
         {
             minimapManager.CloseMinimap();
             return;
