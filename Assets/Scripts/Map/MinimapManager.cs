@@ -140,7 +140,13 @@ public class MinimapManager : MonoBehaviour
         if (!ctx.performed)
             return;
 
-        if (plotManager.IsYereOrNoPanelEnabled)
+        if(GameServices.I.uiBuildingMailboxController.IsSomethingOpen())
+        {
+            GameServices.I.uiBuildingMailboxController.OnCloseMailbox();
+            return;
+        }
+
+        else if (plotManager.IsYereOrNoPanelEnabled)
         {
             plotManager.yesOrNoController.Hide();
             return;

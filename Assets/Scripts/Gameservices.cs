@@ -9,6 +9,7 @@ public class GameServices : MonoBehaviour
     public ResourceMapManager resourceMapManager;
     public InventoryManager playerInventory;
     public NPCManager NPCManager;
+    public UIBuildingMailboxController uiBuildingMailboxController; 
     //public NPCManager npcManager;
 
     private void Awake()

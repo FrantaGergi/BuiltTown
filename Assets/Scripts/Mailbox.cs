@@ -30,8 +30,8 @@ public class Mailbox : MonoBehaviour
         if (buildingReward.mode == BuildingReward.RewardMode.UnSetted)
             this.uIBuildingMailboxController.SetOption(
                 this,
-                FormatNumber(buildingReward.BuildingRentAmount),
-                FormatNumber(buildingReward.BuildingRewardAmount));
+                FormatNumber(buildingReward.FinalRentAmount),
+                FormatNumber(buildingReward.FinalRewardAmount));
         else
         {
             this.uIBuildingMailboxController.SetInformation(

@@ -18,6 +18,12 @@ public class UIBuildingMailboxController : MonoBehaviour
     private float currentTimeToEarnValue = 0f;
 
     private Mailbox mailbox;
+
+    public bool IsSomethingOpen()
+    {
+        return (optionPanel != null && optionPanel.gameObject.activeSelf) ||
+               (informationPanel != null && informationPanel.gameObject.activeSelf);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

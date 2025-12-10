@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using BuiltTown.NPC;
 using TMPro;
+using VHierarchy.Libs;
 
 public class UINPC : MonoBehaviour
 {
@@ -59,6 +60,7 @@ public class UINPC : MonoBehaviour
         public void SetDisplayName(string displayName) => owner?.SetRowName(npc, displayName);
         public void SetStatus(string status) => owner?.SetRowStatus(npc, status);
         public void SetDistrictStatus(string status) => owner?.SetRowDistrictStatus(npc, status);
+        public void SetHighlightSection(int index) => owner?.SetHighlightSection(npc, index);
         public void RemoveRow() => owner?.UnregisterNPC(npc);
     }
 
@@ -86,7 +88,9 @@ public class UINPC : MonoBehaviour
         if (row.icon != null) row.icon.sprite = GetIconForRole(role);
         if (row.nameText != null) row.nameText.text = displayName;
         if (row.statusText != null) row.statusText.text = status;
-        npc.SetUiDistrictSatus("Not Selected");
+
+        SetRowStatus(npc,"Not Selected");
+        SetHighlightSection(npc, -1);
 
         BindButtons(npc, row);
 
@@ -118,6 +122,8 @@ public class UINPC : MonoBehaviour
 
         if (handles.ContainsKey(npc))
             handles.Remove(npc);
+
+        npc.gameObject.Destroy();
     }
 
     public void ClearAll()
@@ -227,5 +233,34 @@ public class UINPC : MonoBehaviour
         if (npc == null || !rows.TryGetValue(npc, out var row)) return;
         if (row.actionsContainer?.GetComponentInChildren<TextMeshProUGUI>() != null) 
             row.actionsContainer.GetComponentInChildren<TextMeshProUGUI>().text = status ?? string.Empty;
+    }
+    /// <summary>
+    /// Sets the currently highlighted section by its index.
+    /// </summary>
+    /// <param name="index">The zero-based index of the section to highlight.</param>
+    private void SetHighlightSection(BaseNPC npc, int index)
+    {
+        if (npc == null || !rows.TryGetValue(npc, out var row)) return;
+        Debug.Log($"UINPC: Setting highlight section {index} for NPC {npc.name}");
+        for (int i = 0; i < row.actionButtons.Count; i++)
+        {
+            var img = row.actionButtons[i].gameObject.GetComponent<Image>();
+            Color c = img.color;
+
+            if (i == index)
+            {
+                c.a = 1f;
+                img.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+
+            }
+            else
+            {
+                c.a = 0f;
+                img.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+            }
+            img.color = c;
+
+        }
     }
 }

@@ -13,7 +13,7 @@ public class Plot
     public BuildingSite CurrentBuilding;
 
     private int rentDivisor = 10000;
-    private int sellDivisor = 5000;
+    private int sellDivisor = 2000;
     public int costToUnlock;
     public int MRentPrice
     {

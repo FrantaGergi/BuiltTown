@@ -65,5 +65,9 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
     {
         UiRow?.SetDistrictStatus(status);
     }
+    public void SetHighlightSection(int index)
+    {
+        UiRow?.SetHighlightSection(index);
+    }
 
 }

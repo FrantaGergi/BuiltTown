@@ -52,7 +52,13 @@ public class NPCManager : MonoBehaviour
         if (!ctx.performed)
             return;
 
-        if (minimapManager.IsYesOrNoPanelActive)
+        if (GameServices.I.uiBuildingMailboxController.IsSomethingOpen())
+        {
+            GameServices.I.uiBuildingMailboxController.OnCloseMailbox();
+            return;
+        }
+
+        else if (minimapManager.IsYesOrNoPanelActive)
         {
             return;
         }
@@ -196,6 +202,7 @@ public class NPCManager : MonoBehaviour
             minimapManager.OpenMinimapToGetSourceCoordinates((Vector3 pos) =>
             {
                 miner.AssignMiningTask(pos, requested);
+                npc.SetHighlightSection(index);
             }, autoClose: true);
             return;
         }
