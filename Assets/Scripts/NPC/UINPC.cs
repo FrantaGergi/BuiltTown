@@ -240,8 +240,10 @@ public class UINPC : MonoBehaviour
     /// <param name="index">The zero-based index of the section to highlight.</param>
     private void SetHighlightSection(BaseNPC npc, int index)
     {
+
         if (npc == null || !rows.TryGetValue(npc, out var row)) return;
-        Debug.Log($"UINPC: Setting highlight section {index} for NPC {npc.name}");
+        if (row.actionButtons.Count <= 1)  return; // nothing to highlight)
+
         for (int i = 0; i < row.actionButtons.Count; i++)
         {
             var img = row.actionButtons[i].gameObject.GetComponent<Image>();
