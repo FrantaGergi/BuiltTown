@@ -32,6 +32,9 @@ public class Resource : MonoBehaviour, IInteractable
     [Range(0f,1f),SerializeField] protected float hitTime= 0.5f; // èas v sekundách, kdy bìhem animace dojde k zásahu
     protected bool hitTriggered = false;
 
+
+    [SerializeField] private ResourceNode resourceNode;
+
     protected enum AnimationType
     {
         Chopping,
@@ -56,6 +59,11 @@ public class Resource : MonoBehaviour, IInteractable
         if (hitEffect == null)
         {
             Debug.LogError("HitShakeEffect component not found on Resource.");
+        }
+        resourceNode = GetComponent<ResourceNode>();
+        if(resourceNode == null)
+        {
+            Debug.LogError("ResourceNode component not found on Resource.");
         }
     }
 
@@ -175,7 +183,8 @@ public class Resource : MonoBehaviour, IInteractable
     {
         Vector3 origin = transform.position + Vector3.up * 1.2f;
 
-        var a = Instantiate(itemSO.prefab, origin, UnityEngine.Random.rotation);
+        // už ne z isemso, abychom mohli modifikovat podle ruzné scaly resource node
+        var a = Instantiate(resourceNode.GroundItemPrefab, origin, UnityEngine.Random.rotation);
         a.GetComponent<SpawnIconBehaviour>().SetAndStart(playerEquipment.Player, inventoryManager, ammount, itemSO);
     }
 

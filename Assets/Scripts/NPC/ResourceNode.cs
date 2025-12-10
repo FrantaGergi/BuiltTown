@@ -8,7 +8,7 @@ public class ResourceNode : MonoBehaviour, IResourceSource
     [SerializeField] private Resource resource;
 
     public ItemType Type => type;
-
+    public GameObject GroundItemPrefab => groundItemPrefab;
 
     private void Start()
     {

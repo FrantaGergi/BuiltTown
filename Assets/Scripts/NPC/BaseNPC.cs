@@ -52,14 +52,18 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
     }
 
     // Convenience: aktualizace UI pøímo z NPC / role
-    public void SetUiDisplay(string displayName, string status)
+    public void SetDisplayName(string displayName)
     {
         UiRow?.SetDisplayName(displayName);
-        UiRow?.SetStatus(status);
     }
 
     public void SetUiStatus(string status)
     {
         UiRow?.SetStatus(status);
     }
+    public void SetUiDistrictSatus(string status)
+    {
+        UiRow?.SetDistrictStatus(status);
+    }
+
 }

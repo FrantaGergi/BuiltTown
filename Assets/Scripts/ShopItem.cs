@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static InteractManager;
 
@@ -87,19 +88,44 @@ public class ShopItem : MonoBehaviour, IInteractable
 
         if (npcObj.TryGetComponent<MinerRole>(out var minerRole))
         {
-            npcManager.RegisterNPC(baseNPC, UINPC.Role.Miner, itemSO.ItemName, displayDescript);
+            npcManager.RegisterNPC(baseNPC, UINPC.Role.Miner, GetRandomFullName(), displayDescript);
             return;
         }
         if (npcObj.TryGetComponent<CollectorRole>(out var collectorRole))
         {
-            npcManager.RegisterNPC(baseNPC, UINPC.Role.Collector, itemSO.ItemName, displayDescript);
+            npcManager.RegisterNPC(baseNPC, UINPC.Role.Collector, GetRandomFullName(), displayDescript);
             return;
         }
         if (npcObj.TryGetComponent<BuilderRole>(out var builderRole))
         {
-            npcManager.RegisterNPC(baseNPC, UINPC.Role.Builder, itemSO.ItemName, displayDescript);
+            npcManager.RegisterNPC(baseNPC, UINPC.Role.Builder, GetRandomFullName(), displayDescript);
             return;
         }
 
     }
+
+
+    private static readonly List<string> firstNames = new List<string>
+    {
+        "Jan", "Petr", "Tomas", "Lukas", "Adam",
+        "David", "Martin", "Jakub", "Filip", "Ondrej"
+    };
+
+    private static readonly List<string> lastNames = new List<string>
+    {
+        "Novak", "Svoboda", "Dvorak", "Prochazka", "Kucera",
+        "Benes", "Horak", "Jelinek", "Kral", "Ruzicka"
+    };
+
+    /// <summary>
+    /// Vrátí náhodné jméno + pøíjmení, oddìlené pomocí \n (pro UI).
+    /// </summary>
+    public static string GetRandomFullName()
+    {
+        string first = firstNames[Random.Range(0, firstNames.Count)];
+        string last = lastNames[Random.Range(0, lastNames.Count)];
+
+        return $"{first}\n{last}";
+    }
+
 }

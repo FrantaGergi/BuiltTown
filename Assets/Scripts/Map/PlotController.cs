@@ -180,6 +180,14 @@ public class PlotController : MonoBehaviour
         }
 
         plots = plots.OrderBy(p => p.id).ToList();
+
+        foreach (var plot in plots)
+        {
+            if (plot.BigBuilding != null)
+                plot.BigBuilding.ID = plot.id;
+            if (plot.MiniBuilding != null)
+                plot.MiniBuilding.ID = plot.id;
+        }
     }
     /// <summary>
     /// it ignores big or small building text, just returns building site in the plot

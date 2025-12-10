@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnIconBehaviour
   radius: 0.5
-  hopDistance: 1.5
-  hopHeight: 1
+  hopDistance: 3
+  hopHeight: 1.5
   hopTime: 0.6
   groundMask:
     serializedVersion: 2

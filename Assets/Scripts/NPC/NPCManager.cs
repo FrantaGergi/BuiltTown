@@ -230,6 +230,7 @@ public class NPCManager : MonoBehaviour
                     return;
                 }
                 
+                npc.SetUiDistrictSatus("To District: #" + site.ID);
                 // Zde èekáme na hráèùv výbìr, callback se spustí, až klikne
                 OpenSourcePositionSelection(collector, site);
 
@@ -273,7 +274,9 @@ public class NPCManager : MonoBehaviour
         {
             minimapManager.OpenMinimapToGetBuildingSite((BuildingSite site) =>
             {
-                if (site == null) { Debug.LogWarning("NPCManager: Minimap vybral null building site."); return; }
+                if (site == null) 
+                { Debug.LogWarning("NPCManager: Minimap vybral null building site."); return; }
+                npc.SetUiDistrictSatus("At District #" + site.ID);
                 builder.AssignBuildingSite(site);
             }, autoClose: true);
             return;

@@ -58,7 +58,7 @@ public class UINPC : MonoBehaviour
 
         public void SetDisplayName(string displayName) => owner?.SetRowName(npc, displayName);
         public void SetStatus(string status) => owner?.SetRowStatus(npc, status);
-        public void SetDistriction(string districtStatus) => owner?.SetRowStatus(npc, districtStatus);
+        public void SetDistrictStatus(string status) => owner?.SetRowDistrictStatus(npc, status);
         public void RemoveRow() => owner?.UnregisterNPC(npc);
     }
 
@@ -86,6 +86,7 @@ public class UINPC : MonoBehaviour
         if (row.icon != null) row.icon.sprite = GetIconForRole(role);
         if (row.nameText != null) row.nameText.text = displayName;
         if (row.statusText != null) row.statusText.text = status;
+        npc.SetUiDistrictSatus("Not Selected");
 
         BindButtons(npc, row);
 
@@ -224,6 +225,7 @@ public class UINPC : MonoBehaviour
     private void SetRowDistrictStatus(BaseNPC npc, string status)
     {
         if (npc == null || !rows.TryGetValue(npc, out var row)) return;
-       // TODO if (row.statusText != null) row.actionsContainer.FindChild.text = status ?? string.Empty;
+        if (row.actionsContainer?.GetComponentInChildren<TextMeshProUGUI>() != null) 
+            row.actionsContainer.GetComponentInChildren<TextMeshProUGUI>().text = status ?? string.Empty;
     }
 }
