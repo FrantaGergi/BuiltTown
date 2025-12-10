@@ -19,6 +19,7 @@ public class MinerRole : NPCRoleBase
 
     private enum State { Idle, MovingToSource, Mining }
     private State state = State.Idle;
+    private State previousState = State.Idle;
 
     void Update()
     {
@@ -80,6 +81,32 @@ public class MinerRole : NPCRoleBase
                         state = State.Idle;
                     }
                 }
+                break;
+        }
+
+        // Aktualizuj UI status jen pøi zmìnì stavu
+        if (state != previousState)
+        {
+            UpdateUiStatus(state);
+            previousState = state;
+        }
+    }
+
+    private void UpdateUiStatus(State s)
+    {
+        switch (s)
+        {
+            case State.Idle:
+                if (hasAssignedSourcePos)
+                    npc?.SetUiStatus("Èeká na úkol");
+                else
+                    npc?.SetUiStatus("Neèinný");
+                break;
+            case State.MovingToSource:
+                npc?.SetUiStatus($"Jdu tìžit {assignedResourceType}");
+                break;
+            case State.Mining:
+                npc?.SetUiStatus($"Tìží {assignedResourceType}");
                 break;
         }
     }

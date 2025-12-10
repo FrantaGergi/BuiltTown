@@ -14,6 +14,7 @@ public class BuilderRole : NPCRoleBase
 
     private enum State { Idle, MovingToBuilding, Building }
     private State state = State.Idle;
+    private State previousState = State.Idle;
 
     void Update()
     {
@@ -36,9 +37,34 @@ public class BuilderRole : NPCRoleBase
                 break;
             case State.Building:
                 if (targetBuilding == null) { state = State.Idle; break; }
-                // Simulace stavby - tuhle èást uprav dle potøeby (time, progress, atd.)
-                // Po dokonèení lze vyèistit pøiøazení:
-                // FinishAssignedWork();
+                // builder expects materials to be available near building (handled by collectors)
+                // For now, simply wait or animate building
+                break;
+        }
+
+        // Aktualizuj UI status jen pøi zmìnì stavu
+        if (state != previousState)
+        {
+            UpdateUiStatus(state);
+            previousState = state;
+        }
+    }
+
+    private void UpdateUiStatus(State s)
+    {
+        switch (s)
+        {
+            case State.Idle:
+                if (assignedBuilding != null)
+                    npc?.SetUiStatus("Pøipraven k práci");
+                else
+                    npc?.SetUiStatus("Neèinný");
+                break;
+            case State.MovingToBuilding:
+                npc?.SetUiStatus("Jdu na stavbu");
+                break;
+            case State.Building:
+                npc?.SetUiStatus("Staví");
                 break;
         }
     }

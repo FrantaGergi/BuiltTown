@@ -10,15 +10,15 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
     [Header("Movement")]
     public float stopDistance = 0.5f;
 
+    // UI handle - pøiøadí NPCManager pøi registraci
+    public UINPC.NPCRowHandle UiRow { get; set; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
     }
-
-    // Update is called once per frame
-   
 
     public void MoveTo(Vector3 position)
     {
@@ -49,5 +49,17 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
         dir.y = 0;
         if (dir.sqrMagnitude > 0.001f)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10f * Time.deltaTime);
+    }
+
+    // Convenience: aktualizace UI pøímo z NPC / role
+    public void SetUiDisplay(string displayName, string status)
+    {
+        UiRow?.SetDisplayName(displayName);
+        UiRow?.SetStatus(status);
+    }
+
+    public void SetUiStatus(string status)
+    {
+        UiRow?.SetStatus(status);
     }
 }

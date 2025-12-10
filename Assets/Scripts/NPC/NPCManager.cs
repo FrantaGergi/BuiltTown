@@ -110,6 +110,10 @@ public class NPCManager : MonoBehaviour
             rolesByNpc[npc] = role;
 
         UINPC.RegisterOrUpdateNPC(npc, role, displayName, status);
+
+        // pøiøaï handle do BaseNPC pro pøímé volání z rolí/NPC
+        if (UINPC != null && npc != null)
+            npc.UiRow = UINPC.GetOrCreateHandle(npc, role, displayName, status);
     }
     public void UpdateNPCStatus(BaseNPC npc, UINPC.Role role, string displayName, string status = "")
     {
@@ -117,13 +121,22 @@ public class NPCManager : MonoBehaviour
             rolesByNpc[npc] = role;
 
         UINPC.RegisterOrUpdateNPC(npc, role, displayName, status);
+
+        if (UINPC != null && npc != null)
+            npc.UiRow = UINPC.GetOrCreateHandle(npc, role, displayName, status);
     }
     public void UnregisterNPC(BaseNPC npc)
     {
         if (npc != null)
             rolesByNpc.Remove(npc);
 
-        UINPC.UnregisterNPC(npc);
+        if (UINPC != null)
+        {
+            UINPC.UnregisterNPC(npc);
+        }
+
+        if (npc != null)
+            npc.UiRow = null;
     }
 
     private void HandleRemoveNPC(BaseNPC npc)
@@ -216,7 +229,7 @@ public class NPCManager : MonoBehaviour
                     Debug.LogWarning("NPCManager: Minimap vybral null building site.");
                     return;
                 }
-
+                
                 // Zde èekáme na hráèùv výbìr, callback se spustí, až klikne
                 OpenSourcePositionSelection(collector, site);
 

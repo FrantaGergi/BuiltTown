@@ -42,6 +42,25 @@ public class UINPC : MonoBehaviour
     public event Action<BaseNPC> OnRemoveNPC;
 
     private readonly Dictionary<BaseNPC, NPCRow> rows = new Dictionary<BaseNPC, NPCRow>();
+    private readonly Dictionary<BaseNPC, NPCRowHandle> handles = new Dictionary<BaseNPC, NPCRowHandle>();
+
+    // Public handle class each NPC can hold
+    public class NPCRowHandle
+    {
+        private readonly UINPC owner;
+        private readonly BaseNPC npc;
+
+        internal NPCRowHandle(UINPC owner, BaseNPC npc)
+        {
+            this.owner = owner;
+            this.npc = npc;
+        }
+
+        public void SetDisplayName(string displayName) => owner?.SetRowName(npc, displayName);
+        public void SetStatus(string status) => owner?.SetRowStatus(npc, status);
+        public void SetDistriction(string districtStatus) => owner?.SetRowStatus(npc, districtStatus);
+        public void RemoveRow() => owner?.UnregisterNPC(npc);
+    }
 
     private class NPCRow
     {
@@ -69,6 +88,23 @@ public class UINPC : MonoBehaviour
         if (row.statusText != null) row.statusText.text = status;
 
         BindButtons(npc, row);
+
+        // ensure handle exists and cached
+        if (!handles.ContainsKey(npc))
+            handles[npc] = new NPCRowHandle(this, npc);
+    }
+
+    // Returns handle; ensures row exists (creates if necessary)
+    public NPCRowHandle GetOrCreateHandle(BaseNPC npc, Role role, string displayName = null, string status = null)
+    {
+        if (npc == null) return null;
+        RegisterOrUpdateNPC(npc, role, displayName ?? (npc.name), status ?? string.Empty);
+        if (!handles.TryGetValue(npc, out var h))
+        {
+            h = new NPCRowHandle(this, npc);
+            handles[npc] = h;
+        }
+        return h;
     }
 
     public void UnregisterNPC(BaseNPC npc)
@@ -78,6 +114,9 @@ public class UINPC : MonoBehaviour
 
         if (row.root != null) Destroy(row.root);
         rows.Remove(npc);
+
+        if (handles.ContainsKey(npc))
+            handles.Remove(npc);
     }
 
     public void ClearAll()
@@ -87,6 +126,7 @@ public class UINPC : MonoBehaviour
             if (kv.Value?.root != null) Destroy(kv.Value.root);
         }
         rows.Clear();
+        handles.Clear();
     }
 
     private NPCRow CreateRowForRole(Role role)
@@ -167,5 +207,23 @@ public class UINPC : MonoBehaviour
             if (m.role == role && m.icon != null) return m.icon;
         }
         return null;
+    }
+
+    // internal helpers used by NPCRowHandle
+    private void SetRowName(BaseNPC npc, string displayName)
+    {
+        if (npc == null || !rows.TryGetValue(npc, out var row)) return;
+        if (row.nameText != null) row.nameText.text = displayName ?? string.Empty;
+    }
+
+    private void SetRowStatus(BaseNPC npc, string status)
+    {
+        if (npc == null || !rows.TryGetValue(npc, out var row)) return;
+        if (row.statusText != null) row.statusText.text = status ?? string.Empty;
+    }
+    private void SetRowDistrictStatus(BaseNPC npc, string status)
+    {
+        if (npc == null || !rows.TryGetValue(npc, out var row)) return;
+       // TODO if (row.statusText != null) row.actionsContainer.FindChild.text = status ?? string.Empty;
     }
 }
