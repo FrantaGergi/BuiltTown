@@ -26,13 +26,9 @@ public class MinimapIconManager : MonoBehaviour
     // ty nejsou ve stejne funcionalite jako ostatni ikony
     private GameObject districts;
 
-    public bool DistrictsVisible
-    {
-        get
-        {
-            return districts != null && districts.activeSelf;
-        }
-    }
+    public bool DistrictsVisible => districtsVisible;
+
+    private bool districtsVisible = true;
 
     public enum MinimapIconType
     {
@@ -191,7 +187,8 @@ public class MinimapIconManager : MonoBehaviour
     {
         if(districts != null)
         {
-            districts.SetActive(show);
+            
+            districtsVisible = show;
 
         }
     }

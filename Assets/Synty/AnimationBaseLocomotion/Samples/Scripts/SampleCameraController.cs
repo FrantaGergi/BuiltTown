@@ -163,7 +163,8 @@ namespace Synty.AnimationBaseLocomotion.Samples
             float sqrDistance = direction.sqrMagnitude;
 
             float distance = Mathf.Sqrt(sqrDistance);
-            if (Physics.SphereCast(transform.position, _cameraRadius, direction.normalized, out RaycastHit hit, distance, _collisionLayers))
+            // IGNORE trigger colliders so camera collision doesn't react to triggers
+            if (Physics.SphereCast(transform.position, _cameraRadius, direction.normalized, out RaycastHit hit, distance, _collisionLayers, QueryTriggerInteraction.Ignore))
             {
 
                 desiredWorldPos = hit.point + hit.normal * _cameraRadius;

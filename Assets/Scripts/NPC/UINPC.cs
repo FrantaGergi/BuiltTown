@@ -91,6 +91,7 @@ public class UINPC : MonoBehaviour
 
         SetRowStatus(npc,"Not Selected");
         SetHighlightSection(npc, -1);
+        SetRowDistrictStatus(npc, "");
 
         BindButtons(npc, row);
 
