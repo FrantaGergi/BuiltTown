@@ -206,7 +206,7 @@ public class UIShopItem : MonoBehaviour
             return;
         }
 
-        originalPlayerLayer = LayerMask.NameToLayer("Default");
+        originalPlayerLayer = LayerMask.NameToLayer("Player");
         playerLayerSaved = true;
         SetLayerRecursively(player, uiLayer);
     }

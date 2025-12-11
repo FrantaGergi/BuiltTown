@@ -3,64 +3,66 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     [Header("Door Settings")]
-    [SerializeField] private float distanceToOpen = 3f;         // Vzdálenost, kdy se dveøe zaènou otevírat
-    [SerializeField] private float openSpeed = 2f;             // Rychlost otevírání
-    [SerializeField] private float distanceMultiplier = 2f;    // Jak daleko se dveøe otevøou
-    [SerializeField] private bool leftRight = true;            // true = otevøení doleva, false = doprava
-    [SerializeField] private Transform player;                 // Reference na hráèe
+    [SerializeField] private float openSpeed = 2f;
+    [SerializeField] private float distanceMultiplier = 2f;
+    [SerializeField] private bool leftRight = true;
 
-    public bool isOpen { get; private set; }                  // Stav dveøí
+    [Header("Trigger Settings")]
+    [SerializeField] private LayerMask triggerMask;
+    // V Inspectoru  Player a NPC vrstvy
 
-    private Vector3 closedPosition; // Pevná zavøená pozice dveøí
-    private Vector3 openPosition;   // Cílová pozice dveøí pøi otevøení
+    private Vector3 closedPosition;
+    private Vector3 openPosition;
+
+    private int entitiesInside = 0;
+    public bool isOpen { get; private set; }
 
     private void Start()
     {
-        // Uložíme startovní pozici dveøí
         closedPosition = transform.position;
 
-        // Smìr otevøení podle LeftRight
         Vector3 offset = leftRight ? transform.right : -transform.right;
-
-        // Vypoèítáme pozici, kam se dveøe otevøou
         openPosition = closedPosition + offset * distanceMultiplier;
     }
 
     private void Update()
     {
-        // Vzdálenost k hráèi poèítáme vždy od zavøené pozice dveøí
-        float distance = Vector3.Distance(closedPosition, player.position);
-
-        if (distance < distanceToOpen)
+        if (entitiesInside > 0)
             OpenDoor();
         else
             CloseDoor();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsValidTrigger(other.gameObject))
+            entitiesInside++;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (IsValidTrigger(other.gameObject))
+            entitiesInside--;
+    }
+
+    private bool IsValidTrigger(GameObject obj)
+    {
+        return (triggerMask.value & (1 << obj.layer)) != 0;
+    }
+
     private void OpenDoor()
     {
-        // Plynulé otevøení dveøí
         transform.position = Vector3.MoveTowards(transform.position, openPosition, openSpeed * Time.deltaTime);
 
-        // Pokud jsou dveøe dost blízko otevøené pozice, oznaèíme je jako otevøené
         if (Vector3.Distance(transform.position, openPosition) < 0.01f)
             isOpen = true;
     }
 
     private void CloseDoor()
     {
-        // Plynulé zavøení dveøí
         transform.position = Vector3.MoveTowards(transform.position, closedPosition, openSpeed * Time.deltaTime);
 
-        // Pokud jsou dveøe dost blízko zavøené pozice, oznaèíme je jako zavøené
         if (Vector3.Distance(transform.position, closedPosition) < 0.01f)
             isOpen = false;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        // Vizualizace vzdálenosti pro otevøení ve scénì
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, distanceToOpen);
     }
 }

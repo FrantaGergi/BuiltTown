@@ -122,7 +122,7 @@ public class UIBuildingStorage : MonoBehaviour, IInteractable
             return;
         }
 
-        originalPlayerLayer = LayerMask.NameToLayer("Default");
+        originalPlayerLayer = LayerMask.NameToLayer("Player");
         playerLayerSaved = true;
         SetLayerRecursively(player, uiLayer);
     }

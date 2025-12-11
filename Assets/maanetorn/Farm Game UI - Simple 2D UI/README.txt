@@ -10,7 +10,8 @@ Image A
 +--------+
 |        |  <---- this is the thickness
 +--------+
-default button sprite
+
+button sprite
 
 Image B
 +--------+
