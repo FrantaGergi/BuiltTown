@@ -26,6 +26,14 @@ public class MinimapIconManager : MonoBehaviour
     // ty nejsou ve stejne funcionalite jako ostatni ikony
     private GameObject districts;
 
+    public bool DistrictsVisible
+    {
+        get
+        {
+            return districts != null && districts.activeSelf;
+        }
+    }
+
     public enum MinimapIconType
     {
         Miner,
@@ -77,7 +85,7 @@ public class MinimapIconManager : MonoBehaviour
         if (icon.iconType == MinimapIconType.District)
         {
             districts = icon.gameObject;
-            districts.SetActive(true);
+            SetDistrict(true);
             return;
         }
         else if(icon.iconType == MinimapIconType.None)
@@ -128,7 +136,7 @@ public class MinimapIconManager : MonoBehaviour
                 icon.uiIcon.gameObject.SetActive(visible);
         }
         if(type == MinimapIconType.District)
-            districts.SetActive(visible);
+            SetDistrict(visible);
 
         Debug.Log($"SetGroupVisible: {type} to {visible}");
     }
@@ -142,7 +150,7 @@ public class MinimapIconManager : MonoBehaviour
             foreach (var icon in group.Value)
                 icon.uiIcon.gameObject.SetActive(show);
         }
-        districts.SetActive(type == MinimapIconType.District);
+        SetDistrict(type == MinimapIconType.District);
     }
 
 
@@ -175,7 +183,17 @@ public class MinimapIconManager : MonoBehaviour
                     icon.uiIcon.gameObject.SetActive(show);
             }
         }
-        districts?.SetActive(show);
+        SetDistrict(show);
+    }
+
+
+    private void SetDistrict(bool show)
+    {
+        if(districts != null)
+        {
+            districts.SetActive(show);
+
+        }
     }
 
 }
