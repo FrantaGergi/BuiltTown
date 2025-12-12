@@ -20,11 +20,13 @@ public class MinimapIconManager : MonoBehaviour
     public Transform iconContainer; // parent v canvasu
 
 
+
     private Dictionary<MinimapIconType, List<MinimapIcon>> iconGroups =
         new Dictionary<MinimapIconType, List<MinimapIcon>>();
 
     // ty nejsou ve stejne funcionalite jako ostatni ikony
-    private GameObject districts;
+    public GameObject districts;
+    private List<LineRenderer> districtLines = new List<LineRenderer>();
 
     public bool DistrictsVisible => districtsVisible;
 
@@ -63,6 +65,7 @@ public class MinimapIconManager : MonoBehaviour
         {
             iconGroups[type] = new List<MinimapIcon>();
         }
+        districtLines.AddRange(districts.GetComponentsInChildren<LineRenderer>());
     }
 
     private void Start()
@@ -187,9 +190,11 @@ public class MinimapIconManager : MonoBehaviour
     {
         if(districts != null)
         {
-            
             districtsVisible = show;
-
+            districtLines.ForEach(d =>
+            {
+               d.enabled = show;
+            });
         }
     }
 

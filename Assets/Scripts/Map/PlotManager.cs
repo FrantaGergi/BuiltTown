@@ -14,6 +14,7 @@ public class PlotManager : MonoBehaviour
     [SerializeField] public YesOrNoController yesOrNoController;
     [SerializeField] private RawImage minimapImage;
     [SerializeField] private InformationController informationController;
+    [SerializeField] private MinimapIconManager miniIManager;
 
 
     [Header("Settings")]
@@ -49,7 +50,7 @@ public class PlotManager : MonoBehaviour
     {
         if(plotController.gameObject.activeSelf == false ||
             chooserOfBuildingManager.isChooserOfBuildingOpen ||
-            yesOrNoController.YesOrNoPanelEnabled)
+            yesOrNoController.YesOrNoPanelEnabled || miniIManager.DistrictsVisible)
         {
             return;
         }
