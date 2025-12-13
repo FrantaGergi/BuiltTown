@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static InteractManager;
 
 public class ShopItem : MonoBehaviour, IInteractable
@@ -9,8 +10,15 @@ public class ShopItem : MonoBehaviour, IInteractable
     [SerializeField] private UIShopItem uIShopItem;
 
     private PlayerEquipment playerEquipment;
+
     public void Interact(InteractManager interactor, InteractManager.InteractAction action)
     {
+
+
+        if (playerEquipment.pi != null && playerEquipment.pi.currentActionMap != null 
+            && playerEquipment.pi.currentActionMap.name == "UI")
+            return;
+
         switch (action)
         {
             case InteractAction.EStart:

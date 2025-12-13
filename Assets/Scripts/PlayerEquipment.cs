@@ -16,6 +16,7 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField] private Image secondaryImage;
     [SerializeField] private Sprite woodIcon;
     [SerializeField] private Sprite stoneIcon;
+    [SerializeField] public PlayerInput pi;
     [Header("Tools")]
     [SerializeField] private ItemSO primary;
     public ItemSO Primary

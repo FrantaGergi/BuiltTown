@@ -50,7 +50,7 @@ public class PlotManager : MonoBehaviour
     {
         if(plotController.gameObject.activeSelf == false ||
             chooserOfBuildingManager.isChooserOfBuildingOpen ||
-            yesOrNoController.YesOrNoPanelEnabled || miniIManager.DistrictsVisible)
+            yesOrNoController.YesOrNoPanelEnabled || !miniIManager.DistrictsVisible)
         {
             return;
         }

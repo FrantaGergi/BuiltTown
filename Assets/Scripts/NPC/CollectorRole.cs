@@ -71,7 +71,7 @@ public class CollectorRole : NPCRoleBase
 
                     if (targetBuilding != null)
                     {
-                        npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
+                        npc.MoveTo(targetBuilding.GetHolderPosition());
                         state = State.MovingToBuilding;
                         return;
                     }
@@ -163,7 +163,7 @@ public class CollectorRole : NPCRoleBase
         assignedDestination = deliverySite;
 
         // Aktualizuj inventory: pokud budova už nepotřebuje některé položky, odstraň je z inventáře
-        inventory.RemoveAll(it => !assignedDestination.NeedsResource(it.type));
+        inventory.RemoveAll(it => !assignedDestination.NeedsResourceForCollectors(it.type));
 
         // Pokud máme nějaké potřeby a jsme schopni nést další, začneme zadání plnit
         if (BuildingNeedsAny(assignedDestination))
@@ -228,7 +228,7 @@ public class CollectorRole : NPCRoleBase
         if (inventory.Count > 0)
         {
             // najdeme první typ v inventáři, který budova přijme
-            var invAccepted = inventory.FirstOrDefault(it => assignedDestination.NeedsResource(it.type));
+            var invAccepted = inventory.FirstOrDefault(it => assignedDestination.NeedsResourceForCollectors(it.type));
             if (!invAccepted.Equals(default((ItemType, int))))
             {
                 targetBuilding = assignedDestination;
@@ -295,7 +295,7 @@ public class CollectorRole : NPCRoleBase
             if (bs == null) continue;
             foreach (var it in inventory)
             {
-                if (bs.NeedsResource(it.type))
+                if (bs.NeedsResourceForCollectors(it.type))
                 {
                     float d = Vector3.Distance(((MonoBehaviour)npc).transform.position, ((MonoBehaviour)bs).transform.position);
                     if (d < bestDist) { bestDist = d; best = bs; }
@@ -328,9 +328,9 @@ public class CollectorRole : NPCRoleBase
         var list = new List<ItemType>();
         if (b == null) return list;
         // Pořadí preference: wood, stone, ore (upravit podle potřeby)
-        if (b.NeedsResource(ItemType.Wood)) list.Add(ItemType.Wood);
-        if (b.NeedsResource(ItemType.Stone)) list.Add(ItemType.Stone);
-        if (b.NeedsResource(ItemType.Ore)) list.Add(ItemType.Ore);
+        if (b.NeedsResourceForCollectors(ItemType.Wood)) list.Add(ItemType.Wood);
+        if (b.NeedsResourceForCollectors(ItemType.Stone)) list.Add(ItemType.Stone);
+        if (b.NeedsResourceForCollectors(ItemType.Ore)) list.Add(ItemType.Ore);
         return list;
     }
 
@@ -343,7 +343,7 @@ public class CollectorRole : NPCRoleBase
     private bool BuildingNeedsAny(IBuildingSite b)
     {
         if (b == null) return false;
-        return b.NeedsResource(ItemType.Wood) || b.NeedsResource(ItemType.Stone) || b.NeedsResource(ItemType.Ore);
+        return b.NeedsResourceForCollectors(ItemType.Wood) || b.NeedsResourceForCollectors(ItemType.Stone) || b.NeedsResourceForCollectors(ItemType.Ore);
     }
 
     private void FindGroundItem()
@@ -394,7 +394,7 @@ public class CollectorRole : NPCRoleBase
             // check if building needs any of our carried resources
             foreach (var it in inventory)
             {
-                if (bs.NeedsResource(it.type))
+                if (bs.NeedsResourceForCollectors(it.type))
                 {
                     float d = Vector3.Distance(transform.position, ((MonoBehaviour)bs).transform.position);
                     if (d < bestDist) { bestDist = d; best = bs; }
@@ -419,9 +419,9 @@ public class CollectorRole : NPCRoleBase
         var delivered = new List<(ItemType type, int amount)>();
         foreach (var it in inventory)
         {
-            if (targetBuilding.NeedsResource(it.type))
+            if (targetBuilding.NeedsResourceForCollectors(it.type))
             {
-                targetBuilding.AddResource(it.type, it.amount);
+                targetBuilding.AddResourceByCollector(it.type, it.amount);
                 delivered.Add(it);
             }
         }

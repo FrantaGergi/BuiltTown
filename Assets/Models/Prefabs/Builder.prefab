@@ -1173,6 +1173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuilderRole
   autoSearch: 0
   searchRadius: 20
+  carryCapacity: 5
+  depositInterval: 1
+  holderArrivalThreshold: 1
 --- !u!114 &1838214952434208125
 MonoBehaviour:
   m_ObjectHideFlags: 0

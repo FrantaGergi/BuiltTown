@@ -1789,8 +1789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinerRole
   autoSearch: 0
   searchRadius: 100
-  mineInterval: 5
-  mineAmountPerInterval: 1
+  mineInterval: 4
+  mineAmountPerInterval: 50
 --- !u!114 &8843418114204467492
 MonoBehaviour:
   m_ObjectHideFlags: 0

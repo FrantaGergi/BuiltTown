@@ -3,6 +3,7 @@ using UnityEngine;
 public class BuildingSite : MonoBehaviour, IBuildingSite
 {
     [SerializeField] public Building buildingCore;
+    [SerializeField] public ResourceHolder resourceHolder;
 
     public int ID = 0;
 
@@ -23,7 +24,17 @@ public class BuildingSite : MonoBehaviour, IBuildingSite
         
     }
 
-    public bool NeedsResource(ItemType type)
+    // chceme i vedet zda je potreba nosit do holderu nejakou surovinu pro stavbu
+    public bool NeedsResourceForCollectors(ItemType type)
+    {
+        if (buildingCore != null)
+        {
+            return (buildingCore.HowManyMissing(type) - resourceHolder.GetResourceCount(type)) > 0;
+        }
+        return false;
+    }
+
+    public bool NeedsResourceForBuilders(ItemType type)
     {
         if (buildingCore != null)
         {
@@ -31,12 +42,23 @@ public class BuildingSite : MonoBehaviour, IBuildingSite
         }
         return false;
     }
-
-    public void AddResource(ItemType type, int amount)
+    public void AddResourceByCollector(ItemType type, int amount)
+    {
+        if (resourceHolder != null)
+        {
+            resourceHolder.AddResource(type, amount );
+        }
+    }
+    public void AddResourceByBuilder(ItemType type, int amount)
     {
         if (buildingCore != null)
         {
             buildingCore.AddResource(amount, type);
         }
+    }
+
+    public Vector3 GetHolderPosition()
+    {
+        return resourceHolder != null ? resourceHolder.transform.position : transform.position;
     }
 }

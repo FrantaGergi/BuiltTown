@@ -1,5 +1,11 @@
+using UnityEngine;
+
 public interface IBuildingSite
 {
-    bool NeedsResource(ItemType type);
-    void AddResource(ItemType type, int amount);
+    bool NeedsResourceForCollectors(ItemType type);
+    bool NeedsResourceForBuilders(ItemType stone);
+
+    void AddResourceByCollector(ItemType type, int amount);
+    void AddResourceByBuilder(ItemType type, int amount);
+    Vector3 GetHolderPosition();
 }

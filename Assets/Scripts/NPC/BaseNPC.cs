@@ -18,6 +18,11 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
     {
         agent = GetComponent<NavMeshAgent>();
         if (agent == null) agent = gameObject.AddComponent<NavMeshAgent>();
+
+        // aby se pøedešlo problémùm s kolizemi mezi NPC
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+        //agent.avoidancePriority = 90; // 0 = nejvyšší priorita
+
     }
 
     public void MoveTo(Vector3 position)

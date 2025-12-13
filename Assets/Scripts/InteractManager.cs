@@ -141,7 +141,7 @@ public class InteractManager : MonoBehaviour
 
     public void OnSecondaryInteract(InputAction.CallbackContext ctx)
     {
-        if (!ctx.performed) return;
+        if (!ctx.started) return;
         TryInteract(InteractAction.R);
     }
 

@@ -985,7 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectorRole
   autoSearch: 0
   searchRadius: 50
-  capacity: 5
+  capacity: 20
 --- !u!114 &-1337385245560707818
 MonoBehaviour:
   m_ObjectHideFlags: 0
