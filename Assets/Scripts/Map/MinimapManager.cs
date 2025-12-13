@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class MinimapManager : MonoBehaviour
 {
     private bool isMinimapOpen = false;
-    private string previousActionMap = "";
+    private string previousActionMap = "Player";
 
     [Header("References")]
     [SerializeField] private PlayerInput playerInput;
@@ -187,8 +187,9 @@ public class MinimapManager : MonoBehaviour
     {
         if (isMinimapOpen)
         {
-            if (previousActionMap == "")
-                previousActionMap = playerInput.currentActionMap.name;
+
+
+
             playerInput.SwitchCurrentActionMap("UI");
 
             Cursor.lockState = CursorLockMode.None;

@@ -9,6 +9,10 @@ public class CollectorRole : NPCRoleBase
     public float searchRadius = 20f;
     public int capacity = 5;
 
+    [Header("Waiting (assigned source)")]
+    [SerializeField, Tooltip("Kontrolní interval (s) když stojíme na assignedSourcePos a hledáme položky")] 
+    private float waitCheckInterval = 5f;
+
     private List<(ItemType type, int amount)> inventory = new();
     private IGroundItem targetItem;
     private IBuildingSite targetBuilding;
@@ -21,9 +25,11 @@ public class CollectorRole : NPCRoleBase
     private bool hasAssignedSourcePos = false;
     private IBuildingSite assignedDestination;
 
-    private enum State { Idle, MovingToItem, PickingUp, MovingToBuilding, Depositing }
+    private enum State { Idle, MovingToItem, PickingUp, WaitingAtSource, MovingToBuilding, Depositing }
     private State state = State.Idle;
     private State previousState = State.Idle;
+
+    private float waitTimer = 0f;
 
     void Update()
     {
@@ -32,6 +38,9 @@ public class CollectorRole : NPCRoleBase
         {
             ClearAssignment(); // včetně vymazání přidělené sourcePos
         }
+
+        // akumulátor pro waiting interval
+        waitTimer += Time.deltaTime;
 
         switch (state)
         {
@@ -52,10 +61,12 @@ public class CollectorRole : NPCRoleBase
                         FindBuildingAndDeliver();
                 }
                 break;
+
             case State.MovingToItem:
                 if (targetItem == null) { state = State.Idle; break; }
                 if (npc.IsAtDestination()) { state = State.PickingUp; npc.Stop(); }
                 break;
+
             case State.PickingUp:
                 if (targetItem == null) { state = State.Idle; break; }
                 // pick up
@@ -91,10 +102,46 @@ public class CollectorRole : NPCRoleBase
                 lastTargetType = null;
                 state = State.Idle;
                 break;
+
+            case State.WaitingAtSource:
+                // pokud budova už nic nepotřebuje => ukonči
+                if (!BuildingNeedsAny(assignedDestination))
+                {
+                    ClearAssignment();
+                    break;
+                }
+
+                // kontroluj pouze periodicky podle waitCheckInterval
+                if (waitTimer >= waitCheckInterval)
+                {
+                    waitTimer = 0f;
+                    // zkus znovu najít nějaký item v assignedSourcePos dle priority
+                    var neededTypes = GetNeededTypesOrdered(assignedDestination);
+                    IGroundItem found = null;
+                    ItemType? foundType = null;
+                    foreach (var t in neededTypes)
+                    {
+                        found = FindNearestGroundItemOfType(assignedSourcePos, t);
+                        if (found != null) { foundType = t; break; }
+                    }
+
+                    if (found != null && foundType.HasValue)
+                    {
+                        targetItem = found;
+                        lastTargetType = TryGetTypeFromGroundItem(found);
+                        npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
+                        state = State.MovingToItem;
+                        return;
+                    }
+                    // jinak zůstaneme čekat až další interval
+                }
+                break;
+
             case State.MovingToBuilding:
                 if (targetBuilding == null) { state = State.Idle; break; }
                 if (npc.IsAtDestination()) { state = State.Depositing; npc.Stop(); }
                 break;
+
             case State.Depositing:
                 if (targetBuilding == null) { state = State.Idle; break; }
                 DepositAll();
@@ -143,6 +190,9 @@ public class CollectorRole : NPCRoleBase
                     string t = lastTargetType?.ToString() ?? "surovinu";
                     npc?.SetUiStatus($"Sbírám {t}");
                 }
+                break;
+            case State.WaitingAtSource:
+                npc?.SetUiStatus("Čekám na zdroje");
                 break;
             case State.MovingToBuilding:
                 npc?.SetUiStatus("Nesu do budovy");
@@ -223,64 +273,11 @@ public class CollectorRole : NPCRoleBase
             return;
         }
 
-        // Pokud tady nejsou žádné dostupné položky v assignedSourcePos:
-        // 1) pokud už máme v inventáři něco, zkuste to doručit do budovy (pokud budova stále potřebuje)
-        if (inventory.Count > 0)
-        {
-            // najdeme první typ v inventáři, který budova přijme
-            var invAccepted = inventory.FirstOrDefault(it => assignedDestination.NeedsResourceForCollectors(it.type));
-            if (!invAccepted.Equals(default((ItemType, int))))
-            {
-                targetBuilding = assignedDestination;
-                npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
-                state = State.MovingToBuilding;
-                return;
-            }
-
-            // pokud nic v inventáři nevyhovuje potřebám, zahodíme inventář a zkusíme najít jiný typ co budova ještě potřebuje a je k nalezení v okolí
-            inventory.Clear();
-
-            // zkus najít jakýkoli potřebný typ v okolí assignedSourcePos (bez ohledu na pořadí)
-            foreach (var t in neededTypes)
-            {
-                var f = FindNearestGroundItemOfType(assignedSourcePos, t);
-                if (f != null)
-                {
-                    targetItem = f;
-                    lastTargetType = TryGetTypeFromGroundItem(f);
-                    npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
-                    state = State.MovingToItem;
-                    return;
-                }
-            }
-        }
-
-        // 2) fallback: zkus najít jakýkoli potřebný typ v okolí NPC
-        foreach (var t in neededTypes)
-        {
-            var f = FindNearestGroundItemOfType(((MonoBehaviour)npc).transform.position, t);
-            if (f != null)
-            {
-                targetItem = f;
-                lastTargetType = TryGetTypeFromGroundItem(f);
-                npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
-                state = State.MovingToItem;
-                return;
-            }
-        }
-
-        // 3) nic nenalezeno -> pokud budova stále něco potřebuje, doruč to co máme (i když prázdné -> nic nedělej)
-        if (inventory.Count > 0 && BuildingNeedsAny(assignedDestination))
-        {
-            targetBuilding = assignedDestination;
-            npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
-            state = State.MovingToBuilding;
-            return;
-        }
-
-        // 4) pokud nic k dispozici a nic v inventáři, ukonči assignment
-        Debug.Log($"CollectorRole: nelze najít žádné položky pro assignedSourcePos {assignedSourcePos} a budova {assignedDestination}. Ukončuji úkol.");
-        ClearAssignment();
+        // Pokud tady nejsou žádné dostupné položky v assignedSourcePos -> přejít do waiting stavu u source
+        npc.MoveTo(assignedSourcePos);
+        state = State.WaitingAtSource;
+        waitTimer = 0f;
+        return;
     }
 
     private IBuildingSite FindBuildingAndDeliverFallback()

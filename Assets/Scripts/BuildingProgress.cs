@@ -146,8 +146,11 @@ public class BuildingProgress : MonoBehaviour
     {
         Debug.Log("Destroying material packs...");
 
-        Destroy(stone.gameObject);
+        if(stone != null)
+            Destroy(stone.gameObject);
+        if(wood != null)
         Destroy(wood.gameObject);
+        if(ore != null)
         Destroy(ore.gameObject);
 
     }

@@ -120,6 +120,17 @@ public class BuildingStorage : MonoBehaviour
     }
 
 
+    private void OnEnable()
+    {
+        if (building != null)
+            building.OnAddedResource += UpdateprogressBarAndText;
+    }
+    private void OnDisable()
+    {
+        if (building != null)
+            building.OnAddedResource -= UpdateprogressBarAndText;
+    }
+
     public void OnHoverEnter(InteractManager interactor)
     {
         if (inventoryManager == null)

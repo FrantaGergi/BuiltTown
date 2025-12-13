@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Building : MonoBehaviour
@@ -22,6 +23,7 @@ public class Building : MonoBehaviour
 
     private bool use3Resources = true;
 
+    public Action OnAddedResource;
 
     private void Start()
     {
@@ -81,6 +83,7 @@ public class Building : MonoBehaviour
             }
         }
         SetBuildingProgressMaterials();
+        OnAddedResource?.Invoke();
     }
 
     public int HowManyMissing(ItemType itemType)

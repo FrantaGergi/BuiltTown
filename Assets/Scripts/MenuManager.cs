@@ -8,7 +8,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private PlayerInput playerInput; // pøipoj PlayerInput z hráèe
 
     private bool isPaused = false;
-    private string previousActionMap = "";
+    private string previousActionMap = "Player";
 
     public static MenuManager Instance { get; private set; }
 
@@ -37,8 +37,6 @@ public class MenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // uložíme pøedchozí mapu (obvykle "Player") a pøepneme na UI
-        previousActionMap = playerInput.currentActionMap.name;
         playerInput.SwitchCurrentActionMap("UI");
     }
 
@@ -89,9 +87,7 @@ public class MenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // uložíme pøedchozí mapu (obvykle "Player") a pøepneme na UI
-        if(previousActionMap == "")
-            previousActionMap = playerInput.currentActionMap.name;
+
 
         playerInput.SwitchCurrentActionMap("UI");
     }
