@@ -61,7 +61,7 @@ public class Mailbox : MonoBehaviour
 
         buildingReward.mode = BuildingReward.RewardMode.Recurring;
         uIBuildingMailboxController.SetInformation(
-            0, buildingReward.timeToEarn, buildingReward.FinalRentAmount);
+            buildingReward.FinalRentAmount, buildingReward.timeToEarn, buildingReward.currentTimeToEarn);
 
         mailboxArrow.HideArrow();
         buildingReward.Trigger();
