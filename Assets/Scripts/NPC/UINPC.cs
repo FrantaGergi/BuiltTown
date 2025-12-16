@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using BuiltTown.NPC;
 using TMPro;
-using VHierarchy.Libs;
 
 public class UINPC : MonoBehaviour
 {
@@ -124,7 +123,7 @@ public class UINPC : MonoBehaviour
         if (handles.ContainsKey(npc))
             handles.Remove(npc);
 
-        npc.gameObject.Destroy();
+        Destroy(npc.gameObject);
     }
 
     public void ClearAll()

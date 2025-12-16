@@ -1,6 +1,6 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-
 public class ObjectReplacer : EditorWindow
 {
     public GameObject prefabToSpawn;
@@ -44,3 +44,4 @@ public class ObjectReplacer : EditorWindow
         }
     }
 }
+#endif

@@ -32,6 +32,7 @@ public class MenuManager : MonoBehaviour
     {
         isPaused = true;
         pausePanel.SetActive(true);
+        settingsPanel.SetActive(false);
         Time.timeScale = 0f;
 
         Cursor.lockState = CursorLockMode.None;
@@ -68,8 +69,8 @@ public class MenuManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        // Time.timeScale = 1f;
-        //  UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+         Time.timeScale = 1f;
+         UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 
     public void ClosePanel()

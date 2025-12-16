@@ -1,11 +1,7 @@
 using System.Collections;
 using TMPro;
-using Unity.AppUI.UI;
-using Unity.InferenceEngine;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Button = UnityEngine.UI.Button;
 using Random = UnityEngine.Random;
 
 public class UIShopItem : MonoBehaviour
