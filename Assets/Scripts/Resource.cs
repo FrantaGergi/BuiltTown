@@ -166,6 +166,13 @@ public class Resource : MonoBehaviour, IInteractable
 
         if (hitPoints <= 0)
         {
+            if(ItemSO.itemType == ItemType.Wood)
+                AchievementService.OnTreeCut();
+            else if(ItemSO.itemType == ItemType.Stone)
+                AchievementService.OnStoneMined();
+            else if(ItemSO.itemType == ItemType.Ore)
+                AchievementService.OnOreMined();
+
             DestroyResource();
         }
     }

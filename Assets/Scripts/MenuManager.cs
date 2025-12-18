@@ -18,6 +18,11 @@ public class MenuManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        ResumeGame();
+    }
+
     public void TogglePause(InputAction.CallbackContext context)
     {
         if (!context.performed) return; //reaguj jen na performed

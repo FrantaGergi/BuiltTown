@@ -40,6 +40,30 @@ public class MainMenu : MonoBehaviour
         InitResolutions();
         InitQuality();
         LoadSettings();
+
+        // Pøipoj eventy tak, aby se zmìny okamžitì aplikovaly a uložily
+        if (volumeSlider != null)
+        {
+            volumeSlider.onValueChanged.RemoveAllListeners();
+            volumeSlider.onValueChanged.AddListener(v =>
+            {
+                AudioListener.volume = v;
+                PlayerPrefs.SetFloat("Volume", v);
+                PlayerPrefs.Save();
+            });
+        }
+
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.onValueChanged.RemoveAllListeners();
+            resolutionDropdown.onValueChanged.AddListener(OnResolutionChange);
+        }
+
+        if (qualityDropdown != null)
+        {
+            qualityDropdown.onValueChanged.RemoveAllListeners();
+            qualityDropdown.onValueChanged.AddListener(OnQualityChange);
+        }
     }
 
     // ---------- MAIN MENU ----------
@@ -51,8 +75,8 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        mainMenuPanel.SetActive(false);
-        settingsPanel.SetActive(true);
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
+        if (settingsPanel != null) settingsPanel.SetActive(true);
     }
 
     public void BackToMainMenu()
@@ -74,7 +98,14 @@ public class MainMenu : MonoBehaviour
 
     public void OnVolumeChange()
     {
+        if (volumeSlider == null)
+        {
+            Debug.LogWarning("MainMenu: volumeSlider není pøiøazen.");
+            return;
+        }
         AudioListener.volume = volumeSlider.value;
+        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
+        PlayerPrefs.Save();
     }
 
     // ---------- FULLSCREEN ----------
@@ -83,6 +114,10 @@ public class MainMenu : MonoBehaviour
     {
         isFullscreen = !isFullscreen;
         Screen.fullScreen = isFullscreen;
+
+        // Ulož preferenci hned pøi pøepnutí
+        PlayerPrefs.SetInt("Fullscreen", isFullscreen ? 1 : 0);
+        PlayerPrefs.Save();
 
         float targetX = isFullscreen ? toggleXTrue : toggleXFalse;
         Color targetColor = isFullscreen ? activeColor : inactiveColor;
@@ -99,7 +134,14 @@ public class MainMenu : MonoBehaviour
 
     private void InitResolutions()
     {
-        resolutions = Screen.resolutions;
+        resolutions = Screen.resolutions ?? new Resolution[0];
+
+        if (resolutionDropdown == null)
+        {
+            Debug.LogWarning("MainMenu: resolutionDropdown není pøiøazen.");
+            return;
+        }
+
         resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
@@ -117,22 +159,48 @@ public class MainMenu : MonoBehaviour
             }
         }
 
+        if (options.Count == 0)
+        {
+            // Fallback na current resolution pokud nic jiného není
+            options.Add(Screen.currentResolution.width + " x " + Screen.currentResolution.height);
+            currentIndex = 0;
+        }
+
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentIndex;
+        resolutionDropdown.value = Mathf.Clamp(currentIndex, 0, options.Count - 1);
         resolutionDropdown.RefreshShownValue();
     }
 
     public void OnResolutionChange(int index)
     {
+        if (resolutions == null || resolutions.Length == 0)
+        {
+            Debug.LogWarning("MainMenu: nejsou dostupné žádné rozlišení.");
+            return;
+        }
+
+        if (index < 0 || index >= resolutions.Length)
+        {
+            Debug.LogWarning($"MainMenu: index rozlišení {index} mimo rozsah.");
+            return;
+        }
+
         Resolution res = resolutions[index];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
         PlayerPrefs.SetInt("Resolution", index);
+        PlayerPrefs.Save();
     }
 
     // ---------- QUALITY ----------
 
     private void InitQuality()
     {
+        if (qualityDropdown == null)
+        {
+            Debug.LogWarning("MainMenu: qualityDropdown není pøiøazen.");
+            return;
+        }
+
         qualityDropdown.ClearOptions();
         qualityDropdown.AddOptions(new List<string>(QualitySettings.names));
         qualityDropdown.value = QualitySettings.GetQualityLevel();
@@ -143,13 +211,14 @@ public class MainMenu : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(index);
         PlayerPrefs.SetInt("Quality", index);
+        PlayerPrefs.Save();
     }
 
     // ---------- SAVE / LOAD ----------
 
     private void SaveSettings()
     {
-        PlayerPrefs.SetFloat("Volume", volumeSlider.value);
+        PlayerPrefs.SetFloat("Volume", volumeSlider != null ? volumeSlider.value : AudioListener.volume);
         PlayerPrefs.SetInt("Fullscreen", IsFullscreen ? 1 : 0);
         PlayerPrefs.Save();
     }
@@ -158,7 +227,10 @@ public class MainMenu : MonoBehaviour
     {
         // Volume
         float volume = PlayerPrefs.GetFloat("Volume", 1f);
-        volumeSlider.value = volume;
+        if (volumeSlider != null)
+        {
+            volumeSlider.SetValueWithoutNotify(volume);
+        }
         AudioListener.volume = volume;
 
         // Fullscreen
@@ -172,18 +244,34 @@ public class MainMenu : MonoBehaviour
         {
             toggleImage.color = targetColor;
             RectTransform rect = toggleImage.rectTransform;
-            Vector3 pos = rect.localPosition;
-            rect.localPosition = new Vector3(targetX, pos.y, pos.z);
+            Vector2 pos = rect.anchoredPosition;
+            rect.anchoredPosition = new Vector2(targetX, pos.y);
         }
 
         // Resolution
-        int resIndex = PlayerPrefs.GetInt("Resolution", resolutionDropdown.value);
-        resolutionDropdown.value = resIndex;
-        OnResolutionChange(resIndex);
+        int resIndex = PlayerPrefs.GetInt("Resolution", (resolutionDropdown != null ? resolutionDropdown.value : 0));
+        if (resolutionDropdown != null)
+        {
+            // don't set an out-of-range index
+            if (resolutions != null && resolutions.Length > 0)
+                resIndex = Mathf.Clamp(resIndex, 0, resolutions.Length - 1);
+
+            resolutionDropdown.SetValueWithoutNotify(Mathf.Clamp(resIndex, 0, resolutionDropdown.options.Count - 1));
+            resolutionDropdown.RefreshShownValue();
+
+            // apply resolution only if valid
+            if (resolutions != null && resolutions.Length > 0 && resIndex >= 0 && resIndex < resolutions.Length)
+                OnResolutionChange(resIndex);
+        }
 
         // Quality
         int quality = PlayerPrefs.GetInt("Quality", QualitySettings.GetQualityLevel());
-        qualityDropdown.value = quality;
+        if (qualityDropdown != null)
+        {
+            quality = Mathf.Clamp(quality, 0, QualitySettings.names.Length - 1);
+            qualityDropdown.SetValueWithoutNotify(quality);
+            qualityDropdown.RefreshShownValue();
+        }
         QualitySettings.SetQualityLevel(quality);
     }
 
@@ -195,28 +283,28 @@ public class MainMenu : MonoBehaviour
 
         float elapsed = 0f;
         RectTransform rect = img.rectTransform;
-        Vector3 startPos = rect.localPosition;
-        Vector3 endPos = new Vector3(targetX, startPos.y, startPos.z);
+        Vector2 startPos = rect.anchoredPosition;
+        Vector2 endPos = new Vector2(targetX, startPos.y);
         Color startColor = img.color;
 
         while (elapsed < lerpDuration)
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0f, 1f, elapsed / lerpDuration);
+            float t = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / lerpDuration));
 
-            rect.localPosition = Vector3.Lerp(startPos, endPos, t);
+            rect.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
             img.color = Color.Lerp(startColor, targetColor, t);
 
             yield return null;
         }
 
-        rect.localPosition = endPos;
+        rect.anchoredPosition = endPos;
         img.color = targetColor;
     }
 
     private void ShowMainMenu()
     {
-        mainMenuPanel.SetActive(true);
-        settingsPanel.SetActive(false);
+        if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
+        if (settingsPanel != null) settingsPanel.SetActive(false);
     }
 }

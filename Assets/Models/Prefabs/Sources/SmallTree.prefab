@@ -221,10 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7342340f0328c3241bc8a415d791d708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
-  highlightObject: {fileID: 2053677368382575591}
-  hitPoints: 300
+  highlightObject: {fileID: 1155235888674899301}
+  hitPoints: 15
   hitsPerDrop: 1
   hitTime: 0.5
+  resourceNode: {fileID: 0}
 --- !u!114 &2412456872827217879
 MonoBehaviour:
   m_ObjectHideFlags: 0

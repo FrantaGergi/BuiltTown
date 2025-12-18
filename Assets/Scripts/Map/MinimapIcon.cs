@@ -9,11 +9,17 @@ public class MinimapIcon : MonoBehaviour
 
     void Start()
     {
-        // spawn UI ikonky
         uiIcon = MinimapIconManager.Instance.SpawnIcon(iconType);
 
-        // registrace
-        MinimapIconManager.Instance.RegisterIcon(this);
+        if (uiIcon != null)
+        {
+            // pojmenujeme instanci podle objektu, aby byla v Hierarchy snadno dohledatelná
+            uiIcon.name = $"{gameObject.name}_Minimap_{iconType}";
+            // zajistíme, že nebude skrytá v Hierarchy
+            uiIcon.gameObject.hideFlags = HideFlags.None;
+        }
+
+        MinimapIconManager.Instance?.RegisterIcon(this);
     }
 
     void OnDestroy()
