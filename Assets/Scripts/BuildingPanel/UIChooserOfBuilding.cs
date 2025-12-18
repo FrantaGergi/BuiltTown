@@ -33,8 +33,8 @@ public class UIChooserOfBuilding : MonoBehaviour
         mWoodCount.text = plot.MiniBuilding.buildingCore.woodCost.ToString();
         mStoneCount.text = plot.MiniBuilding.buildingCore.stoneCost.ToString();
         mOreCount.text = plot.MiniBuilding.buildingCore.oreCost.ToString();
-        mRentCount.text = plot.MRentPrice.ToString();
-        mSellCount.text = plot.MSellPrice.ToString();
+        mRentCount.text = "$" + plot.MRentPrice.ToString();
+        mSellCount.text = "$" + plot.MSellPrice.ToString();
         miniHouse.gameObject.SetActive(true);
 
        // plot.MiniBuilding.buildingCore.buildingReward.FinalAmmountToGive = p
@@ -50,8 +50,8 @@ public class UIChooserOfBuilding : MonoBehaviour
         bWoodCount.text = plot.BigBuilding.buildingCore.woodCost.ToString();
         bStoneCount.text = plot.BigBuilding.buildingCore.stoneCost.ToString();
         bOreCount.text = plot.BigBuilding.buildingCore.oreCost.ToString();
-        bRentCount.text = plot.BRentPrice.ToString();
-        bSellCount.text = plot.BSellPrice.ToString();
+        bRentCount.text = "$" + plot.BRentPrice.ToString();
+        bSellCount.text = "$" + plot.BSellPrice.ToString();
         bigHouse.gameObject.SetActive(true);
     }
 

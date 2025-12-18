@@ -77,7 +77,14 @@ public class MenuManager : MonoBehaviour
          Time.timeScale = 1f;
          UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
+    public void QuitGame()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
 
+    }
     public void ClosePanel()
     {
         ResumeGame();
