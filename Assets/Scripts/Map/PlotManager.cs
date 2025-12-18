@@ -36,6 +36,8 @@ public class PlotManager : MonoBehaviour
         {
             if (MoneyManager.Instance.TrySpend(selectedPlot.costToUnlock))
             {
+                AchievementService.OnDistrictPurchased();
+
                 plotController.UnlockPlot(selectedPlot.id);
                 Debug.Log($"Pozemek #{selectedPlot.id} odemèen.");
                 chooserOfBuildingManager.OpenBuildingChooser(selectedPlot);

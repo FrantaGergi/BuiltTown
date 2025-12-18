@@ -175,30 +175,30 @@ public class CollectorRole : NPCRoleBase
         {
             case State.Idle:
                 if (hasAssignedSourcePos && assignedDestination != null)
-                    npc?.SetUiStatus("Čeká na vykonání úkolu");
+                    npc?.SetUiStatus("Waiting for task");
                 else
-                    npc?.SetUiStatus("Nečinný");
+                    npc?.SetUiStatus("Idle");
                 break;
             case State.MovingToItem:
                 {
-                    string t = lastTargetType?.ToString() ?? "surovinu";
-                    npc?.SetUiStatus($"Jdu pro {t}");
+                    string t = lastTargetType?.ToString() ?? "resource";
+                    npc?.SetUiStatus($"Fetching {t}");
                 }
                 break;
             case State.PickingUp:
                 {
-                    string t = lastTargetType?.ToString() ?? "surovinu";
-                    npc?.SetUiStatus($"Sbírám {t}");
+                    string t = lastTargetType?.ToString() ?? "resource";
+                    npc?.SetUiStatus($"Collecting {t}");
                 }
                 break;
             case State.WaitingAtSource:
-                npc?.SetUiStatus("Čekám na zdroje");
+                npc?.SetUiStatus("Waiting for resources");
                 break;
             case State.MovingToBuilding:
-                npc?.SetUiStatus("Nesu do budovy");
+                npc?.SetUiStatus("Delivering");
                 break;
             case State.Depositing:
-                npc?.SetUiStatus("Dodávám zdroje");
+                npc?.SetUiStatus("Depositing");
                 break;
         }
     }

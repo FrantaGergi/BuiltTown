@@ -131,9 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoneResource
   highlightObject: {fileID: 5895111100951404035}
-  hitPoints: 563
+  hitPoints: 50
   hitsPerDrop: 1
   hitTime: 0.6
+  resourceNode: {fileID: 0}
 --- !u!114 &8409148538978164030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceNode
   type: 4
   groundItemPrefab: {fileID: 8970372451532658702, guid: 335b90e8739229b48a5779c40912dfb5, type: 3}
-  stock: 10
+  resource: {fileID: 0}
 --- !u!1001 &5893999675817219701
 PrefabInstance:
   m_ObjectHideFlags: 0

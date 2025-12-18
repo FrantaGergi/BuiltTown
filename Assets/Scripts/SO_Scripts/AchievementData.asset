@@ -14,38 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AchievementIconDatabase
   entries:
   - id: tree_1
-    sprite: {fileID: 21300000, guid: fa436585044ca5a4db259ec1da52218b, type: 3}
+    sprite: {fileID: 21300000, guid: f84d8774aa3a8b646ac1fdd5686e0623, type: 3}
   - id: tree_10
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: f84d8774aa3a8b646ac1fdd5686e0623, type: 3}
   - id: tree_100
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: f84d8774aa3a8b646ac1fdd5686e0623, type: 3}
   - id: stone_1
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1a77adad890ec4d47a72256cae92a168, type: 3}
   - id: stone_10
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1a77adad890ec4d47a72256cae92a168, type: 3}
   - id: stone_100
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1a77adad890ec4d47a72256cae92a168, type: 3}
   - id: ore_1
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1fac77d93aacc7344a447ed46c8e6601, type: 3}
   - id: ore_10
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1fac77d93aacc7344a447ed46c8e6601, type: 3}
   - id: ore_100
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 1fac77d93aacc7344a447ed46c8e6601, type: 3}
   - id: district_1
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 5fba93a450c22ac4fb802d722d68592d, type: 3}
   - id: district_5
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 5fba93a450c22ac4fb802d722d68592d, type: 3}
   - id: district_20
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 5fba93a450c22ac4fb802d722d68592d, type: 3}
   - id: building_1
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: ba2cb46c3204e6644a08396d60a6fcd5, type: 3}
   - id: building_5
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: ba2cb46c3204e6644a08396d60a6fcd5, type: 3}
   - id: building_20
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: cd5a45d34d5b4474fa5fe7d215457541, type: 3}
   - id: npc_1
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 8c3bc0fa48289014193b37707d43b07d, type: 3}
   - id: npc_5
-    sprite: {fileID: 0}
-  - id: district_5
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: 8f896eb65054be245b7ae4eccf911be1, type: 3}
+  - id: npc_15
+    sprite: {fileID: 21300000, guid: b255182204fc46c458813499dc1f317a, type: 3}

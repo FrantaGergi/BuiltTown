@@ -151,8 +151,7 @@ public class Building : MonoBehaviour
 
     private void BuildingCompleted()
     {
-        //TODO REMOVE MAILBOX
-        //  mailbox.BuildingCompleted();
+        AchievementService.OnBuildingBuilt();
     }
 
 

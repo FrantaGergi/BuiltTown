@@ -59,29 +59,29 @@ public static class AchievementService
     {
         _achievements = new List<Achievement>()
         {
-            new Achievement{ id="tree_1", name="Lesník začátečník", description="1 strom pokácen", stat=nameof(stats.treesCut), target=1, unlocked=false, icon="🌲"},
-            new Achievement{ id="tree_10", name="Dřevorubec", description="10 stromů pokáceno", stat=nameof(stats.treesCut), target=10, unlocked=false, icon="🪓"},
-            new Achievement{ id="tree_100", name="Král lesa", description="100 stromů pokáceno", stat=nameof(stats.treesCut), target=100, unlocked=false, icon="👑"},
+            new Achievement{ id="tree_1", name="Forest Novice", description="Cut 1 tree", stat=nameof(stats.treesCut), target=1, unlocked=false, icon="🌲"},
+            new Achievement{ id="tree_10", name="Lumberjack", description="Cut 10 trees", stat=nameof(stats.treesCut), target=10, unlocked=false, icon="🪓"},
+            new Achievement{ id="tree_100", name="King of the Forest", description="Cut 100 trees", stat=nameof(stats.treesCut), target=100, unlocked=false, icon="👑"},
 
-            new Achievement{ id="stone_1", name="První kámen", description="1 kámen vytěžen", stat=nameof(stats.stoneMined), target=1, unlocked=false, icon="🪨"},
-            new Achievement{ id="stone_10", name="Kameník", description="10 kamenů vytěženo", stat=nameof(stats.stoneMined), target=10, unlocked=false, icon="⛏️"},
-            new Achievement{ id="stone_100", name="Mistr kamene", description="100 kamenů vytěženo", stat=nameof(stats.stoneMined), target=100, unlocked=false, icon="🏔️"},
+            new Achievement{ id="stone_1", name="First Stone", description="Mine 1 stone", stat=nameof(stats.stoneMined), target=1, unlocked=false, icon="🪨"},
+            new Achievement{ id="stone_10", name="Stonecutter", description="Mine 10 stones", stat=nameof(stats.stoneMined), target=10, unlocked=false, icon="⛏️"},
+            new Achievement{ id="stone_100", name="Master of Stone", description="Mine 100 stones", stat=nameof(stats.stoneMined), target=100, unlocked=false, icon="🏔️"},
 
-            new Achievement{ id="ore_1", name="Zlatokop", description="1 ruda vytěžena", stat=nameof(stats.oreMined), target=1, unlocked=false, icon="⚒️"},
-            new Achievement{ id="ore_10", name="Horník", description="10 rud vytěženo", stat=nameof(stats.oreMined), target=10, unlocked=false, icon="💎"},
-            new Achievement{ id="ore_100", name="Důlní magnát", description="100 rud vytěženo", stat=nameof(stats.oreMined), target=100, unlocked=false, icon="👷"},
+            new Achievement{ id="ore_1", name="Prospector", description="Mine 1 ore", stat=nameof(stats.oreMined), target=1, unlocked=false, icon="⚒️"},
+            new Achievement{ id="ore_10", name="Miner", description="Mine 10 ores", stat=nameof(stats.oreMined), target=10, unlocked=false, icon="💎"},
+            new Achievement{ id="ore_100", name="Mining Magnate", description="Mine 100 ores", stat=nameof(stats.oreMined), target=100, unlocked=false, icon="👷"},
 
-            new Achievement{ id="district_1", name="První expanze", description="1 distrikt zakoupen", stat=nameof(stats.districtsPurchased), target=1, unlocked=false, icon="🗺️"},
-            new Achievement{ id="district_5", name="Stavitel měst", description="5 distriktů zakoupeno", stat=nameof(stats.districtsPurchased), target=5, unlocked=false, icon="🏙️"},
-            new Achievement{ id="district_20", name="Císař území", description="20 distriktů zakoupeno", stat=nameof(stats.districtsPurchased), target=20, unlocked=false, icon="🌍"},
+            new Achievement{ id="district_1", name="First Expansion", description="Purchase 1 district", stat=nameof(stats.districtsPurchased), target=1, unlocked=false, icon="🗺️"},
+            new Achievement{ id="district_5", name="City Builder", description="Purchase 5 districts", stat=nameof(stats.districtsPurchased), target=5, unlocked=false, icon="🏙️"},
+            new Achievement{ id="district_20", name="Land Emperor", description="Purchase 20 districts", stat=nameof(stats.districtsPurchased), target=20, unlocked=false, icon="🌍"},
 
-            new Achievement{ id="building_1", name="První dům", description="1 budova postavena", stat=nameof(stats.buildingsBuilt), target=1, unlocked=false, icon="🏠"},
-            new Achievement{ id="building_5", name="Architekt", description="5 budov postaveno", stat=nameof(stats.buildingsBuilt), target=5, unlocked=false, icon="🏗️"},
-            new Achievement{ id="building_20", name="Velkostavitel", description="20 budov postaveno", stat=nameof(stats.buildingsBuilt), target=20, unlocked=false, icon="🏛️"},
+            new Achievement{ id="building_1", name="First House", description="Build 1 building", stat=nameof(stats.buildingsBuilt), target=1, unlocked=false, icon="🏠"},
+            new Achievement{ id="building_5", name="Architect", description="Build 5 buildings", stat=nameof(stats.buildingsBuilt), target=5, unlocked=false, icon="🏗️"},
+            new Achievement{ id="building_20", name="Master Builder", description="Build 20 buildings", stat=nameof(stats.buildingsBuilt), target=20, unlocked=false, icon="🏛️"},
 
-            new Achievement{ id="npc_1", name="První zaměstnanec", description="1 NPC najato", stat=nameof(stats.npcsHired), target=1, unlocked=false, icon="👤"},
-            new Achievement{ id="npc_5", name="Manažer týmu", description="5 NPC najato", stat=nameof(stats.npcsHired), target=5, unlocked=false, icon="👥"},
-            new Achievement{ id="npc_15", name="Vedoucí gildy", description="15 NPC najato", stat=nameof(stats.npcsHired), target=15, unlocked=false, icon="👨‍👩‍👧‍👦"}
+            new Achievement{ id="npc_1", name="First Hire", description="Hire 1 NPC", stat=nameof(stats.npcsHired), target=1, unlocked=false, icon="👤"},
+            new Achievement{ id="npc_5", name="Team Manager", description="Hire 5 NPCs", stat=nameof(stats.npcsHired), target=5, unlocked=false, icon="👥"},
+            new Achievement{ id="npc_15", name="Guild Leader", description="Hire 15 NPCs", stat=nameof(stats.npcsHired), target=15, unlocked=false, icon="👨‍👩‍👧‍👦"}
         };
     }
 

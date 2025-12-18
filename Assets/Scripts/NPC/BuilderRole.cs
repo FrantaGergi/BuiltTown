@@ -274,24 +274,24 @@ public class BuilderRole : NPCRoleBase
         {
             case State.Idle:
                 if (assignedBuilding != null)
-                    npc?.SetUiStatus("Pøipraven k práci");
+                    npc?.SetUiStatus("Ready to work");
                 else
-                    npc?.SetUiStatus("Neèinný");
+                    npc?.SetUiStatus("Idle");
                 break;
             case State.MovingToStorage:
-                npc?.SetUiStatus("Jdu pro materiál");
+                npc?.SetUiStatus("Going to storage");
                 break;
             case State.TakingFromStorage:
-                npc?.SetUiStatus("Beru materiál");
+                npc?.SetUiStatus("Taking materials");
                 break;
             case State.WaitingAtHolder:
-                npc?.SetUiStatus("Èekám u skladu");
+                npc?.SetUiStatus("Waiting at holder");
                 break;
             case State.MovingToBuilding:
-                npc?.SetUiStatus($"Nesu k budovì ({GetInventoryTotal()}x)");
+                npc?.SetUiStatus($"Carrying to building ({GetInventoryTotal()}x)");
                 break;
             case State.Building:
-                npc?.SetUiStatus($"Stavím ({GetInventoryTotal()}x zbývá)");
+                npc?.SetUiStatus($"Building ({GetInventoryTotal()}x left)");
                 break;
         }
     }
@@ -451,7 +451,7 @@ public class BuilderRole : NPCRoleBase
             // Pøidáme do inventáøe
             inventory.Add((neededType.Value, removed));
             
-            Debug.Log($"Builder ({name}) vzal {removed}x {neededType.Value} ze storage.");
+            Debug.Log($"Builder ({name}) took {removed}x {neededType.Value} from storage.");
         } else
         {
             ItemType holderType;
@@ -465,7 +465,7 @@ public class BuilderRole : NPCRoleBase
             {
                 int removed = holder.RemoveResource(holderType, toTake);
                 inventory.Add((holderType, removed));
-                Debug.Log($"Builder ({name}) vzal {removed}x {holderType} ze storage (alternativa).");
+                Debug.Log($"Builder ({name}) took {removed}x {holderType} from storage (alt).");
             }
             else            {
                 Debug.Log($"Builder ({name}): nothing available to take from storage.");
@@ -497,7 +497,7 @@ public class BuilderRole : NPCRoleBase
             inventory[0] = (item.type, item.amount - 1);
         }
         UpdateUiStatus(state);
-        Debug.Log($"Builder ({name}) vložil 1x {item.type} do budovy. Zbývá: {GetInventoryTotal()}");
+        Debug.Log($"Builder ({name}) deposited 1x {item.type} to building. Remaining: {GetInventoryTotal()}");
 
         return true;
     }

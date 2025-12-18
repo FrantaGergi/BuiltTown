@@ -131,9 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OreResource
   highlightObject: {fileID: 7590845014890620149}
-  hitPoints: 573
+  hitPoints: 50
   hitsPerDrop: 1
   hitTime: 0.5
+  resourceNode: {fileID: 0}
 --- !u!114 &5782257150559785535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceNode
   type: 5
   groundItemPrefab: {fileID: 2360187659633827652, guid: 5774ffcbb3f63c540840450f397363be, type: 3}
-  stock: 10
+  resource: {fileID: 0}
 --- !u!114 &5833025747877717960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +260,10 @@ PrefabInstance:
     - target: {fileID: 8057285624349082207, guid: 65c31d24ab709ba4b84e605881cc92bd, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8057285624349082207, guid: 65c31d24ab709ba4b84e605881cc92bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8417727870543061898, guid: 65c31d24ab709ba4b84e605881cc92bd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

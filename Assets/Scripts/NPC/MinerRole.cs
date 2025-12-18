@@ -98,15 +98,15 @@ public class MinerRole : NPCRoleBase
         {
             case State.Idle:
                 if (hasAssignedSourcePos)
-                    npc?.SetUiStatus("Èeká na úkol");
+                    npc?.SetUiStatus("Waiting for task");
                 else
-                    npc?.SetUiStatus("Neèinný");
+                    npc?.SetUiStatus("Idle");
                 break;
             case State.MovingToSource:
-                npc?.SetUiStatus($"Jdu tìžit {assignedResourceType}");
+                npc?.SetUiStatus($"Going to mine {assignedResourceType}");
                 break;
             case State.Mining:
-                npc?.SetUiStatus($"Tìží {assignedResourceType}");
+                npc?.SetUiStatus($"Mining {assignedResourceType}");
                 break;
         }
     }
@@ -163,7 +163,7 @@ public class MinerRole : NPCRoleBase
         }
 
         // Pokud nic nenalezeno, zrušíme assignment (nebo mùžeme èekat/delší retry logiku)
-        Debug.Log($"MinerRole: žádný zdroj typu {assignedResourceType} nalezen pro assignedSourcePos {assignedSourcePos}.");
+        Debug.Log($"MinerRole: no source of {assignedResourceType} found for assignedSourcePos {assignedSourcePos}.");
         // Místo automatického zrušení mùžeš chtít nechat miner èekat a opakovat vyhledávání pozdìji.
         ClearAssignment();
     }
