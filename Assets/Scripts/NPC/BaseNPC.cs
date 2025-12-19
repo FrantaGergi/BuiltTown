@@ -13,7 +13,6 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
     // UI handle - pøiøadí NPCManager pøi registraci
     public UINPC.NPCRowHandle UiRow { get; set; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -21,9 +20,11 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
 
         // aby se pøedešlo problémùm s kolizemi mezi NPC
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        //agent.avoidancePriority = 90; // 0 = nejvyšší priorita
+
 
     }
+
+
 
     public void MoveTo(Vector3 position)
     {
@@ -66,13 +67,16 @@ public class BaseNPC : MonoBehaviour, IBaseNPC
     {
         UiRow?.SetStatus(status);
     }
+
     public void SetUiDistrictSatus(string status)
     {
         UiRow?.SetDistrictStatus(status);
     }
+
     public void SetHighlightSection(int index)
     {
         UiRow?.SetHighlightSection(index);
     }
 
+   
 }

@@ -9,7 +9,7 @@ public class CollectorRole : NPCRoleBase
     public float searchRadius = 20f;
     public int capacity = 5;
 
-    [Header("Waiting (assigned source)")]
+    [Header("Waiting (assigned audioSource)")]
     [SerializeField, Tooltip("Kontrolní interval (s) když stojíme na assignedSourcePos a hledáme položky")] 
     private float waitCheckInterval = 5f;
 
@@ -273,7 +273,7 @@ public class CollectorRole : NPCRoleBase
             return;
         }
 
-        // Pokud tady nejsou žádné dostupné položky v assignedSourcePos -> přejít do waiting stavu u source
+        // Pokud tady nejsou žádné dostupné položky v assignedSourcePos -> přejít do waiting stavu u audioSource
         npc.MoveTo(assignedSourcePos);
         state = State.WaitingAtSource;
         waitTimer = 0f;

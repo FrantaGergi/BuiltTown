@@ -11,6 +11,7 @@ public class GameServices : MonoBehaviour
     public NPCManager NPCManager;
     public UIBuildingMailboxController uiBuildingMailboxController;
     public InformationController informationController;
+    public AudioSource audioSource;
 
     private bool T_Goal = false;
     private bool T_UpgradeTools = false;

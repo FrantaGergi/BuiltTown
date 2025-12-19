@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Pøizpùsobuje target velikosti source, pouze pøi zmìnì rozmìrù.
+/// Pøizpùsobuje target velikosti audioSource, pouze pøi zmìnì rozmìrù.
 /// Nejefektivnìjší zpùsob – žádný Update().
 /// </summary>
 [ExecuteAlways]
@@ -24,7 +24,7 @@ public class RectFollower : MonoBehaviour
     private void OnRectTransformDimensionsChange()
     {
         // Tato metoda se zavolá, když se zmìní rozmìr tohoto RectTransformu.
-        // Ale my chceme reagovat na zmìnu source, ne sebe – proto malý trik:
+        // Ale my chceme reagovat na zmìnu audioSource, ne sebe – proto malý trik:
         if (source == null || target == null) return;
 
         Vector2 currentSize = source.rect.size;

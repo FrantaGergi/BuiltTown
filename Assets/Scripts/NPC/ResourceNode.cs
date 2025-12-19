@@ -27,11 +27,12 @@ public class ResourceNode : MonoBehaviour, IResourceSource
         return resource.hitPoints > 0;
     }
 
-    public void MineOnce(int quantity)
+    public void MineOnce(int quantity, AudioSource audioSource)
     {
         if (!CanMine()) return;
 
         resource.hitPoints--;
+
 
         if (groundItemPrefab != null)
         {
@@ -42,6 +43,12 @@ public class ResourceNode : MonoBehaviour, IResourceSource
             {
                 gi.SetQuantity(quantity);
                 ItemSO iso = GameServices.I.resourceMapManager.GetResourceSO(type);
+
+                if(iso.itemType == ItemType.Wood)
+                    SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Axe);
+                else if(iso.itemType == ItemType.Stone || iso.itemType == ItemType.Ore)
+                    SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Pickaxe);
+
                 sib.SetAndStart(GameServices.I.Player,GameServices.I.playerInventory,quantity,iso);
                 // set quantity/type via inspector on prefab or here if needed
             }else

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.Audio;
 
 public class MinerRole : NPCRoleBase
 {
@@ -20,6 +21,13 @@ public class MinerRole : NPCRoleBase
     private enum State { Idle, MovingToSource, Mining }
     private State state = State.Idle;
     private State previousState = State.Idle;
+
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -71,7 +79,7 @@ public class MinerRole : NPCRoleBase
                 if (mineTimer >= mineInterval)
                 {
                     // vykonej jednorázové tìžení
-                    targetSource.MineOnce(mineAmountPerInterval);
+                    targetSource.MineOnce(mineAmountPerInterval, audioSource);
                     mineTimer = 0f;
 
                     // pokud byl zdroj vyèerpán po MineOnce, pøepni stav a vyhledej další
@@ -163,7 +171,7 @@ public class MinerRole : NPCRoleBase
         }
 
         // Pokud nic nenalezeno, zrušíme assignment (nebo mùžeme èekat/delší retry logiku)
-        Debug.Log($"MinerRole: no source of {assignedResourceType} found for assignedSourcePos {assignedSourcePos}.");
+        Debug.Log($"MinerRole: no audioSource of {assignedResourceType} found for assignedSourcePos {assignedSourcePos}.");
         // Místo automatického zrušení mùžeš chtít nechat miner èekat a opakovat vyhledávání pozdìji.
         ClearAssignment();
     }

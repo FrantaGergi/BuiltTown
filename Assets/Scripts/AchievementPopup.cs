@@ -64,6 +64,11 @@ public class AchievementPopup : MonoBehaviour
 
     private void OnAchievementUnlocked(AchievementService.Achievement achievement)
     {
+        // sound
+
+        SoundManager.Instance.PlayOnSourceWithoutInterrupt(GameServices.I.audioSource,
+    SoundSO.Sound.Achievement);
+
         achievementQueue.Enqueue(achievement);
 
         if (!isShowingAchievement)

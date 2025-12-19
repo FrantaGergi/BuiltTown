@@ -470,7 +470,7 @@ namespace TMPro.Examples
             // Get a reference to the vertices that we need to replace.
             Vector3[] dst_vertices = m_TextMeshPro.textInfo.meshInfo[materialIndex].vertices;
 
-            // Restore / Copy vertices from source to destination
+            // Restore / Copy vertices from audioSource to destination
             dst_vertices[vertexIndex + 0] = src_vertices[vertexIndex + 0];
             dst_vertices[vertexIndex + 1] = src_vertices[vertexIndex + 1];
             dst_vertices[vertexIndex + 2] = src_vertices[vertexIndex + 2];
@@ -483,7 +483,7 @@ namespace TMPro.Examples
             // Get a reference to the cached / original vertex colors.
             Color32[] src_colors = m_cachedMeshInfoVertexData[materialIndex].colors32;
 
-            // Copy the vertex colors from source to destination.
+            // Copy the vertex colors from audioSource to destination.
             dst_colors[vertexIndex + 0] = src_colors[vertexIndex + 0];
             dst_colors[vertexIndex + 1] = src_colors[vertexIndex + 1];
             dst_colors[vertexIndex + 2] = src_colors[vertexIndex + 2];

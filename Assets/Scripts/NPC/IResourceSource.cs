@@ -1,6 +1,8 @@
+using UnityEngine;
+
 public interface IResourceSource
 {
     ItemType Type { get; }
     bool CanMine();
-    void MineOnce(int quantity);
+    void MineOnce(int quantity, AudioSource audioSource);
 }

@@ -89,7 +89,6 @@ public class MinimapManager : MonoBehaviour
                     {
                         ClearSelectionState();
                         CloseMinimapInternal();
-                        Debug.Log($"MinimapManager: vybraná svìtová pozice {worldPos}.");
                     }
                     // pokud _selectionAutoClose == false, necháme stav (callback mùže hned otevøít nový režim)
                 }
@@ -107,7 +106,6 @@ public class MinimapManager : MonoBehaviour
                         {
                             ClearSelectionState();
                             CloseMinimapInternal();
-                            Debug.Log($"MinimapManager: vybraný plot {plot?.id} s BuildingSite.");
                         }
                         // pokud _selectionAutoClose == false necháme stav a callback mùže mìnit selectionMode / handlery
                     }

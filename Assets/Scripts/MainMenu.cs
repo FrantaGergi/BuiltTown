@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private Slider volumeSlider;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Graphics")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
@@ -40,6 +41,9 @@ public class MainMenu : MonoBehaviour
         InitResolutions();
         InitQuality();
         LoadSettings();
+
+        //sound
+        SoundManager.Instance.PlayOnSource(audioSource, SoundSO.Sound.Background);
 
         // Pøipoj eventy tak, aby se zmìny okamžitì aplikovaly a uložily
         if (volumeSlider != null)
@@ -306,5 +310,9 @@ public class MainMenu : MonoBehaviour
     {
         if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
         if (settingsPanel != null) settingsPanel.SetActive(false);
+    }
+    public void OnDestroy()
+    {
+        Destroy(this.gameObject);
     }
 }

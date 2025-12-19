@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: MainTheme
   m_EditorClassIdentifier: Assembly-CSharp::SoundSO
   sound: 0
-  clip: {fileID: 0}
-  mixerGroup: {fileID: 0}
-  volume: 1
-  loop: 0
+  clip: {fileID: 8300000, guid: 4ec7a854328d7594a83909e4139e4596, type: 3}
+  volume: 0.218
+  loop: 1
   SpatialBlend: 0
   MaxDistance: 500

@@ -6,6 +6,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private PlayerInput playerInput; // pøipoj PlayerInput z hráèe
+    [SerializeField] private AudioSource audioSource;
 
     private bool isPaused = false;
     private string previousActionMap = "Player";
@@ -21,6 +22,8 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         ResumeGame();
+        //sound
+        SoundManager.Instance.PlayOnSource(audioSource, SoundSO.Sound.Background);
     }
 
     public void TogglePause(InputAction.CallbackContext context)

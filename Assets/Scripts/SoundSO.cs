@@ -1,18 +1,18 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "NewSound", menuName = "Audio/Sound")]
 public class SoundSO : ScriptableObject
 {
     public enum Sound
     {
-        Footstep,
-        Jump,
-        ChopTree,
-        MineRock,
-        WaterSplash,
-        UI_Click,
-        Music_MainTheme,
+        
+        Background,
+        Achievement,
+        Onpickup,
+        Pickaxe,
+        Axe,
+        OnBuy,
+        Builder_Building
         // … tady si mùžeš doplòovat
     }
 
@@ -21,7 +21,6 @@ public class SoundSO : ScriptableObject
 
     [Header("Audio data")]
     public AudioClip clip;
-    public AudioMixerGroup mixerGroup;
 
     [Range(0f, 1f)]
     public float volume = 1f;
@@ -31,5 +30,7 @@ public class SoundSO : ScriptableObject
     [Header("3D nastavení")]
     [Range(0f, 1f)]
     public float SpatialBlend = 0f; // 0 = 2D, 1 = 3D
+
+    public float MinDistance = 1f;
     public float MaxDistance = 500f;
 }

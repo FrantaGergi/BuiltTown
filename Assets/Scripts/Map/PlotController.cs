@@ -87,8 +87,6 @@ public class PlotController : MonoBehaviour
             }
         }
 
-        if (disabledCount > 0)
-            Debug.Log($"PlotController: Disabled {disabledCount} child GameObjects of plot holders at Start.");
     }
 
 

@@ -1,23 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using static SoundSO;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    [Header("Mixery")]
-    public AudioMixerGroup sfxGroup;
-    public AudioMixerGroup musicGroup;
-    public AudioMixerGroup environmentGroup;
-
-    [Header("Zvukové zdroje")]
+    [Header("Zvuky")]
     public List<SoundSO> soundList = new();
 
-    public bool PlayerIsInWater = false;
-    void Awake()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -30,125 +23,104 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayOnSource(AudioSource source, Sound sound)
-    {
-        SoundSO soundSO = GetSoundSO(sound);
-        Debug.Log("Nìco jdu zahrát za zvuk");
-
-        if (source == null || soundSO == null)
-        {
-            Debug.LogWarning($"PlayOnSource: AudioSource nebo Sound '{sound}' nenalezen.");
-            return;
-        }
-
-        source.clip = soundSO.clip;
-        source.outputAudioMixerGroup = soundSO.mixerGroup;
-        source.volume = soundSO.volume;
-        source.loop = soundSO.loop;
-        source.minDistance = 0.001f;
-        source.spatialBlend = soundSO.SpatialBlend;
-        source.maxDistance = soundSO.MaxDistance;
-        source.Play();
-    }
-
+    // ===============================
+    // 3D NPC ZVUK – bez pøerušení
+    // ===============================
     public void PlayOnSourceWithoutInterrupt(AudioSource source, Sound sound)
     {
         SoundSO soundSO = GetSoundSO(sound);
 
         if (source == null || soundSO == null)
         {
-            Debug.LogWarning($"PlayOnSourceWithoutInterrupt: AudioSource nebo Sound '{sound}' nenalezen.");
+            Debug.LogError($"PlayOnSourceWithoutInterrupt: Missing AudioSource or SoundSO ({sound})");
             return;
         }
 
-        source.outputAudioMixerGroup = soundSO.mixerGroup;
-        source.minDistance = 0.001f;
-        source.spatialBlend = soundSO.SpatialBlend;
-        source.maxDistance = soundSO.MaxDistance;
-
+        Configure3DAudioSource(source, soundSO);
         source.PlayOneShot(soundSO.clip, soundSO.volume);
     }
 
+    // ===============================
+    // 3D NPC ZVUK – s pøerušením
+    // ===============================
+    public void PlayOnSource(AudioSource source, Sound sound)
+    {
+        SoundSO soundSO = GetSoundSO(sound);
 
+        Debug.Log($"PlayOnSource: Playing sound {sound} on source {source.name}");
+
+        if (source == null || soundSO == null)
+        {
+            Debug.LogError($"PlayOnSource: Missing AudioSource or SoundSO ({sound})");
+            return;
+        }
+
+        Configure3DAudioSource(source, soundSO);
+
+        source.clip = soundSO.clip;
+        source.loop = soundSO.loop;
+        source.volume = soundSO.volume;
+
+        source.Play();
+    }
+
+    // ===============================
+    // Zastavení zvuku
+    // ===============================
     public void StopSource(AudioSource source)
     {
         if (source != null && source.isPlaying)
-        {
             source.Stop();
-        }
     }
 
-    public AudioClip GetAudioClipBySound(Sound sound)
+    // ===============================
+    // Zpoždìné pøehrání (NPC)
+    // ===============================
+    public void PlayOnSourceWithoutInterrupt(AudioSource source, Sound sound, float delay)
     {
-        SoundSO soundSO = GetSoundSO(sound);
-        if (soundSO != null)
-            return soundSO.clip;
-
-        Debug.LogWarning($"Zvuk '{sound}' nebyl nalezen v seznamu.");
-        return null;
+        StartCoroutine(PlayDelayed(source, sound, delay, false));
     }
 
+    public void PlayOnSource(AudioSource source, Sound sound, float delay)
+    {
+        StartCoroutine(PlayDelayed(source, sound, delay, true));
+    }
+
+    private IEnumerator PlayDelayed(AudioSource source, Sound sound, float delay, bool interrupt)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (interrupt)
+            PlayOnSource(source, sound);
+        else
+            PlayOnSourceWithoutInterrupt(source, sound);
+    }
+
+    // ===============================
+    // SPOLEÈNÁ 3D KONFIGURACE (KLÍÈOVÉ)
+    // ===============================
+    private void Configure3DAudioSource(AudioSource source, SoundSO soundSO)
+    {
+        source.enabled = true;
+
+        source.spatialBlend = soundSO.SpatialBlend;
+
+        // KLÍÈOVÁ OPRAVA
+        source.rolloffMode = AudioRolloffMode.Logarithmic;
+
+        // Rozumné vzdálenosti
+        source.minDistance = soundSO.MinDistance;
+        source.maxDistance = soundSO.MaxDistance;
+
+        // Bez pitch / doppler šíleností
+        source.dopplerLevel = 0f;
+    }
+
+    // ===============================
+    // Interní lookup
+    // ===============================
     private SoundSO GetSoundSO(Sound sound)
     {
         return soundList.Find(s => s.sound == sound);
-    }
-
-
-
-    public void PlayOnSourceWithoutInterrupt(AudioSource source, Sound sound, float delay = 0f)
-    {
-        StartCoroutine(PlayOnSourceWithoutInterruptDelayed(source, sound, delay));
-    }
-
-    private IEnumerator PlayOnSourceWithoutInterruptDelayed(AudioSource source, Sound sound, float delay)
-    {
-        if (delay > 0f)
-            yield return new WaitForSeconds(delay);
-
-        SoundSO soundSO = GetSoundSO(sound);
-
-        if (source == null || soundSO == null)
-        {
-            Debug.LogWarning($"PlayOnSourceWithoutInterrupt: AudioSource nebo Sound '{sound}' nenalezen.");
-            yield break;
-        }
-
-        source.outputAudioMixerGroup = soundSO.mixerGroup;
-        source.minDistance = 0.001f;
-        source.spatialBlend = soundSO.SpatialBlend;
-        source.maxDistance = soundSO.MaxDistance;
-
-        source.PlayOneShot(soundSO.clip, soundSO.volume);
-    }
-
-
-
-    public void PlayOnSource(AudioSource source, Sound sound, float delay = 0f)
-    {
-        StartCoroutine(PlayOnSourceDelayed(source, sound, delay));
-    }
-
-    private IEnumerator PlayOnSourceDelayed(AudioSource source, Sound sound, float delay)
-    {
-        if (delay > 0f)
-            yield return new WaitForSeconds(delay);
-
-        SoundSO soundSO = GetSoundSO(sound);
-        Debug.Log("Nìco jdu zahrát za zvuk");
-
-        if (source == null || soundSO == null)
-        {
-            Debug.LogWarning($"PlayOnSource: AudioSource nebo Sound '{sound}' nenalezen.");
-            yield break;
-        }
-
-        source.clip = soundSO.clip;
-        source.outputAudioMixerGroup = soundSO.mixerGroup;
-        source.volume = soundSO.volume;
-        source.loop = soundSO.loop;
-        source.minDistance = 0.001f;
-        source.spatialBlend = soundSO.SpatialBlend;
-        source.maxDistance = soundSO.MaxDistance;
-        source.Play();
     }
 }

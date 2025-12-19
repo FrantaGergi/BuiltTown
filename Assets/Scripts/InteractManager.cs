@@ -21,6 +21,8 @@ public class InteractManager : MonoBehaviour
     private InventoryManager inventoryManager;
     [Header("UI District Mailbox Controller"), SerializeField]
     private UIBuildingMailboxController uiBuildingMailboxController;
+    [Header("Players Audio Source"), SerializeField]
+    private AudioSource audioSource;
 
 
 
@@ -252,5 +254,9 @@ public class InteractManager : MonoBehaviour
     public UIBuildingMailboxController GetUIBuildingMailboxController()
     {
         return uiBuildingMailboxController;
+    }
+    public AudioSource GetAudioSource()
+    {
+        return audioSource;
     }
 }

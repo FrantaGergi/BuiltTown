@@ -75,7 +75,9 @@ public class ShopItem : MonoBehaviour, IInteractable
                 uIShopItem.SetShowCanvas(false, itemSO, playerEquipment.GetIconSourceByType(itemSO.itemType));
 
             }
-
+            //sound
+            SoundManager.Instance.PlayOnSourceWithoutInterrupt(GameServices.I.audioSource,
+                SoundSO.Sound.OnBuy);
 
             // Give upgrade...
         }

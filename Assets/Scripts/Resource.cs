@@ -14,7 +14,7 @@ public class Resource : MonoBehaviour, IInteractable
     protected InventoryManager inventoryManager;
     protected ResourceMapManager resourceMapManager;
     protected ItemSO ItemSO;
-
+    protected AudioSource audioSource;
     protected HitShakeEffect hitEffect;
 
     [Header("Highlight Settings"), SerializeField]
@@ -76,6 +76,7 @@ public class Resource : MonoBehaviour, IInteractable
             toolAnimator = interactor.GetToolAnimator();
             inventoryManager = interactor.GetInventoryManager();
             resourceMapManager = interactor.GetResourceMapManager();
+            audioSource = interactor.GetAudioSource();
 
             LateStart(); // inicializace, která potøebuje interactor
         }
@@ -104,7 +105,7 @@ public class Resource : MonoBehaviour, IInteractable
             toolAnimator = interactor.GetToolAnimator();
             inventoryManager = interactor.GetInventoryManager();
             resourceMapManager = interactor.GetResourceMapManager();
-
+            audioSource = interactor.GetAudioSource();
             LateStart(); // inicializace, která potøebuje interactor
          }
 
@@ -163,6 +164,14 @@ public class Resource : MonoBehaviour, IInteractable
             hitsTaken = hitsTaken % hitsPerDrop;
             GetDrop(drops); // vrátí 1, 2, 3... podle toho, kolikrát se vejde
         }
+
+        //sounds
+        if(audioSource == null) Debug.LogError("NULL AUDIO");
+
+        if (ItemSO.itemType == ItemType.Wood)
+            SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Axe);
+        else if (ItemSO.itemType == ItemType.Stone || ItemSO.itemType == ItemType.Ore)
+            SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Pickaxe);
 
         if (hitPoints <= 0)
         {

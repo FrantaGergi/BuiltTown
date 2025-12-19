@@ -25,6 +25,8 @@ public class BuilderRole : NPCRoleBase
     // Inventáø buildera - uchovává co právì nese
     private List<(ItemType type, int amount)> inventory = new();
 
+    private AudioSource audioSource;
+
     private enum State
     {
         Idle,
@@ -41,6 +43,11 @@ public class BuilderRole : NPCRoleBase
     private float buildTimer = 0f;
     private float stateTimer = 0f;
     private float waitTimer = 0f;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -292,6 +299,9 @@ public class BuilderRole : NPCRoleBase
                 break;
             case State.Building:
                 npc?.SetUiStatus($"Building ({GetInventoryTotal()}x left)");
+                SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building);
+                SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building,1);
+                SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building,2);
                 break;
         }
     }

@@ -216,7 +216,7 @@ public class NPCManager : MonoBehaviour
             Debug.LogWarning($"NPCManager: nelze najít resource typu {requested} pro {npc.name} (minimap chybí).");
     }
 
-    // Collector: jedno tlaèítko => nejdøíve vyber building (destination), poté source position
+    // Collector: jedno tlaèítko => nejdøíve vyber building (destination), poté audioSource position
     private void HandleCollectorAction(BaseNPC npc, int index)
     {
         var collector = npc.GetComponent<CollectorRole>();
@@ -253,13 +253,13 @@ public class NPCManager : MonoBehaviour
         if (siteFallback != null && posFallback.HasValue)
             collector.AssignCollectionTask(posFallback.Value, siteFallback);
         else
-            Debug.LogWarning($"NPCManager: nelze najít building site nebo source pozici pro {npc.name} (minimap chybí).");
+            Debug.LogWarning($"NPCManager: nelze najít building site nebo audioSource pozici pro {npc.name} (minimap chybí).");
     }
 
-    // oddìlená metoda pro výbìr source pozice
+    // oddìlená metoda pro výbìr audioSource pozice
     private void OpenSourcePositionSelection(CollectorRole collector, BuildingSite site)
     {
-        Debug.Log("NPCManager: otevírám minimapu pro výbìr source pozice (collector).");
+        Debug.Log("NPCManager: otevírám minimapu pro výbìr audioSource pozice (collector).");
         // tady je problém že kdyý 
         minimapManager.OpenMinimapToGetSourceCoordinates((Vector3 sourcePos) =>
         {

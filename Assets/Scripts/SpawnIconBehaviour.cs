@@ -104,6 +104,10 @@ public class SpawnIconBehaviour : MonoBehaviour
             // check hr·Ëe
             if (player && Vector3.Distance(transform.position, player.position) < pickupRange)
             {
+                // sound
+                SoundManager.Instance.PlayOnSourceWithoutInterrupt(GameServices.I.audioSource,
+            SoundSO.Sound.Onpickup);
+
                 StartCoroutine(JumpToPlayer());
                 yield break;
             }

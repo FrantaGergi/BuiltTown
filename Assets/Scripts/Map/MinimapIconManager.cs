@@ -90,7 +90,6 @@ public class MinimapIconManager : MonoBehaviour
     {
         if (icon == null) return;
 
-        Debug.Log($"MinimapIconManager: registering icon {icon.name} type {icon.iconType}");
 
         if (icon.iconType == MinimapIconType.District)
         {
