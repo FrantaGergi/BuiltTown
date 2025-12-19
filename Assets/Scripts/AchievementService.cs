@@ -201,6 +201,10 @@ public static class AchievementService
             Debug.LogWarning($"Neplatný save JSON: {ex.Message}");
         }
     }
+    public static int GetUnlockedCount()
+    {
+        return _achievements.Count(a => a.unlocked);
+    }
 
     public static void ResetProgress()
     {

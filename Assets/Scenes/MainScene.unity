@@ -9030,8 +9030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -506.15, y: 218.6142}
-  m_SizeDelta: {x: 740.2, y: 105.4966}
+  m_AnchoredPosition: {x: 236.99951, y: 275.39178}
+  m_SizeDelta: {x: 1210, y: 105.4966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67443058
 MonoBehaviour:
@@ -9053,7 +9053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Achievements (0/15)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 26507f248a46cbf4fa958167f580e2ce, type: 2}
   m_sharedMaterial: {fileID: -5660775149628104760, guid: 26507f248a46cbf4fa958167f580e2ce, type: 2}
@@ -9080,14 +9080,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 140
-  m_fontSizeBase: 140
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 250
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -23158,7 +23158,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 200.75, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &231135933
 MonoBehaviour:
@@ -46748,7 +46748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &507576872
 RectTransform:
   m_ObjectHideFlags: 0
@@ -82470,7 +82470,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 200.75, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &878275800
 MonoBehaviour:
@@ -111086,6 +111086,7 @@ MonoBehaviour:
   playerInventory: {fileID: 1204077273}
   NPCManager: {fileID: 1204077282}
   uiBuildingMailboxController: {fileID: 2145175071}
+  informationController: {fileID: 1639136488}
 --- !u!114 &1204077276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111264,6 +111265,7 @@ MonoBehaviour:
   flowPanel: {fileID: 995529218}
   entryPrefab: {fileID: 4749734315953971466, guid: c8098c850292df849820a2e833de8945, type: 3}
   iconDatabase: {fileID: 11400000, guid: ce179b8f79d5eb448802433a7ff58b2d, type: 2}
+  titleText: {fileID: 67443058}
 --- !u!1001 &1204923140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156853,7 +156855,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 200.75, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1735427161
 MonoBehaviour:
@@ -163855,7 +163857,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -260.70715, y: -99}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 200.75, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1802113874
 MonoBehaviour:
@@ -173001,8 +173003,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 237, y: -124.88751}
-  m_SizeDelta: {x: 1210, y: 723.9308}
+  m_AnchoredPosition: {x: 237, y: -79.356445}
+  m_SizeDelta: {x: 1210, y: 814.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1915241251
 MonoBehaviour:

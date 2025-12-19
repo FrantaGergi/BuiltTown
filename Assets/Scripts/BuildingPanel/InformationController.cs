@@ -23,18 +23,59 @@ public class InformationController : MonoBehaviour
     private bool hasOriginalAnchoredPos = false;
     private bool currentToSidePos = false;
 
+    // true pokud informationPanel.gameObject == this.gameObject (controller je umístìn pøímo na panelu)
+    private bool panelIsSelf = false;
+
+    // volitelný CanvasGroup pro plynulé ovládání interaktivity, pokud je pøítomen
+    private CanvasGroup panelCanvasGroup;
+
+    private void Awake()
+    {
+        if (informationPanel == null)
+        {
+            Debug.LogWarning("InformationController: informationPanel není pøiøazen v Inspectoru.");
+            return;
+        }
+
+        panelIsSelf = (informationPanel.gameObject == this.gameObject);
+
+        // uložíme pùvodní pozici (anchored) pokud existuje
+        originalAnchoredPos = informationPanel.anchoredPosition;
+        hasOriginalAnchoredPos = true;
+
+        // pokusíme se najít CanvasGroup, pokud existuje
+        panelCanvasGroup = informationPanel.GetComponent<CanvasGroup>();
+
+        // Pokud je controller na tomtéž GameObjectu, NEDÌLÁME SetActive(false)
+        // protože to deaktivuje komponentu a StartCoroutine by selhal.
+        // Staèí nastavit scale na 0 a pøípadnì canvasGroup interaktivitu.
+        if (panelIsSelf)
+        {
+            informationPanel.localScale = Vector3.zero;
+            if (panelCanvasGroup != null)
+            {
+                panelCanvasGroup.alpha = 0f;
+                panelCanvasGroup.interactable = false;
+                panelCanvasGroup.blocksRaycasts = false;
+            }
+        }
+        else
+        {
+            // pokud controller není na stejném GO, je bezpeèné panel deaktivovat
+            informationPanel.localScale = Vector3.zero;
+            if (panelCanvasGroup != null)
+            {
+                panelCanvasGroup.alpha = 0f;
+                panelCanvasGroup.interactable = false;
+                panelCanvasGroup.blocksRaycasts = false;
+            }
+            informationPanel.gameObject.SetActive(false);
+        }
+    }
 
     void Start()
     {
-        // Ulož pùvodní anchoredPosition (pokud existuje) a inicializuj panel
-        if (informationPanel != null)
-        {
-            originalAnchoredPos = informationPanel.anchoredPosition;
-            hasOriginalAnchoredPos = true;
-
-            informationPanel.localScale = Vector3.zero;
-            informationPanel.gameObject.SetActive(false);
-        }
+        // Start zùstává volný
     }
 
     /// <summary>
@@ -42,9 +83,6 @@ public class InformationController : MonoBehaviour
     /// Volání je odolné proti opakovaným voláním (pøepíše bìžící animaci a zaène znovu plynule).
     /// Pokud je toSidePos==true, panel se pøed animací pøesune na X = sideOffsetX a po skrytí se vrátí na pùvodní pozici.
     /// </summary>
-    /// <param name="title">Titulek</param>
-    /// <param name="description">Popis</param>
-    /// <param name="duration">Doba (v s), po kterou bude panel plnì zobrazený pøed skrytím</param>
     public void ShowText(string title, string description, float duration, bool toSidePos = false)
     {
         if (informationPanel == null)
@@ -77,15 +115,32 @@ public class InformationController : MonoBehaviour
             showCoroutine = null;
         }
 
-        // Aktivuj panel pøed animací
-        informationPanel.gameObject.SetActive(true);
+        // Aktivace vizuálu:
+        if (!panelIsSelf)
+        {
+            informationPanel.gameObject.SetActive(true);
+        }
+        else
+        {
+            // pokud jsme na stejném GO, jen upravíme CanvasGroup a scale pøed animací
+            if (panelCanvasGroup != null)
+            {
+                panelCanvasGroup.alpha = 1f; // bude animováno scale - nastavíme alfa na 1 aby byl vidìt
+                panelCanvasGroup.interactable = true;
+                panelCanvasGroup.blocksRaycasts = true;
+            }
+        }
 
+        // Ujistíme se, že scale zaèíná od nuly (pokud ne, necháme aktuální)
+        if (informationPanel.localScale == Vector3.zero)
+            informationPanel.localScale = Vector3.zero;
+
+        // StartCoroutine lze bezpeènì volat, protože tento MonoBehaviour je aktivní
         showCoroutine = StartCoroutine(ShowSequence(Mathf.Max(0f, duration)));
     }
 
     private IEnumerator ShowSequence(float visibleDuration)
     {
-
         // Animuj plynule z aktuálního scale na 1
         yield return StartCoroutine(ScaleTo(Vector3.one, animationDuration));
 
@@ -107,8 +162,21 @@ public class InformationController : MonoBehaviour
             currentToSidePos = false;
         }
 
-        // Deaktivuj panel když je zmenšený
-        informationPanel.gameObject.SetActive(false);
+        // Deaktivace / ukonèení viditelnosti
+        if (!panelIsSelf)
+        {
+            informationPanel.gameObject.SetActive(false);
+        }
+        else
+        {
+            // pokud jsme na stejném GO, ponecháme GO aktivní, ale zajistíme, že je invisible / neinteraktivní
+            if (panelCanvasGroup != null)
+            {
+                panelCanvasGroup.alpha = 0f;
+                panelCanvasGroup.interactable = false;
+                panelCanvasGroup.blocksRaycasts = false;
+            }
+        }
 
         showCoroutine = null;
     }
@@ -158,7 +226,21 @@ public class InformationController : MonoBehaviour
             informationPanel.localScale = Vector3.zero;
             if (hasOriginalAnchoredPos)
                 informationPanel.anchoredPosition = originalAnchoredPos;
-            informationPanel.gameObject.SetActive(false);
+
+            if (!panelIsSelf)
+            {
+                informationPanel.gameObject.SetActive(false);
+            }
+            else
+            {
+                if (panelCanvasGroup != null)
+                {
+                    panelCanvasGroup.alpha = 0f;
+                    panelCanvasGroup.interactable = false;
+                    panelCanvasGroup.blocksRaycasts = false;
+                }
+            }
+
             currentToSidePos = false;
         }
     }

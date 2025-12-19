@@ -196,6 +196,7 @@ public class MinimapManager : MonoBehaviour
             Cursor.visible = true;
 
             mainMinimapContainer.SetActive(true);
+            GameServices.I.OnMapOpen();
         }
         else
         {

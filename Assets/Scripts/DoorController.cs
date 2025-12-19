@@ -47,7 +47,15 @@ public class DoorController : MonoBehaviour
 
     private bool IsValidTrigger(GameObject obj)
     {
-        return (triggerMask.value & (1 << obj.layer)) != 0;
+        bool isInLayerMask = (triggerMask.value & (1 << obj.layer)) != 0;
+
+        // Pokud jde o Player a zároveò splòuje vrstvu, vyvolej event (napø. v Inspectoru pøipoj GameServices a metodu)
+        if (isInLayerMask && obj.CompareTag("Player"))
+        {
+            GameServices.I.OnShopEntered();
+        }
+
+        return isInLayerMask;
     }
 
     private void OpenDoor()

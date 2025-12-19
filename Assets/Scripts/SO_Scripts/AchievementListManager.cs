@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class AchievementListManager : MonoBehaviour
@@ -7,6 +9,7 @@ public class AchievementListManager : MonoBehaviour
     [SerializeField] private RectTransform flowPanel; // Flow/Content panel (Layout Group)
     [SerializeField] private GameObject entryPrefab;   // prefab obsahující AchievementListEntry
     [SerializeField] private AchievementIconDatabase iconDatabase;
+    [SerializeField] private TextMeshProUGUI titleText;
 
     private readonly List<GameObject> spawnedEntries = new List<GameObject>();
 
@@ -15,6 +18,7 @@ public class AchievementListManager : MonoBehaviour
         if (flowPanel == null) Debug.LogWarning("AchievementListManager: flowPanel není pøiøazen.");
         if (entryPrefab == null) Debug.LogWarning("AchievementListManager: entryPrefab není pøiøazen.");
         RefreshList();
+        AchievementsStatus();
     }
 
     private void OnEnable()
@@ -31,6 +35,12 @@ public class AchievementListManager : MonoBehaviour
     {
         // Pøidáme novì odemèený achievement (mùžeme rovnou pøidat jeden záznam)
         AddEntry(ach);
+        AchievementsStatus();
+    }
+
+    private void AchievementsStatus()
+    {
+        titleText.text = $"Achievements ({AchievementService.GetUnlockedCount()} / 18)";
     }
 
     // Vyèistí a naplní podle aktuálních odemèených achievementù

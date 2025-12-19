@@ -152,6 +152,7 @@ public class Building : MonoBehaviour
     private void BuildingCompleted()
     {
         AchievementService.OnBuildingBuilt();
+        GameServices.I.OnBuildCompleted();
     }
 
 
