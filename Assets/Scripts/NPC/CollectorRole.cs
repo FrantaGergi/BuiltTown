@@ -191,17 +191,22 @@ public class CollectorRole : NPCRoleBase
 
     private IEnumerator PerformPickup()
     {
-        if (targetItem == null) yield break;
-
         isPickingUp = true;
 
-        // Play pickup animation (bend down)
+        // bezpečnost
+        if (targetItem == null)
+        {
+            isPickingUp = false;
+            TransitionToIdle();
+            yield break;
+        }
+
         npc.LookAtTarget(((MonoBehaviour)targetItem).transform.position);
 
-        // Wait for animation
+        // počkej na animaci
         yield return new WaitForSeconds(pickupAnimationDuration);
 
-        // Actually pick up the item
+        // pickup
         var gi = (GroundItem)((MonoBehaviour)targetItem);
         if (gi != null && inventoryTotal() < capacity)
         {
