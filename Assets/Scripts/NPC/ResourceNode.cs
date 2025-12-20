@@ -29,6 +29,14 @@ public class ResourceNode : MonoBehaviour, IResourceSource
             return true;
         }else
         {
+            if (type == ItemType.Wood)
+                AchievementService.OnTreeCut();
+            else if (type == ItemType.Stone)
+                AchievementService.OnStoneMined();
+            else if (type == ItemType.Ore)
+                AchievementService.OnOreMined();
+
+
             Destroy(gameObject);
             return false;
         }

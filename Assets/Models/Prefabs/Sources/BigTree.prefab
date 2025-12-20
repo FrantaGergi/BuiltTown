@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TreeResource
   highlightObject: {fileID: 3704936679942322311}
-  hitPoints: 100
+  hitPoints: 400
   hitsPerDrop: 1
   hitTime: 0.5
   resourceNode: {fileID: 0}

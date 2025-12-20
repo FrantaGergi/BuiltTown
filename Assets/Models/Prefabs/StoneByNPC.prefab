@@ -144,7 +144,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  idleTime: 50
+  idleTime: 300
   rotationSpeed: 50
   pickupRange: 2
   jumpToPlayerTime: 0.4

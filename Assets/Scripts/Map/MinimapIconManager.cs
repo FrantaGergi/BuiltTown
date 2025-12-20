@@ -13,6 +13,7 @@ public class MinimapIconManager : MonoBehaviour
     public RectTransform oreIconPrefab;
     public RectTransform woodIconPrefab;
     public RectTransform PlayerIconPrefab;
+    public RectTransform indexsOnMap;
 
 
     [Header("References")]
@@ -249,6 +250,7 @@ public class MinimapIconManager : MonoBehaviour
         if (districts != null)
         {
             districtsVisible = show;
+            indexsOnMap.gameObject.SetActive(show);
             districtLines.ForEach(d =>
             {
                d.enabled = show;

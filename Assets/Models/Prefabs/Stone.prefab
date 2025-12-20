@@ -88,6 +88,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8970372451532658702
 GameObject:
@@ -141,7 +142,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 183
-  idleTime: 50
+  idleTime: 300
   rotationSpeed: 50
   pickupRange: 2
   jumpToPlayerTime: 0.4

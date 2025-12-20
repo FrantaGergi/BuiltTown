@@ -32,7 +32,20 @@ public class GameServices : MonoBehaviour
 
     private void Start()
     {
-       // Invoke(nameof(SetTutorialGoal), 2f);
+        Invoke(nameof(SetTutorialGoal), 2f);
+    }
+
+    public void ResetAndStartAgainTutorial()
+    {
+        T_Goal = false;
+        T_UpgradeTools = false;
+        T_MapOpened = false;
+        T_NPCSystem = false;
+        T_ShopSystem = false;
+        T_Interaction = false;
+
+        Invoke(nameof(SetTutorialGoal), 2f);
+
     }
 
     public void SetTutorialGoal()

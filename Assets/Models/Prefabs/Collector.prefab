@@ -986,10 +986,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollectorRole
   autoSearch: 0
-  searchRadius: 50
+  searchRadius: 200
   capacity: 100
   waitCheckInterval: 5
-  pickupAnimationDuration: 0.5
   useCarryingAnimation: 1
 --- !u!114 &-1337385245560707818
 MonoBehaviour:

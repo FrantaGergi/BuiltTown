@@ -414,8 +414,8 @@ public class CollectorRole : NPCRoleBase
         var list = new List<ItemType>();
         if (b == null) return list;
 
-        if (b.NeedsResourceForCollectors(ItemType.Wood)) list.Add(ItemType.Wood);
         if (b.NeedsResourceForCollectors(ItemType.Stone)) list.Add(ItemType.Stone);
+        if (b.NeedsResourceForCollectors(ItemType.Wood)) list.Add(ItemType.Wood);
         if (b.NeedsResourceForCollectors(ItemType.Ore)) list.Add(ItemType.Ore);
 
         return list;
