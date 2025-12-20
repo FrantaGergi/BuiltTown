@@ -55,6 +55,9 @@ public class PlotController : MonoBehaviour
                 int multiplier = plots_prices_Multiplier[i];
                 int cost = Factorial(multiplier) * default_plot_price;
                 plots.First(p => p.id == i).costToUnlock = cost;
+
+                plots[i].BigBuilding?.buildingCore?.SetCosts(multiplier);
+                plots[i].MiniBuilding?.buildingCore?.SetCosts(multiplier);
             }
         }
     }

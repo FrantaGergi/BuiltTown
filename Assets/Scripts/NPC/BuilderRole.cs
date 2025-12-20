@@ -15,6 +15,7 @@ public class BuilderRole : NPCRoleBase
     [Header("Building Settings")]
     [SerializeField] private int carryCapacity = 5;
     [SerializeField] private float depositInterval = 5f;
+    [SerializeField] private int depositAmountPerInterval = 1;
 
     [Header("Robustness")]
     [SerializeField] private float holderArrivalThreshold = 1.0f;
@@ -302,12 +303,12 @@ public class BuilderRole : NPCRoleBase
         if (buildingSite == null) return false;
 
         var item = inventory[0];
-        buildingSite.AddResourceByBuilder(item.type, 1);
+        buildingSite.AddResourceByBuilder(item.type, depositAmountPerInterval);
 
-        if (item.amount <= 1)
+        if ((item.amount - depositAmountPerInterval) <= 1)
             inventory.RemoveAt(0);
         else
-            inventory[0] = (item.type, item.amount - 1);
+            inventory[0] = (item.type, item.amount - depositAmountPerInterval);
 
         UpdateUiStatus(state);
         return true;

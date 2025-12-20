@@ -1763,7 +1763,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.14
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &603237989865089949
@@ -1793,10 +1793,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781506c83e4b95b449f3c5ea872e494d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinerRole
+  axeUI: {fileID: 8777216620596631536}
+  pickaxeUI: {fileID: 5026376707486113002}
   autoSearch: 0
   searchRadius: 100
-  mineInterval: 4
-  mineAmountPerInterval: 50
+  mineInterval: 2
+  mineAmountPerInterval: 10
   miningAnimationSpeed: 1
   playSwingSound: 1
 --- !u!114 &8843418114204467492
@@ -3257,6 +3259,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 512443054811593788, guid: 106cff0b03fec0544abe760b2a1967f3, type: 3}
   m_PrefabInstance: {fileID: 2879940534931800013}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8777216620596631536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6789575196673747005, guid: 106cff0b03fec0544abe760b2a1967f3, type: 3}
+  m_PrefabInstance: {fileID: 2879940534931800013}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4165667306723600001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3379,6 +3386,11 @@ PrefabInstance:
 --- !u!4 &83901409499796322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5208812037132206072, guid: a89293353eabe3445a578ef75d2a0232, type: 3}
+  m_PrefabInstance: {fileID: 5288203498874793114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5026376707486113002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 910360359262040176, guid: a89293353eabe3445a578ef75d2a0232, type: 3}
   m_PrefabInstance: {fileID: 5288203498874793114}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8352444421117080707

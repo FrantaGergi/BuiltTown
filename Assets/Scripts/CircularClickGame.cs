@@ -221,7 +221,7 @@ public class CircularClickGame : MonoBehaviour
             if (Mathf.Abs(angleDiff) <= hitAngleTolerance)
             {
                 StartCoroutine(HitLog(log));
-                currentMultiplier++;
+                currentMultiplier *= 2;
 
                 hit = true;
                 break;

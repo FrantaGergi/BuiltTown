@@ -24,15 +24,26 @@ public class ResourceNode : MonoBehaviour, IResourceSource
 
     public bool CanMine()
     {
-        return resource.hitPoints > 0;
+        if(resource.hitPoints > 0)
+        {
+            return true;
+        }else
+        {
+            Destroy(gameObject);
+            return false;
+        }
     }
 
     public void MineOnce(int quantity, AudioSource audioSource)
     {
-        if (!CanMine()) return;
+        if (!CanMine())
+        {
+            return;
+        }
 
-        resource.hitPoints--;
+        resource.hitPoints -= quantity;
 
+       
 
         if (groundItemPrefab != null)
         {

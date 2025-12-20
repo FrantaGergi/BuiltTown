@@ -12,6 +12,7 @@ public class MinimapIconManager : MonoBehaviour
     public RectTransform stoneIconPrefab;
     public RectTransform oreIconPrefab;
     public RectTransform woodIconPrefab;
+    public RectTransform PlayerIconPrefab;
 
 
     [Header("References")]
@@ -41,6 +42,7 @@ public class MinimapIconManager : MonoBehaviour
         Ore,
         Wood,
         District,
+        Player,
         None
     }
 
@@ -78,6 +80,7 @@ public class MinimapIconManager : MonoBehaviour
     private void Start()
     {
         SetAllGroups(true);
+        SetGroupVisible(MinimapIconType.Player, true);
     }
 
     void Update()
@@ -198,6 +201,8 @@ public class MinimapIconManager : MonoBehaviour
             case MinimapIconType.Ore: prefab = oreIconPrefab; break;
             case MinimapIconType.Wood: prefab = woodIconPrefab; break;
             case MinimapIconType.District: prefab = woodIconPrefab; break; // pokud nemáš district prefab, uprav zde
+            case MinimapIconType.Player: prefab = PlayerIconPrefab; break;
+
             default: prefab = null; break;
         }
 

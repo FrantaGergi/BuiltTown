@@ -32,7 +32,7 @@ public class GameServices : MonoBehaviour
 
     private void Start()
     {
-        Invoke(nameof(SetTutorialGoal), 2f);
+       // Invoke(nameof(SetTutorialGoal), 2f);
     }
 
     public void SetTutorialGoal()
@@ -85,8 +85,10 @@ public class GameServices : MonoBehaviour
             return;
 
         informationController.ShowText(
-            "Minimap",
-            "\U0001f7e2 unlocked\r\n\U0001f7e0 available\r\n🔴 locked",
+                "Minimap",
+    "<color=#00FF00>●</color> unlocked\n" +
+    "<color=#FFA500>●</color> available\n" +
+    "<color=#FF0000>●</color> locked",
             4f, true);
 
         T_MapOpened = true;

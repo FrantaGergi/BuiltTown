@@ -1144,7 +1144,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: -0.14
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &4392446403443701521
@@ -1176,12 +1176,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuilderRole
   autoSearch: 0
   searchRadius: 20
-  carryCapacity: 5
+  carryCapacity: 25
   depositInterval: 1
+  depositAmountPerInterval: 2
   holderArrivalThreshold: 1
   waitCheckInterval: 5
   buildingAnimationSpeed: 1
-  buildingSoundInterval: 2
+  buildingSoundInterval: 1
 --- !u!114 &1838214952434208125
 MonoBehaviour:
   m_ObjectHideFlags: 0

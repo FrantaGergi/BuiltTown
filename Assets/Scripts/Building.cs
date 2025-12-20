@@ -56,6 +56,14 @@ public class Building : MonoBehaviour
         }
     }
 
+    public void SetCosts(int multiplier)
+    {
+        woodCost *= multiplier;
+        stoneCost *= multiplier;
+        oreCost *= multiplier;
+    }
+
+
     public void AddResource(int count, ItemType itemType)
     {
         if(itemType == ItemType.Wood)

@@ -17,6 +17,6 @@ MonoBehaviour:
   prefab: {fileID: 2530181033227988658, guid: 60c1ec993210c574a9c5d438d5dbe024, type: 3}
   HighlightedMaterial: {fileID: 0}
   itemType: 0
-  description: I will nosit for you
-  price: 5000
+  description: "I\u2019ll carry for you."
+  price: 25000
   gatherAmount: 0

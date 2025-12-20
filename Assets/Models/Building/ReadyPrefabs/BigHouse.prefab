@@ -3036,8 +3036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Building
   woodCost: 40
-  stoneCost: 15
-  oreCost: 20
+  stoneCost: 20
+  oreCost: 10
   buildingProgress: {fileID: 8423940714363868491}
   buildingReward: {fileID: 3021968570189492460}
   mailbox: {fileID: 4253628024490921156}

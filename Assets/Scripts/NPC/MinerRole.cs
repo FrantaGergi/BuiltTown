@@ -7,6 +7,8 @@ public class MinerRole : NPCRoleBase
     [Header("References")]
     private NPCAnimationController animController;
     private AudioSource audioSource;
+    [SerializeField] GameObject axeUI;
+    [SerializeField] GameObject pickaxeUI;
 
     [Header("Behaviour")]
     [SerializeField] private bool autoSearch = false;
@@ -41,6 +43,12 @@ public class MinerRole : NPCRoleBase
             animController = gameObject.AddComponent<NPCAnimationController>();
             Debug.LogWarning($"MinerRole: Added NPCAnimationController to {gameObject.name}");
         }
+    }
+
+    private void Start()
+    {
+        axeUI?.SetActive(false);
+        pickaxeUI?.SetActive(false);
     }
 
     private void Update()
@@ -265,6 +273,15 @@ public class MinerRole : NPCRoleBase
     }
 
     #endregion
+
+
+    public void SetTool(bool isAxe)
+    {
+        if (axeUI != null)
+            axeUI.SetActive(isAxe);
+        if (pickaxeUI != null)
+            pickaxeUI.SetActive(!isAxe);
+    }
 
     private void OnDrawGizmos()
     {

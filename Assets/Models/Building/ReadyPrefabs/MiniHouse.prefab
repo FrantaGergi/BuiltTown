@@ -1992,9 +1992,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a84d010d12ca441bceca5f4dd5c37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Building
-  woodCost: 5
+  woodCost: 20
   stoneCost: 10
-  oreCost: 20
+  oreCost: 5
   buildingProgress: {fileID: 8281651314597835808}
   buildingReward: {fileID: 5581479106825340266}
   mailbox: {fileID: 6479319893878252302}

@@ -203,6 +203,7 @@ public class NPCManager : MonoBehaviour
             minimapManager.OpenMinimapToGetSourceCoordinates((Vector3 pos) =>
             {
                 miner.AssignMiningTask(pos, requested);
+                miner.SetTool(requested == ItemType.Wood);
                 npc.SetHighlightSection(index);
             }, autoClose: true);
             return;

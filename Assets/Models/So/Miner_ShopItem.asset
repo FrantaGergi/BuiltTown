@@ -17,6 +17,6 @@ MonoBehaviour:
   prefab: {fileID: 5346920233563675066, guid: b3b8979f63ac8fd4fbfc3a36b2a04fc1, type: 3}
   HighlightedMaterial: {fileID: 0}
   itemType: 0
-  description: I will mine for you
-  price: 5000
+  description: "I\u2019ll mine for you."
+  price: 25000
   gatherAmount: 0

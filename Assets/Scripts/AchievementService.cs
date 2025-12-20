@@ -73,8 +73,8 @@ public static class AchievementService
 
             new Achievement{ id="district_1", name="First Expansion", description="Purchase 1 district", stat=nameof(stats.districtsPurchased), target=1, unlocked=false, icon="🗺️"},
             new Achievement{ id="district_5", name="City Builder", description="Purchase 5 districts", stat=nameof(stats.districtsPurchased), target=5, unlocked=false, icon="🏙️"},
-            new Achievement{ id="district_20", name="Land Emperor", description="Purchase 20 districts", stat=nameof(stats.districtsPurchased), target=20, unlocked=false, icon="🌍"},
-
+            new Achievement{ id="district_20", name="Land Emperor", description="Purchase 20 districts", stat=nameof(stats.districtsPurchased), target=19, unlocked=false, icon="🌍"},
+            // Note: target=19 above is first district is free, so 20 purchased means 19 paid.
             new Achievement{ id="building_1", name="First House", description="Build 1 building", stat=nameof(stats.buildingsBuilt), target=1, unlocked=false, icon="🏠"},
             new Achievement{ id="building_5", name="Architect", description="Build 5 buildings", stat=nameof(stats.buildingsBuilt), target=5, unlocked=false, icon="🏗️"},
             new Achievement{ id="building_20", name="Master Builder", description="Build 20 buildings", stat=nameof(stats.buildingsBuilt), target=20, unlocked=false, icon="🏛️"},

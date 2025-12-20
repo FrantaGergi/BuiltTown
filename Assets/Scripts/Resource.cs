@@ -186,6 +186,8 @@ public class Resource : MonoBehaviour, IInteractable
         }
     }
 
+  
+
     protected virtual void GetDrop(int ammount)
     {
         hitEffect.Hit();
@@ -207,9 +209,10 @@ public class Resource : MonoBehaviour, IInteractable
 
     protected virtual void DestroyResource()
     {
+        Debug.LogError("Resource destroyed");
         StopMining();
         interactor.ClearCurrentTarget(this);
-        Destroy(gameObject);
+        Destroy(gameObject,0.1f);
     }
 
     protected virtual void StartMining()
