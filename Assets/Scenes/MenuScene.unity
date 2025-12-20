@@ -3887,7 +3887,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8c4c23496ffb04386bc4c2393de4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
-  soundList: []
+  soundList:
+  - {fileID: 11400000, guid: f25f0aaf3fae2db4d966342063f099da, type: 2}
+  - {fileID: 11400000, guid: 8430e0b74ff87664c86acf8d25258f23, type: 2}
+  - {fileID: 11400000, guid: f4ce56ac79e6ecc448ea04986305b1f6, type: 2}
+  - {fileID: 11400000, guid: 5b763268a1c1b06428b59bfe96f3dd59, type: 2}
+  - {fileID: 11400000, guid: ff91bcaa9104423498515d0be36e26f8, type: 2}
+  - {fileID: 11400000, guid: 2af1edfc671c82a449c7adb731774473, type: 2}
+  - {fileID: 11400000, guid: 07d9e756ea82f5b44b5d77727a916bef, type: 2}
 --- !u!4 &1296317305
 Transform:
   m_ObjectHideFlags: 0

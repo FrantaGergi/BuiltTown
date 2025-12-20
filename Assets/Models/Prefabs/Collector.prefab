@@ -881,6 +881,7 @@ GameObject:
   - component: {fileID: 2738712551951904210}
   - component: {fileID: -441346287933587071}
   - component: {fileID: -6765987514253476102}
+  - component: {fileID: 377014939547073580}
   m_Layer: 10
   m_Name: Collector
   m_TagString: Untagged
@@ -923,7 +924,7 @@ Animator:
   m_GameObject: {fileID: 2530181033227988658}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fc8c23e5ebff8b54ebeb0799b9cbed72, type: 3}
-  m_Controller: {fileID: 9100000, guid: a064967857b33594ba417763a7738412, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b7a0a20b42332942bcb2504b8d4ec0d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -971,7 +972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseNPC
   agent: {fileID: 1029400611294702395}
   animator: {fileID: 8970082031867402902}
-  audioSource: {fileID: -6765987514253476102}
   stopDistance: 0.5
 --- !u!114 &3903332680981039657
 MonoBehaviour:
@@ -989,6 +989,8 @@ MonoBehaviour:
   searchRadius: 50
   capacity: 20
   waitCheckInterval: 5
+  pickupAnimationDuration: 0.5
+  useCarryingAnimation: 1
 --- !u!114 &-1337385245560707818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,6 +1152,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &377014939547073580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2530181033227988658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba4da33f7402934fa3223e5e2ffa2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCAnimationController
+  movementThreshold: 0.1
+  showDebugInfo: 0
 --- !u!1 &2601834066567148459
 GameObject:
   m_ObjectHideFlags: 0

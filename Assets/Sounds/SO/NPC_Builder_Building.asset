@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SoundSO
   sound: 6
   clip: {fileID: 8300000, guid: b8d49663c1df49b4285d7c9e0ac20998, type: 3}
-  volume: 0.5
+  volume: 1
   loop: 0
   SpatialBlend: 1
-  MaxDistance: 500
+  MinDistance: 0.2
+  MaxDistance: 30

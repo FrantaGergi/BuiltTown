@@ -1687,6 +1687,7 @@ GameObject:
   - component: {fileID: 6110443474805136113}
   - component: {fileID: -3261373615249914025}
   - component: {fileID: -7616305451257838701}
+  - component: {fileID: 4304178371042651811}
   m_Layer: 10
   m_Name: Miner
   m_TagString: Untagged
@@ -1729,7 +1730,7 @@ Animator:
   m_GameObject: {fileID: 5346920233563675066}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fc8c23e5ebff8b54ebeb0799b9cbed72, type: 3}
-  m_Controller: {fileID: 9100000, guid: a064967857b33594ba417763a7738412, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b7a0a20b42332942bcb2504b8d4ec0d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1777,7 +1778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseNPC
   agent: {fileID: 8119162709556391473}
   animator: {fileID: 4144771542206678466}
-  audioSource: {fileID: -7616305451257838701}
   stopDistance: 0.5
 --- !u!114 &7828246541014481411
 MonoBehaviour:
@@ -1795,6 +1795,8 @@ MonoBehaviour:
   searchRadius: 100
   mineInterval: 4
   mineAmountPerInterval: 50
+  miningAnimationSpeed: 1
+  playSwingSound: 1
 --- !u!114 &8843418114204467492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1956,6 +1958,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4304178371042651811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5346920233563675066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba4da33f7402934fa3223e5e2ffa2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCAnimationController
+  movementThreshold: 0.1
+  showDebugInfo: 0
 --- !u!1 &5473632770696970955
 GameObject:
   m_ObjectHideFlags: 0

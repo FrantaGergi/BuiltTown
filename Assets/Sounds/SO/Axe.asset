@@ -17,4 +17,5 @@ MonoBehaviour:
   volume: 1
   loop: 0
   SpatialBlend: 1
-  MaxDistance: 500
+  MinDistance: 1
+  MaxDistance: 30

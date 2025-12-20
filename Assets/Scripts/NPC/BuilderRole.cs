@@ -4,37 +4,41 @@ using UnityEngine;
 
 public class BuilderRole : NPCRoleBase
 {
+    [Header("References")]
+    private NPCAnimationController animController;
+    private AudioSource audioSource;
+
     [Header("Behaviour")]
     [SerializeField] private bool autoSearch = false;
     public float searchRadius = 20f;
 
     [Header("Building Settings")]
-    [SerializeField] private int carryCapacity = 5; // Kolik kusù mùže nést najednou
-    [SerializeField] private float depositInterval = 5f; // Jak èasto vkládá jeden kus (v sekundách)
+    [SerializeField] private int carryCapacity = 5;
+    [SerializeField] private float depositInterval = 5f;
 
     [Header("Robustness")]
-    [SerializeField, Tooltip("Distance threshold to treat builder as 'arrived' at holder position")] private float holderArrivalThreshold = 1.0f;
+    [SerializeField] private float holderArrivalThreshold = 1.0f;
 
-    [Header("Waiting (holder)")]
-    [SerializeField, Tooltip("Jak èasto kontrolovat holder když u nìj èekáme (v sekundách)")] private float waitCheckInterval = 5f;
+    [Header("Waiting")]
+    [SerializeField] private float waitCheckInterval = 5f;
 
-    // Externí pøiøazení building site (èeká na povel)
+    [Header("Animation")]
+    [SerializeField] private float buildingAnimationSpeed = 1f;
+    [SerializeField] private float buildingSoundInterval = 1f;
+
     private IBuildingSite assignedBuilding;
     private IBuildingSite targetBuilding;
 
-    // Inventáø buildera - uchovává co právì nese
     private List<(ItemType type, int amount)> inventory = new();
-
-    private AudioSource audioSource;
 
     private enum State
     {
         Idle,
-        MovingToStorage,      // Jde pro materiál
-        TakingFromStorage,    // Bere ze storage
-        WaitingAtHolder,      // Èeká u holderu na dostupné suroviny
-        MovingToBuilding,     // Nese k budovì
-        Building              // Vkládá postupnì do budovy
+        MovingToStorage,
+        TakingFromStorage,
+        WaitingAtHolder,
+        MovingToBuilding,
+        Building
     }
 
     private State state = State.Idle;
@@ -43,39 +47,46 @@ public class BuilderRole : NPCRoleBase
     private float buildTimer = 0f;
     private float stateTimer = 0f;
     private float waitTimer = 0f;
+    private float soundTimer = 0f;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+        animController = GetComponent<NPCAnimationController>();
         audioSource = GetComponent<AudioSource>();
+
+        if (animController == null)
+        {
+            animController = gameObject.AddComponent<NPCAnimationController>();
+            Debug.LogWarning($"BuilderRole: Added NPCAnimationController to {gameObject.name}");
+        }
     }
 
-    void Update()
+    private void Update()
     {
-        // update timer
         float dt = Time.deltaTime;
         stateTimer += dt;
         waitTimer += dt;
+        soundTimer += dt;
 
         switch (state)
         {
             case State.Idle:
                 if (assignedBuilding != null)
-                {
                     StartAssignedBuildingWork();
-                }
                 else if (autoSearch)
-                {
                     FindBuilding();
-                }
                 break;
 
             case State.MovingToStorage:
-                if (targetBuilding == null) { state = State.Idle; ResetStateTimer(); break; }
+                if (targetBuilding == null)
+                {
+                    TransitionToIdle();
+                    break;
+                }
 
-                // pokud jsme už u holderu (napø. dostali pøíkaz znovu), pøejdeme rovnou do TakingFromStorage nebo èekání
                 if (IsAtHolderPosition())
                 {
-                    // pokusíme se vzít hned
                     TakeResourcesFromStorage();
 
                     if (GetInventoryTotal() > 0)
@@ -86,28 +97,19 @@ public class BuilderRole : NPCRoleBase
                     }
                     else
                     {
-                        // pokud budova už nic nepotøebuje -> pøejdeme do Idle
                         if (!BuildingNeedsAny(targetBuilding))
                         {
-                            Debug.Log($"Builder ({name}): building is completed at holder -> idle");
-                            state = State.Idle;
-                            ResetStateTimer();
+                            TransitionToIdle();
                             break;
                         }
 
-                        // žádné zdroje teï nejsou -- èekáme u holderu
-                        state = State.WaitingAtHolder;
-                        ResetStateTimer();
-                        ResetWaitTimer();
-                        npc.Stop();
-                        Debug.Log($"Builder ({name}): arrived at holder but nothing available -> waiting at holder.");
+                        TransitionToWaitingAtHolder();
                     }
                     break;
                 }
 
                 if (npc.IsAtDestination())
                 {
-                    // po dosažení chování obdobné jako výše
                     TakeResourcesFromStorage();
 
                     if (GetInventoryTotal() > 0)
@@ -118,30 +120,26 @@ public class BuilderRole : NPCRoleBase
                     }
                     else
                     {
-                        // pokud budova už nic nepotøebuje -> pøejdeme do Idle
                         if (!BuildingNeedsAny(targetBuilding))
                         {
-                            Debug.Log($"Builder ({name}): building is completed at holder -> idle");
-                            state = State.Idle;
-                            ResetStateTimer();
+                            TransitionToIdle();
                             break;
                         }
 
-                        state = State.WaitingAtHolder;
-                        ResetStateTimer();
-                        ResetWaitTimer();
-                        npc.Stop();
-                        Debug.Log($"Builder ({name}): reached holder but nothing available -> waiting at holder.");
+                        TransitionToWaitingAtHolder();
                     }
                 }
                 break;
 
             case State.TakingFromStorage:
-                if (targetBuilding == null) { state = State.Idle; ResetStateTimer(); break; }
+                if (targetBuilding == null)
+                {
+                    TransitionToIdle();
+                    break;
+                }
 
                 TakeResourcesFromStorage();
 
-                // Pokud jsme vzali nìco, jdeme k budovì
                 if (GetInventoryTotal() > 0)
                 {
                     npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
@@ -150,41 +148,32 @@ public class BuilderRole : NPCRoleBase
                 }
                 else
                 {
-                    // pokud budova už nic nepotøebuje -> pøejdeme do Idle
                     if (!BuildingNeedsAny(targetBuilding))
                     {
-                        Debug.Log($"Builder ({name}): building is completed -> idle");
-                        state = State.Idle;
-                        ResetStateTimer();
+                        TransitionToIdle();
                         break;
                     }
 
-                    // Nic není ve storage, pøejdeme do èekacího módu u holderu
-                    state = State.WaitingAtHolder;
-                    ResetStateTimer();
-                    ResetWaitTimer();
-                    npc.Stop();
-                    Debug.Log($"Builder ({name}): nothing available in storage -> waiting at holder.");
+                    TransitionToWaitingAtHolder();
                 }
                 break;
 
             case State.WaitingAtHolder:
-                if (targetBuilding == null) { state = State.Idle; ResetStateTimer(); break; }
-
-                // pokud budova už nic nepotøebuje -> ukonèíme
-                if (!BuildingNeedsAny(targetBuilding))
+                if (targetBuilding == null)
                 {
-                    Debug.Log($"Builder ({name}): building no longer needs resources -> idle");
-                    state = State.Idle;
-                    ResetStateTimer();
+                    TransitionToIdle();
                     break;
                 }
 
-                // kontrolujeme intervalem (ne každý frame)
+                if (!BuildingNeedsAny(targetBuilding))
+                {
+                    TransitionToIdle();
+                    break;
+                }
+
                 if (waitTimer >= waitCheckInterval)
                 {
                     ResetWaitTimer();
-                    Debug.Log($"Builder ({name}): checking holder for resources...");
                     TakeResourcesFromStorage();
 
                     if (GetInventoryTotal() > 0)
@@ -193,30 +182,37 @@ public class BuilderRole : NPCRoleBase
                         state = State.MovingToBuilding;
                         ResetStateTimer();
                     }
-                    else
-                    {
-                        // zùstaò èekat; další check za waitCheckInterval
-                        Debug.Log($"Builder ({name}): still nothing at holder.");
-                    }
                 }
                 break;
 
             case State.MovingToBuilding:
-                if (targetBuilding == null) { state = State.Idle; ResetStateTimer(); break; }
+                if (targetBuilding == null)
+                {
+                    TransitionToIdle();
+                    break;
+                }
 
                 if (npc.IsAtDestination())
-                {
-                    state = State.Building;
-                    buildTimer = 0f;
-                    npc.Stop();
-                    ResetStateTimer();
-                }
+                    TransitionToBuilding();
                 break;
 
             case State.Building:
-                if (targetBuilding == null) { state = State.Idle; ResetStateTimer(); break; }
+                if (targetBuilding == null)
+                {
+                    TransitionToIdle();
+                    break;
+                }
 
-                // Postupnì vkládáme jeden kus každých X vteøin
+                // Look at building while working
+                npc.LookAtTarget(((MonoBehaviour)targetBuilding).transform.position);
+
+                // Play building sounds periodically
+                if (soundTimer >= buildingSoundInterval)
+                {
+                    soundTimer = 0f;
+                    PlayBuildingSound();
+                }
+
                 buildTimer += dt;
 
                 if (buildTimer >= depositInterval)
@@ -225,39 +221,35 @@ public class BuilderRole : NPCRoleBase
 
                     if (DepositOneResource())
                     {
-                        // Úspìšnì vloženo, pokraèujeme (èekáme na další interval nebo dojde-li inventáø)
-                        Debug.Log($"Builder ({name}): deposited one. remaining inventory {GetInventoryTotal()}");
+                        // Successfully deposited, continue
                     }
                     else
                     {
-                        // Inventáø prázdný, zjistíme, zda budova ještì potøebuje
+                        // Inventory empty
                         if (BuildingNeedsAny(targetBuilding))
                         {
-                            // Pøejít pro více materiálu
                             npc.MoveTo(targetBuilding.GetHolderPosition());
                             state = State.MovingToStorage;
+                            animController?.StopBuilding();
                             ResetStateTimer();
                         }
                         else
                         {
-                            // Budova už nic nepotøebuje
-                            Debug.Log($"Builder ({name}): building no longer needs resources -> idle");
-                            state = State.Idle;
-                            ResetStateTimer();
+                            TransitionToIdle();
                         }
                     }
                 }
                 break;
         }
 
-        // Aktualizuj UI status jen pøi zmìnì stavu
+        // Update UI on state change
         if (state != previousState)
         {
             UpdateUiStatus(state);
             previousState = state;
         }
 
-        // bezpeènostní timeout: pokud jsme "stuck" velmi dlouho, pøejdeme do Idle a resetneme cíle
+        // Safety timeout
         if (stateTimer > 60f)
         {
             Debug.LogWarning($"Builder ({name}): state {state} stuck too long, resetting to Idle.");
@@ -265,59 +257,123 @@ public class BuilderRole : NPCRoleBase
         }
     }
 
-    private void ResetStateTimer()
+    #region State Transitions
+
+    private void TransitionToIdle()
     {
-        stateTimer = 0f;
+        state = State.Idle;
+        npc.Stop();
+        animController?.StopBuilding();
+        ResetStateTimer();
     }
 
-    private void ResetWaitTimer()
+    private void TransitionToWaitingAtHolder()
     {
-        waitTimer = 0f;
+        state = State.WaitingAtHolder;
+        npc.Stop();
+        animController?.StopBuilding();
+        ResetStateTimer();
+        ResetWaitTimer();
     }
 
-    private void UpdateUiStatus(State s)
+    private void TransitionToBuilding()
     {
-        switch (s)
+        state = State.Building;
+        buildTimer = 0f;
+        soundTimer = 0f;
+        npc.Stop();
+        animController?.StartBuilding(buildingAnimationSpeed);
+        ResetStateTimer();
+    }
+
+    private void ResetStateTimer() => stateTimer = 0f;
+    private void ResetWaitTimer() => waitTimer = 0f;
+
+    #endregion
+
+    #region Building Logic
+
+    private bool DepositOneResource()
+    {
+        if (inventory.Count == 0) return false;
+        if (targetBuilding == null) return false;
+
+        var buildingSite = targetBuilding as BuildingSite;
+        if (buildingSite == null) return false;
+
+        var item = inventory[0];
+        buildingSite.AddResourceByBuilder(item.type, 1);
+
+        if (item.amount <= 1)
+            inventory.RemoveAt(0);
+        else
+            inventory[0] = (item.type, item.amount - 1);
+
+        UpdateUiStatus(state);
+        return true;
+    }
+
+    private void PlayBuildingSound()
+    {
+        if (audioSource != null)
         {
-            case State.Idle:
-                if (assignedBuilding != null)
-                    npc?.SetUiStatus("Ready to work");
-                else
-                    npc?.SetUiStatus("Idle");
-                break;
-            case State.MovingToStorage:
-                npc?.SetUiStatus("Going to storage");
-                break;
-            case State.TakingFromStorage:
-                npc?.SetUiStatus("Taking materials");
-                break;
-            case State.WaitingAtHolder:
-                npc?.SetUiStatus("Waiting at holder");
-                break;
-            case State.MovingToBuilding:
-                npc?.SetUiStatus($"Carrying to building ({GetInventoryTotal()}x)");
-                break;
-            case State.Building:
-                npc?.SetUiStatus($"Building ({GetInventoryTotal()}x left)");
-                SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building);
-                SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building,1);
-                SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building,2);
-                break;
+            SoundManager.Instance.PlayOnSourceWithoutInterrupt(audioSource, SoundSO.Sound.Builder_Building);
         }
     }
 
-    // Externí API: pøiøaï building site a okamžitì ho zaèni obsluhovat
+    #endregion
+
+    #region Storage Management
+
+    private void TakeResourcesFromStorage()
+    {
+        if (targetBuilding == null) return;
+
+        var buildingSite = targetBuilding as BuildingSite;
+        if (buildingSite == null || buildingSite.resourceHolder == null) return;
+
+        var holder = buildingSite.resourceHolder;
+
+        ItemType? neededType = GetMostNeededType(buildingSite);
+        if (!neededType.HasValue) return;
+
+        int available = holder.GetResourceCount(neededType.Value);
+        int toTake = Mathf.Min(carryCapacity, available);
+
+        if (toTake > 0)
+        {
+            int removed = holder.RemoveResource(neededType.Value, toTake);
+            inventory.Add((neededType.Value, removed));
+        }
+        else
+        {
+            ItemType holderType = holder.GetItemInHolder();
+            available = holder.GetResourceCount(holderType);
+            toTake = Mathf.Min(carryCapacity, available);
+
+            if (toTake > 0 && NeedsResource(buildingSite, holderType))
+            {
+                int removed = holder.RemoveResource(holderType, toTake);
+                inventory.Add((holderType, removed));
+            }
+        }
+    }
+
+    #endregion
+
+    #region Assignment API
+
     public void AssignBuildingSite(IBuildingSite site)
     {
         if (site == null) return;
+
         assignedBuilding = site;
         targetBuilding = site;
 
-        // Pokud jsme již u holderu, rovnou zaèni brát
         if (IsAtHolderPosition())
         {
-            Debug.Log($"Builder ({name}): assigned and already at holder -> trying to take immediately");
             TakeResourcesFromStorage();
+
             if (GetInventoryTotal() > 0)
             {
                 npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
@@ -326,51 +382,41 @@ public class BuilderRole : NPCRoleBase
             }
             else
             {
-                // pokud budova je už dokonèena -> idle
                 if (!BuildingNeedsAny(targetBuilding))
-                {
-                    Debug.Log($"Builder ({name}): assigned building already completed -> idle");
-                    state = State.Idle;
-                    ResetStateTimer();
-                    ResetWaitTimer();
-                }
+                    TransitionToIdle();
                 else
-                {
-                    state = State.WaitingAtHolder;
-                    ResetStateTimer();
-                    ResetWaitTimer();
-                }
+                    TransitionToWaitingAtHolder();
             }
         }
         else
         {
-            // Zaèneme tím, že jdeme pro materiál
             npc.MoveTo(targetBuilding.GetHolderPosition());
             state = State.MovingToStorage;
             ResetStateTimer();
         }
     }
 
-    // Externí API: zruší pøiøazení a vrátí roli do idle stavu
     public void ClearAssignment()
     {
         assignedBuilding = null;
         targetBuilding = null;
         inventory.Clear();
-        state = State.Idle;
-        npc.Stop();
-        ResetStateTimer();
+        TransitionToIdle();
     }
+
+    #endregion
+
+    #region Search Logic
 
     private void StartAssignedBuildingWork()
     {
         if (assignedBuilding == null) return;
         targetBuilding = assignedBuilding;
 
-        // Pokud jsme již u holderu, pøímo ber
         if (IsAtHolderPosition())
         {
             TakeResourcesFromStorage();
+
             if (GetInventoryTotal() > 0)
             {
                 npc.MoveTo(((MonoBehaviour)targetBuilding).transform.position);
@@ -379,25 +425,14 @@ public class BuilderRole : NPCRoleBase
             }
             else
             {
-                // pokud budova je už dokonèena -> idle
                 if (!BuildingNeedsAny(targetBuilding))
-                {
-                    Debug.Log($"Builder ({name}): assigned building already completed -> idle");
-                    state = State.Idle;
-                    ResetStateTimer();
-                    ResetWaitTimer();
-                }
+                    TransitionToIdle();
                 else
-                {
-                    state = State.WaitingAtHolder;
-                    ResetStateTimer();
-                    ResetWaitTimer();
-                }
+                    TransitionToWaitingAtHolder();
             }
             return;
         }
 
-        // Jdeme pro materiál ze storage
         npc.MoveTo(targetBuilding.GetHolderPosition());
         state = State.MovingToStorage;
         ResetStateTimer();
@@ -412,13 +447,13 @@ public class BuilderRole : NPCRoleBase
         foreach (var c in cols)
         {
             var bs = c.GetComponent<IBuildingSite>();
-            if (bs == null) continue;
+            if (bs == null || !BuildingNeedsAny(bs)) continue;
 
-            // Pokud budova potøebuje nìjaké zdroje
-            if (BuildingNeedsAny(bs))
+            float d = Vector3.Distance(transform.position, ((MonoBehaviour)bs).transform.position);
+            if (d < bestDist)
             {
-                float d = Vector3.Distance(transform.position, ((MonoBehaviour)bs).transform.position);
-                if (d < bestDist) { bestDist = d; best = bs; }
+                bestDist = d;
+                best = bs;
             }
         }
 
@@ -431,92 +466,14 @@ public class BuilderRole : NPCRoleBase
         }
     }
 
-    private void TakeResourcesFromStorage()
-    {
-        if (targetBuilding == null) return;
+    #endregion
 
-        var buildingSite = targetBuilding as BuildingSite;
-        if (buildingSite == null || buildingSite.resourceHolder == null) return;
-
-        var holder = buildingSite.resourceHolder;
-
-        // Zjistíme, jaký typ zdroje budova nejvíce potøebuje
-        ItemType? neededType = GetMostNeededType(buildingSite);
-        if (!neededType.HasValue)
-        {
-            Debug.Log($"Builder ({name}): building does not need any resources.");
-            return;
-        }
-
-        // Zjistíme, kolik mùžeme vzít
-        int available = holder.GetResourceCount(neededType.Value);
-        int toTake = Mathf.Min(carryCapacity, available);
-
-
-        if (toTake > 0)
-        {
-            // Odebereme ze storage
-            int removed = holder.RemoveResource(neededType.Value, toTake);
-
-            // Pøidáme do inventáøe
-            inventory.Add((neededType.Value, removed));
-            
-            Debug.Log($"Builder ({name}) took {removed}x {neededType.Value} from storage.");
-        } else
-        {
-            ItemType holderType;
-            // Pokud není dostupný preferovaný typ, zkusíme vzít jakýkoli jiný, který budova potøebuje
-
-            holderType = holder.GetItemInHolder();
-            available = holder.GetResourceCount(holderType);
-            toTake = Mathf.Min(carryCapacity, available);
-
-            if (toTake > 0 && NeedsResource(buildingSite, holderType))
-            {
-                int removed = holder.RemoveResource(holderType, toTake);
-                inventory.Add((holderType, removed));
-                Debug.Log($"Builder ({name}) took {removed}x {holderType} from storage (alt).");
-            }
-            else            {
-                Debug.Log($"Builder ({name}): nothing available to take from storage.");
-            }
-        }
-    }
-
-    private bool DepositOneResource()
-    {
-        if (inventory.Count == 0) return false;
-        if (targetBuilding == null) return false;
-
-        var buildingSite = targetBuilding as BuildingSite;
-        if (buildingSite == null) return false;
-
-        // Vezmeme první dostupný typ z inventáøe
-        var item = inventory[0];
-
-        // Vložíme jeden kus do budovy
-        buildingSite.AddResourceByBuilder(item.type, 1);
-
-        // Aktualizujeme inventáø
-        if (item.amount <= 1)
-        {
-            inventory.RemoveAt(0);
-        }
-        else
-        {
-            inventory[0] = (item.type, item.amount - 1);
-        }
-        UpdateUiStatus(state);
-        Debug.Log($"Builder ({name}) deposited 1x {item.type} to building. Remaining: {GetInventoryTotal()}");
-
-        return true;
-    }
+    #region Helper Methods
 
     private ItemType? GetMostNeededType(IBuildingSite building)
     {
         if (building == null) return null;
 
-        // Priorita: Stone -> Wood -> Ore
         if (building.NeedsResourceForBuilders(ItemType.Stone)) return ItemType.Stone;
         if (building.NeedsResourceForBuilders(ItemType.Wood)) return ItemType.Wood;
         if (building.NeedsResourceForBuilders(ItemType.Ore)) return ItemType.Ore;
@@ -537,14 +494,13 @@ public class BuilderRole : NPCRoleBase
     {
         if (building == null) return false;
         return building.NeedsResourceForBuilders(type);
-    }   
+    }
+
     private int GetInventoryTotal()
     {
         int total = 0;
         foreach (var item in inventory)
-        {
             total += item.amount;
-        }
         return total;
     }
 
@@ -555,4 +511,34 @@ public class BuilderRole : NPCRoleBase
         return Vector3.Distance(((MonoBehaviour)npc).transform.position, holderPos) <= holderArrivalThreshold;
     }
 
+    #endregion
+
+    #region UI Updates
+
+    private void UpdateUiStatus(State s)
+    {
+        switch (s)
+        {
+            case State.Idle:
+                npc?.SetUiStatus(assignedBuilding != null ? "Ready to work" : "Idle");
+                break;
+            case State.MovingToStorage:
+                npc?.SetUiStatus("Going to storage");
+                break;
+            case State.TakingFromStorage:
+                npc?.SetUiStatus("Taking materials");
+                break;
+            case State.WaitingAtHolder:
+                npc?.SetUiStatus("Waiting at holder");
+                break;
+            case State.MovingToBuilding:
+                npc?.SetUiStatus($"Carrying to building ({GetInventoryTotal()}x)");
+                break;
+            case State.Building:
+                npc?.SetUiStatus($"Building ({GetInventoryTotal()}x left)");
+                break;
+        }
+    }
+
+    #endregion
 }
