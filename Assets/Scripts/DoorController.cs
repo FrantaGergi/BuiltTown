@@ -53,6 +53,8 @@ public class DoorController : MonoBehaviour
         if (isInLayerMask && obj.CompareTag("Player"))
         {
             GameServices.I.OnShopEntered();
+            SoundManager.Instance.PlayOnSourceWithoutInterrupt(GameServices.I.audioSource,
+                SoundSO.Sound.OnShopEnter);
         }
 
         return isInLayerMask;

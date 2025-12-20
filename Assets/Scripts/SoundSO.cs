@@ -12,7 +12,9 @@ public class SoundSO : ScriptableObject
         Pickaxe,
         Axe,
         OnBuy,
-        Builder_Building
+        Builder_Building,
+        OnShopEnter,
+        OnBuildingCompleted
         // … tady si mùžeš doplòovat
     }
 

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class UIChooserOfBuilding : MonoBehaviour
 {
@@ -33,8 +34,8 @@ public class UIChooserOfBuilding : MonoBehaviour
         mWoodCount.text = plot.MiniBuilding.buildingCore.woodCost.ToString();
         mStoneCount.text = plot.MiniBuilding.buildingCore.stoneCost.ToString();
         mOreCount.text = plot.MiniBuilding.buildingCore.oreCost.ToString();
-        mRentCount.text = "$" + plot.MRentPrice.ToString();
-        mSellCount.text = "$" + plot.MSellPrice.ToString();
+        mRentCount.text = "$" + FormatNumber(plot.MRentPrice);
+        mSellCount.text = "$" + FormatNumber(plot.MSellPrice);
         miniHouse.gameObject.SetActive(true);
 
        // plot.MiniBuilding.buildingCore.buildingReward.FinalAmmountToGive = p
@@ -50,8 +51,8 @@ public class UIChooserOfBuilding : MonoBehaviour
         bWoodCount.text = plot.BigBuilding.buildingCore.woodCost.ToString();
         bStoneCount.text = plot.BigBuilding.buildingCore.stoneCost.ToString();
         bOreCount.text = plot.BigBuilding.buildingCore.oreCost.ToString();
-        bRentCount.text = "$" + plot.BRentPrice.ToString();
-        bSellCount.text = "$" + plot.BSellPrice.ToString();
+        bRentCount.text = "$" + FormatNumber(plot.BRentPrice);
+        bSellCount.text = "$" + FormatNumber(plot.BSellPrice);
         bigHouse.gameObject.SetActive(true);
     }
 
@@ -67,5 +68,27 @@ public class UIChooserOfBuilding : MonoBehaviour
         content.gameObject.SetActive(true);
     }
 
-   
+    private string FormatNumber(long value)
+    {
+        if (value < 1000)
+            return value.ToString();
+
+        if (value < 1_000_000)
+        {
+            double v = Math.Floor((value / 1000d) * 10) / 10; // floor na 0.1k
+            return v.ToString("0.#") + "k";
+        }
+
+        if (value < 1_000_000_000)
+        {
+            double v = Math.Floor((value / 1_000_000d) * 10) / 10; // floor na 0.1M
+            return v.ToString("0.#") + "M";
+        }
+
+        {
+            double v = Math.Floor((value / 1_000_000_000d) * 10) / 10; // floor na 0.1B
+            return v.ToString("0.#") + "B";
+        }
+    }
+
 }
