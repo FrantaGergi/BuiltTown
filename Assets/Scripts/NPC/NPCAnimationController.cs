@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -199,6 +200,11 @@ public class NPCAnimationController : MonoBehaviour
             Gizmos.DrawLine(start, end);
             Gizmos.DrawWireSphere(end, 0.1f);
         }
+    }
+
+    internal void PlayPickup()
+    {
+       // throw new NotImplementedException();
     }
 
     #endregion

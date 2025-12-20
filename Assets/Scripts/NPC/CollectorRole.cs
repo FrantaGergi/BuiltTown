@@ -17,7 +17,6 @@ public class CollectorRole : NPCRoleBase
     [SerializeField] private float waitCheckInterval = 5f;
 
     [Header("Animation")]
-    [SerializeField] private float pickupAnimationDuration = 0.5f;
     [SerializeField] private bool useCarryingAnimation = true;
 
     private List<(ItemType type, int amount)> inventory = new();
@@ -36,7 +35,6 @@ public class CollectorRole : NPCRoleBase
     private State previousState = State.Idle;
 
     private float waitTimer = 0f;
-    private bool isPickingUp = false;
 
     protected override void Awake()
     {
@@ -52,7 +50,6 @@ public class CollectorRole : NPCRoleBase
 
     private void Update()
     {
-        // Auto-complete assignment if building finished
         if (assignedDestination != null && !BuildingNeedsAny(assignedDestination))
             ClearAssignment();
 
@@ -85,8 +82,45 @@ public class CollectorRole : NPCRoleBase
                 break;
 
             case State.PickingUp:
-                if (!isPickingUp && targetItem != null)
-                    StartCoroutine(PerformPickup());
+                if (targetItem == null)
+                {
+                    TransitionToIdle();
+                    break;
+                }
+
+                // 🔹 VIZUÁLNÍ ANIMACE (NEBLOKUJE LOGIKU)
+                animController?.PlayPickup();
+
+                // 🔹 OKAMŽITÝ PICKUP
+                OnPickUp((GroundItem)((MonoBehaviour)targetItem));
+                UpdateCarryingAnimation();
+
+                // 🔹 rozhodnutí co dál
+                if (inventoryTotal() >= capacity)
+                {
+                    targetBuilding = assignedDestination != null
+                        ? assignedDestination
+                        : FindBuildingAndDeliverFallback();
+
+                    if (targetBuilding != null)
+                    {
+                        npc.MoveTo(targetBuilding.GetHolderPosition());
+                        state = State.MovingToBuilding;
+                        break;
+                    }
+                }
+
+                if (assignedDestination != null && BuildingNeedsAny(assignedDestination))
+                {
+                    targetItem = null;
+                    lastTargetType = null;
+                    StartAssignedCollection();
+                    break;
+                }
+
+                targetItem = null;
+                lastTargetType = null;
+                TransitionToIdle();
                 break;
 
             case State.WaitingAtSource:
@@ -102,21 +136,18 @@ public class CollectorRole : NPCRoleBase
                 {
                     waitTimer = 0f;
                     var neededTypes = GetNeededTypesOrdered(assignedDestination);
-                    IGroundItem found = null;
 
                     foreach (var t in neededTypes)
                     {
-                        found = FindNearestGroundItemOfType(assignedSourcePos, t);
-                        if (found != null) break;
-                    }
-
-                    if (found != null)
-                    {
-                        targetItem = found;
-                        lastTargetType = TryGetTypeFromGroundItem(found);
-                        npc.MoveTo(((MonoBehaviour)targetItem).transform.position);
-                        state = State.MovingToItem;
-                        return;
+                        var found = FindNearestGroundItemOfType(assignedSourcePos, t);
+                        if (found != null)
+                        {
+                            targetItem = found;
+                            lastTargetType = t;
+                            npc.MoveTo(((MonoBehaviour)found).transform.position);
+                            state = State.MovingToItem;
+                            break;
+                        }
                     }
                 }
                 break;
@@ -149,7 +180,6 @@ public class CollectorRole : NPCRoleBase
                 break;
         }
 
-        // Update UI on state change
         if (state != previousState)
         {
             UpdateUiStatus(state);
@@ -179,70 +209,12 @@ public class CollectorRole : NPCRoleBase
 
     #endregion
 
-    #region Animation Updates
+    #region Animation
 
     private void UpdateCarryingAnimation()
     {
         if (!useCarryingAnimation || animController == null) return;
-
-        bool shouldCarry = inventoryTotal() > 0;
-        animController.SetCarrying(shouldCarry);
-    }
-
-    private IEnumerator PerformPickup()
-    {
-        isPickingUp = true;
-
-        // bezpečnost
-        if (targetItem == null)
-        {
-            isPickingUp = false;
-            TransitionToIdle();
-            yield break;
-        }
-
-        npc.LookAtTarget(((MonoBehaviour)targetItem).transform.position);
-
-        // počkej na animaci
-        yield return new WaitForSeconds(pickupAnimationDuration);
-
-        // pickup
-        var gi = (GroundItem)((MonoBehaviour)targetItem);
-        if (gi != null && inventoryTotal() < capacity)
-        {
-            OnPickUp(gi);
-            UpdateCarryingAnimation();
-        }
-
-        isPickingUp = false;
-
-        // Decide next action
-        if (inventoryTotal() >= capacity)
-        {
-            if (assignedDestination != null)
-                targetBuilding = assignedDestination;
-            else
-                targetBuilding = FindBuildingAndDeliverFallback();
-
-            if (targetBuilding != null)
-            {
-                npc.MoveTo(targetBuilding.GetHolderPosition());
-                state = State.MovingToBuilding;
-                yield break;
-            }
-        }
-
-        if (assignedDestination != null && BuildingNeedsAny(assignedDestination))
-        {
-            targetItem = null;
-            lastTargetType = null;
-            StartAssignedCollection();
-            yield break;
-        }
-
-        targetItem = null;
-        lastTargetType = null;
-        TransitionToIdle();
+        animController.SetCarrying(inventoryTotal() > 0);
     }
 
     #endregion
