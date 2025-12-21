@@ -23,7 +23,7 @@ public class MoneyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         //defaultní hodnota pro testování
-        money = 500000;
+        money = 500;
     }
 
     public int Money => money;
