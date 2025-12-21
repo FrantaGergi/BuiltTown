@@ -18,5 +18,5 @@ MonoBehaviour:
   HighlightedMaterial: {fileID: 0}
   itemType: 2
   description: 
-  price: 5000
+  price: 20000
   gatherAmount: 100
