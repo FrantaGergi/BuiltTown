@@ -74892,7 +74892,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119538014611204390, guid: 05f826da2b995ed4aa7e8861825c6ffd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.87483
+      value: 81.16
       objectReference: {fileID: 0}
     - target: {fileID: 8119538014611204390, guid: 05f826da2b995ed4aa7e8861825c6ffd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -74900,7 +74900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119538014611204390, guid: 05f826da2b995ed4aa7e8861825c6ffd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.067142
+      value: 35.55
       objectReference: {fileID: 0}
     - target: {fileID: 8119538014611204390, guid: 05f826da2b995ed4aa7e8861825c6ffd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85435,7 +85435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7790563198288032598, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66.71276
+      value: -44.5
       objectReference: {fileID: 0}
     - target: {fileID: 7790563198288032598, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: m_LocalPosition.y
@@ -85443,7 +85443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7790563198288032598, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.65081
+      value: -71.2
       objectReference: {fileID: 0}
     - target: {fileID: 7790563198288032598, guid: a3a751c3ff9cf31489769e2f5e3a4f51, type: 3}
       propertyPath: m_LocalRotation.w
@@ -118291,6 +118291,7 @@ GameObject:
   - component: {fileID: 1204077282}
   - component: {fileID: 1204077283}
   - component: {fileID: 1204077284}
+  - component: {fileID: 1204077285}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -118547,6 +118548,20 @@ MonoBehaviour:
   entryPrefab: {fileID: 4749734315953971466, guid: c8098c850292df849820a2e833de8945, type: 3}
   iconDatabase: {fileID: 11400000, guid: ce179b8f79d5eb448802433a7ff58b2d, type: 2}
   titleText: {fileID: 67443058}
+--- !u!114 &1204077285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204077270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710484a6a809ddb4aafc862d2a4936d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DevToolController
+  devTool: 0
+  informationController: {fileID: 1639136488}
 --- !u!1001 &1204923140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163043,7 +163058,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1204077275}
+        m_TargetAssemblyTypeName: GameServices, Assembly-CSharp
+        m_MethodName: ShowMapTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -163294,6 +163321,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f4192638-0f87-4960-bd44-d642ef2b5f49
     m_ActionName: 'Player/SecondaryInteract[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1204077285}
+        m_TargetAssemblyTypeName: DevToolController, Assembly-CSharp
+        m_MethodName: ToggleDevTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b94066be-3c73-4f41-84d7-8eb37eee8532
+    m_ActionName: 'Player/Devtool[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1204077285}
+        m_TargetAssemblyTypeName: DevToolController, Assembly-CSharp
+        m_MethodName: OnDevToolM
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bb1de72b-bf2d-4a03-bde0-20418d816e5c
+    m_ActionName: 'Player/ToolGetMoney[/Keyboard/m]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -197821,7 +197880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2721448678120058582, guid: 474bbf5086ba77544bb092c169afe12e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.5
+      value: 44.7
       objectReference: {fileID: 0}
     - target: {fileID: 2721448678120058582, guid: 474bbf5086ba77544bb092c169afe12e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -197829,7 +197888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2721448678120058582, guid: 474bbf5086ba77544bb092c169afe12e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 35
+      value: 81.1
       objectReference: {fileID: 0}
     - target: {fileID: 2721448678120058582, guid: 474bbf5086ba77544bb092c169afe12e, type: 3}
       propertyPath: m_LocalRotation.w

@@ -97,7 +97,7 @@ public class NPCManager : MonoBehaviour
             Cursor.visible = true;
 
             mainNPCManagerContainer.SetActive(true);
-            GameServices.I.OnNPCManagerOpen();
+          //  GameServices.I.OnNPCManagerOpen();
         }
         else
         {

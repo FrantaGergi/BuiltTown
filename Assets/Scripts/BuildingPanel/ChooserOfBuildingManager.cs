@@ -124,6 +124,8 @@ public class ChooserOfBuildingManager : MonoBehaviour
 
         currentPlot.state = PlotState.Built;
         currentPlot.BigBuilding.gameObject.SetActive(true);
+
+        GameServices.I.ShowMiningTutorial();
     }
 
     public void OnMiniBuildingSelected()
@@ -136,6 +138,9 @@ public class ChooserOfBuildingManager : MonoBehaviour
 
         currentPlot.state = PlotState.Built;
         currentPlot.MiniBuilding.gameObject.SetActive(true);
+
+        GameServices.I.ShowMiningTutorial();
+
     }
 }
 

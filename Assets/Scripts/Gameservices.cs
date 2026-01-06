@@ -1,5 +1,4 @@
-﻿using System.Resources;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameServices : MonoBehaviour
 {
@@ -13,142 +12,127 @@ public class GameServices : MonoBehaviour
     public InformationController informationController;
     public AudioSource audioSource;
 
-    private bool T_Goal = false;
-    private bool T_UpgradeTools = false;
-    private bool T_MapOpened = false;
-    private bool T_NPCSystem = false;
-    private bool T_ShopSystem = false;
-    private bool T_Interaction = false;
+    private bool tutorialMoveShown = false;
+    private bool tutorialMapShown = false;
+    private bool tutorialBuildingSelectShown = false;
+    private bool tutorialMiningShown = false;
+    private bool tutorialToolSwitchShown = false;
+    private bool tutorialItemDeliveredShown = false;
+    private bool tutorialInteractionShown = false;
+    private bool tutorialNPCManagerShown = false;
+    private bool tutorialShopOnMapShown = false;
 
+    private bool T_ShopSystem = false;
     private void Awake()
     {
         if (I != null) { Destroy(gameObject); return; }
         I = this;
-
         DontDestroyOnLoad(gameObject);
         if (Player == null)
             Player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        ShowMoveTutorial();
     }
 
-    private void Start()
-    {
-        Invoke(nameof(SetTutorialGoal), 2f);
-    }
 
-    public void ResetAndStartAgainTutorial()
-    {
-        T_Goal = false;
-        T_UpgradeTools = false;
-        T_MapOpened = false;
-        T_NPCSystem = false;
-        T_ShopSystem = false;
-        T_Interaction = false;
 
-        Invoke(nameof(SetTutorialGoal), 2f);
-
-    }
-
-    public void SetTutorialGoal()
-    {
-        if (T_Goal)
-            return;
-
-        Debug.Log("Start Tutorial");
-        informationController.ShowText(
-            "Welcome!",
-            "Your goal is to mine resources, build houses and earn money.\r\nExpand your business and automate work with NPCs.",
-            6f, true);
-
-        Invoke(nameof(HowToDo), 7f);
-    }
-
-    private void HowToDo()
-    {
-        informationController.ShowText(
-            "How to progress",
-            "Mine resources → build houses → earn money → upgrade and hire NPCs.",
-            6f, true);
-
-        Invoke(nameof(HowWorksMapAndSystems), 7f);
-    }
-
-    private void HowWorksMapAndSystems()
-    {
-        informationController.ShowText(
-            "Controls overview",
-            "TAB – minimap\r\nQ – NPC management\r\nMouse wheel – switch tools",
-            6f, true);
-
-        Invoke(nameof(HowWorksTools), 7f);
-    }
-
-    private void HowWorksTools()
-    {
-        informationController.ShowText(
-            "Tools",
-            "Axe and pickaxe are used to mine different resources.\r\nUse the correct tool for the correct resource.",
-            6f, true);
-
-        T_Goal = true;
-    }
-
-    public void OnMapOpen()
-    {
-        if (T_MapOpened)
-            return;
-
-        informationController.ShowText(
-                "Minimap",
-    "<color=#00FF00>●</color> unlocked\n" +
-    "<color=#FFA500>●</color> available\n" +
-    "<color=#FF0000>●</color> locked",
-            4f, true);
-
-        T_MapOpened = true;
-    }
-
-    public void OnNPCManagerOpen()
-    {
-        if (T_NPCSystem)
-            return;
-
-        informationController.ShowText(
-            "NPC Manager",
-            "Hire NPCs who work for you.\r\nMore NPCs = faster progress.",
-            4f, true);
-
-        T_NPCSystem = true;
-    }
-
-    public void OnShopEntered()
-    {
-        if (T_ShopSystem)
-            return;
-
+    public void OnShopEntered() {
+        if (T_ShopSystem) return;
         informationController.ShowText(
             "Shop",
             "Upgrade tools and hire NPCs here.\r\nInvestments boost your income.",
             5f, true);
-
-        T_ShopSystem = true;
+        T_ShopSystem = true; 
     }
 
-    public void OnBuildCompleted()
-    {
-        if (T_Interaction)
-            return;
+    // === Tutorial Methods ===
 
+    public void ShowMoveTutorial()
+    {
+        if (tutorialMoveShown) return;
+        informationController.ShowText(
+            "Movement",
+            "Use WASD or arrow keys to move around.",
+            4f, true);
+        tutorialMoveShown = true;
+    }
+
+    public void ShowMapTutorial()
+    {
+        if (tutorialMapShown) return;
+        informationController.ShowText(
+            "Open Map",
+            "Press TAB to open the map.",
+            4f, true);
+        tutorialMapShown = true;
+    }
+
+    public void ShowBuildingSelectionTutorial()
+    {
+        if (tutorialBuildingSelectShown) return;
+        informationController.ShowText(
+            "Select Building",
+            "Click on the green icon to choose a building to construct.",
+            4f, true);
+        tutorialBuildingSelectShown = true;
+    }
+
+    public void ShowMiningTutorial()
+    {
+        if (tutorialMiningShown) return;
+        informationController.ShowText(
+            "Mine Resources",
+            "Close map\n Go to a resource node to mine.",
+            6f, true);
+        tutorialMiningShown = true;
+    }
+
+    public void ShowToolSwitchTutorial()
+    {
+        if (tutorialToolSwitchShown) return;
+        informationController.ShowText(
+            "Switch Tools",
+            "Use mouse scroll to select the correct tool for the resource.",
+            4f, true);
+        tutorialToolSwitchShown = true;
+    }
+
+    public void ShowItemDeliveryTutorial()
+    {
+        if (tutorialItemDeliveredShown) return;
+        informationController.ShowText(
+            "Deliver Resources",
+            "Take the mined item to the building holder and place it there.",
+            4f, true);
+        tutorialItemDeliveredShown = true;
+    }
+
+    public void ShowInteractionTutorial()
+    {
+        if (tutorialInteractionShown) return;
         informationController.ShowText(
             "Interaction",
-            "The (I) icon means the object can be opened.\r\nPress E.",
-            4f, true);
-
-        T_Interaction = true;
+            "The (I) icon means the object can be opened. Press E to interact.",
+            6f, true);
+        tutorialInteractionShown = true;
     }
 
-    public void SetTutorialUpgradeTools()
+    public void ShowNPCManagerTutorial()
     {
-        if (T_UpgradeTools)
-            return;
+        if (tutorialNPCManagerShown) return;
+        informationController.ShowText(
+            "NPC Manager",
+            "Press Q to open the NPC manager and manage your hired NPCs.",
+            4f, true);
+        tutorialNPCManagerShown = true;
+    }
+    public void ShowShopOnMapTutorial()
+    {
+        if (tutorialShopOnMapShown) return;
+        informationController.ShowText(
+             "Shop and Districts",
+             "The shop is on the map. Orange districts on the minimap can be bought.",
+        5f, false);
+        tutorialShopOnMapShown = true;
     }
 }

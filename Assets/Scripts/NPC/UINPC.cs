@@ -98,6 +98,7 @@ public class UINPC : MonoBehaviour
         if (row.statusText != null) row.statusText.text = status;
 
         // Inicializuj další UI elementy (nepøepisovat status)
+        SetRowStatus(npc, "Not Selected");
         SetHighlightSection(npc, -1);
         SetRowDistrictStatus(npc, "");
 

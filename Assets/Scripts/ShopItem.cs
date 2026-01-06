@@ -95,6 +95,7 @@ public class ShopItem : MonoBehaviour, IInteractable
         NPCManager npcManager = GameServices.I.NPCManager;
 
         AchievementService.OnNPCHired();
+        GameServices.I.ShowNPCManagerTutorial();
 
         string displayDescript = "Valim si to na zachode, chapes";
 

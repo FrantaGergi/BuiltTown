@@ -68,6 +68,7 @@ public class BuildingReward : MonoBehaviour
         {
             StartRecurring();
         }
+        GameServices.I.ShowShopOnMapTutorial();
     }
 
     /// <summary>

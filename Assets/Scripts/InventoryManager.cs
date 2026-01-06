@@ -8,6 +8,8 @@ public class InventoryManager : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     // Pøidání suroviny do hotbaru (pøi tìžení)
     public void AddResourceToHotbar(ItemSO itemSO, int amount)
     {
+
+        GameServices.I.ShowItemDeliveryTutorial();
         for (int i = 0; i < hotbarParent.slots.Length; i++)
         {
             var slot = hotbarParent.slots[i];

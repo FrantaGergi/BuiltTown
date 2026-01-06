@@ -160,7 +160,7 @@ public class Building : MonoBehaviour
     private void BuildingCompleted()
     {
         AchievementService.OnBuildingBuilt();
-        GameServices.I.OnBuildCompleted();
+        GameServices.I.ShowInteractionTutorial();
         SoundManager.Instance.PlayOnSourceWithoutInterrupt(GameServices.I.audioSource,
     SoundSO.Sound.OnBuildingCompleted);
     }
