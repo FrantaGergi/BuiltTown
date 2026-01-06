@@ -151,13 +151,17 @@ public class MainMenu : MonoBehaviour
         List<string> options = new List<string>();
         int currentIndex = 0;
 
+        // Zobrazíme rozlišení vèetnì refresh rate -> "1920 x 1080 @ 60Hz"
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
+            var r = resolutions[i];
+            string option = $"{r.width} x {r.height} ({r.refreshRate}Hz)";
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+            // Najdeme pøesnou shodu vèetnì refresh rate
+            if (r.width == Screen.currentResolution.width &&
+                r.height == Screen.currentResolution.height &&
+                r.refreshRate == Screen.currentResolution.refreshRate)
             {
                 currentIndex = i;
             }
@@ -166,7 +170,8 @@ public class MainMenu : MonoBehaviour
         if (options.Count == 0)
         {
             // Fallback na current resolution pokud nic jiného není
-            options.Add(Screen.currentResolution.width + " x " + Screen.currentResolution.height);
+            var cr = Screen.currentResolution;
+            options.Add($"{cr.width} x {cr.height} ({cr.refreshRate}Hz)");
             currentIndex = 0;
         }
 
@@ -190,7 +195,8 @@ public class MainMenu : MonoBehaviour
         }
 
         Resolution res = resolutions[index];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+        // Použijeme overload SetResolution s preferovaným refresh rate
+        Screen.SetResolution(res.width, res.height, Screen.fullScreen, res.refreshRate);
         PlayerPrefs.SetInt("Resolution", index);
         PlayerPrefs.Save();
     }

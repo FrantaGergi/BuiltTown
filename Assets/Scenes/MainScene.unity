@@ -8675,6 +8675,7 @@ MonoBehaviour:
   minerRowPrefab: {fileID: 5840476911977714622, guid: e17f034f824b43946b2e4739af64097b, type: 3}
   collectorRowPrefab: {fileID: 1350380756100831339, guid: 532e138a42b76ac49881f0dd4d03bfa6, type: 3}
   builderRowPrefab: {fileID: 483175876382546418, guid: 87e46cbbf2901e24d8ca88745f4234fb, type: 3}
+  emptyRowPrefab: {fileID: 483175876382546418, guid: 1d16df1b51d72ea4d8d4b8f4a9d94ddb, type: 3}
   minersContainer: {fileID: 853822347}
   collectorsContainer: {fileID: 935880213}
   buildersContainer: {fileID: 1374803656}
@@ -71636,7 +71637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This building is ready. \nChoose what you want to do"
+  m_text: "This building is ready. \nChoose what you want to dodgfdsfghdfjkghsdfkjhgdfjkhgdsfjkh"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d86e933e6ca983a45ad912f7d7fa9882, type: 2}
   m_sharedMaterial: {fileID: -5660775149628104760, guid: d86e933e6ca983a45ad912f7d7fa9882, type: 2}
@@ -71702,7 +71703,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 20, y: 0, z: 20, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

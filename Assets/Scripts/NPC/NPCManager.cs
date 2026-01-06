@@ -144,6 +144,9 @@ public class NPCManager : MonoBehaviour
 
         if (npc != null)
             npc.UiRow = null;
+
+        if (npc != null)
+            Destroy(npc.gameObject,5f);
     }
 
     private void HandleRemoveNPC(BaseNPC npc)

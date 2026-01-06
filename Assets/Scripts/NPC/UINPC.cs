@@ -1,9 +1,9 @@
+using BuiltTown.NPC;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using BuiltTown.NPC;
-using TMPro;
 
 public class UINPC : MonoBehaviour
 {
@@ -28,6 +28,11 @@ public class UINPC : MonoBehaviour
     [SerializeField] private GameObject collectorRowPrefab = null;
     [Tooltip("Prefab for builder row (expectuje 1 action button inside child 'Actions')")]
     [SerializeField] private GameObject builderRowPrefab = null;
+
+    [Header("Empty Row Prefab")]
+    [SerializeField] private GameObject emptyRowPrefab = null;
+
+    private readonly Dictionary<Role, GameObject> emptyRows = new Dictionary<Role, GameObject>();
 
     [Header("Section Containers")]
     [SerializeField] private Transform minersContainer = null;
@@ -72,6 +77,7 @@ public class UINPC : MonoBehaviour
         public Transform actionsContainer;
         public Button removeButton;
         public List<Button> actionButtons = new List<Button>();
+        public Role role; // uložená role pro tento øádek
     }
 
     public void RegisterOrUpdateNPC(BaseNPC npc, Role role, string displayName, string status = "")
@@ -84,11 +90,14 @@ public class UINPC : MonoBehaviour
             rows[npc] = row;
         }
 
+        // uložíme roli
+        row.role = role;
+
         if (row.icon != null) row.icon.sprite = GetIconForRole(role);
         if (row.nameText != null) row.nameText.text = displayName;
         if (row.statusText != null) row.statusText.text = status;
 
-        SetRowStatus(npc,"Not Selected");
+        // Inicializuj další UI elementy (nepøepisovat status)
         SetHighlightSection(npc, -1);
         SetRowDistrictStatus(npc, "");
 
@@ -97,6 +106,8 @@ public class UINPC : MonoBehaviour
         // ensure handle exists and cached
         if (!handles.ContainsKey(npc))
             handles[npc] = new NPCRowHandle(this, npc);
+
+        HideEmptyRow(role);
     }
 
     // Returns handle; ensures row exists (creates if necessary)
@@ -117,13 +128,19 @@ public class UINPC : MonoBehaviour
         if (npc == null) return;
         if (!rows.TryGetValue(npc, out var row)) return;
 
+        // zapamatuj roli pøed odstranìním
+        Role role = row.role;
+
         if (row.root != null) Destroy(row.root);
         rows.Remove(npc);
 
         if (handles.ContainsKey(npc))
             handles.Remove(npc);
 
-        Destroy(npc.gameObject);
+        // ukaž empty row pokud je potøeba pro tuto sekci
+        ShowEmptyRowIfNeeded(role);
+
+        // NE nièíme samotný NPC gameObject zde — to by mìlo dìlat spravce NPC pokud je to tøeba
     }
 
     public void ClearAll()
@@ -148,16 +165,10 @@ public class UINPC : MonoBehaviour
 
         if (prefab == null) throw new InvalidOperationException($"Prefab for role {role} is not assigned.");
 
-        Transform parent = role switch
-        {
-            Role.Miner => minersContainer ?? transform,
-            Role.Collector => collectorsContainer ?? transform,
-            Role.Builder => buildersContainer ?? transform,
-            _ => transform
-        };
+        Transform parent = GetContainerForRole(role);
 
         var go = Instantiate(prefab, parent, false);
-        var row = new NPCRow { root = go };
+        var row = new NPCRow { root = go, role = role };
 
         // Prefer explicit NPCRowView component (robust, supports nested hierarchy).
         var view = go.GetComponentInChildren<NPCRowView>(true);
@@ -247,6 +258,7 @@ public class UINPC : MonoBehaviour
         for (int i = 0; i < row.actionButtons.Count; i++)
         {
             var img = row.actionButtons[i].gameObject.GetComponent<Image>();
+            if (img == null) continue;
             Color c = img.color;
 
             if (i == index)
@@ -264,5 +276,74 @@ public class UINPC : MonoBehaviour
             img.color = c;
 
         }
+    }
+
+
+    private void ShowEmptyRowIfNeeded(Role role)
+    {
+        int count = 0;
+        foreach (var kv in rows)
+        {
+            if (kv.Value.role == role) count++;
+        }
+
+        if (count == 0 && !emptyRows.ContainsKey(role))
+        {
+            CreateEmptyRow(role);
+        }
+    }
+
+    private void HideEmptyRow(Role role)
+    {
+        if (emptyRows.TryGetValue(role, out GameObject emptyRow))
+        {
+            if (emptyRow != null) Destroy(emptyRow);
+            emptyRows.Remove(role);
+        }
+    }
+
+    private void CreateEmptyRow(Role role)
+    {
+        if (emptyRowPrefab == null) return;
+
+        Transform parent = GetContainerForRole(role);
+        GameObject emptyRow = Instantiate(emptyRowPrefab, parent, false);
+
+        var textComponent = emptyRow.GetComponentInChildren<TextMeshProUGUI>(true);
+        if (textComponent != null)
+        {
+            textComponent.text = GetEmptyMessageForRole(role);
+        }
+
+        emptyRows[role] = emptyRow;
+    }
+
+    private string GetEmptyMessageForRole(Role role)
+    {
+        return role switch
+        {
+            Role.Miner => "No miners hired\nHire miners to gather resources",
+            Role.Collector => "No collectors hired\nHire collectors to transport materials",
+            Role.Builder => "No builders hired\nHire builders to construct buildings",
+            _ => "No NPCs hired"
+        };
+    }
+
+    private Transform GetContainerForRole(Role role)
+    {
+        return role switch
+        {
+            Role.Miner => minersContainer ?? transform,
+            Role.Collector => collectorsContainer ?? transform,
+            Role.Builder => buildersContainer ?? transform,
+            _ => transform
+        };
+    }
+
+    private void Start()
+    {
+        ShowEmptyRowIfNeeded(Role.Miner);
+        ShowEmptyRowIfNeeded(Role.Collector);
+        ShowEmptyRowIfNeeded(Role.Builder);
     }
 }
